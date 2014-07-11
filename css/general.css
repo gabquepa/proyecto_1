@@ -37,9 +37,9 @@ body{
 }
 .main{
   padding: 2%;
-  margin:0!important;
   display: inline-block;
-  width: 79,166666666667;/*760px*/
+  width: 79.166666666667%;/*760px*/
+  vertical-align: top;
 }
 .header, .footer, .side-nav h3, .btn-blue{
   /* fallback */
@@ -85,12 +85,13 @@ body{
   height: 100%;
 }
 .header ul li a{
-  color: white;
-  padding-top: 32px;  
-  height: 100%;
+  color: white !important;
+  padding-top: 32px !important;  
+  height: 100% !important;
 }
+
 .header ul li a:hover{
-  background-color: #196A95;
+  background-color: #196A95 !important;
 }
 .header input{
  
@@ -130,12 +131,18 @@ body{
 }
 
 .side-nav{
-  width: 20,833333333333%; /*200px*/
+  width: 20.520833333333%; /*200px -2px*/
   display: inline-block;
-  border-right: 2px solid #BBB;
+  border-right: 2px solid #d5e4ec;
+  text-align: center;
+}
+.side-nav .usr-stars, img{
+  width: 100%;
 }
 .side-nav h3{
   color: white;
+  font-size: 15px;
+  padding: 8px 0;
 }
 .side-nav ul{
   padding-left: 0;
@@ -143,7 +150,17 @@ body{
 
 .side-nav ul li{
   list-style: none;
+  text-align: left;
+  padding-left:25%;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+.side-nav ul li:hover{
+  background-color: #ebebeb;
+  border-left: 5px #00a79c solid;
+  padding-left:22.5%;
+}
+
 .side-nav ul li a{
   text-decoration: none;
   color: black;
