@@ -44,6 +44,16 @@ app.directive('projectSideNav', function(){
 		
 	});
 	
+	//Esta es una directiva que contiene perfil de usuario
+	app.directive('userProfile',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/profile.html'
+		};
+		
+	});
+	
 	
 //Termina Sergio Herrera Durán
 

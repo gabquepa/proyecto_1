@@ -78,8 +78,9 @@
 	font-size: 1.5em;
 	padding: 0em 10%
 }
+/*Inicia recuperar */
 
-.headcontlog #titlerecover{
+#titlerecover{
 	margin:0;
 	font-size: 1.7em;
 	color: #fff;
@@ -87,6 +88,7 @@
 }
 
 .msjerror{
+	
 	font-size: 1em;
 	color: #F58e25;
 	padding: 0em 0%
@@ -97,7 +99,7 @@
 	color:#6d6d6d;
 	width: 100%;
 	font-size: 1.5em;
-	padding: 0em 30%
+	padding: 0em 34%
 }
 
 
@@ -131,6 +133,16 @@
 
 	padding: 0em 18%
     }
+    
+    #titlerecover{
+	font-size: 1.7em;
+	padding: 0.3em 20%
+    }
+    
+    #recoverylink{
+	
+	font-size: 1.5em;
+	padding: 0em 38%
 }
 
 
@@ -163,6 +175,16 @@
 
 	padding: 0em 18%
     }
+    
+    #titlerecover{
+	font-size: 1.7em;
+	padding: 0.3em 20%
+    }
+    
+    #recoverylink{
+	
+	font-size: 1.5em;
+	padding: 0em 35%
 }
 
 @media (min-width: 321px) and (max-width: 480px) {
@@ -193,6 +215,18 @@
 
 	padding: 0em 16%
     }
+    
+    #titlerecover{
+	font-size: 1.7em;
+	padding: 0.3em 14%
+    }
+    
+    #recoverylink{
+	
+	font-size: 1.5em;
+	padding: 0em 35%
+}
+
 }
 
 @media (min-width: 240px) and (max-width: 320px) {
@@ -220,6 +254,11 @@
 	.formlogin{
 		padding: 2em 2%;
 	}
+	
+	#titlerecover{
+	font-size: 1.7em;
+	padding: 0.3em 7%
+    }
 
 }
 
