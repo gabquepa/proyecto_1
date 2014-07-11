@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" href="css/general.css"/>
+  <link rel="stylesheet" href="css/configuration.css">
 </head>
 <body>
   <div class="container">
@@ -25,7 +26,21 @@
     <project-side-nav></project-side-nav>
 
     <div class="main row">
-      Aqui va to
+            <div class="wrapper" ng-controller="configController as conf">
+ 
+                      <conf-header></conf-header><!--Menu de navegacion de configuracion-->
+                          <div class="content cf"><!--Contenedor borde gris-->
+
+                             <!-- /////////////////////////////////Configuracion Tab Usuario//////////////////////////////////////// --> 
+                                 <usuario-menu></usuario-menu> <!--Menu crear/modificar/inhabilitar Usuarios-->
+                                       <crear-usuario></crear-usuario><!--Vista Crear Usuario-->
+                                      <!-- <modificar-usuario></modificar-usuario> --> <!--Vista Modificar Usuario-->
+                                         <!-- <inhabilitar-usuario></inhabilitar-usuario> --><!--Vista Inhabilitar Usuario-->
+                          </div>
+
+        
+      
+  </div> 
 
     </div>
 

@@ -35,5 +35,39 @@ app.directive('projectSideNav', function(){
 	});
 //Termina Sergio Herrera Durán
 
+//Comienza Alejandro
+/*********************************Configuration Header***************************************************/
+		app.directive('confHeader', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/confHeader.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Menu Crear/Modificar/Inhabilitar Usuario***************************************************/
+		app.directive('usuarioMenu', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/usuarioMenu.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Crear Usuario***************************************************/
+		app.directive('crearUsuario', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/crearUsuario.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+
+
+
 
 })();
