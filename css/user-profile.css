@@ -51,7 +51,7 @@
 	border-radius: 5px 5px 0px 0px; box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75)
 }
 	
-.contprofile{
+.contprofile, .contPass {
 	width: 100%;
 }
 
@@ -59,16 +59,49 @@
 	width: 100%;
 	box-shadow: 0px 0px 5px 0px;
 	padding: 1em 2% 1em 2%;
+	
 }
 
-.infoprofile figure{
-	width: 30%;
+.infoprofile .imgsprofile{
+	width: 25%;
 	float:left;
+	margin-left: 10%
+	
 }
 
-.infoprofile aside{
-	width: 70%;
+.infoprofile .infousuario{
+	width: 50%;
 	float:left;
+	margin-left:15%
+	
 }
 
+.infoprofile .infousuario label{
+	display: block;
+	width: 100%
+}
 
+.infoprofile .infousuario span, ul{
+	padding-left:15%
+	
+}
+
+.passprofile{
+	padding: 0em 30%
+}
+
+.passprofile .passprofile{
+	width: 100%
+}
+
+.passform{
+	display: block;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+.formpassbot{
+	width: 100%;
+	background-color: #217599;
+	color:#fff;
+}
