@@ -33,6 +33,18 @@ app.directive('projectSideNav', function(){
 		};
 		
 	});
+	
+	//Esta es una directiva que contiene recuperación de contraseña
+	app.directive('recoverPass',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/recover-pass.html'
+		};
+		
+	});
+	
+	
 //Termina Sergio Herrera Durán
 
 //Comienza Alejandro
