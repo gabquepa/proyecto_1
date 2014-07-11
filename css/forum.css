@@ -75,6 +75,21 @@ body{
   font-size:16px;
   padding: 5%;
 }
+.forum .comments-lst h5{
+  display: inline-block;
+}
+.forum .comments-lst h5 a{
+  color: #818181;
+  font-size: 13px;
+}
+.forum .comments-lst .star-rating{
+  display: inline-block;
+}
+.forum .comments-lst .star-rating .caption{
+  display: none;
+}
+
+
 
 
 
