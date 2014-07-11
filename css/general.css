@@ -1,3 +1,12 @@
+/* Sergio Herrera Durán */
+/* esto evita que los bordes colapsen */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* Termina Sergio Herrera Durán */
+
 html{
   /* fallback */
   background-color: #F58e25;
@@ -85,3 +94,77 @@ body{
   height:60px;   /* Height of the footer */
   background:#6cf;
 }
+
+
+
+/* Sergio Herrera Durán */
+/* class para header de login */
+.headerlog{
+	margin-top: 0;
+}
+
+/* class para imagen del header log */
+.headerlog img{
+	max-width:20%;
+	height:auto;
+	margin-top: 0;
+	padding:0.4em 2%
+}
+
+/* clases de header login*/
+.contloging{
+	width: 40%;
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-top:10em;
+	margin-bottom:25em;
+	box-shadow: 0em 0em 1em;
+}
+
+.contloging .headcontlog{
+	width: 100%;
+	margin: 0;
+}
+
+.contloging .headcontlog h3{
+	margin:0;
+	font-size: 2em;
+	color: #fff;
+	padding: 0.3em 18.5%
+}
+/* class para form login */
+
+.formlogin{
+	width: 100%;
+	padding: 3em 15%;
+}
+
+.formlogin input, button{
+	display: block;
+	margin-bottom: 1em;
+	width: 100%;
+	font-size: 1.5em;
+	height: 2em;
+	padding-left: 1%;
+}
+
+.formlogin label{
+	display: block;
+	width: 100%;
+	color:#6d6d6d;
+	font-size: 1.5em
+}
+
+.formlogin button{
+	background-color: #217599;
+	color:#fff;
+}
+
+.formlogin a{
+	display:block;
+	color:#6d6d6d;
+	width: 100%;
+	font-size: 1.5em;
+	padding: 0em 10%
+}
+/*Termina Sergio Herrera Durán */

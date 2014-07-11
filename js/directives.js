@@ -23,4 +23,17 @@ app.directive('projectSideNav', function(){
 	};
 });
 
+//Sergio Herrera Durán
+	//Esta es una directiva que contiene el login
+	app.directive('contLogin',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/login.html'
+		};
+		
+	});
+//Termina Sergio Herrera Durán
+
+
 })();
