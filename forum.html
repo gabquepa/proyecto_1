@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Portal Cenfotec</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css"> -->
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/general.css"/>
+  <link rel="stylesheet" href="css/forum.css">
+</head>
+<body>
+  <div class="container">
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+    <project-header></project-header>
+    <project-side-nav></project-side-nav>
+
+    <div class="main row">
+        <div class="forum">
+          <h3>Mis Foros_</h3>
+          <p>En esta sección podrá ver los foros de este curso y si está invitado puede participar y comentar en el mismo.</p>
+          <div class="forum-lst">
+            <h3 id="course" class="course"> Nombre del Curso </h3>
+            <h4 id="course-title" class="course-title">Titulo del Foro</h4>
+            <div class="main-forum">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.
+              Praesent suscipit quam vitae augue mollis fermentum. Fusce a nisl bibendum, bibendum arcu in, aliquam nulla. Vestibulum faucibus facilisis sapien, vitae sagittis dolor commodo sed. Aliquam rhoncus neque eu volutpat luctus. Maecenas lectus velit, laoreet nec porta nec, semper at nunc.
+            </div>
+            <a href="#add-comment" data-toggle="collapse" class="pull-right">Comentar</a>
+            <div id="add-comment" class="panel-collapse collapse">
+              <div class="panel-body">
+                <h3>Ingrese su Comentario</h3>
+                <textarea placeholder="Comentario ..."></textarea>
+                <button class="btn-blue pull-right">Publicar</button>
+              </div>
+            </div>
+          </div>
+          <div class="comments-lst">
+            <h3>Comentarios</h3>
+            <a href="#" class="contributor-name">Nombre</a> <span>01/01/2014</span>
+            <div class="comment-stars pull-right"><img class="usr-avatar" src="/Proyecto_1/img/sample-stars.png"></div>
+            <div class="forum">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.</p>
+            </div>
+            <h5>Evaluar</h5>
+            <input class="stars" data-size="xs">
+            <h5 class="pull-right"><a href="#">Denunciar</a></h5>
+          </div>
+        </div>    
+        
+      
+  </div> 
+
+    </div>
+
+    <project-footer></project-footer>
+  </div>
+  <script src="js/vendor/angular.min.js"></script>
+  <script src="js/vendor/jquery-1.11.0.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/star-rating.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  
+</body>
+</html>
