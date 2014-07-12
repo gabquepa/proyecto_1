@@ -99,11 +99,27 @@ app.directive('projectSideNav', function(){
 		};
 	});
 
-	app.directive('buscarDocumento',function(){/*DIrectiva Subir Documento*/
+	app.directive('buscarDocumento',function(){/*DIrectiva buscar Documento*/
 		return{
 			restrict:'E', 
 			templateUrl:'/Proyecto_1/partials/buscar-doc.html'
 		};
 	});
+
+	app.directive('topDocumento',function(){/*DIrectiva top Documento*/
+		return{
+			restrict:'E', 
+			templateUrl:'/Proyecto_1/partials/top-doc.html'
+		};
+	});
+
+	app.directive('historialdescargasDocumento',function(){/*DIrectiva Historial Descargas Documento*/
+		return{
+			restrict:'E', 
+			templateUrl:'/Proyecto_1/partials/historialdescargas-doc.html'
+		};
+	});
+
+/*Directivas Documentos KeilynSibaja*/
 
 })();
