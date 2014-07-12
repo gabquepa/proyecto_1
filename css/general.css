@@ -94,7 +94,10 @@ body{
   background-color: #196A95 !important;
 }
 .header input{
- 
+  background: url('/Proyecto_1/img/search-icon.png') no-repeat center; 
+  background-color: white;
+  background-size: 13%;
+  background-position: 90% 5px;
 }
 .footer{
   font-size: 12px;
@@ -137,12 +140,14 @@ body{
   text-align: center;
 }
 .side-nav .usr-stars, img{
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 .side-nav h3{
   color: white;
   font-size: 15px;
   padding: 8px 0;
+  margin-top: 5px;
 }
 .side-nav ul{
   padding-left: 0;
@@ -167,6 +172,35 @@ body{
   width: 100%;
   display: inline-block;
 }
+
+/******   Breakpoints   *******/
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 600px) {
+  .main.row{
+    width: 100%
+  }
+  .side-nav{
+    border:none;
+    width: 100%;
+  }
+  .side-nav img.usr-avatar {
+    width: 20%;
+  }
+  .side-nav img.usr-stars{
+    width: 30%;
+
+  }
+
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {  }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {  }
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) {  }
 
 
 
