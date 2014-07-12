@@ -9,12 +9,13 @@ body{
  
 }
 
-.forum h3{
+/************** forum 1 **************/
+.forum h3, .forum-search h3{
   font-size: 27px;
   color: #434343;
   font-weight: normal;
 }
-.forum p{
+.forum p, .forum-search p{
   font-size: 16px;
   color: #686666;
 }
@@ -32,7 +33,7 @@ body{
   padding: 2%;
 }
 
-.forum a{
+.forum a, .forum-search .Foro-lst a{
   text-decoration: underline;
 }
 .forum #add-comment{
@@ -45,7 +46,7 @@ body{
   margin-right: 2%;
   min-height: 180px !important;
 }
-.forum #add-comment h3, .forum .comments-lst h3{
+.forum #add-comment h3, .forum .comments-lst h3, .forum-search .Foro-lst h3 {
   font-size: 16px;
   color: #434343;
 }
@@ -65,7 +66,7 @@ body{
   width: 15%;
   vertical-align: top;
 }
-.forum .comments-lst .forum{
+.forum .comments-lst .forum, .forum-search .Foro-lst p{
   -webkit-box-shadow: inset -6px 0px 29px 2px rgba(50, 50, 50, 0.49);
   -moz-box-shadow:    inset -6px 0px 29px 2px rgba(50, 50, 50, 0.49);
   box-shadow:         inset -6px 0px 29px 2px rgba(50, 50, 50, 0.49);
@@ -73,7 +74,7 @@ body{
   background-color: #f5f5f5;
   color: #606060;
   font-size:16px;
-  padding: 5%;
+  padding: 2%;
 }
 .forum .comments-lst h5{
   display: inline-block;
@@ -89,7 +90,45 @@ body{
   display: none;
 }
 
+/************** forum 2 **************/
 
+.forum-search .search-section{
+  -webkit-box-shadow: -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
+  -moz-box-shadow:    -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
+  box-shadow:         -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
+  padding: 2%;
+}
+.forum-search .search-title{
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 0;
+  padding: 10px 0;
+}
+.forum-search .search-section span{
+  width: 100%;
+  height: 3px;
+  background-color: #108198;
+  display: inline-block;
+}
+.forum-search .search-section h4{
+  font-size: 14px;
+  color: #3d3d3d;
+}
+
+.forum-search .search-section select{
+  width: 47%;
+  margin: 10px 1%;
+}
+.forum-search .search-section > select:last-child{
+  
+}
+.forum-search .search-section button{
+  color: white;
+  display: inline-block;
+  text-align: right;
+}
 
 
 

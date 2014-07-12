@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Portal Cenfotec</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css"> -->
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/vendor/star-rating.min.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/general.css"/>
+  <link rel="stylesheet" href="css/forum.css">
+</head>
+<body>
+  <div class="container">
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+    <project-header></project-header>
+    <project-side-nav></project-side-nav>
+
+    <div class="main row">
+        <div class="forum-search">
+          <h3>Foros_</h3>
+          <p>En esta sección usted podrá buscar foros de interés y comentar los mismos de estar invitado.</p>
+          <h3  class="search-title btn-blue">Buscar Foro </h3>
+          <div class="search-section">
+            <input class="form-control" placeholder="Buscar">
+            <span></span>
+            <h4>Búsqueda Avanzada</h4>
+            <select>
+              <option val="-1" disable>Seleccione una Carrera</option>
+              <option val="1" disable>Carrera 1</option>
+              <option val="1" disable>Carrera 2</option>
+              <option val="1" disable>Carrera 3</option>
+            </select>
+            <select>
+              <option val="-1" disable>Seleccione un Curso</option>
+              <option val="1" disable>Curso 1</option>
+              <option val="1" disable>Curso 2</option>
+              <option val="1" disable>Curso 3</option>
+            </select>
+            <select style="width: 100%;">
+              <option val="-1" disable>Seleccione un Tema</option>
+              <option val="1" disable>Tema 1</option>
+              <option val="1" disable>Tema 2</option>
+              <option val="1" disable>Tema 3</option>
+            </select>
+            <button class="btn-blue">Buscar</button>
+          </div>
+          <div class="Foro-lst">
+            <h3>Foros</h3>
+            <a href="#" class="Forum-name">Nombre</a> <span>01/01/2014</span>
+            <div class="forum">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.</p>
+            </div>
+          </div>
+        </div>    
+        
+      
+  </div> 
+
+    </div>
+
+    <project-footer></project-footer>
+  </div>
+  <script src="js/vendor/angular.min.js"></script>
+  <script src="js/vendor/jquery-1.11.0.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/star-rating.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  
+</body>
+</html>
