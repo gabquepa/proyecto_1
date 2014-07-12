@@ -65,9 +65,31 @@ body{
 .navbar-collapse.collapse{
   height: 80px !important;
 }
+
+/* cerrar Sesión Sergio Herrera */
+.topHeaderNav{
+	width: 100%;
+	padding: 0.5em 2% 0em 2%
+}
+
+.topHeaderNav a{
+	width: 20%;
+	text-align: right;
+	color:#196A95;
+	font-size: 1em;
+	margin-left: 68%
+	
+}
+
+#cerrarSesion{
+	width: 12%;
+	margin-left: 0
+}
+/* cerrar Sesión Sergio Herrera */
+
 .header{
   width: 100%;
-  margin-top: 40px;
+  margin-top: 10px;
 }
 .header form{
   padding-top: 15px;
