@@ -75,7 +75,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/confHeader.html'
+			templateUrl: '/Proyecto_1/partials/confHeader.html'
 
 		};
 	});
@@ -85,7 +85,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/usuarioMenu.html'
+			templateUrl: '/Proyecto_1/partials/usuarioMenu.html'
 
 		};
 	});
@@ -95,7 +95,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/crearUsuario.html'
+			templateUrl: '/Proyecto_1/partials/crearUsuario.html'
 
 		};
 	});
@@ -105,7 +105,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/modificarUsuario.html'
+			templateUrl: '/Proyecto_1/partials/modificarUsuario.html'
 
 		};
 	});
@@ -115,7 +115,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/inhabilitarUsuario.html'
+			templateUrl: '/Proyecto_1/partials/inhabilitarUsuario.html'
 
 		};
 	});
@@ -125,7 +125,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/foroMenu.html'
+			templateUrl: '/Proyecto_1/partials/foroMenu.html'
 
 		};
 	});
@@ -135,7 +135,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/respuestaForos.html'
+			templateUrl: '/Proyecto_1/partials/respuestaForos.html'
 
 		};
 	});
@@ -145,7 +145,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/sistemaVotacion.html'
+			templateUrl: '/Proyecto_1/partials/sistemaVotacion.html'
 
 		};
 	});
@@ -155,7 +155,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/procesarDenuncias.html'
+			templateUrl: '/Proyecto_1/partials/procesarDenuncias.html'
 
 		};
 	});
@@ -165,7 +165,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/carreraMenu.html'
+			templateUrl: '/Proyecto_1/partials/carreraMenu.html'
 
 		};
 	});
@@ -175,7 +175,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/crearCarrera.html'
+			templateUrl: '/Proyecto_1/partials/crearCarrera.html'
 
 		};
 	});
@@ -185,7 +185,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/modificarCarrera.html'
+			templateUrl: '/Proyecto_1/partials/modificarCarrera.html'
 
 		};
 	});
@@ -195,7 +195,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/inhabilitarCarrera.html'
+			templateUrl: '/Proyecto_1/partials/inhabilitarCarrera.html'
 
 		};
 	});
@@ -205,7 +205,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/cursoMenu.html'
+			templateUrl: '/Proyecto_1/partials/cursoMenu.html'
 
 		};
 	});
@@ -215,7 +215,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/crearCurso.html'
+			templateUrl: '/Proyecto_1/partials/crearCurso.html'
 
 		};
 	});
@@ -225,7 +225,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/modificarCurso.html'
+			templateUrl: '/Proyecto_1/partials/modificarCurso.html'
 
 		};
 	});
@@ -235,7 +235,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/inhabilitarCurso.html'
+			templateUrl: '/Proyecto_1/partials/inhabilitarCurso.html'
 
 		};
 	});
@@ -245,7 +245,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/profesoresMenu.html'
+			templateUrl: '/Proyecto_1/partials/profesoresMenu.html'
 
 		};
 	});
@@ -255,7 +255,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/asignarProfesor.html'
+			templateUrl: '/Proyecto_1/partials/asignarProfesor.html'
 
 		};
 	});
@@ -265,7 +265,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/desasignarProfesor.html'
+			templateUrl: '/Proyecto_1/partials/desasignarProfesor.html'
 
 		};
 	});
@@ -275,7 +275,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/estudiantesMenu.html'
+			templateUrl: '/Proyecto_1/partials/estudiantesMenu.html'
 
 		};
 	});
@@ -285,7 +285,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/asignarEstudiante.html'
+			templateUrl: '/Proyecto_1/partials/asignarEstudiante.html'
 
 		};
 	});
@@ -295,7 +295,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/config/desasignarEstudiante.html'
+			templateUrl: '/Proyecto_1/partials/desasignarEstudiante.html'
 
 		};
 	});
