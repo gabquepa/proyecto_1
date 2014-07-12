@@ -100,6 +100,36 @@ app.directive('projectSideNav', function(){
 /*****************************************************************************************************************/
 
 
+/*Directivas Documentos KeilynSibaja*/
 
+	app.directive('subirDocumento',function(){/*DIrectiva Subir Documento*/
+		return{
+			restrict:'E', 
+			templateUrl:'/Proyecto_1/partials/subir-doc.html'
+		};
+	});
+
+	app.directive('buscarDocumento',function(){/*DIrectiva buscar Documento*/
+		return{
+			restrict:'E', 
+			templateUrl:'/Proyecto_1/partials/buscar-doc.html'
+		};
+	});
+
+	app.directive('topDocumento',function(){/*DIrectiva top Documento*/
+		return{
+			restrict:'E', 
+			templateUrl:'/Proyecto_1/partials/top-doc.html'
+		};
+	});
+
+	app.directive('historialdescargasDocumento',function(){/*DIrectiva Historial Descargas Documento*/
+		return{
+			restrict:'E', 
+			templateUrl:'/Proyecto_1/partials/historialdescargas-doc.html'
+		};
+	});
+
+/*Directivas Documentos KeilynSibaja*/
 
 })();
