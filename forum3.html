@@ -27,11 +27,59 @@
     <project-side-nav></project-side-nav>
 
     <div class="main row">
-        <div class="forum-config">
-          
-        </div>    
-        
-      
+        <div class="forum-config" ng-controller="ForumController as forum">
+          <h3>Mis Foros_</h3>
+          <p>En esta sección podra accesar a los foros invitados y crear y editar los personales.</p>
+          <h3  class="config-forumTitle btn-blue">Foro </h3>
+          <div class="config-forumSection">
+            <h4 id="course-title" class="course-title">Titulo del Foro</h4>
+            <a class="glyphicon glyphicon-remove pull-right">Cerrar</a> 
+            <a class="glyphicon glyphicon-pencil pull-right collapsed" href="#forum-usrs" data-toggle="collapse" ng-click="forum.enableTxt()" >Editar</a> 
+            <textarea class="main-forum" ng-disabled="{{enable}}" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.Praesent suscipit quam vitae augue mollis fermentum. Fusce a nisl bibendum, bibendum arcu in, aliquam nulla. Vestibulum faucibus facilisis sapien, vitae sagittis dolor commodo sed. Aliquam rhoncus neque eu volutpat luctus. Maecenas lectus velit, laoreet nec porta nec, semper at nunc.</textarea>
+            <div id="forum-usrs" class="forum-usrs panel-collapse collapse">
+              <div>
+                <label>Moderador: </label>
+                <input type="email" class="form-control moderador">
+                <label>Invitar Usuarios:</label>
+                <textarea class="form-control" ></textarea>
+                <button class="btn-blue pull-right" ng-click="forum.addToForum()">Agregar</button>
+              </div>
+              <div class="clearfix">
+                <label>Moderador: </label> 
+                <label>Usuarios Invitados</label> 
+                <span id="delete" class="glyphicon glyphicon-remove"></span>
+              </div>  
+            </div>
+          </div>
+          <div class="comments-lst">
+              <h3>Comentarios</h3>
+              <div class="clearfix">
+                <a href="#" class="contributor-name">Nombre</a> <span>01/01/2014</span>
+                <div class="comment-stars pull-right"><img class="usr-avatar" src="/Proyecto_1/img/sample-stars.png"></div>
+                <div class="forum">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.</p>
+                </div>
+                <h5 class="pull-right"><a href="#">Denunciar</a></h5>
+              </div>
+              <div class="clearfix">
+                <a href="#" class="contributor-name">Nombre</a> <span>01/01/2014</span>
+                <div class="comment-stars pull-right"><img class="usr-avatar" src="/Proyecto_1/img/sample-stars.png"></div>
+                <div class="forum">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.</p>
+                </div>
+                <h5 class="pull-right"><a href="#">Denunciar</a></h5>
+              </div>
+              <div class="clearfix">
+                <a href="#" class="contributor-name">Nombre</a> <span>01/01/2014</span>
+                <div class="comment-stars pull-right"><img class="usr-avatar" src="/Proyecto_1/img/sample-stars.png"></div>
+                <div class="forum">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.</p>
+                </div>
+                <h5 class="pull-right"><a href="#">Denunciar</a></h5>
+              </div>
+            </div>
+            </div>
+          </div>    
   </div> 
 
     </div>
