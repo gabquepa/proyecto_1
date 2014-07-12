@@ -54,6 +54,16 @@ app.directive('projectSideNav', function(){
 		
 	});
 	
+	//Esta es una directiva que contiene el blog de usuario1
+	app.directive('userBlog1',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/user-blog1.html'
+		};
+		
+	});
+	
 	
 //Termina Sergio Herrera Durán
 
