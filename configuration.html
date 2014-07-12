@@ -26,19 +26,26 @@
     <project-side-nav></project-side-nav>
 
     <div class="main row">
-            <div class="wrapper" ng-controller="configController as conf">
+            
+        <div class="wrapper" ng-controller="configController as conf">
  
                       <conf-header></conf-header><!--Menu de navegacion de configuracion-->
                           <div class="content cf"><!--Contenedor borde gris-->
 
                              <!-- /////////////////////////////////Configuracion Tab Usuario//////////////////////////////////////// --> 
-                                 <usuario-menu></usuario-menu> <!--Menu crear/modificar/inhabilitar Usuarios-->
-                                       <crear-usuario></crear-usuario><!--Vista Crear Usuario-->
+                                 <!-- <usuario-menu></usuario-menu> --> <!--Menu crear/modificar/inhabilitar Usuarios-->
+                                      <!--  <crear-usuario></crear-usuario> --><!--Vista Crear Usuario-->
                                       <!-- <modificar-usuario></modificar-usuario> --> <!--Vista Modificar Usuario-->
                                          <!-- <inhabilitar-usuario></inhabilitar-usuario> --><!--Vista Inhabilitar Usuario-->
+                                          <estudiantes-menu></estudiantes-menu>
+
+                                  <!-- <asignar-estudiante></asignar-estudiante> -->
+                                  <desasignar-estudiante></desasignar-estudiante>
                           </div>
 
         
+      
+  </div> 
       
   </div> 
 

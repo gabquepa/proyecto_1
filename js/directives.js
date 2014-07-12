@@ -67,13 +67,15 @@ app.directive('projectSideNav', function(){
 	
 //Termina Sergio Herrera Durán
 
-//Comienza Alejandro
+//Comienza Alejandro 
+
+///////DIRECTIVAS DE CONFIGURACION///////////////////
 /*********************************Configuration Header***************************************************/
 		app.directive('confHeader', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/confHeader.html'
+			templateUrl: '/Proyecto_1/partials/config/confHeader.html'
 
 		};
 	});
@@ -83,7 +85,7 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/usuarioMenu.html'
+			templateUrl: '/Proyecto_1/partials/config/usuarioMenu.html'
 
 		};
 	});
@@ -93,12 +95,212 @@ app.directive('projectSideNav', function(){
 		return{
 			restrict: 'E',
 			// restrict: 'A',
-			templateUrl: '/Proyecto_1/partials/crearUsuario.html'
+			templateUrl: '/Proyecto_1/partials/config/crearUsuario.html'
 
 		};
 	});
 /*****************************************************************************************************************/
+/*********************************Directiva Modificar Usuario***************************************************/
+		app.directive('modificarUsuario', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/modificarUsuario.html'
 
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Inhabilitar Usuario***************************************************/
+		app.directive('inhabilitarUsuario', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/inhabilitarUsuario.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Inhabilitar Usuario***************************************************/
+		app.directive('foroMenu', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/foroMenu.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Respuesta de Foros***************************************************/
+		app.directive('respuestaForos', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/respuestaForos.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Sistema de Votacion***************************************************/
+		app.directive('sistemaVotacion', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/sistemaVotacion.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Procesar Denuncias***************************************************/
+		app.directive('procesarDenuncias', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/procesarDenuncias.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Menu Crear/Modificar/Inhabilitar CARRERA***************************************************/
+		app.directive('carreraMenu', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/carreraMenu.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Crear CARRERA***************************************************/
+		app.directive('crearCarrera', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/crearCarrera.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Modificar CARRERA***************************************************/
+		app.directive('modificarCarrera', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/modificarCarrera.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Modificar CARRERA***************************************************/
+		app.directive('inhabilitarCarrera', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/inhabilitarCarrera.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Menu Crear/Modificar/Inhabilitar CURSO***************************************************/
+		app.directive('cursoMenu', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/cursoMenu.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Crear CURSO***************************************************/
+		app.directive('crearCurso', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/crearCurso.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva modificar CURSO***************************************************/
+		app.directive('modificarCurso', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/modificarCurso.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva inhabilitar CURSO***************************************************/
+		app.directive('inhabilitarCurso', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/inhabilitarCurso.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Menu PROFESORES***************************************************/
+		app.directive('profesoresMenu', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/profesoresMenu.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Asignar Profesor***************************************************/
+		app.directive('asignarProfesor', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/asignarProfesor.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Desasignar Profesor***************************************************/
+		app.directive('desasignarProfesor', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/desasignarProfesor.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Menu ESTUDIANTES***************************************************/
+		app.directive('estudiantesMenu', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/estudiantesMenu.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Asignar Estudiante***************************************************/
+		app.directive('asignarEstudiante', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/asignarEstudiante.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+/*********************************Directiva Desasignar Estudiante***************************************************/
+		app.directive('desasignarEstudiante', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/config/desasignarEstudiante.html'
+
+		};
+	});
+/*****************************************************************************************************************/
+//Termina Alejandro Zuñiga
 
 /*Directivas Documentos KeilynSibaja*/
 
