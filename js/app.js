@@ -5,4 +5,4 @@
 
 })();
 
-$(".stars").rating();
+//$(".stars").rating();

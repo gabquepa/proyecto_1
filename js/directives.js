@@ -90,6 +90,20 @@ app.directive('projectSideNav', function(){
 /*****************************************************************************************************************/
 
 
+/*Directivas Documentos KeilynSibaja*/
 
+	app.directive('subirDocumento',function(){/*DIrectiva Subir Documento*/
+		return{
+			restrict:'E', 
+			templateUrl:'/Proyecto_1/partials/subir-doc.html'
+		};
+	});
+
+	app.directive('buscarDocumento',function(){/*DIrectiva Subir Documento*/
+		return{
+			restrict:'E', 
+			templateUrl:'/Proyecto_1/partials/buscar-doc.html'
+		};
+	});
 
 })();
