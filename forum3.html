@@ -41,13 +41,14 @@
                 <label>Moderador: </label>
                 <input type="email" class="form-control moderador">
                 <label>Invitar Usuarios:</label>
-                <textarea class="form-control" ></textarea>
+                <textarea class="form-control invitados" ></textarea>
                 <button class="btn-blue pull-right" ng-click="forum.addToForum()">Agregar</button>
               </div>
               <div class="clearfix">
-                <label>Moderador: </label> 
+                <label>Moderador: </label> <p id="moderadorDisplay"></p>
                 <label>Usuarios Invitados</label> 
-                <span id="delete" class="glyphicon glyphicon-remove"></span>
+                <ul id="invitadosDisplay">
+                </ul>s
               </div>  
             </div>
           </div>

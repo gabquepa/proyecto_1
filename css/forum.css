@@ -160,3 +160,6 @@ display: inline-block;
 .forum-usrs > div:nth-child(1) button{
   color: white;
 }
+#invitadosDisplay li{
+  list-style: none;
+}
