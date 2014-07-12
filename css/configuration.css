@@ -45,7 +45,7 @@ border-radius: 4px;}
 /***********************************************Inhabilitar Usuario *********************************************************/
 .vistaUsuarios{padding-top: 30px}
 .vistaUsuarios p{display: inline; margin-right: 35px}
-.vistaUsuarios input[type=radio]{margin-right: 22px}
+.vistaUsuarios input[type=radio]{margin-right: 13px}
 .inhabilitarSlct{ width: 80%}
 
 /**********************************************************************************************************************************************/
