@@ -167,4 +167,53 @@ app.controller('estudianteController', function(){
 	});
 
 //Termina Alejandro Zuñiga
+
+//Controllers Keilyn Sibaja
+
+app.controller('buscarDocController',function(){//Controlador de mi seccion de Buscar Documento
+
+	//1=esconder 2=mostrar
+
+	this.value=1;
+
+	this.showBtn=function(){//Muestra o esconde el boton 
+
+		if(this.value===1){
+			return this.value=2
+		};
+
+		if(this.value===2){
+			return this.value=1
+		};
+
+
+		}
+}); 
+
+app.controller('subirDocController',function(){//Contrilador de mi seccion Subir Documento
+	
+	//1=esconder 2=mostrar
+
+	this.value=1;
+
+	this.showBtn=function(){//Muestra o esconde el boton 
+
+		if(this.value===1){
+			return this.value=2
+		};
+
+		if(this.value===2){
+			return this.value=1
+		};
+
+
+		}
+});
+
+app.controller('topDocController', function(){
+	
+});
+
+//Controllers Keilyn Sibaja
+
 })();

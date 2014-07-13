@@ -1,0 +1,54 @@
+<!--Busqueda de Documentos-->
+<div ng-controller='buscarDocController as buscarDoc'>
+            <div class='doc_header'>
+              <h1>Documentos_</h1>
+              <p>En esta sección usted podrá ver todos los documentos y descargarlos</p>
+            </div>
+
+            <button class='btn-subir-down btn-blue' ng-click='buscarDoc.showBtn();'>Buscar Documento</button>
+
+            <div id='doc_subirdoc' class='cf' ng-show='buscarDoc.value===2'>
+              <div class="form-group div_docsubir">
+                <span>Ingrese el criterio de búsqueda</span>
+                  <input type='text' placeholder='Busqueda' id='doc_inpbuscardoc'>
+                  <span>Seleccione una Carrera</span>
+                  <select>
+                    <option>IT English</option>
+                    <option>Integracion de Tecnologias</option>
+                    <option>Telematica</option>
+                    <option>Desarrollo y Diseño Web</option>
+                    <option>Desarrollo de Software</option>
+                  </select>
+                  <span>Seleccione un Curso</span>
+                  <select>
+                    <option>Curso1</option>
+                    <option>Curso2</option>
+                    <option>Curso3</option>
+                    <option>Curso4</option>
+                    <option>Curso5</option>
+                  </select>
+                  <span>Resultados</span>
+                  <ul>
+                    <li>
+                      <span class='doc_lispandoc'>Autor</span>
+                      <a href="#">Libro1</a><img src="img/sample-stars.png">
+                      <span class='doc_lispandoc'>Carrera/Curso</span>
+                      <a href="#">Descargar</a>
+                    </li>
+                    <li>
+                      <span class='doc_lispandoc'>Autor</span>
+                      <a href="#">Libro1</a><img src="img/sample-stars.png">
+                      <span class='doc_lispandoc'>Carrera/Curso</span>
+                      <a href="#">Descargar</a>
+                    </li>
+                    <li>
+                      <span class='doc_lispandoc'>Autor</span>
+                      <a href="#">Libro1</a><img src="img/sample-stars.png">
+                      <span class='doc_lispandoc'>Carrera/Curso</span>
+                      <a href="#">Descargar</a>
+                    </li>
+                  </ul>
+                  </div>
+              </div>
+</div>
+      <!--Busqueda de Documentos-->

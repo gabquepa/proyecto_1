@@ -1,0 +1,78 @@
+.btn-subir-down{
+	color: white;
+	border-radius: 10px;
+	width: 100%;
+	padding: 0.5%;
+	font-size: 1.5em;
+}
+#doc_subirdoc{
+	border-right: 1px solid #c5c5c5;
+	border-bottom: 1px solid #c5c5c5;
+	border-left: 1px solid #c5c5c5;
+	padding: 1%;
+}
+
+.div_docsubir{
+	margin:3%;
+}
+
+.div_docsubir input{
+	margin-right: 2.5%;
+	width: 30%;
+	text-align: center;
+	padding: 0.5%;
+	margin-bottom: 1.5em;
+}
+.div_docsubir select{
+	margin-bottom: 2em;
+	padding: 0.5%;
+}
+.btn-subir{
+	padding: 1%;
+	color: white;
+	margin-left: 50%;
+	background-color: #217499;
+}
+.doc_header{
+	margin-bottom: 6.5em;
+}
+
+.cf:before,
+.cf:after{
+	display: table;
+	content: ''
+}
+.cf:after{
+	clear: both;
+}
+
+#exampleInputFile{
+ float: left;
+}
+
+/*BUSQUEDA DE DOCUMENTO*/
+#doc_inpbuscardoc{
+	width: 100%;
+	text-align: left;
+	display: block;
+	margin-top: 1em;
+}
+.doc_lispandoc{
+	color: gray;
+	font-style: italic;
+	margin:3%;
+}
+ul{
+	list-style: none inside;
+}
+ul li img{
+	max-width: 12%;
+	margin-left: 3%;
+}
+ul li{
+	margin-bottom: 1em;
+}
+
+h2{
+	margin-bottom: 2em;
+}

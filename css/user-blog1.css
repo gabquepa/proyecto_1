@@ -225,3 +225,58 @@
 	
 /**cierra blog3 MK4 Sergio Herrera */
 
+
+
+/*Compartir en redes sociales KeilynSibaja*/
+.ir 
+{
+	display: block;
+	text-indent: -99999px;
+}
+.sprites
+{
+	background: url('../img/redessociales.png') 0 0;
+	background-repeat: 0 none;
+	width: 35px;
+	height: 40px;
+}
+.lista li 
+{
+	float: left;
+	margin-left: 10px;
+	
+}
+.lista #Twitter
+{
+	background-position: -0px 0px;	
+}
+.lista #Facebook
+{
+	background-position: -41px 0px;
+}
+.lista #GooglePlus
+{
+	background-position: -84px 0px;	
+}
+.lista #Twitter:active
+{
+	background-position: -125px 0px;	
+}
+.lista #Facebook:active
+{
+	background-position: -165px 0px;
+}
+.lista #GooglePlus:active
+{
+	background-position: -209px 0px;	
+}
+.cf:before,
+.cf:after{
+	display: table;
+	content: ''
+}
+.cf:after{
+	clear: both;
+}
+
+/*Compartir en redes sociales KeilynSibaja*/

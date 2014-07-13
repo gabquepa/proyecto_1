@@ -13,4 +13,4 @@
 
 })();
 
-$(".stars").rating();
+//$(".stars").rating();
