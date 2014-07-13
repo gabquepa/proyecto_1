@@ -1,3 +1,5 @@
+/**inicia blog1 MK2 Sergio Herrera */
+
 .titleprofile{
 	width: 100%;
 	padding-bottom: 4em;
@@ -48,9 +50,178 @@
 }
 	
 
-/**inicia contenedor boton */
+/**inicia contenedor blog1*/
 .contBlog1{
 	width: 100%;
 	box-shadow: 0px 0px 5px 0px;
 	padding: 1em 2% 1em 2%;
 }
+
+/**inicia contenedor form */
+	
+.contBlog1 .formAddBlog {
+	width: 100%
+}
+
+.contBlog1 .formAddBlog label, input, textarea{
+	margin-bottom: 1em
+}
+
+.contBlog1 .formAddBlog label{
+	width: 8%
+}
+
+#tituloBlog1{
+	width: 60%
+}
+
+#dateBlog1{
+	width: 22%;
+	height: 1.9em
+}
+
+#textB1{
+	width:100%;
+	display: block
+}
+
+#textBlog1{
+	width: 100%
+}
+
+.btnaddBlog{
+	padding:0;
+	font-size:1.1em;
+	width: 10%; 
+	height: 2em; 
+	background-color: #196A95; 
+	color: #ffffff; 
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px; 
+	
+}
+
+.compartirPost{
+	width: 90%;
+	font-size:1.1em;
+	height: 2em; 
+	color:#686666; 
+	text-align: right;
+	padding: 0.5em 2%
+}
+/**Inicia Mis blog1 Sergio Herrera */
+.misBlogs1{
+	width: 100%
+}
+
+.misBlogs1 .headerMiblogs{
+	width: 100%;
+	padding-bottom: 1em;
+}
+
+.linktituloBlog1{
+	width: 20%;
+	color:#196A95
+}
+
+.editdelete{
+	text-align: right;
+	width: 10%;
+	color:#196A95
+}
+
+.contMiBlog1{
+	width: 100%
+}
+
+.contMiBlog1 .textmiblog{
+	width: 100%;
+	background-color: #f5f5f5;
+	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  	-moz-box-shadow:    inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+ 	 box-shadow:         inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+ 	 padding: 1em 2%
+}
+
+
+/**cierra blog1 MK2 Sergio Herrera */
+
+
+/**Iniciablog3 MK4 Sergio Herrera */
+	
+.blogsearch{
+	width: 100%;
+	margin-bottom: 0.5em
+}
+
+.linea{
+  width: 100%;
+  height: 0.2em;
+  background-color: #196A95;
+  display: inline-block;
+	
+}
+
+.slctSearchblog{
+		width: 29%;
+		height: 2em
+}
+	
+		
+/**cierra blog3 MK4 Sergio Herrera */
+	
+	
+	
+/**Iniciablog4 MK5 Sergio Herrera */
+.contblog, .misBlogs4{
+	width: 100%;
+}
+
+	
+.misBlogs4 .miblog4{
+	width: 100%;
+	padding: 0.5em 1%;
+	border: solid 1px #bebebe;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px; 
+}
+
+.misBlogs4 .linkcometarblog{
+	color: #196A95
+}
+
+#contcomentblog{
+	width: 100%;
+	padding: 1em 2%;
+	margin: 1em 0 1em 0;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+  	-moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+ 	 box-shadow:        0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+
+}
+#contcomentblog label, textarea{
+	display: block
+}
+#contcomentblog textarea{
+	width: 100%
+}
+.comentBlogs .comentmiblog4{
+	width: 100%;
+	background-color: #f5f5f5;
+	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  	-moz-box-shadow:    inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+ 	 box-shadow:         inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+ 	 padding: 1em 2%
+}	
+
+.comentBlogs .denunciarblogcomt{
+	
+}
+	
+/**cierra blog3 MK4 Sergio Herrera */
+
