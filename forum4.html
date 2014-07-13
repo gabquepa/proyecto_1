@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Portal Cenfotec</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css"> -->
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/vendor/star-rating.min.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/general.css"/>
+  <link rel="stylesheet" href="css/forum.css">
+</head>
+<body>
+  <div class="container">
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+    <project-header></project-header>
+    <project-side-nav></project-side-nav>
+
+    <div class="main row">
+        <div class="forum-create" ng-controller="ForumController as forum">
+          <h3>Mis Foros_</h3>
+          <p>En esta sección podra accesar a los foros invitados y crear y editar los personales.</p>
+          <h3  class="create-forumTitle btn-blue">Crear Foro</h3>
+          <div class="create-forumSection">
+            <h4>Titulo</h4>
+            <input class="forum-title form-control">
+            <h4>Periodo</h4>
+            <input class="forum-periodo form-control">
+            <select>
+              <option val="-1" disable>Seleccione una Carrera</option>
+              <option val="1" disable>Carrera 1</option>
+              <option val="1" disable>Carrera 2</option>
+              <option val="1" disable>Carrera 3</option>
+            </select>
+            <select>
+              <option val="-1" disable>Seleccione un Curso</option>
+              <option val="1" disable>Curso 1</option>
+              <option val="1" disable>Curso 2</option>
+              <option val="1" disable>Curso 3</option>
+            </select>
+            <select style="width: 100%;">
+              <option val="-1" disable>Seleccione un Tema</option>
+              <option val="1" disable>Tema 1</option>
+              <option val="1" disable>Tema 2</option>
+              <option val="1" disable>Tema 3</option>
+            </select>
+            <h4>Tema del foro</h4>
+            <textarea></textarea>
+            <div class="clearfix">
+              <h4>Moderador: </h4>
+              <input type="email" class="form-control moderador">
+              <h4>Invitar Usuarios:</h4>
+              <textarea class="form-control invitados" ></textarea>
+              <button class="btn-blue pull-right" ng-click="forum.addToForum()">Agregar</button>
+            </div>
+            <div class="clearfix">
+              <h4>Moderador: </h4> <p id="moderadorDisplay"></p>
+              <h4>Usuarios Invitados</h4> 
+              <ul id="invitadosDisplay">
+              </ul>
+            </div> 
+          </div>
+          </div>    
+  </div> 
+
+    </div>
+
+    <project-footer></project-footer>
+  </div>
+  <script src="js/vendor/angular.min.js"></script>
+  <script src="js/vendor/jquery-1.11.0.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/star-rating.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  
+</body>
+</html>

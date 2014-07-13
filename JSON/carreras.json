@@ -1,0 +1,35 @@
+[{
+"id":"1",
+"name": "Desarrollo y diseño Web",
+"thumb":"test.png"
+},
+{
+"id":"2",
+"name": "Desarrollo de software",
+"thumb":"test.png"
+},
+{
+"id":"3",
+"name": "Integración de tecnologías",
+"thumb":"test.png"
+},
+{
+"id":"4",
+"name": "Telemática",
+"thumb":"test.png"
+},
+{
+"id":"5",
+"name": "Ciberseguridad",
+"thumb":"test.png"
+},
+{
+"id":"6",
+"name": "Tecnología de bases de datos",
+"thumb":"test.png"
+},
+{
+"id":"7",
+"name": "Inglés",
+"thumb":"test.png"
+}]

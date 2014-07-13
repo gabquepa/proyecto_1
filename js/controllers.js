@@ -19,21 +19,20 @@ app.controller('ForumController', function($scope){
 		}
 		
 	};
-
 	this.addToForum = function(){
 		var invitados = $('.invitados').val().split(', ');
 		$('#moderadorDisplay').text($('.moderador').val());
 		$('#moderadorDisplay').append('<span id="delete" class="glyphicon glyphicon-remove"></span>');
 		for (var i = invitados.length - 1; i >= 0; i--) {
-			$('#invitadosDisplay').append('<li>'+invitados[i]+' <span id="delete" class="glyphicon glyphicon-remove"></span></li>')
-		};
+			$('#invitadosDisplay').append('<li>'+invitados[i]+' <span ng-click="forum.remove()" class="glyphicon glyphicon-remove delete"></span></li>')
+		}
+	};
+	this.remove = function(){
+		console.log('remove');
 	};
 	
 });	
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
-/*****************************************************************************************************************/
+
 /********************************************CONTROLADORES********************************************************/
 
 app.controller('configurationController', function(){
@@ -168,6 +167,4 @@ app.controller('estudianteController', function(){
 	});
 
 //Termina Alejandro Zuñiga
-
-
 })();

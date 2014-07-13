@@ -10,12 +10,12 @@ body{
 }
 
 /************** forum 1 **************/
-.forum h3, .forum-search h3, .forum-config h3{
+.forum h3, .forum-search h3, .forum-config h3, .forum-create h3{
   font-size: 27px;
   color: #434343;
   font-weight: normal;
 }
-.forum p, .forum-search p, .forum-config p{
+.forum p, .forum-search p, .forum-config p, .forum-create p{
   font-size: 16px;
   color: #686666;
 }
@@ -50,7 +50,7 @@ body{
   font-size: 16px;
   color: #434343;
 }
-.forum #add-comment textarea{
+.forum #add-comment textarea, .forum-create textarea{
   width: 100%;
   resize: none;
   border-radius: 5px;
@@ -92,13 +92,13 @@ body{
 
 /************** forum 2 **************/
 
-.forum-search .search-section{
+.forum-search .search-section, .forum-create .create-forumSection{
   -webkit-box-shadow: -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
   -moz-box-shadow:    -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
   box-shadow:         -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
   padding: 2%;
 }
-.forum-search .search-title, .forum-config .config-forumTitle{
+.forum-search .search-title, .forum-config .config-forumTitle, .forum-create .create-forumTitle {
   color: white;
   text-align: center;
   border-radius: 5px;
@@ -162,4 +162,24 @@ display: inline-block;
 }
 #invitadosDisplay li{
   list-style: none;
+}
+
+/************** forum 4 **************/
+.forum-create h4{
+  font-size: 16px;
+  color: #434343;
+}
+
+.forum-create .forum-title, .forum-create .forum-periodo{
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.forum-create select{
+  width: 49%;
+  margin-bottom: 10px;
+}
+.forum-create button{
+  color: white;
+  margin-top: 10px;
 }

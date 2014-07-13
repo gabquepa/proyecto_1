@@ -1,0 +1,75 @@
+[{
+"id":"DW1",
+"name": "Diseño Web 1",
+"CarreraId":"1"
+},
+{
+"id":"DW2",
+"name": "Diseño visual digital 1",
+"CarreraId":"1"
+},
+{
+"id":"DW3",
+"name": "Fundamentos de programación Web",
+"CarreraId":"1"
+},
+{
+"id":"DW4",
+"name": "Inglés para tecnologías de información 1",
+"CarreraId":"1"
+},
+{
+"id":"DW5",
+"name": "Diseño Web 2",
+"CarreraId":"1"
+},
+{
+"id":"DW6",
+"name": "Diseño visual digital 2",
+"CarreraId":"1"
+},
+{
+"id":"DW7",
+"name": "Programación Web dinámica",
+"CarreraId":"1"
+},
+{
+"id":"DW8",
+"name": "Inglés para tecnologías de información 2",
+"CarreraId":"1"
+},
+{
+"id":"DW9",
+"name": "Proyecto de desarrollo Web 1",
+"CarreraId":"1"
+},
+{
+"id":"DW10",
+"name": "Fundamentos de bases de datos",
+"CarreraId":"1"
+},
+{
+"id":"DW11",
+"name": "Inglés para tecnologías de información 3",
+"CarreraId":"1"
+},
+{
+"id":"DW12",
+"name": "Diseño de la experiencia del usuario",
+"CarreraId":"1"
+},
+{
+"id":"DW13",
+"name": "Tecnologías avanzadas de diseño Web",
+"CarreraId":"1"
+},
+{
+"id":"DW14",
+"name": "Comunicación de información en la Web",
+"CarreraId":"1"
+},
+{
+"id":"DW15",
+"name": "Inglés para tecnologías de información 4",
+"CarreraId":"1"
+}]
