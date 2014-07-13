@@ -1,5 +1,6 @@
-<div class="usuarioMenu" ng-controller="PanelController as panel">
-                <button type="button" class="usuariosBtn">Asignar Profesor</button>
-                <button type="button" class="usuariosBtn" >Desasignar Profesor</button>
+<div ng-show="confPanel.isSelected(6)" >
+			<div class="usuarioMenu">
+                <button type="button" class="usuariosBtn"><a ng-click="profesorContr.selectTab(1)">Asignar Profesor</a></button>
+                <button type="button" class="usuariosBtn" ><a ng-click="profesorContr.selectTab(2)">Desasignar Profesor</a></button>
              
             </div>

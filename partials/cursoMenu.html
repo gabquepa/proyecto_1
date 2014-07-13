@@ -1,5 +1,8 @@
-<div class="usuarioMenu" ng-controller="PanelController as panel">
-                <button type="button" class="usuariosBtn">Crear Curso</button>
-                <button type="button" class="usuariosBtn" >Modificar Curso</button>
-                <button type="button" class="usuariosBtn" >Inhabilitar Curso</button> 
+<div ng-show="confPanel.isSelected(5)" >
+
+			<div class="usuarioMenu">
+                <button type="button" class="usuariosBtn"><a ng-click="cursoContr.selectTab(1)">Crear Curso</a></button>
+                <button type="button" class="usuariosBtn" ><a ng-click="cursoContr.selectTab(2)">Modificar Curso</a></button>
+                <button type="button" class="usuariosBtn" ><a ng-click="cursoContr.selectTab(3)">Inhabilitar Curso</a></button> 
             </div>
+</div>

@@ -1,4 +1,9 @@
-<div class="usuarioMenu" ng-controller="PanelController as panel">
-      <button type="button" class="usuariosBtn">Respuestas de Foros</button>
-      <button type="button" class="usuariosBtn" >Sistema de Votacion</button>
+
+<div ng-show="confPanel.isSelected(2)" >
+
+		<div class="usuarioMenu">
+		      <button type="button" class="usuariosBtn"><a ng-click="foroContr.selectTab(1)">Respuestas de Foros</a></button>
+		      <button type="button" class="usuariosBtn" ><a ng-click="foroContr.selectTab(2)">Sistema de Votacion</a></button>
+		</div>
+
 </div>

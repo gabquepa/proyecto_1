@@ -28,21 +28,76 @@
     <div class="main row">
             
         <div class="wrapper" ng-controller="configController as conf">
- 
-            <conf-header></conf-header><!--Menu de navegacion de configuracion-->
-                  <div class="content cf"><!--Contenedor borde gris-->
 
 
-          <!-- /////////////////////////////////Configuracion Tab USUARIOS//////////////////////////////////////// --> 
+  <div ng-controller="configurationController as confPanel">
+
+    <conf-header></conf-header><!--Menu de navegacion de configuracion-->
+        <div class="content cf"><!--Contenedor borde gris-->
+
+           <!-- /////////////////////////////////Configuracion Tab USUARIOS//////////////////////////////////////// --> 
+           <div ng-controller="usuarioController as userContr">
                 <usuario-menu></usuario-menu> <!--Menu crear/modificar/inhabilitar Usuarios-->
-                     <crear-usuario></crear-usuario> <!--Vista Crear Usuario-->
+                      <crear-usuario></crear-usuario>  <!--Vista Crear Usuario-->
                      <modificar-usuario></modificar-usuario>  <!--Vista Modificar Usuario-->
-                     <inhabilitar-usuario></inhabilitar-usuario><!--Vista Inhabilitar Usuario-->
+                      <inhabilitar-usuario></inhabilitar-usuario><!--Vista Inhabilitar Usuario -->
+          </div>
            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+           
+           <!-- /////////////////////////////////Configuracion Tab FOROS//////////////////////////////////////// --> 
+           <div ng-controller="foroController as foroContr">
+                           <foro-menu></foro-menu>  
+                             <respuesta-foros></respuesta-foros> 
+                            <sistema-votacion></sistema-votacion>
+          </div>
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- /////////////////////////////////Configuracion Tab DENUNCIAS//////////////////////////////////////// --> 
+            <div ng-controller="denunciasController as denunciasContr">
+                            <procesar-denuncias></procesar-denuncias> 
+            </div>
+            <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            <!-- /////////////////////////////////Configuracion Tab CARRERAS//////////////////////////////////////// --> 
+            <div ng-controller="carreraController as carreraContr">
+                       <carrera-menu></carrera-menu> 
 
-                           
-                  </div>
-       </div> 
+                           <crear-carrera></crear-carrera> 
+                           <modificar-carrera></modificar-carrera>
+                         <inhabilitar-carrera></inhabilitar-carrera>
+            </div>
+             <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+             <!-- /////////////////////////////////Configuracion Tab CURSOS//////////////////////////////////////// --> 
+             <div ng-controller="cursoController as cursoContr">
+                             <curso-menu></curso-menu> 
+                                <crear-curso></crear-curso>
+                                <modificar-curso></modificar-curso>
+                                <inhabilitar-curso></inhabilitar-curso>
+             </div>
+              <!-- /////////////////////////////////Configuracion Tab PROFESORES//////////////////////////////////////// --> 
+              <div ng-controller="profesorController as profesorContr">
+                             <profesores-menu></profesores-menu> 
+                                  <asignar-profesor></asignar-profesor>
+                                  <desasignar-profesor></desasignar-profesor>
+              </div>
+               <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+               <!-- /////////////////////////////////Configuracion Tab ESTUDIANTES//////////////////////////////////////// --> 
+               <div ng-controller="estudianteController as estudianteContr">
+                                <estudiantes-menu></estudiantes-menu>
+
+                                  <asignar-estudiante></asignar-estudiante>
+                                  <desasignar-estudiante></desasignar-estudiante>
+              </div>
+                <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+                                  
+ 
+
+
+
+          </div>
+
+      </div>  
+      
+  </div> 
       
   </div> 
 

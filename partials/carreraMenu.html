@@ -1,5 +1,8 @@
-<div class="usuarioMenu" ng-controller="PanelController as panel">
-                <button type="button" class="usuariosBtn">Crear Carrera</button>
-                <button type="button" class="usuariosBtn" >Modificar Carrera</button>
-                <button type="button" class="usuariosBtn" >Inhabilitar Carrera</button> 
+<div ng-show="confPanel.isSelected(4)" >
+
+			<div class="usuarioMenu">
+                <button type="button" class="usuariosBtn"><a ng-click="carreraContr.selectTab(1)">Crear Carrera</a></button>
+                <button type="button" class="usuariosBtn" ><a ng-click="carreraContr.selectTab(2)">Modificar Carrera</a></button>
+                <button type="button" class="usuariosBtn" ><a ng-click="carreraContr.selectTab(3)">Inhabilitar Carrera</a></button> 
             </div>
+</div>

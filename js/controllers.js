@@ -30,5 +30,144 @@ app.controller('ForumController', function($scope){
 	};
 	
 });	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*****************************************************************************************************************/
+/*****************************************************************************************************************/
+/*****************************************************************************************************************/
+/********************************************CONTROLADORES********************************************************/
+
+app.controller('configurationController', function(){
+		
+		this.tab = 1;
+		this.selectTab=function(setTab){			
+			this.tab = setTab;
+
+			
+		};
+		this.isSelected = function(checkedTab){
+			return this.tab ===checkedTab;
+		};
+
+
+
+
+	});
+/*****************************************************************************************************************/
+
+app.controller('usuarioController', function(){
+		this.tab = 1;		
+		this.selectTab=function(setTab){		
+				this.tab = setTab;			
+		};
+		this.isSelected = function(checkedTab, pTab){
+				if(pTab != 1){
+					this.tab=0;
+
+				}
+
+			return this.tab ===checkedTab;
+			
+		};
+	});
+/*****************************************************************************************************************/
+app.controller('foroController', function(){
+		this.tab = 1;
+		this.selectTab=function(setTab){
+			this.tab = setTab;
+		};
+		this.isSelected = function(checkedTab, pTab){
+				if(pTab != 2){
+					this.tab=0;
+
+				}
+
+			return this.tab ===checkedTab;
+			
+		};
+	});
+/*****************************************************************************************************************/	
+app.controller('denunciasController', function(){
+		this.tab = 1;
+		this.selectTab=function(setTab){
+			this.tab = setTab;
+		};
+		this.isSelected = function(checkedTab, pTab){
+				if(pTab != 3){
+					this.tab=0;
+
+				}
+
+			return this.tab ===checkedTab;
+			
+		};
+	});
+
+/*****************************************************************************************************************/	
+app.controller('carreraController', function(){
+		this.tab = 1;
+		this.selectTab=function(setTab){
+			this.tab = setTab;
+		};
+		this.isSelected = function(checkedTab, pTab){
+				if(pTab != 4){
+					this.tab=0;
+
+				}
+
+			return this.tab ===checkedTab;
+			
+		};
+	});
+/*****************************************************************************************************************/	
+app.controller('cursoController', function(){
+		this.tab = 1;
+		this.selectTab=function(setTab){
+			this.tab = setTab;
+		};
+		this.isSelected = function(checkedTab, pTab){
+				if(pTab != 5){
+					this.tab=0;
+
+				}
+
+			return this.tab ===checkedTab;
+			
+		};
+	});
+/*****************************************************************************************************************/	
+app.controller('profesorController', function(){
+		this.tab = 1;
+		this.selectTab=function(setTab){
+			this.tab = setTab;
+		};
+		this.isSelected = function(checkedTab, pTab){
+				if(pTab != 6){
+					this.tab=0;
+
+				}
+
+			return this.tab ===checkedTab;
+			
+		};
+	});
+/*****************************************************************************************************************/	
+app.controller('estudianteController', function(){
+		this.tab = 1;
+		this.selectTab=function(setTab){
+			this.tab = setTab;
+		};
+		this.isSelected = function(checkedTab, pTab){
+				if(pTab != 7){
+					this.tab=0;
+
+				}
+
+			return this.tab ===checkedTab;
+			
+		};
+	});
+
+//Termina Alejandro Zuñiga
+
 
 })();

@@ -318,8 +318,8 @@ app.directive('projectSideNav', function(){
 
 		};
 	});
-/*****************************************************************************************************************/
-//Termina Alejandro Zuñiga
+
+/////////////////////////////////////////Termina Alejandro Zuñiga ////////////////////////////////////////////////////
 
 /*Directivas Documentos KeilynSibaja*/
 

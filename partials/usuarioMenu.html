@@ -1,8 +1,17 @@
-<div class="usuarioMenu" ng-show="mostrarTabUsuario">
-	<!-- <a href ng-click="goCats = !goCats" class="btn btn-primary btn-lg">Toggle Cats</a> -->
-	 <button type="button" class="usuariosBtn" ng-click="mostrarCrearUsuario = !mostrarCrearUsuario">Crear Usuario</button>
-    <button type="button" class="usuariosBtn" ng-click="mostrarModificarUsuario = !mostrarModificarUsuario">Modificar Usuario</button>
-    <button type="button" class="usuariosBtn" ng-click="mostrarInhabilitarUsuario = !mostrarInhabilitarUsuario">Inhabilitar Usuario</button> 
+
+ <div ng-show="confPanel.isSelected(1)" >
+
+
+   <div class="usuarioMenu">
+	
+	  <button type="button" class="usuariosBtn"><a ng-click="userContr.selectTab(1)">Crear Usuario</a></button> 
+    <button type="button" class="usuariosBtn"><a ng-click="userContr.selectTab(2)">Modificar Usuario</a></button> 
+     <button type="button" class="usuariosBtn"><a ng-click="userContr.selectTab(3)">Inhabilitar Usuario</a></button> 
+
+     
+    
+	</div>
+
+
 
 </div>
-             
