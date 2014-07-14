@@ -216,4 +216,50 @@ app.controller('topDocController', function(){
 
 //Controllers Keilyn Sibaja
 
+//Sergio Herrera Durán----------------------------------------------
+
+//controlador recive json de usuarios
+app.controller('UserController',['$http',function($http){
+		var store = this;
+		store.user=[];
+		$http.get('/proyecto_1/JSON/usuariosTestSergio.json').success(function(data){ //
+			store.user = data;
+		});
+}]);
+	
+app.controller('validarLogin', function(){
+		this.pass="";
+		this.name="";
+		
+		this.testUser= function(pName,pPass, pUsuario){
+			var estado=false;
+			for (var i=0; i < pUsuario.length; i++) {
+			  if (pPass==pUsuario[i].pass && pName==pUsuario[i].usuario) {
+			  	estado=true;	
+        		
+        	   window.location = "/Proyecto_1/user-blog1.html";
+			   };
+			};
+			if (!estado) {
+				alert("ingreso Incorrecto");
+				$("#usuario").val("");
+				$("#pass").val("");
+			};
+			
+		
+	   };
+	});
+	
+
+	
+	
+
+
+//Termina Sergio Herrera Durán----------------------------------------------
+
+
+
+
+
+
 })();

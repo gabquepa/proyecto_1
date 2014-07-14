@@ -1,5 +1,8 @@
 /* Sergio Herrera Durán */
 /* esto evita que los bordes colapsen */
+.ng-invalid.ng-dirty{border-color: #fa787e}
+ .ng-valid.ng-dirty{border-color: #78fa89}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

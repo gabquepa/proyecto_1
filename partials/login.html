@@ -1,5 +1,5 @@
 
-    	<section class="container">
+    	<section class="container" >
     		
     		<div class="header headerlog logo">
     			<img src="img/logo_cenfo.png"/>
@@ -7,20 +7,22 @@
 
     		<div class="contloging">
     			<section class="headcontlog header">
+    				
     				<h3>Ingresar al Sistema_</h2>
     			</section>
     			
-    			<form class="formlogin">
+    			<form class="formlogin" name="loginUser" role="form" ng-controller="validarLogin as login" ng-submit="loginUser.$valid && login.testUser(username,userpass,usuario.user)">
     				<label for="usuario">Usuario</label>
-    				<input type="text"  id="usuario" placeholder="usuario@cenfotec.ca.cr"/>
+    				<input type="email"  id="usuario" placeholder="usuario@cenfotec.ca.cr" ng-model="username" required/>
     				<label for="pass">Contraseña</label>
-    				<input type="password" id="pass"/>
-    				<button type="submit" class="botlogin">Ingresar</button>
+    				<input type="password" id="pass" ng-model="userpass" required/>
+    				
+    				<button type="submit" class="botlogin" value="submit">Ingresar</button>
     				
     				<a href="#">Recuperar Contraseña</a>
     				
     			</form>
-
+				
     		</div>
     		
     	</section>

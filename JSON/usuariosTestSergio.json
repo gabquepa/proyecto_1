@@ -1,0 +1,62 @@
+[
+    {
+        "idUsuario": "0001",
+        "clase": "P",
+        "nombre": "Nombre Profesor",
+        "genero": "Hombre",
+        "usuario": "profesor@cenfotec.ca.cr",
+        "pass": "profe1",
+        "reviews": [
+            {
+                "stars": 1,
+                "body": "hate it",
+                "author": "test@test.test"
+            },
+            {
+                "stars": 1,
+                "body": "terrible!",
+                "author": "test1@tes1t.tes1t"
+            },
+            {
+                "stars": 1,
+                "body": "I hate this gem",
+                "author": "test2@test2.test2"
+            },
+            {
+                "stars": 1,
+                "body": "ahhhhh :(",
+                "author": "test3@test3.test3"
+            }
+        ]
+    },
+    {
+        "idUsuario": "0002",
+        "clase": "E",
+        "nombre": "Nombre Estudiante",
+        "genero": "Mujer",
+        "usuario": "estudiante@cenfotec.ca.cr",
+        "pass": "estudiante1",
+        "reviews": [
+            {
+                "stars": 1,
+                "body": "hate it",
+                "author": "test@test.test"
+            },
+            {
+                "stars": 1,
+                "body": "terrible!",
+                "author": "test1@tes1t.tes1t"
+            },
+            {
+                "stars": 1,
+                "body": "I hate this gem",
+                "author": "test2@test2.test2"
+            },
+            {
+                "stars": 1,
+                "body": "ahhhhh :(",
+                "author": "test3@test3.test3"
+            }
+        ]
+    }
+]
