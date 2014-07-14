@@ -190,7 +190,7 @@ app.controller('buscarDocController',function(){//Controlador de mi seccion de B
 		}
 }); 
 
-app.controller('subirDocController',function(){//Contrilador de mi seccion Subir Documento
+app.controller('subirDocController',function(){//Controlador de mi seccion Subir Documento
 	
 	//1=esconder 2=mostrar
 
@@ -210,20 +210,20 @@ app.controller('subirDocController',function(){//Contrilador de mi seccion Subir
 		}
 });
 
-app.controller('topDocController',['$http', function($http){
+app.controller('topDocController',['$http', function($http){ //controlador de mi seccion top de documentos
 		var docTop = this;
 		docTop.librosTop= [];
 
-		$http.get('/Proyecto_1/JSON/topDoc.json').success(function(data){
+		$http.get('/proyecto_1/JSON/topDoc.json').success(function(data){
 			docTop.librosTop =data;
 		});
 }]);
 
-app.controller('historialDesController',['$http', function($http){
+app.controller('historialDesController',['$http', function($http){//controlador de mi seccion historial de descarga
 		var docDesc = this;
 		docDesc.descargas= [];
 
-		$http.get('/Proyecto_1/JSON/historialDescargas.json').success(function(data){
+		$http.get('/proyecto_1/JSON/historialDescargas.json').success(function(data){
 			docDesc.descargas =data;
 		});
 }]);
