@@ -226,7 +226,8 @@ app.controller('UserController',['$http',function($http){
 			store.user = data;
 		});
 }]);
-	
+
+//controlador valida info de usuarios para ingresar al sistema
 app.controller('validarLogin', function(){
 		this.pass="";
 		this.name="";
@@ -235,13 +236,22 @@ app.controller('validarLogin', function(){
 			var estado=false;
 			for (var i=0; i < pUsuario.length; i++) {
 			  if (pPass==pUsuario[i].pass && pName==pUsuario[i].usuario) {
-			  	estado=true;	
-        		
-        	   window.location = "/Proyecto_1/user-blog1.html";
+				if (pUsuario[i].estado=="A") {
+		        	   $('#mensajeLogin').html("");
+		        	   window.location = "/Proyecto_1/user-blog1.html";
+				} else{
+					$('#mensajeLogin').html("");
+					$('#mensajeLogin').append('Acceso Denegado <br> USUARIO INACTIVO');
+					$("#usuario").val("");
+					$("#pass").val("");	
+				};	
+                 estado=true;	   
 			   };
+			   
 			};
 			if (!estado) {
-				alert("ingreso Incorrecto");
+				$('#mensajeLogin').html("");
+				$('#mensajeLogin').append('Usuario o Contraseña Inválida');
 				$("#usuario").val("");
 				$("#pass").val("");
 			};
@@ -250,8 +260,69 @@ app.controller('validarLogin', function(){
 	   };
 	});
 	
-
 	
+//controlador recupera cuenta de ususarios
+	app.controller('recuperarPass', function(){
+		this.name="";
+		
+		this.recUser= function(pName,pUsuario){
+			var estado=false;
+			for (var i=0; i < pUsuario.length; i++) {
+			  if (pName==pUsuario[i].usuario) {
+				if (pUsuario[i].estado=="A") {
+		        	   $('#mensajeRec').html("");
+		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'se envión un correo a su cuanta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
+				} else{
+					$('#mensajeRec').html("");
+					$('#mensajeRec').append('USUARIO INACTIVO');
+					$("#usuarioRec").val("");
+				};	
+                 estado=true;	   
+			   };
+			   
+			};
+			if (!estado) {
+				$('#mensajeRec').html("");
+				$('#mensajeRec').append('USUARIO INCORRECTO');
+				$("#usuarioRec").val("");
+			};
+			
+		
+	   };
+	});
+	
+//controlador muestra y oculta contenedores del login
+	app.controller('controlLogin', function(){
+		this.tablog = 1;
+		
+		this.getTab=function(getTab){
+			this.tablog = getTab;
+			limpiarForms();
+		};
+		//this.regresarb=function(){
+			//this.tablog = 1;
+		//};
+		
+		this.isSelected = function(checkedTab, pTab){
+			//	if(pTab != 0){
+				//	this.tablog=0;
+			//	}
+
+			return this.tablog ===checkedTab;
+			
+		};
+		
+		function limpiarForms () {
+		   $('#mensajeRec').html("");
+			$('#mensajeLogin').html("");
+			$("#usuarioRec").val("");
+			$("#usuario").val("");
+			$("#pass").val("");	
+		}
+		
+		
+		
+	});
 	
 
 

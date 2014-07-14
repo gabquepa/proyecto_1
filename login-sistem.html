@@ -17,9 +17,9 @@
     
     <body>
     	
-    	<div class="container" ng-controller="UserController as usuario">
-	      	<cont-login></cont-login>
-	      	<recover-pass></recover-pass>
+    	<div class="container" ng-controller="controlLogin as navLogin">
+	      	<cont-login ng-show="navLogin.isSelected(1,0)"></cont-login>
+	      	<recover-pass ng-show="navLogin.isSelected(2,0)"></recover-pass>
 	      	<project-footer></project-footer>
     	</div>
     	

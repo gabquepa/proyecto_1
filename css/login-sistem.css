@@ -47,7 +47,7 @@
 }
 /* class para form login */
 
-.formlogin{
+.formlogin {
 	width: 100%;
 	padding: 3em 15%;
 }
@@ -91,10 +91,12 @@
 }
 
 .msjerror{
-	
+	display:block;
+	width:100%;
 	font-size: 1em;
 	color: #F58e25;
-	padding: 0em 0%
+	padding: 0em 0%;
+	text-align: center;
 }
 
 #recoverylink{

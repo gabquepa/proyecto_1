@@ -1,5 +1,5 @@
 
-    	<section class="container" >
+    	<section class="container" ng-controller="UserController as usuario">
     		
     		<div class="header headerlog logo">
     			<img src="img/logo_cenfo.png"/>
@@ -10,8 +10,8 @@
     				
     				<h3>Ingresar al Sistema_</h2>
     			</section>
-    			
     			<form class="formlogin" name="loginUser" role="form" ng-controller="validarLogin as login" ng-submit="loginUser.$valid && login.testUser(username,userpass,usuario.user)">
+    				<strong id="mensajeLogin" class="msjerror"></strong>
     				<label for="usuario">Usuario</label>
     				<input type="email"  id="usuario" placeholder="usuario@cenfotec.ca.cr" ng-model="username" required/>
     				<label for="pass">Contraseña</label>
@@ -19,7 +19,7 @@
     				
     				<button type="submit" class="botlogin" value="submit">Ingresar</button>
     				
-    				<a href="#">Recuperar Contraseña</a>
+    				<a href ng-click="navLogin.getTab(2)">Recuperar Contraseña</a>
     				
     			</form>
 				
