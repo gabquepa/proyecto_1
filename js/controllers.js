@@ -210,10 +210,23 @@ app.controller('subirDocController',function(){//Contrilador de mi seccion Subir
 		}
 });
 
-app.controller('topDocController', function(){
-	
-});
+app.controller('topDocController',['$http', function($http){
+		var docTop = this;
+		docTop.librosTop= [];
 
+		$http.get('/Proyecto_1/JSON/topDoc.json').success(function(data){
+			docTop.librosTop =data;
+		});
+}]);
+
+app.controller('historialDesController',['$http', function($http){
+		var docDesc = this;
+		docDesc.descargas= [];
+
+		$http.get('/Proyecto_1/JSON/historialDescargas.json').success(function(data){
+			docDesc.descargas =data;
+		});
+}]);
 //Controllers Keilyn Sibaja
 
 })();

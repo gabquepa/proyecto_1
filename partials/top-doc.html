@@ -1,67 +1,14 @@
 <!--Top Documentos-->
-              <div>
+              <div ng-controller='topDocController as topDoc'>
                 <h2>Top Documentos más votados</h2>
                 <ul>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a>
+                    <li ng-repeat="top in topDoc.librosTop | orderBy:'-votacion'">
+                      <span class='doc_lispandoc'>{{top.autor}}</span>
+                      <a href="#">{{top.nombre}}</a>
                       <img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a>
-                      <img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a><img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a>
-                      <img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a>
-                      <img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a><img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a>
-                      <img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a>
-                      <img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a><img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
+                      <span class='doc_lispandoc'>{{top.carrera}}/{{top.curso}}</span>
                       <a href="#">Descargar</a>
                     </li>
                   </ul>
               </div>
-      <!--Top Documentos-->
+<!--Top Documentos-->
