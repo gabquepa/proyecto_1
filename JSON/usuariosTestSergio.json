@@ -1,0 +1,50 @@
+[
+    {
+        "idUsuario": "0001",
+        "clase": "P",
+        "nombre": "Nombre Profesor",
+        "genero": "Hombre",
+        "usuario": "profesor@cenfotec.ca.cr",
+        "pass": "p1",
+        "estado": "A",
+        "blog": [
+            {
+                "idPost": 1,
+                "titulo": "Mi gran Tema1",
+                "texto": "adsbnamsd ds  asdas,",
+                "fecha": "18/08/2014",
+                "comentarios": [
+                    {
+                        "idComentario": 1,
+                        "Participante": "estudiante@cenfotec.ca.cr",
+                        "texto": "lasdñlasdmas asdñlasd asñdas,dasñd asda"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "idUsuario": "0002",
+        "clase": "E",
+        "nombre": "Nombre Estudiante",
+        "genero": "Mujer",
+        "usuario": "estudiante@cenfotec.ca.cr",
+        "pass": "e1",
+        "estado": "I",
+        "blog": [
+            {
+                "idPost": 1,
+                "titulo": "Mi gran Tema",
+                "texto": "adsbnamsd ds  asdas,d asdn,as d,as dnas d as d,asdn,as d,m as,das d asd",
+                "fecha": "12/08/2014",
+                "comentarios": [
+                    {
+                        "idComentario": 1,
+                        "Participante": "profesor@cenfotec.ca.cr",
+                        "texto": "hate it"
+                    }
+                ]
+            }
+        ]
+    }
+]
