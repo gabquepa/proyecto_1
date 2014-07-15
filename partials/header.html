@@ -1,7 +1,7 @@
 <!-- cerrar Sesión Sergio Herrera-->
-<div class="topHeaderNav clearfix">
+<div class="topHeaderNav clearfix" ng-controller="UserController as user">
 	    <a href="/Proyecto_1/login-sistem.html" id="cerrarSesion" class="pull-right clearfix">Cerrar Sesión</a>
-	  	<a href="/Proyecto_1/user-profile.html" class="pull-right clearfix">usuario@cenfotec.ac.cr</a>
+	  	<a href="/Proyecto_1/user-profile.html" class="pull-right clearfix">{{cookieValue}}</a>
 </div>
 <!-- cerrar Sesión Sergio Herrera-->
 <div class="header">
@@ -35,7 +35,4 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-	
 </div>
-
-

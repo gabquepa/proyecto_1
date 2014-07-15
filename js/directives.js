@@ -5,9 +5,14 @@
 var app = angular.module('partials-project',[]);
 
 app.directive('projectHeader', function(){
+
 	return{
 		restrict: 'E',
-		templateUrl: '/Proyecto_1/partials/header.html'
+		templateUrl: '/Proyecto_1/partials/header.html',
+		controller: function($scope, $cookieStore){
+			$scope.cookieValue = $cookieStore.get('usuario');
+			// alert($scope.cookieValue);
+		}
 	};
 });
 app.directive('projectFooter', function(){
