@@ -241,9 +241,9 @@ app.controller('UserController',['$http',function($http){
 }]);
 
 //controlador valida info de usuarios para ingresar al sistema
-app.controller('validarLogin', function(){
+app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		this.pass="";
-		this.name="";
+		this.name="";/*GABY*/
 		
 		this.testUser= function(pName,pPass, pUsuario){
 			var estado=false;
@@ -251,6 +251,7 @@ app.controller('validarLogin', function(){
 			  if (pPass==pUsuario[i].pass && pName==pUsuario[i].usuario) {
 				if (pUsuario[i].estado=="A") {
 		        	   $('#mensajeLogin').html("");
+		        	   $cookieStore.put('usuario', i);
 		        	   window.location = "/Proyecto_1/user-blog1.html";
 				} else{
 					$('#mensajeLogin').html("");
@@ -268,10 +269,8 @@ app.controller('validarLogin', function(){
 				$("#usuario").val("");
 				$("#pass").val("");
 			};
-			
-		
 	   };
-	});
+	}]);
 	
 	
 //controlador recupera cuenta de ususarios
