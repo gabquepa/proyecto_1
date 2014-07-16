@@ -1,0 +1,60 @@
+[{
+"id":"I1",
+"name": "Intermediate English 1",
+"CarreraId":"5"
+},
+{
+"id":"I2",
+"name": "Introduction to Service Centers",
+"CarreraId":"5"
+},
+{
+"id":"I3",
+"name": "Office Automation",
+"CarreraId":"5"
+},
+{
+"id":"I4",
+"name": "Intermediate English 2",
+"CarreraId":"5"
+},
+{
+"id":"I5",
+"name": "Oral Communication Techniques",
+"CarreraId":"5"
+},
+{
+"id":"I6",
+"name": "Written communication techniques",
+"CarreraId":"5"
+},
+{
+"id":"I7",
+"name": "Advanced English",
+"CarreraId":"5"
+},
+{
+"id":"I8",
+"name": "Cross-cultural diversity",
+"CarreraId":"5"
+},
+{
+"id":"I9",
+"name": "Human Factor",
+"CarreraId":"5"
+},
+{
+"id":"I10",
+"name": "Customer Service and Troubleshooting",
+"CarreraId":"5"
+},
+{
+"id":"I11",
+"name": "Professional Ethics Workshop",
+"CarreraId":"5"
+},
+{
+"id":"I12",
+"name": "TOEIC Preparation Workshop",
+"CarreraId":"5"
+}]

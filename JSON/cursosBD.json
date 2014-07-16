@@ -1,0 +1,85 @@
+[{
+"id":"BD1",
+"name": "Programación avanzada en SQL",
+"CarreraId":"5"
+},
+{
+"id":"BD2",
+"name": "Bases de datos relacionales-objeto",
+"CarreraId":"5"
+},
+{
+"id":"BD3",
+"name": "Administración de proyectos",
+"CarreraId":"5"
+},
+{
+"id":"BD4",
+"name": "Administración de bases de datos",
+"CarreraId":"5"
+},
+{
+"id":"BD5",
+"name": "Diseño y calidad de datos",
+"CarreraId":"5"
+},
+{
+"id":"BD6",
+"name": "Depósitos de datos",
+"CarreraId":"5"
+},
+{
+"id":"BD7",
+"name": "Gobernanza de la información",
+"CarreraId":"5"
+},
+{
+"id":"BD8",
+"name": "Afinamiento y rendimiento de bases de datos",
+"CarreraId":"5"
+},
+{
+"id":"BD9",
+"name": "Bases de datos multidimensionales",
+"CarreraId":"5"
+},
+{
+"id":"BD10",
+"name": "Seguridad de bases de datos",
+"CarreraId":"5"
+},
+{
+"id":"BD11",
+"name": "Minería de datos 1",
+"CarreraId":"5"
+},
+{
+"id":"BD12",
+"name": "Depósitos de datos avanzados",
+"CarreraId":"5"
+},
+{
+"id":"BD13",
+"name": "Arquitectura de bases de datos en ambientes distribuidos",
+"CarreraId":"5"
+},
+{
+"id":"BD14",
+"name": "Buenas prácticas en ambientes de bases de datos",
+"CarreraId":"5"
+},
+{
+"id":"BD15",
+"name": "Proyecto de investigación aplicada 1",
+"CarreraId":"5"
+},
+{
+"id":"BD16",
+"name": "Analítica empresarial",
+"CarreraId":"5"
+},
+{
+"id":"BD17",
+"name": "Proyecto de investigación aplicada 2",
+"CarreraId":"5"
+}]

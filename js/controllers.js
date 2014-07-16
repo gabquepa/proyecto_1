@@ -116,6 +116,16 @@ app.controller('CarrerasController', ['$http', function($http){
 				universidad.cursos = data;
 			});
 		}
+		else if(carrera ==="6"){
+			$http.get('/Proyecto_1/JSON/cursosBD.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else if(carrera ==="7"){
+			$http.get('/Proyecto_1/JSON/cursosI.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
 		else{
 			universidad.cursos = '';
 		}
