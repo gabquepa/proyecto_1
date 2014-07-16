@@ -1,0 +1,115 @@
+[{
+"id":"DS1",
+"name": "Fundamentos de programación",
+"CarreraId":"2"
+},
+{
+"id":"DS2",
+"name": "Proyecto de ingeniería del software 1",
+"CarreraId":"2"
+},
+{
+"id":"DS3",
+"name": "Introducción a la tecnología de información",
+"CarreraId":"2"
+},
+{
+"id":"DS4",
+"name": "Inglés para tecnologías de información 1",
+"CarreraId":"2"
+},
+{
+"id":"DS5",
+"name": "Programación orientada a objetos",
+"CarreraId":"2"
+},
+{
+"id":"DS6",
+"name": "Fundamentos de bases de datos",
+"CarreraId":"2"
+},
+{
+"id":"DS7",
+"name": "Estructuras discretas",
+"CarreraId":"2"
+},
+{
+"id":"DS8",
+"name": "Procesos empresariales",
+"CarreraId":"2"
+},
+{
+"id":"DS9",
+"name": "Inglés para tecnologías de información 2",
+"CarreraId":"2"
+},
+{
+"id":"DS10",
+"name": "Programación con patrones",
+"CarreraId":"2"
+},
+{
+"id":"DS11",
+"name": "Proyecto de ingeniería del software 2",
+"CarreraId":"2"
+},
+{
+"id":"DS12",
+"name": "Estructuras de datos",
+"CarreraId":"2"
+},
+{
+"id":"DS13",
+"name": "Inglés para tecnologías de información 3",
+"CarreraId":"2"
+},
+{
+"id":"DS14",
+"name": "Diseño conceptual de software",
+"CarreraId":"2"
+},
+{
+"id":"DS15",
+"name": "Programación de bases de datos",
+"CarreraId":"2"
+},
+{
+"id":"DS16",
+"name": "Diseño y construcción de componentes",
+"CarreraId":"2"
+},
+{
+"id":"DS17",
+"name": "Arquitectura de computadoras",
+"CarreraId":"2"
+},
+{
+"id":"DS18",
+"name": "Inglés para tecnologías de información 4",
+"CarreraId":"2"
+},
+{
+"id":"DS19",
+"name": "Proyecto de ingeniería del software 3",
+"CarreraId":"2"
+},
+{
+"id":"DS20",
+"name": "Estructura de datos 2",
+"CarreraId":"2"
+},
+{
+"id":"DS21",
+"name": "Principios de sistemas operativos",
+"CarreraId":"2"
+},
+{
+"id":"DS22",
+"name": "Portafolio profesional",
+"CarreraId":"2"
+},
+{
+"id":"DS23",
+"name": "Ética y profesionalismo",
+"CarreraId":"2"
+}]

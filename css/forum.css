@@ -26,6 +26,10 @@ body{
 .forum .course-title, .forum-config .config-forumSection .course-title{
   font-size: 16px;
   color: #595959;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 70%;
 }
 .forum .main-forum, .forum-config .config-forumSection .main-forum{
   border: 1px solid #c0c0c0;
@@ -163,7 +167,12 @@ display: inline-block;
 #invitadosDisplay li{
   list-style: none;
 }
-
+.forum-config .inine-forum-list ul{
+  margin-top: 10px;
+}
+.forum-config .inine-forum-list li{
+  list-style: none;
+}
 /************** forum 4 **************/
 .forum-create h4{
   font-size: 16px;

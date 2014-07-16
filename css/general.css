@@ -40,6 +40,7 @@ body{
   display: inline-block;
   width: 79.166666666667%;/*760px*/
   vertical-align: top;
+  min-height: 500px;
 }
 .header, .footer, .side-nav h3, .btn-blue{
   /* fallback */
@@ -120,6 +121,20 @@ body{
   background-color: white;
   background-size: 13%;
   background-position: 90% 5px;
+}
+.navbar-collapse.collapse{
+  height: auto !important;
+  padding: 0 !important;
+}
+.navbar-collapse.collapsing{
+ padding: 0 !important; 
+}
+.navbar-collapse.collapse ul, .navbar-collapse.collapsing ul{
+  height: auto !important;
+  margin: 0 !important;
+}
+.navbar-collapse.collapse form, .navbar-collapse.collapsing form{
+  display: none;
 }
 .footer{
   font-size: 12px;

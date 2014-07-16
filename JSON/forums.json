@@ -1,0 +1,68 @@
+[{
+"id":"1",
+"profesor": "0001",
+"titulo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+"periodo":"I-2014",
+"CarreraId":"1",
+"CursoId":"DW2",
+"tema":"Tecnicas de diseño web actuales",
+"moderador":"test@cenfotec.ac.cr",
+"invitados":[{
+	"email": "test@cenfotec.ac.cr"
+},
+{
+	"email": "gaby@cenfotec.ac.cr"
+}],
+"comments":[{
+	"nombre":"gaby@cenfotec.ac.cr",
+	"texto":"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+},
+{
+	"nombre":"gaby@cenfotec.ac.cr",
+	"texto":"test - - - -  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+}]
+},
+{
+"id":"2",
+"profesor": "0001",
+"titulo":"test test Software",
+"periodo":"III-2013",
+"CarreraId":"2",
+"CursoId":"DS18",
+"tema":"Que es la ingenería de Software? Que estoy estudiando?",
+"moderador":"gaby@cenfotec.ac.cr",
+"invitados":[{
+	"email": "test@cenfotec.ac.cr"
+},
+{
+	"email": "keilyn@cenfotec.ac.cr"
+},
+{
+	"email": "gaby@cenfotec.ac.cr"
+}],
+"comments":[{}]
+},
+{
+"id":"3",
+"profesor": "0001",
+"titulo":"English forum for you",
+"periodo":"I-2014",
+"CarreraId":"1",
+"CursoId":"DW4",
+"tema":"Which verbs can you name ",
+"moderador":"null",
+"invitados":[{
+	"email": "alejandro@cenfotec.ac.cr"
+},
+{
+	"email": "gaby@cenfotec.ac.cr"
+}],
+"comments":[{
+	"nombre":"alejandro@cenfotec.ac.cr",
+	"texto":"a verb? what?"
+},
+{
+	"nombre":"gaby@cenfotec.ac.cr",
+	"texto":"This is a comment made by Gaby Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+}]
+}]
