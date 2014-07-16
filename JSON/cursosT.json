@@ -1,0 +1,260 @@
+[{
+"id":"T1",
+"name": "T-Tecnología de redes 1",
+"CarreraId":"4"
+},
+{
+"id":"T2",
+"name": "T-Tecnología de comunicaciones y cableado",
+"CarreraId":"4"
+},
+{
+"id":"T3",
+"name": "T-Introducción a la tecnología de información",
+"CarreraId":"4"
+},
+{
+"id":"T4",
+"name": "T-Laboratorio de tecnologías 1",
+"CarreraId":"4"
+},
+{
+"id":"T5",
+"name": "T-Inglés para tecnologías de información 1",
+"CarreraId":"4"
+},
+{
+"id":"T6",
+"name": "T-Tecnología de redes 2",
+"CarreraId":"4"
+},
+{
+"id":"T7",
+"name": "T-Fundamentos de fibra óptica",
+"CarreraId":"4"
+},
+{
+"id":"T8",
+"name": "T-Fundamentos de programación",
+"CarreraId":"4"
+},
+{
+"id":"T9",
+"name": "T-Estructuras discretas",
+"CarreraId":"4"
+},
+{
+"id":"T10",
+"name": "T-Inglés para tecnologías de información 2",
+"CarreraId":"4"
+},
+{
+"id":"T11",
+"name": "T-Tecnología de redes 3",
+"CarreraId":"4"
+},
+{
+"id":"T12",
+"name": "T-Infraestructura de fibra óptica",
+"CarreraId":"4"
+},
+{
+"id":"T13",
+"name": "T-Sistemas operativos 1",
+"CarreraId":"4"
+},
+{
+"id":"T14",
+"name": "T-Fundamentos de bases de datos",
+"CarreraId":"4"
+},
+{
+"id":"T15",
+"name": "T-Inglés para tecnologías de información 3",
+"CarreraId":"4"
+},
+{
+"id":"T16",
+"name": "T-Tecnología de redes 4",
+"CarreraId":"4"
+},
+{
+"id":"T17",
+"name": "T-Diseño de centros de datos e infraestructura de redes",
+"CarreraId":"4"
+},
+{
+"id":"T18",
+"name": "T-Sistemas operativos 2",
+"CarreraId":"4"
+},
+{
+"id":"T19",
+"name": "T-Procesos empresariales",
+"CarreraId":"4"
+},
+{
+"id":"T20",
+"name": "T-Inglés para tecnologías de información 4",
+"CarreraId":"4"
+},
+{
+"id":"T21",
+"name": "T-Proyecto de integración de tecnologías 1",
+"CarreraId":"4"
+},
+{
+"id":"T22",
+"name": "T-Convergencia de voz y datos",
+"CarreraId":"4"
+},
+{
+"id":"T23",
+"name": "T-Redes inalámbricas",
+"CarreraId":"4"
+},
+{
+"id":"T24",
+"name": "T-Seguridad en las redes",
+"CarreraId":"4"
+},
+{
+"id":"T25",
+"name": "T-Servicio al cliente",
+"CarreraId":"4"
+},
+{
+"id":"T26",
+"name": "T-Factor humano",
+"CarreraId":"4"
+},
+{
+"id":"T27",
+"name": "T-Inglés para tecnologías de información 5 (Curso optativo)",
+"CarreraId":"4"
+},
+{
+"id":"T28",
+"name": "T-Proyecto de diseño de redes empresariales",
+"CarreraId":"4"
+},
+{
+"id":"T29",
+"name": "T-Administración de redes",
+"CarreraId":"4"
+},
+{
+"id":"T30",
+"name": "T-Análisis y diagnóstico de redes",
+"CarreraId":"4"
+},
+{
+"id":"T31",
+"name": "T-Probabilidad y estadísitca 1",
+"CarreraId":"4"
+},
+{
+"id":"T32",
+"name": "T-Ética y profesionalismo",
+"CarreraId":"4"
+},
+{
+"id":"T33",
+"name": "T-Inglés para tecnologías de información 6 (Curso optativo)",
+"CarreraId":"4"
+},
+{
+"id":"T34",
+"name": "RC-Tecnología de comunicaciones y cableado",
+"CarreraId":"4"
+},
+{
+"id":"T35",
+"name": "RC-Introducción a la tecnología de información",
+"CarreraId":"4"
+},
+{
+"id":"T36",
+"name": "RC-Inglés para tecnologías de información 1",
+"CarreraId":"4"
+},
+{
+"id":"T37",
+"name": "RC-Tecnología de redes 1",
+"CarreraId":"4"
+},
+{
+"id":"T38",
+"name": "RC-Fundamentos de fibra óptica",
+"CarreraId":"4"
+},
+{
+"id":"T39",
+"name": "RC-Inglés para tecnologías de información 2",
+"CarreraId":"4"
+},
+{
+"id":"T40",
+"name": "RC-Tecnología de redes 2",
+"CarreraId":"4"
+},
+{
+"id":"T41",
+"name": "RC-Infraestructura de fibra óptica",
+"CarreraId":"4"
+},
+{
+"id":"T42",
+"name": "RC-Inglés para tecnologías de información 3",
+"CarreraId":"4"
+},
+{
+"id":"T43",
+"name": "RC-Redes inalámbricas",
+"CarreraId":"4"
+},
+{
+"id":"T44",
+"name": "RC-Diseño de centros de datos e infraestructura de redes",
+"CarreraId":"4"
+},
+{
+"id":"T45",
+"name": "RC-Inglés para tecnologías de información 4",
+"CarreraId":"4"
+},
+{
+"id":"T46",
+"name": "RyC-IT Essentials",
+"CarreraId":"4"
+},
+{
+"id":"T47",
+"name": "RyC-Módulo 1: Introducción a redes",
+"CarreraId":"4"
+},
+{
+"id":"T48",
+"name": "RyC-Módulo 2: Principios de enrutamiento y conmutación",
+"CarreraId":"4"
+},
+{
+"id":"T49",
+"name": "RyC-Preparación para examen de certificación CCENT",
+"CarreraId":"4"
+},
+{
+"id":"T50",
+"name": "RyC-Módulo 3: Redes escalables",
+"CarreraId":"4"
+},
+{
+"id":"T51",
+"name": "RyC-Módulo 4: Interconexión de redes",
+"CarreraId":"4"
+},
+{
+"id":"T52",
+"name": "RyC-Preparación para examen de certificación CCNA R&S",
+"CarreraId":"4"
+}]

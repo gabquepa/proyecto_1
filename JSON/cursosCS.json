@@ -1,0 +1,100 @@
+[{
+"id":"CS1",
+"name": "Introducción a la seguridad de la información",
+"CarreraId":"5"
+},
+{
+"id":"CS2",
+"name": "Principios de criptografía",
+"CarreraId":"5"
+},
+{
+"id":"CS3",
+"name": "Tecnología de redes y telecomunicaciones seguras",
+"CarreraId":"5"
+},
+{
+"id":"CS4",
+"name": "Métodos de investigación aplicada",
+"CarreraId":"5"
+},
+{
+"id":"CS5",
+"name": "Control de acceso, seguridad ambiental y física",
+"CarreraId":"5"
+},
+{
+"id":"CS6",
+"name": "Criptografía aplicada",
+"CarreraId":"5"
+},
+{
+"id":"CS7",
+"name": "Seguridad en redes inalámbricas y dispositivos móviles",
+"CarreraId":"5"
+},
+{
+"id":"CS8",
+"name": "Seguridad en sistemas operativos",
+"CarreraId":"5"
+},
+{
+"id":"CS9",
+"name": "Aspectos culturales, éticos, legales y regulatorios",
+"CarreraId":"5"
+},
+{
+"id":"CS10",
+"name": "Seguridad y protocolos de comunicación",
+"CarreraId":"5"
+},
+{
+"id":"CS11",
+"name": "Seguridad de aplicaciones y sistemas",
+"CarreraId":"5"
+},
+{
+"id":"CS12",
+"name": "Seguridad de datos almacenados",
+"CarreraId":"5"
+},
+{
+"id":"CS13",
+"name": "Análisis y detección de vulnerabilidades",
+"CarreraId":"5"
+},
+{
+"id":"CS14",
+"name": "Continuidad del negocio y recuperación de desastres",
+"CarreraId":"5"
+},
+{
+"id":"CS15",
+"name": "Análisis y evaluación de riesgos de seguridad",
+"CarreraId":"5"
+},
+{
+"id":"CS16",
+"name": "Proyecto de investigación aplicada 1",
+"CarreraId":"5"
+},
+{
+"id":"CS17",
+"name": "Electiva",
+"CarreraId":"5"
+},
+{
+"id":"CS1",
+"name": "Arquitectura y diseño de seguridad",
+"CarreraId":"5"
+},
+{
+"id":"CS1",
+"name": "Administración del sistema de gestión de seguridad de la información",
+"CarreraId":"5"
+},
+{
+"id":"CS1",
+"name": "Proyecto de investigación aplicada 2",
+"CarreraId":"5"
+}]
