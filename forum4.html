@@ -44,12 +44,6 @@
               <option val="-1" disable>Seleccione un Curso</option>
               <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
             </select>
-            <select style="width: 100%;">
-              <option val="-1" disable>Seleccione un Tema</option>
-              <option val="1">Tema 1</option>
-              <option val="2">Tema 2</option>
-              <option val="3">Tema 3</option>
-            </select>
             <h4>Tema del foro</h4>
             <textarea></textarea>
             <div class="clearfix">
@@ -64,6 +58,7 @@
               <h4>Usuarios Invitados</h4> 
               <ul id="invitadosDisplay">
               </ul>
+              <button class="btn-blue pull-right">Guardar</button>
             </div> 
           </div>
           </div>    

@@ -5,9 +5,57 @@
 (function(){
 var app = angular.module('controllers-project',[]);
 
-app.controller('ForumController', function($scope){
+app.controller('ForumController', ['$scope', '$http', function($scope, $http){
+	var forum = this;
+	forum.lists=[];
 	$scope.enable = true;
-	
+	$scope.showForum=false;
+	$scope.showList=true;
+
+	$http.get('/Proyecto_1/JSON/forums.json').success(function(data){
+		for(var i= 0; i<data.length;i++){
+			console.log('el profesor: ' +data[i].profesor);	
+			// if()
+			forum.lists = data;
+		}
+	});
+
+	this.displayForum = function(forum){
+		// $scope.$apply(function(){
+            $scope.showForum=true;
+			$scope.showList=false;
+        // });
+		
+		$('#course-title').text(forum.titulo);
+		$('.inine-forum-list').addClass('ng-hide');
+		$('.main-forum').val(forum.tema);
+		$('.inine-forum-display').removeClass('ng-hide');
+		$('.moderador').val(forum.moderador);
+		var invi=[];
+		for(var i= 0; i<(forum.invitados).length;i++){
+			if (invi !='') {
+				invi = invi+ ', ' +((forum.invitados)[i].email);	
+			}else{
+					invi = ((forum.invitados)[i].email);	
+			}	
+		}
+		$('.invitados').val(invi);	
+
+		
+		// for(var i= 0; i<(forum.comments).length;i++){
+			
+		// }
+		if((forum.comments).length != 0){
+			$scope.comments= forum.comments;
+		}
+	};
+	this.hideForum = function(){
+		$scope.showForum=true;
+		$scope.showList=false;
+		$('.inine-forum-list').removeClass('ng-hide');
+		$('.inine-forum-display').addClass('ng-hide');
+	};
+
 	this.enableTxt  = function(){
 		if($scope.enable = true && $(".main-forum").attr('disabled')==='disabled'){
 			$scope.enable = false;
@@ -22,15 +70,14 @@ app.controller('ForumController', function($scope){
 	this.addToForum = function(){
 		var invitados = $('.invitados').val().split(', ');
 		$('#moderadorDisplay').text($('.moderador').val());
-		$('#moderadorDisplay').append('<span id="delete" class="glyphicon glyphicon-remove"></span>');
 		for (var i = invitados.length - 1; i >= 0; i--) {
-			$('#invitadosDisplay').append('<li>'+invitados[i]+' <span ng-click="forum.remove()" class="glyphicon glyphicon-remove delete"></span></li>')
+			$('#invitadosDisplay').append('<li> <span ng-click="forum.remove()" class="glyphicon glyphicon-remove delete"></span>'+invitados[i]+'</li>')
 		}
 	};
 	this.remove = function(){
 		console.log('remove');
 	};
-});	
+}]);	
 
 app.controller('CarrerasController', ['$http', function($http){
 	var universidad = this;
