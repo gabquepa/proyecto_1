@@ -27,13 +27,23 @@
     <project-side-nav></project-side-nav>
 
     <div class="main row">
-
-      <!--Busqueda de Documentos-->
+      
+      <div ng-controller='seccionDocumentosShow as show'>
+        <section ng-show='show.tab===1'>
+            <!--Busqueda de Documentos-->
             <buscar-documento></buscar-documento>
-  
+            <!--Top Documentos-->
+            <top-documento></top-documento>
+        </section>
 
-      <!--Top Documentos-->
-              <top-documento></top-documento>
+
+        <section ng-show='show.tab===2'>
+            <!--subirDocumento-->
+            <subir-documento></subir-documento>
+            <!--Visualizar y votar documentos ya descargados-->
+            <historialdescargas-documento></historialdescargas-documento>
+        </section>
+      </div>
     
       
   </div> 

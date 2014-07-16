@@ -1,13 +1,14 @@
 <div ng-controller='historialDesController as historial'>
                 <h2>Historial de Descargas</h2>
                <ul>
-                    <li ng-repeat="documento in historial.descargas">
-                      <span class='doc_lispandoc'>{{documento.autor}}</span>
+                <li ng-repeat="documento in historial.descargas">
+                     <span class='doc_lispandoc'>{{documento.autor}}</span>
                       <a href="#">{{documento.nombre}}</a>
                       <img src="img/sample-stars.png">
                       <span class='doc_lispandoc'>{{documento.carrera}}/{{documento.curso}}</span>
-                      <a href="#">Votar</a>
-                    </li>
+                      <a href="#" ng-show='documento.estado=="F"'>Votar</a>
+                      
+                    </li> 
                   </ul>
 </div>
       <!--Visualizar y votar documentos ya descargados-->

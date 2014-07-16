@@ -169,6 +169,21 @@ app.controller('estudianteController', function(){
 //Termina Alejandro Zuñiga
 
 //Controllers Keilyn Sibaja
+
+app.controller('seccionDocumentosShow', function(){
+	
+	this.tab=2;
+
+	this.mostrarSecc=function(pTab){
+		if(pTab==1){
+			this.tab=1;
+		}
+		if(pTab==2){
+			this.tab=2;
+		}
+	}
+});
+
 app.controller('misCarreras-cursos',['$http', function($http){
 	var controller = this;
 		controller.carrerasycursos= [];
@@ -259,8 +274,11 @@ app.controller('historialDesController',['$http', function($http){//controlador 
 		var docDesc = this;
 		docDesc.descargas= [];
 
+		console.log('Test');
+
 		$http.get('/proyecto_1/JSON/historialDescargas.json').success(function(data){
 			docDesc.descargas =data;
+			console.log(data);
 		});
 }]);
 //Controllers Keilyn Sibaja
