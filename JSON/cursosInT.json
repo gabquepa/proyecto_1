@@ -1,0 +1,220 @@
+[{
+"id":"InT1",
+"name": "Introducción a la tecnología de información",
+"CarreraId":"3"
+},
+{
+"id":"InT2",
+"name": "Laboratorio de tecnologías 1",
+"CarreraId":"3"
+},
+{
+"id":"InT3",
+"name": "Tecnología telemática 1",
+"CarreraId":"3"
+},
+{
+"id":"InT4",
+"name": "Fundamentos de programación",
+"CarreraId":"3"
+},
+{
+"id":"InT5",
+"name": "Inglés para tecnologías de información",
+"CarreraId":"3"
+},
+{
+"id":"InT6",
+"name": "Laboratorio de tecnologías 2",
+"CarreraId":"3"
+},
+{
+"id":"InT7",
+"name": "Sistemas operativos 1",
+"CarreraId":"3"
+},
+{
+"id":"InT8",
+"name": "Tecnología telemática 2",
+"CarreraId":"3"
+},
+{
+"id":"InT9",
+"name": "Programación y estructura de datos",
+"CarreraId":"3"
+},
+{
+"id":"InT10",
+"name": "Inglés para tecnologías de información 2",
+"CarreraId":"3"
+},
+{
+"id":"InT11",
+"name": "Sistemas operativos 2",
+"CarreraId":"3"
+},
+{
+"id":"InT12",
+"name": "Tecnología telemática 3",
+"CarreraId":"3"
+},
+{
+"id":"InT13",
+"name": "Fundamentos de bases de datos",
+"CarreraId":"3"
+},
+{
+"id":"InT14",
+"name": "Ofimática",
+"CarreraId":"3"
+},
+{
+"id":"InT15",
+"name": "Inglés para tecnologías de información 3",
+"CarreraId":"3"
+},
+{
+"id":"InT16",
+"name": "Arquitectura de computadoras",
+"CarreraId":"3"
+},
+{
+"id":"InT17",
+"name": "Proyecto de integración de tecnologías 1",
+"CarreraId":"3"
+},
+{
+"id":"InT18",
+"name": "Tecnología telemática 4",
+"CarreraId":"3"
+},
+{
+"id":"InT19",
+"name": "Administración de bases de datos 1",
+"CarreraId":"3"
+},
+{
+"id":"InT20",
+"name": "Inglés para tecnologías de información 4",
+"CarreraId":"3"
+},
+{
+"id":"InT21",
+"name": "Sistemas operativos 3",
+"CarreraId":"3"
+},
+{
+"id":"InT22",
+"name": "Proyecto de integración de tecnologías 2",
+"CarreraId":"3"
+},
+{
+"id":"InT23",
+"name": "Administración de bases de datos 2",
+"CarreraId":"3"
+},
+{
+"id":"InT24",
+"name": "Proyecto web 1",
+"CarreraId":"3"
+},
+{
+"id":"InT25",
+"name": "Estructuras discretas",
+"CarreraId":"3"
+},
+{
+"id":"InT26",
+"name": "Proyecto de integración de tecnologías 3",
+"CarreraId":"3"
+},
+{
+"id":"InT27",
+"name": "Proyecto web 2",
+"CarreraId":"3"
+},
+{
+"id":"InT28",
+"name": "Procesos empresariales",
+"CarreraId":"3"
+},
+{
+"id":"InT29",
+"name": "Probabilidad y estadística 1",
+"CarreraId":"3"
+},
+{
+"id":"InT30",
+"name": "Ética y profesionalismo",
+"CarreraId":"3"
+},
+{
+"id":"InT31",
+"name": "Seguridad informática",
+"CarreraId":"3"
+},
+{
+"id":"InT32",
+"name": "Derecho informático",
+"CarreraId":"3"
+},
+{
+"id":"InT33",
+"name": "Administración de proyectos 1",
+"CarreraId":"3"
+},
+{
+"id":"InT34",
+"name": "Sociedad y TIC",
+"CarreraId":"3"
+},
+{
+"id":"InT35",
+"name": "Cálculo diferencial e integral",
+"CarreraId":"3"
+},
+{
+"id":"InT36",
+"name": "Proyecto de integración de tecnologías 4",
+"CarreraId":"3"
+},
+{
+"id":"InT37",
+"name": "Administración de servicios informáticos",
+"CarreraId":"3"
+},
+{
+"id":"InT38",
+"name": "Administración de proyectos 2",
+"CarreraId":"3"
+},
+{
+"id":"InT39",
+"name": "Física 1",
+"CarreraId":"3"
+},
+{
+"id":"InT40",
+"name": "Álgebra lineal",
+"CarreraId":"3"
+},
+{
+"id":"InT41",
+"name": "Arquitectura tecnológica",
+"CarreraId":"3"
+},
+{
+"id":"InT42",
+"name": "Aseguramiento de la continuidad del negocio",
+"CarreraId":"3"
+},
+{
+"id":"InT43",
+"name": "Probabilidad y estadística 2",
+"CarreraId":"3"
+},
+{
+"id":"InT44",
+"name": "Física 2",
+"CarreraId":"3"
+}]

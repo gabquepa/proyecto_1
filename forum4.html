@@ -31,28 +31,24 @@
           <h3>Mis Foros_</h3>
           <p>En esta sección podra accesar a los foros invitados y crear y editar los personales.</p>
           <h3  class="create-forumTitle btn-blue">Crear Foro</h3>
-          <div class="create-forumSection">
+          <div class="create-forumSection" ng-controller="CarrerasController as universidad">
             <h4>Titulo</h4>
             <input class="forum-title form-control">
             <h4>Periodo</h4>
             <input class="forum-periodo form-control">
-            <select>
+            <select ng-mouseleave="universidad.selectCurso()" class="select-carrera">
               <option val="-1" disable>Seleccione una Carrera</option>
-              <option val="1" disable>Carrera 1</option>
-              <option val="1" disable>Carrera 2</option>
-              <option val="1" disable>Carrera 3</option>
+              <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
             </select>
-            <select>
+            <select class="select-curso">
               <option val="-1" disable>Seleccione un Curso</option>
-              <option val="1" disable>Curso 1</option>
-              <option val="1" disable>Curso 2</option>
-              <option val="1" disable>Curso 3</option>
+              <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
             </select>
             <select style="width: 100%;">
               <option val="-1" disable>Seleccione un Tema</option>
-              <option val="1" disable>Tema 1</option>
-              <option val="1" disable>Tema 2</option>
-              <option val="1" disable>Tema 3</option>
+              <option val="1">Tema 1</option>
+              <option val="2">Tema 2</option>
+              <option val="3">Tema 3</option>
             </select>
             <h4>Tema del foro</h4>
             <textarea></textarea>

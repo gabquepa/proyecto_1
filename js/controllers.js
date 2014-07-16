@@ -30,8 +30,41 @@ app.controller('ForumController', function($scope){
 	this.remove = function(){
 		console.log('remove');
 	};
-	
 });	
+
+app.controller('CarrerasController', ['$http', function($http){
+	var universidad = this;
+	universidad.carreras=[];
+	$http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
+		universidad.carreras = data;
+	});
+
+	this.selectCurso = function(){
+		var carrera = $('.select-carrera option:selected').attr('val');
+		var cursos = this;
+		universidad.cursos=[];
+		
+		if(carrera ==="1"){
+			$http.get('/Proyecto_1/JSON/cursosDW.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else if(carrera ==="2"){
+			$http.get('/Proyecto_1/JSON/cursosDS.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else if(carrera ==="3"){
+			$http.get('/Proyecto_1/JSON/cursosInT.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else{
+			universidad.cursos = '';
+		}
+
+	};
+}]);	
 
 /********************************************CONTROLADORES********************************************************/
 
