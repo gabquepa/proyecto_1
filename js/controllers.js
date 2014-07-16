@@ -169,7 +169,43 @@ app.controller('estudianteController', function(){
 //Termina Alejandro Zuñiga
 
 //Controllers Keilyn Sibaja
+app.controller('misCarreras-cursos',['$http', function($http){
+	var controller = this;
+		controller.carrerasycursos= [];
 
+		$http.get('/proyecto_1/JSON/carreras-cursos.json').success(function(data){
+			controller.carrerasycursos =data;
+		});
+
+		controller.cursos=[];
+
+		controller.carreraSelect=function(carreraSelect){
+			for(var i=0; i<controller.carrerasycursos.length; i++){
+
+				if(controller.carrerasycursos[i].carrera===carreraSelect){
+					controller.cursos=controller.carrerasycursos[i].cursos;
+					break;
+				}
+			}
+		}
+}]);
+
+app.controller('editarComentController',function(){
+	this.value=false;
+
+	this.editarComent=function(){
+
+		//false esconder ----- true mostrar
+		
+		if(this.value===false){
+			return this.value=true;
+		}
+
+		if(this.value===true){
+			return this.value=false;
+		}
+	}
+});
 app.controller('buscarDocController',function(){//Controlador de mi seccion de Buscar Documento
 
 	//1=esconder 2=mostrar

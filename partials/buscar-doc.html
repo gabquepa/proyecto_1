@@ -8,24 +8,16 @@
             <button class='btn-subir-down btn-blue' ng-click='buscarDoc.showBtn();'>Buscar Documento</button>
 
             <div id='doc_subirdoc' class='cf' ng-show='buscarDoc.value===2'>
-              <div class="form-group div_docsubir">
+              <div class="form-group div_docsubir" ng-controller='misCarreras-cursos as cyc'>
                 <span>Ingrese el criterio de búsqueda</span>
                   <input type='text' placeholder='Busqueda' id='doc_inpbuscardoc'>
-                  <span>Seleccione una Carrera</span>
-                  <select>
-                    <option>IT English</option>
-                    <option>Integracion de Tecnologias</option>
-                    <option>Telematica</option>
-                    <option>Desarrollo y Diseño Web</option>
-                    <option>Desarrollo de Software</option>
+                  <span>Carrera:</span>
+                  <select ng-model='value' ng-click='cyc.carreraSelect(value);'>
+                    <option  value ="{{miCarrera.carrera}}" ng-repeat='miCarrera in cyc.carrerasycursos'>{{miCarrera.carrera}}</option>
                   </select>
-                  <span>Seleccione un Curso</span>
+                  <span>Curso:</span>
                   <select>
-                    <option>Curso1</option>
-                    <option>Curso2</option>
-                    <option>Curso3</option>
-                    <option>Curso4</option>
-                    <option>Curso5</option>
+                    <option ng-repeat='curso in cyc.cursos'>{{curso.c}}</option>
                   </select>
                   <span>Resultados</span>
                   <ul>

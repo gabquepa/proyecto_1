@@ -8,29 +8,23 @@
             <button class='btn-subir-down btn-blue' ng-click='subirDoc.showBtn();'>Subir Documento</button>
 
             <div id='doc_subirdoc' class='cf' ng-show='subirDoc.value===2'>
-              <div class="form-group div_docsubir">
+              <form class="form-group div_docsubir">
                   <input type='text' placeholder='Titulo'>
                   <input type='text' placeholder='Autor'>
-                  <input type='text' placeholder='Fecha'>
-                  <span>Seleccione una Carrera</span>
-                  <select>
-                    <option>IT English</option>
-                    <option>Integracion de Tecnologias</option>
-                    <option>Telematica</option>
-                    <option>Desarrollo y Diseño Web</option>
-                    <option>Desarrollo de Software</option>
-                  </select>
-                  <span>Seleccione un Curso</span>
-                  <select>
-                    <option>Curso1</option>
-                    <option>Curso2</option>
-                    <option>Curso3</option>
-                    <option>Curso4</option>
-                    <option>Curso5</option>
-                  </select>
+                  <input type='date'>
+                  <section ng-controller='misCarreras-cursos as cyc'>
+                    <span>Carrera:</span>
+                    <select ng-model='value' ng-click='cyc.carreraSelect(value);'>
+                      <option  value ="{{miCarrera.carrera}}" ng-repeat='miCarrera in cyc.carrerasycursos'>{{miCarrera.carrera}}</option>
+                    </select>
+                    <span>Curso:</span>
+                    <select>
+                      <option value="{{curso.c}}" ng-repeat='curso in cyc.cursos'>{{curso.c}}</option>
+                    </select>
+                  </section>
                     <input type="file" id="exampleInputFile">
-                    <buttom class='btn-subir'>Subir Documento</button>
-                  </div>
-              </div>
+                    <input type='submit'value='submit' class='btn-subir'>
+                  </form>
+        </div>
  </div>
       <!--Subir Documentos-->
