@@ -34,7 +34,7 @@
           <div class="inine-forum-list">
             <h4>Foros</h4>
             <ul class="clearfix">
-              <li ng-repeat="list in forum.lists" data-forumId="{{list.id}}"><a ng-click="forum.displayForum(list)">{{list.titulo}}</a></li>
+              <li style="list-style:none;" ng-repeat="list in forum.lists" data-forumId="{{list.id}}"><a style="text-decoration:none;" ng-click="forum.displayForum(list)">{{list.titulo}}</a></li>
             </ul>
           </div>
           <div class="inine-forum-display">
@@ -63,7 +63,7 @@
                   </div>
                   <h5><a href="#">Evaluar</a></h5>
                   <input class="stars" data-size="xs">
-                  <h5 class="pull-right"><a href="#">Denunciar</a></h5>
+                  <h5 class="pull-right"><a href="#" ng-click="forum.denunciar()">Denunciar</a></h5>
                 </div>
             </div>
           </div>

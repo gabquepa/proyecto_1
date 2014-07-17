@@ -72,7 +72,7 @@
                   <div class="forum">
                     <p>{{comment.texto}}</p>
                   </div>
-                  <h5 class="pull-right"><a href="#" >Denunciar</a></h5>
+                  <h5 class="pull-right"><a href="#" ng-click="forum.denunciar()">Denunciar</a></h5>
                 </div>
               </div>
             </div>
@@ -84,29 +84,31 @@
             <p>En esta sección podra accesar a los foros invitados y crear y editar los personales.</p>
             <h3  class="create-forumTitle btn-blue">Crear Foro</h3>
             <div class="create-forumSection" ng-controller="CarrerasController as universidad">
-              <h4>Titulo</h4>
-              <input class="forum-title form-control">
-              <h4>Periodo</h4>
-              <input class="forum-periodo form-control">
-              <select ng-mouseleave="universidad.selectCurso()" class="select-carrera">
-                <option val="-1" disable>Seleccione una Carrera</option>
-                <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
-              </select>
-              <select class="select-curso">
-                <option val="-1" disable>Seleccione un Curso</option>
-                <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
-              </select>
-              <h4>Tema del foro</h4>
-              <textarea></textarea>
-              <div class="clearfix">
-                <h4>Moderador: </h4>
-                <input type="email" class="form-control moderador">
-                <h4>Invitar Usuarios:</h4>
-                <textarea class="form-control invitados" ></textarea>
-              </div>
-              <div class="clearfix">
-                <button class="btn-blue pull-right" ng-click="forum.createForum()">Guardar</button>
-              </div> 
+              <form name="forumForm" ng-submit="forumForm.$valid && forum.createForum() && forum.displayForum()">
+                <h4>Titulo</h4>
+                <input class="forum-title form-control" required>
+                <h4>Periodo</h4>
+                <input class="forum-periodo form-control" required>
+                <select ng-mouseleave="universidad.selectCurso()" class="select-carrera">
+                  <option val="-1" disable>Seleccione una Carrera</option>
+                  <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
+                </select>
+                <select class="select-curso">
+                  <option val="-1" disable>Seleccione un Curso</option>
+                  <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
+                </select>
+                <h4>Tema del foro</h4>
+                <textarea required></textarea >
+                <div class="clearfix">
+                  <h4>Moderador: </h4>
+                  <input type="email" class="form-control moderador" required>
+                  <h4>Invitar Usuarios:</h4>
+                  <textarea class="form-control invitados" required></textarea>
+                </div>
+                <div class="clearfix">
+                  <button type="submit" class="btn-blue pull-right">Guardar</button>
+                </div> 
+               </form> 
             </div>
             </div>  
     </div>

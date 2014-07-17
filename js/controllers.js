@@ -6,10 +6,15 @@
 var app = angular.module('controllers-project',[]);
 
 /************** Route Controllers **************/
-// app.controller('routeController', function($scope) {
-
-	
-// });
+app.controller('routeController', function($scope, $cookieStore) {
+	var tipo = $cookieStore.get('usuarioTipo');
+	if(tipo==="P"){
+		$(".headForum").attr("href", "/Proyecto_1/forum-profesor.html");
+	}
+	else{
+		$(".headForum").attr("href", "/Proyecto_1/forum-estudiante.html");
+	}
+});
 
 
 
@@ -50,8 +55,11 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		}
 		$('.invitados').val(invi);	
 
-		if((forum.comments).length != 0){
+		if((forum.comments).length > 1){
 			$scope.comments= forum.comments;
+			$('.comments-lst').show();
+		}else{
+			$('.comments-lst').hide();
 		}
 	};
 	this.hideForum = function(){
@@ -79,14 +87,19 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			$('#invitadosDisplay').append('<li> <span ng-click="forum.remove()" class="glyphicon glyphicon-remove delete"></span>'+invitados[i]+'</li>')
 		}
 	};
+
 	this.remove = function(){
 		console.log('remove');
 	};
+
 	this.showCreateForum = function(){
 		$scope.showCreate = true;
 		$scope.showConfig=false;
 		$('.forum-config').addClass('ng-hide');
 		$('.forum-create').removeClass('ng-hide');
+	};
+	this.denunciar = function(){
+		alert('su denuncia ha sido enviada');
 	};
 	this.createForum = function(){
 		var arregloInvitados={}; 
@@ -112,13 +125,12 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		newforum={};
 		console.log(forum.lists); 
 
-		alert('creado el foro');
+		alert('Foro creado');
 
 		$scope.showCreate = false;
 		$scope.showConfig=true;
 		$('.forum-config').removeClass('ng-hide');
 		$('.forum-create').addClass('ng-hide');
-
 
 	};
 
@@ -137,9 +149,16 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 		$('.course').text(forum.CursoId);
 		$('.course-title').text(forum.titulo);
 		$('.main-forum').text(forum.tema);
-		if((forum.comments).length != 0){
+
+		if((forum.comments).length > 1){
 			$scope.comments= forum.comments;
+			$('.comments-lst').show();
+		}else{
+			$('.comments-lst').hide();
 		}
+	};
+	this.denunciar = function(){
+		alert('su denuncia ha sido enviada');
 	};
 
 }]);
@@ -683,6 +702,9 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				if (pUsuario[i].estado=="A") {
 		        	   $('#mensajeLogin').html("");
 		        	   $cookieStore.put('usuario', i);
+		        	   $cookieStore.put('usuarioTipo', pUsuario[i].tipo);
+
+		        	   console.log(pUsuario[i].tipo);
 		        	   window.location = "/Proyecto_1/user-blog1.html";
 				} else{
 					$('#mensajeLogin').html("");
@@ -705,6 +727,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    this.logOut = function(){
 	    	alert("hola");
 			$cookieStore.remove("usuario");
+			$cookieStore.remove("usuarioTipo");
 			window.location = "/Proyecto_1/login.html";
 			
 	    };

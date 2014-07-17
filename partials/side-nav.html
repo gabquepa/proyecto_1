@@ -1,10 +1,10 @@
-<div class="side-nav">
+<div class="side-nav" ng-controller="routeController as route">
 	<img class="usr-avatar" src="/Proyecto_1/img/avatar.png">
 	<div class="usr-stars"><img class="usr-avatar" src="/Proyecto_1/img/sample-stars.png"></div>
 	<h3>Menú de Usuario</h3>
 	<ul>
 		<li id="blogsUser1"><a href="/Proyecto_1/user-blog1.html" ng-click="tabs.getTab('b1')">Blogs</a></li>
-		<li><a href="">Foros</a></li>
+		<li><a href="#" class="headForum">Foros</a></li>
 		<li><a href="" ng-click='show.mostrarSecc(2);'>Descargas</a></li>
 		<li id="profile"><a href="/Proyecto_1/user-profile.html">Mi Perfil</a></li>
 		<li style="display:none"><a href="">Conf. Sistema</a></li>

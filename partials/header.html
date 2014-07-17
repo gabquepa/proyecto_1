@@ -1,10 +1,10 @@
 <!-- cerrar Sesión Sergio Herrera-->
 <div class="topHeaderNav clearfix" ng-controller="UserController as usuario">
 	    <a href="" ng-controller="validarLogin as login" id="cerrarSesion" class="pull-right clearfix" ng-click="login.logOut()">Cerrar Sesión</a>
-	  	<a href="/Proyecto_1/user-profile.html" class="pull-right clearfix">{{usuario.user[cookieValue].usuario}}</a>
+	  	<a href="/Proyecto_1/user-profile.html" id="usuario" class="pull-right clearfix" data-type="{{usuario.user[cookieValue].tipo}}">{{usuario.user[cookieValue].usuario}}</a>
 </div>
 <!-- cerrar Sesión Sergio Herrera-->
-<div class="header">
+<div ng-controller="routeController as route">
 	<nav class="header navbar navbar-default" role="navigation">
 	  <img class="logo" src="/Proyecto_1/img/logo_cenfo.png">
 	  <div class="container-fluid">
@@ -23,7 +23,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <li id="blogsUser2"><a href style="background-color: inherit;" ng-click="tabs.getTab('b2')">Blogs</a></li>
-	        <li><a href="#" style="background-color: inherit;" >Foros</a></li>
+	        <li><a href="#" class="headForum" style="background-color: inherit;">Foros</a></li>
 	        <li><a href="documentos.html" style="background-color: inherit;">Documento</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-left pull-right" role="search">
