@@ -344,24 +344,24 @@ app.controller("modificarUserController", function(){
 /*****************************************************************************************************************/	
 app.controller("inhabilitarUserController", function(){
 			var temp = 0;
-			var estado = true;
+			// var estado = true;
 
 			this.buscaUser = function(pUser, pCorreo){
 				 // console.log(pCorreo);
 			
 			 for(i=0;i<pUser.length;i++){
 			 	if(pUser[i].correo === pCorreo){
-			 		console.log(i + pUser[i].correo);
+			 		console.log(i);
 			 		temp = i;
 			 		if(pUser[i].estado === "activo"){
-			 			// console.log(pUser[i].estado);
+			 			console.log(pUser[i].estado);
 			 			// console.log(pUser[i].nombre);
 			 			$('#nombreUser').html(pUser[i].nombre);
 			 			$('#correoUser').html(pUser[i].correo);
 			 			$('#activo').attr('checked', 'checked');
 
 			 		}else{
-			 			// console.log(pUser[i].estado);
+			 			console.log(pUser[i].estado);
 			 			$('#nombreUser').html(pUser[i].nombre);
 			 			$('#correoUser').html(pUser[i].correo);
 			 			$('#inactivo').attr('checked', 'checked');
@@ -374,27 +374,25 @@ app.controller("inhabilitarUserController", function(){
 
 			 	}
 			 }
-			 		// $('#nombreEncontrado').val(pUser[i].nombre);
-			 		// $('#buscaCorreo').val(pUser[i].correo);
-			 		// $('#passwordEncontrado').val(pUser[i].password);
-			 		// if(pUser[i].genero ==='masculino'){
-			 		// 	$('#generoHombre').attr('checked', 'checked');
-			 		// }
-			 		// else{
-			 		// 	$('#generoMujer').attr('checked', 'checked');
-			 		// }
-			 		// //If de categoria
-			 		// if(pUser[i].categoria ==='estudiante'){
-			 		// 	$('#estudiante').attr('checked', 'checked');
-			 		// }
-			 		// else if(pUser[i].categoria ==='profesor'){
-			 		// 	$('#profesor').attr('checked', 'checked');
-			 		// }else if(pUser[i].categoria ==='rector'){
-			 		// 	$('#rector').attr('checked', 'checked');
-			 		// }else if(pUser[i].categoria ==='director'){
-			 		// 	$('#director').attr('checked', 'checked');
-			 		// }		 		
-			 
+
+			 this.user = {};
+			 this.inaUser = function(pModif){
+			 	// console.log('test');
+			 	// console.log(this.user);
+			 	pModif[temp] = this.user.estado;
+			 	if(pModif[temp].estado === "activo"){
+			 		$('#activo').attr('checked', 'checked');
+			 	}else{
+			 		$('#inactivo').attr('checked', 'checked');
+			 	}
+			 	 console.log(pModif[temp]);
+			
+
+			 this.user = {};
+
+
+			 }
+			 		
 
 		
 
@@ -405,6 +403,7 @@ app.controller("inhabilitarUserController", function(){
 
 
 });
+/*****************************************************************************************************************/	
 /*****************************************************************************************************************/	
 app.controller("respuestaForos", function(){
 	var respuestaForo = true;
