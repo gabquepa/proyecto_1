@@ -1,32 +1,33 @@
 <!--  <div class="crearUsuario cf" ng-show="panel.isSelected(3)">  -->
 <!-- <div ng-show="mostrarInhabilitarUsuario"> -->
 <div ng-show="userContr.isSelected(3, confPanel.tab)"  >
- <div class="crearUsuario cf"> 
+ <div class="crearUsuario cf" ng-controller="inhabilitarUserController as inhabilitarUser"> 
 
+                      <form role="form" name="inhabilitarUsuarioForm"  ng-submit="inhabilitarUser.buscaUser(conf.usuarios, correo)" novalidate>
                            <div class="buscarUserContent">
                               <label>Usuario</label>
-                              <input type="text" class="buscarUserInput" placeholder="usuario@ucenfotec.ac.cr">
-                              <button type="submit" class="buscarBtn">Buscar</button>
+                              <input type="text" class="buscarUserInput" placeholder="usuario@ucenfotec.ac.cr" ng-model="correo" required>
+                              <button type="submit" class="buscarBtn" value="submit">Buscar</button>
                           </div>
-
+                      </form>
                           <div class="buscarUserContent cf" >
                               <div class="vistaUsuarios">
-                                <p>Nombre de Usuario</p>
-                                <p>Usuario@ucenfotec.com</p>
+                                <p id="nombreUser"></p>
+                                <p id="correoUser"></p>
                                 <label>Inactivo</label>
-                               <input type="radio" name="estado">
+                               <input type="radio" name="estado" id="inactivo">
                                <label>Activo</label>
-                               <input type="radio" name="estado"> 
+                               <input type="radio" name="estado" id="activo"> 
                               </div>
 
-                               <div class="vistaUsuarios">
+                           <!--     <div class="vistaUsuarios">
                                 <p>Nombre de Usuario</p>
                                 <p>Usuario@ucenfotec.com</p>
                                 <label>Inactivo</label>
                                <input type="radio" name="estado">
                                <label>Activo</label>
                                <input type="radio" name="estado"> 
-                              </div>
+                              </div> -->
 
                                <button type="submit" class="guardarBtn pull-right">Guardar</button>
                           </div>

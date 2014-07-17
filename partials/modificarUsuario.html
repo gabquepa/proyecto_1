@@ -1,51 +1,57 @@
  <!-- <div class="crearUsuario cf" ng-show="panel.isSelected(2)">  -->
 <!-- <div ng-show="mostrarModificarUsuario"> -->
 <div ng-show="userContr.isSelected(2, confPanel.tab)"  >
-<div class="crearUsuario cf">
+<div class="crearUsuario cf" ng-controller="modificarUserController as modificarUser">
 
-                           <div class="buscarUserContent">
-                              <label>Usuario</label>
-                              <input type="text" class="buscarUserInput" placeholder="usuario@ucenfotec.ac.cr">
-                              <button type="submit" class="buscarBtn">Buscar</button>
-                          </div>
-
-                          <div class="contenedorInputs">
-                              <label>Nombre del Usuario</label>
-                              <input type="text" class="form-control">
-                          </div>
-
-                           <div class="contenedorInputs contenedorInputsSep">
-                            <label>Genero</label><br>
                            
-                           <label>Hombre</label>
-                           <input type="radio" name="genero">
-                           <label>Mujer</label>
-                           <input type="radio" name="genero"> 
-                       </div>
-                           <div class="contenedorInputs contenedorInputsSep">
-                               <label>Correo del Usuario</label>
-                              <input type="email" class="form-control"> 
-                          </div>
-                         <div class="contenedorInputs">
-                              <label>Contraseña</label>
-                              <input type="password" class="form-control">
-                          </div>
+                        <form role="form" name="modificarUsuarioForm"  ng-submit="modificarUser.modifUser(conf.usuarios, correo)" novalidate>
+                                 <div class="buscarUserContent">
+                                    <label>Usuario</label>
+                                    <input type="text" class="buscarUserInput" placeholder="usuario@ucenfotec.ac.cr" ng-model="correo" required>
+                                    <button type="submit" class="buscarBtn" value="submit">Buscar</button>
+                                </div>
+                        </form>
 
-                        <div class="contenedorInputs labels">
-                           <label>Categoria</label>
-                               
-                               <label>Director</label>
-                               <input type="radio" name="tipoUsuario">
-                               <label>Rector</label>
-                               <input type="radio" name="tipoUsuario"> 
-                               <label>Profesor</label>
-                               <input type="radio" name="tipoUsuario">
-                               <label>Estudiante</label>
-                               <input type="radio" name="tipoUsuario">  
-                        </div>
+                        
+                       <!--  <form role="form" name="modificarUsuarioForm2"  ng-submit="modificarUsuarioForm2.$valid && modificarUser.saveModif(conf.usuarios)" novalidate> -->
+                        <form role="form" name="pruebaForm"  ng-submit="pruebaForm.$valid && modificarUser.saveModif(conf.usuarios)" novalidate>
+                                <div class="contenedorInputs">
+                                    <label>Nombre del Usuario</label>
+                                    <input type="text" class="form-control" id="nombreEncontrado" ng-model="modificarUser.user.nombre" required>
+                                </div>
 
-                        <button type="submit" class="guardarBtn pull-right">Guardar</button>
+                                 <div class="contenedorInputs contenedorInputsSep">
+                                  <label>Genero</label><br>
+                                 
+                                 <label>Hombre</label>
+                                 <input type="radio" class="genero" name="genero" value="hombre" id="generoHombre" ng-model="modificarUser.user.genero" required>
+                                 <label>Mujer</label>
+                                 <input type="radio" class="genero" name="genero" value="mujer" id="generoMujer" ng-model="modificarUser.user.genero" required> 
+                                 </div>
+                                 <div class="contenedorInputs contenedorInputsSep">
+                                     <label>Correo del Usuario</label>
+                                    <input type="email" class="form-control" id="correoEncontrado" ng-model="modificarUser.user.correo" required> 
+                                </div>
+                               <div class="contenedorInputs">
+                                    <label>Contraseña</label>
+                                    <input type="password" class="form-control" id="passwordEncontrado" ng-model="modificarUser.user.password" required>
+                                </div>
 
+                              <div class="contenedorInputs labels">
+                                 <label>Categoria</label>
+                                     
+                                     <label>Director</label>
+                                     <input type="radio" name="tipoUsuario" value="director" id="director" ng-model="modificarUser.user.categoria" required>
+                                     <label>Rector</label>
+                                     <input type="radio" name="tipoUsuario" value="rector" id="rector" ng-model="modificarUser.user.categoria" required> 
+                                     <label>Profesor</label>
+                                     <input type="radio" name="tipoUsuario" value="profesor" id="profesor" ng-model="modificarUser.user.categoria" required>
+                                     <label>Estudiante</label>
+                                     <input type="radio" name="tipoUsuario" value="estudiante" id="estudiante" ng-model="modificarUser.user.categoria" required>  
+                              </div>
+
+                              <button type="submit" class="guardarBtn pull-right" value="submit">Guardar</button>
+                        </form>
 
                     </div>
  </div>

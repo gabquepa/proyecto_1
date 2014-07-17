@@ -266,6 +266,174 @@ app.controller('estudianteController', function(){
 		};
 	});
 
+
+/*****************************************************************************************************************/	
+app.controller("crearUserController", function(){
+
+		this.user = {};
+
+		this.addUser = function(pUser){
+			  // console.log(pUser.correo);
+			  console.log(this.user);
+			pUser.push(this.user);
+			 
+			 console.log(this.user.correo);
+			//  console.log(pUser[0].nombre);
+			//  console.log(pUser[1].nombre);
+			//  console.log(pUser[2].nombre);
+			
+			this.user = {};	
+		};
+
+	});
+/*****************************************************************************************************************/	
+app.controller("modificarUserController", function(){
+		  var temp = 0;	
+
+		  
+		this.modifUser = function(pUser, pCorreo){
+			
+			 for(i=0;i<pUser.length;i++){
+			 	if(pUser[i].correo === pCorreo){
+			 		temp = i;
+			 		console.log(temp);
+			 		$('#nombreEncontrado').val(pUser[i].nombre);
+			 		$('#correoEncontrado').val(pUser[i].correo);
+			 		$('#passwordEncontrado').val(pUser[i].password);
+			 		if(pUser[i].genero ==='masculino'){
+			 			$('#generoHombre').attr('checked', 'checked');
+			 		}
+			 		else{
+			 			$('#generoMujer').attr('checked', 'checked');
+			 		}
+			 		//If de categoria
+			 		if(pUser[i].categoria ==='estudiante'){
+			 			$('#estudiante').attr('checked', 'checked');
+			 		}
+			 		else if(pUser[i].categoria ==='profesor'){
+			 			$('#profesor').attr('checked', 'checked');
+			 		}else if(pUser[i].categoria ==='rector'){
+			 			$('#rector').attr('checked', 'checked');
+			 		}else if(pUser[i].categoria ==='director'){
+			 			$('#director').attr('checked', 'checked');
+			 		}		 		
+			 	}//FIn del if
+			 }//Fin del for	
+
+
+		};//Fin de funcion
+
+		this.user = {};
+		this.saveModif = function(pModif){
+			// console.log(this.user);
+			// console.log(temp);
+
+			// console.log(pModif[temp].nombre);
+			 pModif[temp] = this.user;
+			 // console.log(pModif[temp].nombre);
+			  console.log(pModif[temp]);
+			
+
+			 this.user = {};
+
+
+		}
+
+	});
+
+/*****************************************************************************************************************/	
+app.controller("inhabilitarUserController", function(){
+			var temp = 0;
+			var estado = true;
+
+			this.buscaUser = function(pUser, pCorreo){
+				 // console.log(pCorreo);
+			
+			 for(i=0;i<pUser.length;i++){
+			 	if(pUser[i].correo === pCorreo){
+			 		console.log(i + pUser[i].correo);
+			 		temp = i;
+			 		if(pUser[i].estado === "activo"){
+			 			// console.log(pUser[i].estado);
+			 			// console.log(pUser[i].nombre);
+			 			$('#nombreUser').html(pUser[i].nombre);
+			 			$('#correoUser').html(pUser[i].correo);
+			 			$('#activo').attr('checked', 'checked');
+
+			 		}else{
+			 			// console.log(pUser[i].estado);
+			 			$('#nombreUser').html(pUser[i].nombre);
+			 			$('#correoUser').html(pUser[i].correo);
+			 			$('#inactivo').attr('checked', 'checked');
+
+			 		}
+			 		
+			 	}else{}
+
+
+
+			 	}
+			 }
+			 		// $('#nombreEncontrado').val(pUser[i].nombre);
+			 		// $('#buscaCorreo').val(pUser[i].correo);
+			 		// $('#passwordEncontrado').val(pUser[i].password);
+			 		// if(pUser[i].genero ==='masculino'){
+			 		// 	$('#generoHombre').attr('checked', 'checked');
+			 		// }
+			 		// else{
+			 		// 	$('#generoMujer').attr('checked', 'checked');
+			 		// }
+			 		// //If de categoria
+			 		// if(pUser[i].categoria ==='estudiante'){
+			 		// 	$('#estudiante').attr('checked', 'checked');
+			 		// }
+			 		// else if(pUser[i].categoria ==='profesor'){
+			 		// 	$('#profesor').attr('checked', 'checked');
+			 		// }else if(pUser[i].categoria ==='rector'){
+			 		// 	$('#rector').attr('checked', 'checked');
+			 		// }else if(pUser[i].categoria ==='director'){
+			 		// 	$('#director').attr('checked', 'checked');
+			 		// }		 		
+			 
+
+		
+
+
+
+
+
+
+
+});
+/*****************************************************************************************************************/	
+app.controller("respuestaForos", function(){
+	var respuestaForo = true;
+
+	this.respDefault = function(){
+		if(respuestaForo){
+		$('#permitirRespuesta').attr('checked', 'checked');
+		}else{
+			$('#denegarRespuesta').attr('checked', 'checked');
+		}
+	}
+
+	this.cambiarRespuesta = function(){
+		console.log('cambiar');
+		var resp = $('#denegarRespuesta').val();
+		if(resp === 'noPermitir'){
+			$('#denegarRespuesta').attr('checked', 'checked');
+			respuestaForo = false;
+		}
+		// console.log(resp);
+
+
+	}
+
+
+
+
+
+});
 //Termina Alejandro Zuñiga
 
 //Controllers Keilyn Sibaja
