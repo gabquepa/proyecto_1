@@ -480,16 +480,68 @@ app.controller("inhabilitarUserController", function(){
 			 }
 			 		
 
-		
-
-
-
-
-
-
-
 });
 /*****************************************************************************************************************/	
+app.controller("crearCarreraController", function(){
+
+		this.carrera = {};
+
+		this.addCarrera = function(pCarrera){
+			  
+			pCarrera.push(this.carrera);
+
+			 
+			 //  console.log(this.carrera);
+			 console.log(pCarrera[0].nombre);
+			 console.log(pCarrera[1].nombre);
+			 console.log(pCarrera[2].nombre);
+			 console.log(pCarrera[3].nombre);
+			
+			this.carrera = {};	
+		};
+
+	});
+/*****************************************************************************************************************/	
+app.controller("inhabilitarCarreraController", function(){
+
+	this.carrera = {};	
+	// validarCarreras();
+
+		this.validarCarreras = function(pCarrera){
+			  			 
+		
+
+		 
+			 
+			 	if("pCarrera" === "activo"){
+			 		$('#carreraActivo').attr('checked', 'checked');
+			 		// console.log('entro');
+			 	}else{
+			 		$('#carreraInactivo').attr('checked', 'checked');
+			 		// console.log('no entro');
+			 	}
+			 this.carrera = {};
+			 return"";
+			 
+		};
+
+
+		// function validarCarreras(){
+
+		// 	if(pCarrera === "activo"){
+		// 	 		$('#activo').attr('checked', 'checked');
+		// 	 		console.log('entro');
+		// 	 	}else{
+		// 	 		$('#inactivo').attr('checked', 'checked');
+		// 	 		console.log('no entro');
+		// 	 	}
+
+		// }
+
+	});
+/*****************************************************************************************************************/	
+
+
 /*****************************************************************************************************************/	
 app.controller("respuestaForos", function(){
 	var respuestaForo = true;
