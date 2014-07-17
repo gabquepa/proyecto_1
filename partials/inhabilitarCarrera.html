@@ -1,65 +1,31 @@
 
 <div ng-show="carreraContr.isSelected(3, confPanel.tab)" ng-controller="inhabilitarCarreraController as inhabilitarCarrera" >
- <h5><a href="#">Lista de Carreras</a></h5>
+ <h5><a>Mostrar estado de las Carreras</a></h5>
 
-
+ <form role="form cf" name="saveValidInvalidForm">
     <ul>
       <li ng-repeat="carrera in conf.carreras" class="list-group-item">
-       <h5><a  ng-click="inhabilitarCarrera.validarCarreras(carrera.estado)">Lista de Carreras</a></h5> 
 
       <table cellpading="0" cellspacing="0" border="0"  align="center"><tr>
  
-        {{carrera.estado}}
+        
               <td width="300" height="50" align="left"><p>{{carrera.nombre}}</p></td>
-              <td width="300" height="50" align="left"><label>Inactivo</label>
-              <input type="radio" name="{{carrera.codigo}}" id="carreraInactivo" value="inactivo"></td>
-              <td width="300" height="50" align="left"><label>Activo</label>
-              <input type="radio" name="{{carrera.codigo}}" id="carreraActivo" value="activo" > </td>
+              <td width="300" height="50" align="left"><p style="color:blue">{{carrera.estado}}</p><!-- <label>Inactivo</label> -->
+              <!-- <input type="radio" name="{{carrera.codigo}}" id="carreraInactivo{{carrera.codigo}}" class="revise"  value="inactivo"  ng-checked="inhabilitarCarrera.validarCarrerasIna(carrera.estado)"> --></td>
+              <td width="300" height="50" align="left">
+                <button type="submit" class="guardarBtn " ng-click="inhabilitarCarrera.saveValidInvalid(conf.carreras,carrera.codigo, carrera.estado)" style="width:122px">Cambiar estado</button><!-- <label>Activo</label> -->
+              <!-- <input type="radio" name="{{carrera.codigo}}" id="carreraActivo{{carrera.codigo}}"   class="revise" value="activo"  ng-checked="inhabilitarCarrera.validarCarrerasAct(carrera.estado)"> --> </td>
       </tr></table>
 
-
+            
 
       </li>
 
 
 
     </ul>
+</form>
+                            
 
-                            <!--   <div class="vistaUsuarios">
-                                <p>Nombre de Carrera</p>
-                                <label>Inactivo</label>
-                               <input type="radio" name="estado">
-                               <label>Activo</label>
-                               <input type="radio" name="estado" checked> 
-                              </div>
-                              <div class="vistaUsuarios">
-                                <p>Nombre de Carrera</p>
-                                <label>Inactivo</label>
-                               <input type="radio" name="estado">
-                               <label>Activo</label>
-                               <input type="radio" name="estado" checked> 
-                              </div>
-                              <div class="vistaUsuarios">
-                                <p>Nombre de Carrera</p>
-                                <label>Inactivo</label>
-                               <input type="radio" name="estado">
-                               <label>Activo</label>
-                               <input type="radio" name="estado" checked> 
-                              </div>
-                              <div class="vistaUsuarios">
-                                <p>Nombre de Carrera</p>
-                                <label>Inactivo</label>
-                               <input type="radio" name="estado">
-                               <label>Activo</label>
-                               <input type="radio" name="estado" checked> 
-                              </div>
-                              <div class="vistaUsuarios">
-                                <p>Nombre de Carrera</p>
-                                <label>Inactivo</label>
-                               <input type="radio" name="estado">
-                               <label>Activo</label>
-                               <input type="radio" name="estado" checked> 
-                              </div> -->
-
-                              <button type="submit" class="guardarBtn ">Guardar</button>
+                              
 </div>

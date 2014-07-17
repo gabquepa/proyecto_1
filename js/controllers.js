@@ -507,6 +507,7 @@ app.controller("crearCarreraController", function(){
 
 		this.addCarrera = function(pCarrera){
 			  
+			this.carrera.estado = "activo";  
 			pCarrera.push(this.carrera);
 
 			 
@@ -523,39 +524,52 @@ app.controller("crearCarreraController", function(){
 /*****************************************************************************************************************/	
 app.controller("inhabilitarCarreraController", function(){
 
-	this.carrera = {};	
-	// validarCarreras();
-
-		this.validarCarreras = function(pCarrera){
+		this.validarCarrerasAct = function(pCarrera){
 			  			 
-		
-
-		 
-			 
-			 	if("pCarrera" === "activo"){
-			 		$('#carreraActivo').attr('checked', 'checked');
-			 		// console.log('entro');
+			 	if(pCarrera === "activo"){
+			 		return true;
+			 		
 			 	}else{
-			 		$('#carreraInactivo').attr('checked', 'checked');
-			 		// console.log('no entro');
+			 		return false;
+			 		
 			 	}
-			 this.carrera = {};
-			 return"";
-			 
+			 			 
+		};
+		this.validarCarrerasIna = function(pCarrera){
+			  			 
+			
+			 	if(pCarrera === "inactivo"){
+			 		return true;
+			 		
+			 	}else{
+			 		return false;
+			 		
+			 	}
+
 		};
 
+		this.codigo = {};
+		this.saveValidInvalid = function(pCarreras, pCodigo, pEstado){
+				
+			  console.log(pCodigo);
+			for(i=0;i<pCarreras.length;i++){
+				if(pCarreras[i].codigo==pCodigo){
+					if(pEstado == "activo"){
+						pCarreras[i].estado="inactivo";
+					}else{
+						pCarreras[i].estado="activo";
 
-		// function validarCarreras(){
+					}
 
-		// 	if(pCarrera === "activo"){
-		// 	 		$('#activo').attr('checked', 'checked');
-		// 	 		console.log('entro');
-		// 	 	}else{
-		// 	 		$('#inactivo').attr('checked', 'checked');
-		// 	 		console.log('no entro');
-		// 	 	}
+				}
 
-		// }
+
+			}
+			  this.codigo = {};
+		}
+
+
+	
 
 	});
 /*****************************************************************************************************************/	

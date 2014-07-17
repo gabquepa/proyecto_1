@@ -46,7 +46,7 @@
 	 {
 	 	codigo:3,	
 		nombre:'Inglés',
-		estado:'activo'
+		estado:'inactivo'
 	 }
 
 	];
