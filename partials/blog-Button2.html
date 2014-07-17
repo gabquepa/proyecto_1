@@ -5,7 +5,7 @@
 	 		
 	 	<form class="formAddBlog clearfix">	
 
-			<input type="search" class="form-control blogsearch" placeholder="Search" />
+			<input type="search" class="form-control blogsearch" placeholder="Search" ng-model="buscar.titulo"/>
 			<span class="linea"></span>
                            
             <h4>Búsqueda Avanzada</h4>
@@ -21,13 +21,13 @@
               <option value="" disable>Curso 2</option>
               <option value="" disable>Curso 3</option>
             </select>
-            <select class="slctSearchblog">
+            <select class="slctSearchblog" ng-model="usTemp">
               <option value="" disable>Seleccione un Usuario</option>
-              <option value="" disable>Usuario 1</option>
-              <option value="" disable>Usuario 2</option>
-              <option value="" disable>Usuario3</option>
+              <option value="1" disable>Usuario 1</option>
+              <option value="2" disable>Usuario 2</option>
+
             </select>
-	 		<button type="submit" class="btnaddBlog pull-right">Buscar</button>
+	 		<button type="submit" class="btnaddBlog pull-right" ng-click="buscarBlog.buscarUs(usTemp,usuario.user)">Buscar</button>
 
  		</form>
 	</div>

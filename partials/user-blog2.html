@@ -1,7 +1,7 @@
 
 
       <div ng-controller='editarComentController as editComen'>
-		<a href ng-click="tabs.getTabIn(1)" class="editdelete ">Regresar</a>
+		<a href ng-click="tabs.regresar(1)" class="editdelete ">Regresar</a>
         <div id='divEditarPost' class='cf clearfix'>
             
             <div class='titulo-fecha cf'>
@@ -9,8 +9,8 @@
               <span>{{usuario.user[cookieValue].blog[tabs.miBlog()].fecha}}</span>
             </div>
             <div class='clearfix'>
-              <a href='' ng-click='editComen.editarComent();' class="editdelete"><span class='glyphicon glyphicon-pencil'></span>Editar</a>
-              <a href=''><span class='glyphicon glyphicon-remove' class="editdelete"></span>Eliminar</a>
+              <a href='' ng-click='editComen.editarComent();' class="editdelete">Editar<span class='glyphicon glyphicon-pencil'></span></a>
+              <a ng-controller="deletePostUser as deletePosts" href="" class="pull-right editdelete" ng-click="deletePosts.deletePost(usuario.user[cookieValue].blog[tabs.miBlog()].idPost,usuario.user[cookieValue])">Eliminar<span class="glyphicon glyphicon-remove"></span></a>
             </div>
 
             <div class='post-editado'>
@@ -28,11 +28,11 @@
           
               <h3  class='comentarios'>Comentarios</h3>
           <ul class="list-group clearfix">
-    	 	<li class="list-group-item clearfix" ng-repeat="comentarios in usuario.user[cookieValue].blog[tabs.miBlog()].comentarios">
+    	 	<li class="list-group-item clearfix" ng-repeat="comentarios in usuario.user[cookieValue].blog[tabs.miBlog()].comentarios | orderBy:'-fecha'">
               <section class="misBlogs1">
                 <section class="headerMiblogs clearfix">
                   <a href="#" class="pull-left linktituloBlog1">{{comentarios.Participante}}</a>
-                  <span class="fechasComent pull-left ">dd/mm/aaaa</span>
+                  <span class="fechasComent pull-left ">{{comentarios.fecha}}</span>
                 </section>
                 <section class="contMiBlog1 clearfix">
                   <p class="textmiblog">

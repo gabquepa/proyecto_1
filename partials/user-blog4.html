@@ -1,36 +1,43 @@
 
 <section class="contblog">
-    <a href ng-click="tabs.getTabIn(3)">Regresar</a>
-	<h3>Nombre del Dueño:</h3>
+    <a href ng-click="tabs.regresar(3)">Regresar</a>
+	<h3>{{usuario.user[buscarBlog.getDuenio()].nombre}}</h3>
     <section class="misBlogs4">
     	<section class="headerMiblogs clearfix">
-    		<a href="#" class="pull-left linktituloBlog1">Titulo de mi blog</a>
-    		<span class="fechablog pull-left ">dd/mm/aaaa</span>
+    		<a href="#" class="pull-left linktituloBlog1">{{usuario.user[buscarBlog.getDuenio()].blog[tabs.miBlog()].titulo}}</a>
+    		<span class="fechablog pull-left ">{{usuario.user[buscarBlog.getDuenio()].blog[tabs.miBlog()].fecha}}</span>
     	</section>
     	<p class="miblog4">
-    			Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum.
-       			Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum.
-       			Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum.
-	   	</p>
+               {{usuario.user[buscarBlog.getDuenio()].blog[tabs.miBlog()].texto}}
+    	</p>
     	<a href="#contcomentblog" class="linkcometarblog pull-right clearfix" data-toggle="collapse">Comentar</a>
     	
-    	<form id="contcomentblog" class="panel-collapse collapse clearfix pull-left">
-    		<label for="comentblog">Nombre del Participante</label>
-    		<textarea id="comentblog" class="textcomentblog" ></textarea>
-    		<button type="submit" class="btnaddBlog pull-right">Publicar</button>
+    	<form ng-controller="addComent as addC" role="form" id="contcomentblog" class="panel-collapse collapse clearfix pull-left" name="addComent" ng-submit="addComent.$valid && addC.addComt(tabs.miBlog(), usuario.user[cookieValue].usuario,usuario.user[buscarBlog.getDuenio()])">
+    		<label>{{usuario.user[cookieValue].nombre}}</label>
+    		<input type="date" ng-model="addC.newCom.fecha" required/>
+    		<textarea id="comentblog" class="textcomentblog" ng-model="addC.newCom.texto" required></textarea>
+    		<button type="submit" class="btnaddBlog pull-right" value="submit">Publicar</button>
     	</form>
     </section>
     
     <section class="comentBlogs">
     	<h3>Comentarios:</h3>
-    	<section class="headerMiblogs clearfix">
-    		<a href="" class="pull-left linktituloBlog1">Nombre Participante</a>
-    		<span class="fechablog pull-left ">dd/mm/aaaa</span>
-    	</section>
-    	<p class="comentmiblog4">
-    			Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum.
-       	</p>
-    	<a href="" class="denunciarblogcomt pull-right clearfix">Denunciar</a>
+    	 <ul class="list-group clearfix">
+    	 	<li class="list-group-item clearfix" ng-repeat="comentarios in usuario.user[buscarBlog.getDuenio()].blog[tabs.miBlog()].comentarios | orderBy:'-fecha'">
+              <section class="misBlogs1">
+                <section class="headerMiblogs clearfix">
+                  <a href="#" class="pull-left linktituloBlog1">{{comentarios.Participante}}</a>
+                  <span class="fechasComent pull-left ">{{comentarios.fecha}}</span>
+                </section>
+                <section class="contMiBlog1 clearfix">
+                  <p class="textmiblog">
+                    {{comentarios.texto}}
+                  </p>
+                </section>
+                <a href="" class="pull-right editdelete clearfix">Denunciar</a>
+              </section>
+           </li>
+          </ul> 
     </section>
     
     
