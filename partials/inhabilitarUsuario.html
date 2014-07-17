@@ -10,28 +10,27 @@
                               <button type="submit" class="buscarBtn" value="submit">Buscar</button>
                           </div>
                       </form>
+
+                      <form role="form" name="inhabilitarUsuarioForm2"  ng-submit="inhabilitarUsuarioForm2.$valid && inhabilitarUser.inaUser(conf.usuarios)" novalidate> 
                           <div class="buscarUserContent cf" >
                               <div class="vistaUsuarios">
-                                <p id="nombreUser"></p>
-                                <p id="correoUser"></p>
-                                <label>Inactivo</label>
-                               <input type="radio" name="estado" id="inactivo">
-                               <label>Activo</label>
-                               <input type="radio" name="estado" id="activo"> 
+
+
+                                  <table cellpading="0" cellspacing="0" border="0" width="400" align="center"><tr>
+                                    <td width="300" height="50"><p id="nombreUser"></p></td>
+                                    <td width="300" height="50"><p id="correoUser"></p></td>
+                                    <td width="300" height="50"><label>Inactivo</label>
+                                        <input type="radio" name="estado" id="inactivo" value="inactivo"  ng-model="inhabilitarUser.user.estado" required></td>
+                                    <td width="300" height="50"><label>Activo</label>
+                                        <input type="radio" name="estado" id="activo" value="activo" ng-model="inhabilitarUser.user.estado" required> </td>
+                                  </tr></table>
+                                                               
                               </div>
 
-                           <!--     <div class="vistaUsuarios">
-                                <p>Nombre de Usuario</p>
-                                <p>Usuario@ucenfotec.com</p>
-                                <label>Inactivo</label>
-                               <input type="radio" name="estado">
-                               <label>Activo</label>
-                               <input type="radio" name="estado"> 
-                              </div> -->
 
                                <button type="submit" class="guardarBtn pull-right">Guardar</button>
                           </div>
-
+                        </form>
                           <div>
                             <p>Busqueda Avanzada</p>
                             <div class="contenedorInputsSep">
