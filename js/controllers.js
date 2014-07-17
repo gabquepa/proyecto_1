@@ -703,7 +703,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   };
 	   
 	    this.logOut = function(){
-	    	alert("hola");
 			$cookieStore.remove("usuario");
 			window.location = "/Proyecto_1/login.html";
 			
@@ -881,10 +880,17 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			//limpiarForms();
 		};
 		
-		this.getTabIn=function(getTab,pidBlog){
+		this.getTabIn=function(getTab,pidBlog,puser){
+            $("#divEditarPost").show();        
             this.tabblogIn = getTab;
-            this.blogtemp=pidBlog;
-			
+           for (var i=0; i < puser.blog.length; i++) {
+			  if (puser.blog[i].idPost==pidBlog) {
+	    		 this.blogtemp=i;
+	    	  };
+			};
+         };  
+         this.regresar=function(getTab){  
+            this.tabblogIn = getTab;		
 			//limpiarForms();
 		};
 		
@@ -904,11 +910,10 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	});
 	
 	app.controller("AddBlogController",function(){
-		var cont=0;
+		var cont=2;
 		this.newblog={};
 		this.coment={};
 	    this.addPost = function(puser){	
-			cont=puser.blog.length;
 			this.newblog.idPost=cont;
 			this.newblog.comentarios=[];
 			//this.coment.idComentario=2;
@@ -917,12 +922,61 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			puser.blog.push(this.newblog);
 			//puser.blog[cont].comentarios.push(this.coment);
 			this.newblog={};
+			cont++;
 	    };
+	    
+	});
+	
+	app.controller("deletePostUser",function(){
+	    
+	    this.deletePost = function(postid,puser){
+	    	for (var i=0; i < puser.blog.length; i++) {
+			  if (puser.blog[i].idPost==postid) {
+	    		 puser.blog.splice( i , 1 );
+	    	  };
+			};
+			$("#divEditarPost").hide();
+
+	    };
+	    
+	});
+	
+	app.controller("addComent",function(){
+	    var cont=2;
+		this.newCom={};
+
+	    this.addComt = function(pIdPost,pPart,pDueño){	
+			this.newCom.idComentario=cont;
+			this.newCom.Participante=pPart;
+            pDueño.blog[pIdPost].comentarios.push(this.newCom);
+      
+			this.newCom={};
+			cont++;
+	    };    
 	});
 	
 	
-//Termina Sergio Herrera Durán----------------------------------------------
+	app.controller("buscarUser",function(){
+	   this.tempDuenio="";
+	    this.buscarUs= function(pIdDueno,puser){	
 
+			for (var i=0; i < puser.length; i++) {
+			  if (puser[i].idUsuario==pIdDueno) {
+			  	this.tempDuenio=i;
+			  }
+			};
+	    }; 
+	    
+	    this.getDuenio = function(pIdDueno,puser){	
+			return this.tempDuenio;
+	    }; 
+	       
+	});
+	
+	
+	
+	
+//Termina Sergio Herrera Durán----------------------------------------------
 
 
 
