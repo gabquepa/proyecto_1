@@ -155,10 +155,25 @@ app.controller('CarrerasController', ['$http', function($http){
 		var carrera = $('.select-carrera option:selected').attr('val');
 		var cursos = this;
 		universidad.cursos=[];
+		// this.getTab=function(getTab){
+		// 	$('#mensajePerfil').html("");
+		// 	this.tabperfil = getTab;
+		// 	limpiarForms();
+		// 	if (getTab==1) {
+		// 		$('#infuser').attr('class',"btn activetab");
+		// 		$('#changepass').attr('class',"btn profBtn");
+		// 	} else{
+		// 		$('#infuser').attr('class',"btn profBtn");
+		// 		$('#changepass').attr('class',"btn activetab");
+		// 	};
+				
+		// };
 		
 		if(carrera ==="1"){
 			$http.get('/Proyecto_1/JSON/cursosDW.json').success(function(data){
 				universidad.cursos = data;
+				$('#confNavBtn1').attr('class',"btn activetab");
+				// $('#changepass').attr('class',"btn profBtn");
 			});
 		}
 		else if(carrera ==="2"){
@@ -340,9 +355,12 @@ app.controller("crearUserController", function(){
 		this.addUser = function(pUser){
 			  // console.log(pUser.correo);
 			  console.log(this.user);
+
+			  this.user.estado = "activo";
 			pUser.push(this.user);
+
 			 
-			 console.log(this.user.correo);
+			 console.log(this.user);
 			//  console.log(pUser[0].nombre);
 			//  console.log(pUser[1].nombre);
 			//  console.log(pUser[2].nombre);
@@ -409,24 +427,24 @@ app.controller("modificarUserController", function(){
 /*****************************************************************************************************************/	
 app.controller("inhabilitarUserController", function(){
 			var temp = 0;
-			var estado = true;
+			// var estado = true;
 
 			this.buscaUser = function(pUser, pCorreo){
 				 // console.log(pCorreo);
 			
 			 for(i=0;i<pUser.length;i++){
 			 	if(pUser[i].correo === pCorreo){
-			 		console.log(i + pUser[i].correo);
+			 		console.log(i);
 			 		temp = i;
 			 		if(pUser[i].estado === "activo"){
-			 			// console.log(pUser[i].estado);
+			 			console.log(pUser[i].estado);
 			 			// console.log(pUser[i].nombre);
 			 			$('#nombreUser').html(pUser[i].nombre);
 			 			$('#correoUser').html(pUser[i].correo);
 			 			$('#activo').attr('checked', 'checked');
 
 			 		}else{
-			 			// console.log(pUser[i].estado);
+			 			console.log(pUser[i].estado);
 			 			$('#nombreUser').html(pUser[i].nombre);
 			 			$('#correoUser').html(pUser[i].correo);
 			 			$('#inactivo').attr('checked', 'checked');
@@ -439,27 +457,28 @@ app.controller("inhabilitarUserController", function(){
 
 			 	}
 			 }
-			 		// $('#nombreEncontrado').val(pUser[i].nombre);
-			 		// $('#buscaCorreo').val(pUser[i].correo);
-			 		// $('#passwordEncontrado').val(pUser[i].password);
-			 		// if(pUser[i].genero ==='masculino'){
-			 		// 	$('#generoHombre').attr('checked', 'checked');
-			 		// }
-			 		// else{
-			 		// 	$('#generoMujer').attr('checked', 'checked');
-			 		// }
-			 		// //If de categoria
-			 		// if(pUser[i].categoria ==='estudiante'){
-			 		// 	$('#estudiante').attr('checked', 'checked');
-			 		// }
-			 		// else if(pUser[i].categoria ==='profesor'){
-			 		// 	$('#profesor').attr('checked', 'checked');
-			 		// }else if(pUser[i].categoria ==='rector'){
-			 		// 	$('#rector').attr('checked', 'checked');
-			 		// }else if(pUser[i].categoria ==='director'){
-			 		// 	$('#director').attr('checked', 'checked');
-			 		// }		 		
-			 
+
+			 this.user = {};
+			 this.inaUser = function(pModif){
+			 	// console.log('test');
+			 	// console.log(this.user);
+			 	pModif[temp] = this.user.estado;
+			 	console.log(pModif[temp]);
+			 	if(pModif[temp].estado === "activo"){
+			 		$('#activo').attr('checked', 'checked');
+			 		console.log('entro');
+			 	}else{
+			 		$('#inactivo').attr('checked', 'checked');
+			 		console.log('no entro');
+			 	}
+			 	 
+			
+
+			 this.user = {};
+
+
+			 }
+			 		
 
 		
 
@@ -470,6 +489,7 @@ app.controller("inhabilitarUserController", function(){
 
 
 });
+/*****************************************************************************************************************/	
 /*****************************************************************************************************************/	
 app.controller("respuestaForos", function(){
 	var respuestaForo = true;
@@ -681,6 +701,14 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				$("#pass").val("");
 			};
 	   };
+	   
+	    this.logOut = function(){
+	    	alert("hola");
+			$cookieStore.remove("usuario");
+			window.location = "/Proyecto_1/login.html";
+			
+	    };
+	   
 	}]);	
 	
 //controlador recupera cuenta de ususarios
@@ -891,7 +919,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			this.newblog={};
 	    };
 	});
-
+	
+	
 //Termina Sergio Herrera Durán----------------------------------------------
 
 
