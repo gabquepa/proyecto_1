@@ -656,24 +656,60 @@ app.controller('seccionDocumentosShow', function(){
 });
 
 app.controller('misCarreras-cursos',['$http', function($http){
-	var controller = this;
-		controller.carrerasycursos= [];
 
-		$http.get('/proyecto_1/JSON/carreras-cursos.json').success(function(data){
-			controller.carrerasycursos =data;
-		});
+	var universidad = this;
+	universidad.carreras=[];
+	$http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
+		universidad.carreras = data;
+	});
 
-		controller.cursos=[];
-
-		controller.carreraSelect=function(carreraSelect){
-			for(var i=0; i<controller.carrerasycursos.length; i++){
-
-				if(controller.carrerasycursos[i].carrera===carreraSelect){
-					controller.cursos=controller.carrerasycursos[i].cursos;
-					break;
-				}
-			}
+	this.selectCurso = function(){
+		var carrera = $('.select-carrera option:selected').attr('val');
+		var cursos = this;
+		universidad.cursos=[];
+		
+		if(carrera ==="1"){
+			$http.get('/Proyecto_1/JSON/cursosDW.json').success(function(data){
+				universidad.cursos = data;
+				$('#confNavBtn1').attr('class',"btn activetab");
+				// $('#changepass').attr('class',"btn profBtn");
+			});
 		}
+		else if(carrera ==="2"){
+			$http.get('/Proyecto_1/JSON/cursosDS.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else if(carrera ==="3"){
+			$http.get('/Proyecto_1/JSON/cursosInT.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else if(carrera ==="4"){
+			$http.get('/Proyecto_1/JSON/cursosT.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else if(carrera ==="5"){
+			$http.get('/Proyecto_1/JSON/cursosCS.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else if(carrera ==="6"){
+			$http.get('/Proyecto_1/JSON/cursosBD.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else if(carrera ==="7"){
+			$http.get('/Proyecto_1/JSON/cursosI.json').success(function(data){
+				universidad.cursos = data;
+			});
+		}
+		else{
+			universidad.cursos = '';
+		}
+
+	};
 }]);
 
 app.controller('editarComentController',function(){

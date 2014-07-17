@@ -13,13 +13,13 @@
                   <input type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
                   <input type='date' ng-model='add.addDoc.fecha'>
                   <section ng-controller='misCarreras-cursos as cyc'>
-                    <span>Carrera:</span>
-                    <select ng-model='add.addDoc.carrera' ng-click='cyc.carreraSelect(add.addDoc.carrera);'>
-                      <option  value ="{{miCarrera.carrera}}" ng-repeat='miCarrera in cyc.carrerasycursos'>{{miCarrera.carrera}}</option>
+                    <select  ng-mouseleave="cyc.selectCurso()" class="select-carrera" >
+                      <option val="-1" disable>Seleccione una Carrera</option>
+                      <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                     </select>
-                    <span>Curso:</span>
-                    <select ng-model='add.addDoc.curso'>
-                      <option value="{{curso.c}}" ng-repeat='curso in cyc.cursos'>{{curso.c}}</option>
+                    <select class="select-curso">
+                      <option val="-1" disable>Seleccione un Curso</option>
+                      <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                     </select>
                   </section>
                     <input type="file" id="exampleInputFile">
