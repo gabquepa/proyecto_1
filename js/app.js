@@ -6,8 +6,10 @@
 	app.controller('configController', function($scope) {
 
 		 this.usuarios = arregloUsuarios;
-	});
+		  this.carreras = arregloCarreras;
 
+	});
+//Arreglo Carreras//
 	var arregloUsuarios =[
 	{
 		nombre:'pepe',
@@ -24,6 +26,27 @@
 		password:'123',
 		categoria:'estudiante',
 		estado:'inactivo'
+	 }
+
+	];
+
+
+//Arreglo Carreras//
+	var arregloCarreras =[
+	{
+		codigo:1,	
+		nombre:'Desarrollo y diseño Web',
+		estado:'activo'
+	},
+	{
+		codigo:2,	
+		nombre:'Desarrollo de software',
+		estado:'inactivo'
+	 },
+	 {
+	 	codigo:3,	
+		nombre:'Inglés',
+		estado:'activo'
 	 }
 
 	];
