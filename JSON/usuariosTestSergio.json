@@ -2,10 +2,10 @@
     {
         "idUsuario": "0001",
         "tipo": "P",
-        "nombre": "Nombre Apellido1 Apellido2",
+        "nombre": "Álvaro Cordero Peña",
         "genero": "Hombre",
-        "usuario": "profesor@ucenfotec.ac.cr",
-        "pass": "p1",
+        "usuario": "alvaro@ucenfotec.ac.cr",
+        "pass": "123",
         "estado": "A",
         "blog": [
             {
@@ -49,10 +49,10 @@
     {
         "idUsuario": "0002",
         "tipo": "E",
-        "nombre": "Nombre Estudiante",
+        "nombre": "Juan Pérez Padilla",
         "genero": "Mujer",
-        "usuario": "estudiante@cenfotec.ca.cr",
-        "pass": "e1",
+        "usuario": "juan@cenfotec.ca.cr",
+        "pass": "123",
         "estado": "A",
         "blog": [
             {

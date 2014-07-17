@@ -130,12 +130,13 @@ body{
  padding: 0 !important; 
 }
 .navbar-collapse.collapse ul, .navbar-collapse.collapsing ul{
-  height: auto !important;
+  height: 80px !important;
   margin: 0 !important;
 }
 .navbar-collapse.collapse form, .navbar-collapse.collapsing form{
   display: none;
 }
+
 .footer{
   font-size: 12px;
   color: white;
