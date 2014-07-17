@@ -27,42 +27,47 @@
     <project-side-nav></project-side-nav>
 
     <div class="main row">
-        <div class="forum-search">
-          <h3>Foros_</h3>
-          <p>En esta sección usted podrá buscar foros de interés y comentar los mismos de estar invitado.</p>
-          <h3  class="search-title btn-blue">Buscar Foro </h3>
-          <div class="search-section">
-            <input class="form-control" placeholder="Buscar">
-            <span></span>
-            <h4>Búsqueda Avanzada</h4>
-            <select>
-              <option val="-1" disable>Seleccione una Carrera</option>
-              <option val="1" disable>Carrera 1</option>
-              <option val="1" disable>Carrera 2</option>
-              <option val="1" disable>Carrera 3</option>
-            </select>
-            <select>
-              <option val="-1" disable>Seleccione un Curso</option>
-              <option val="1" disable>Curso 1</option>
-              <option val="1" disable>Curso 2</option>
-              <option val="1" disable>Curso 3</option>
-            </select>
-            <select style="width: 100%;">
-              <option val="-1" disable>Seleccione un Tema</option>
-              <option val="1" disable>Tema 1</option>
-              <option val="1" disable>Tema 2</option>
-              <option val="1" disable>Tema 3</option>
-            </select>
-            <button class="btn-blue">Buscar</button>
+        <div class="forum" ng-controller="StudentForumController as forum">
+          <h3>Mis Foros_</h3>
+          <p>En esta sección podrá ver los foros de este curso y si está invitado puede participar y comentar en el mismo.</p>
+          <a href="/Proyecto_1/forum-search.html">Buscar Foros</a>
+          <div class="inine-forum-list">
+            <h4>Foros</h4>
+            <ul class="clearfix">
+              <li ng-repeat="list in forum.lists" data-forumId="{{list.id}}"><a ng-click="forum.displayForum(list)">{{list.titulo}}</a></li>
+            </ul>
           </div>
-          <div class="Foro-lst">
-            <h3>Foros</h3>
-            <a href="#" class="Forum-name">Nombre</a> <span>01/01/2014</span>
-            <div class="forum">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.</p>
+          <div class="inine-forum-display">
+            <div class="forum-lst">
+              <h3 id="course" class="course">  </h3>
+              <h4 id="course-title" class="course-title"></h4>
+              <div class="main-forum">
+               
+              </div>
+              <a href="#add-comment" data-toggle="collapse" class="pull-right">Comentar</a>
+              <div id="add-comment" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <h3>Ingrese su Comentario</h3>
+                  <textarea placeholder="Comentario ..."></textarea>
+                  <button class="btn-blue pull-right">Publicar</button>
+                </div>
+              </div>
+            </div>
+            <div class="comments-lst">
+              <h3>Comentarios</h3>
+                <div ng-repeat="comment in comments">
+                  <a href="#" class="contributor-name">{{comment.nombre}}</a> <span>{{comment.fecha}}</span>
+                  <div class="comment-stars pull-right"><img class="usr-avatar" src="/Proyecto_1/img/sample-stars.png"></div>
+                  <div class="forum">
+                    <p>{{comment.texto}}</p>
+                  </div>
+                  <h5><a href="#">Evaluar</a></h5>
+                  <input class="stars" data-size="xs">
+                  <h5 class="pull-right"><a href="#">Denunciar</a></h5>
+                </div>
             </div>
           </div>
-        </div>   
+        </div>    
     </div>
 
     <project-footer></project-footer>

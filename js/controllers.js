@@ -1,10 +1,19 @@
 /* Controllers */
 
-/************** Forum Controllers **************/
+
 
 (function(){
 var app = angular.module('controllers-project',[]);
 
+/************** Route Controllers **************/
+// app.controller('routeController', function($scope) {
+
+	
+// });
+
+
+
+/************** Forum Controllers **************/
 app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
 	forum.lists=[];
@@ -41,10 +50,6 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		}
 		$('.invitados').val(invi);	
 
-		
-		// for(var i= 0; i<(forum.comments).length;i++){
-			
-		// }
 		if((forum.comments).length != 0){
 			$scope.comments= forum.comments;
 		}
@@ -69,7 +74,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	};
 	this.addToForum = function(){
 		var invitados = $('.invitados').val().split(', ');
-		$('#moderadorDisplay').text($('.moderador').val());
+		$.find('#moderadorDisplay').text($('.moderador').val());
 		for (var i = invitados.length - 1; i >= 0; i--) {
 			$('#invitadosDisplay').append('<li> <span ng-click="forum.remove()" class="glyphicon glyphicon-remove delete"></span>'+invitados[i]+'</li>')
 		}
@@ -77,7 +82,67 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	this.remove = function(){
 		console.log('remove');
 	};
+	this.showCreateForum = function(){
+		$scope.showCreate = true;
+		$scope.showConfig=false;
+		$('.forum-config').addClass('ng-hide');
+		$('.forum-create').removeClass('ng-hide');
+	};
+	this.createForum = function(){
+		var arregloInvitados={}; 
+		this.newforum={};
+		var invitados = $('.create-forumSection .invitados').val().split(', ');
+
+		for (var i = invitados.length - 1; i >= 0; i--) {
+			invitados[i] = 'nombre":'+ '"' + invitados[i];
+		}
+
+		this.newforum.id=(forum.lists).length+1;
+		this.newforum.profesor="0001";
+		this.newforum.titulo= $('.forum-title').val();
+		this.newforum.periodo=$('.forum-periodo').val();
+		this.newforum.CarreraId=$('.select-carrera option:selected').attr('val');;
+		this.newforum.CursoId=$('.select-curso option:selected').attr('val');
+		this.newforum.tema=$('.create-forumSection textarea').val();
+		this.newforum.moderador=$('.create-forumSection .moderador').val();
+		this.newforum.invitados = invitados;
+		this.newforum.comments={};
+		
+		forum.lists.push(this.newforum);
+		newforum={};
+		console.log(forum.lists); 
+
+		alert('creado el foro');
+
+		$scope.showCreate = false;
+		$scope.showConfig=true;
+		$('.forum-config').removeClass('ng-hide');
+		$('.forum-create').addClass('ng-hide');
+
+
+	};
+
 }]);	
+app.controller('StudentForumController', ['$scope', '$http', function($scope, $http){
+	var forum = this;
+	forum.lists=[];
+	$http.get('/Proyecto_1/JSON/forums.json').success(function(data){
+		for(var i= 0; i<data.length;i++){
+			// if()
+			forum.lists = data;
+		}
+	});
+
+	this.displayForum = function(forum){
+		$('.course').text(forum.CursoId);
+		$('.course-title').text(forum.titulo);
+		$('.main-forum').text(forum.tema);
+		if((forum.comments).length != 0){
+			$scope.comments= forum.comments;
+		}
+	};
+
+}]);
 
 app.controller('CarrerasController', ['$http', function($http){
 	var universidad = this;

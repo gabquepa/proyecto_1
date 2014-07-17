@@ -33,4 +33,3 @@
 })();
 
 $(".stars").rating();
-$(".rating").rating();

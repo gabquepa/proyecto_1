@@ -27,38 +27,38 @@
     <project-side-nav></project-side-nav>
 
     <div class="main row">
-        <div class="forum">
-          <h3>Mis Foros_</h3>
-          <p>En esta sección podrá ver los foros de este curso y si está invitado puede participar y comentar en el mismo.</p>
-          <a href="/Proyecto_1/forum2.html">Buscar Foros</a>
-          <div class="forum-lst">
-            <h3 id="course" class="course"> Nombre del Curso </h3>
-            <h4 id="course-title" class="course-title">Titulo del Foro</h4>
-            <div class="main-forum">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.
-              Praesent suscipit quam vitae augue mollis fermentum. Fusce a nisl bibendum, bibendum arcu in, aliquam nulla. Vestibulum faucibus facilisis sapien, vitae sagittis dolor commodo sed. Aliquam rhoncus neque eu volutpat luctus. Maecenas lectus velit, laoreet nec porta nec, semper at nunc.
-            </div>
-            <a href="#add-comment" data-toggle="collapse" class="pull-right">Comentar</a>
-            <div id="add-comment" class="panel-collapse collapse">
-              <div class="panel-body">
-                <h3>Ingrese su Comentario</h3>
-                <textarea placeholder="Comentario ..."></textarea>
-                <button class="btn-blue pull-right">Publicar</button>
-              </div>
-            </div>
+        <div class="forum-search" ng-controller="ForumController as forum">
+          <h3>Foros_</h3>
+          <p>En esta sección usted podrá buscar foros de interés y comentar los mismos de estar invitado.</p>
+          <h3  class="search-title btn-blue">Buscar Foro </h3>
+          <div class="search-section" ng-controller="CarrerasController as universidad">
+            <input class="form-control" placeholder="Buscar">
+            <span></span>
+            <h4>Búsqueda Avanzada</h4>
+            <select ng-mouseleave="universidad.selectCurso()" class="select-carrera">
+              <option val="-1" disable>Seleccione una Carrera</option>
+              <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
+            </select>
+            <select class="select-curso">
+              <option val="-1" disable>Seleccione un Curso</option>
+              <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
+            </select>
+            <select style="width: 100%;">
+              <option val="-1" disable>Seleccione un Tema</option>
+              <option val="1" disable>Tema 1</option>
+              <option val="1" disable>Tema 2</option>
+              <option val="1" disable>Tema 3</option>
+            </select>
+            <button class="btn-blue" ng-click="forum.buscarForo()">Buscar</button>
           </div>
-          <div class="comments-lst">
-            <h3>Comentarios</h3>
-            <a href="#" class="contributor-name">Nombre</a> <span>01/01/2014</span>
-            <div class="comment-stars pull-right"><img class="usr-avatar" src="/Proyecto_1/img/sample-stars.png"></div>
+          <div class="Foro-lst" ng-show="showForumList">
+            <h3>Foros</h3>
+            <a href="#" class="Forum-name">Nombre</a> <span>01/01/2014</span>
             <div class="forum">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.</p>
             </div>
-            <h5><a href="#">Evaluar</a></h5>
-            <input class="stars" data-size="xs">
-            <h5 class="pull-right"><a href="#">Denunciar</a></h5>
           </div>
-        </div>    
+        </div>   
     </div>
 
     <project-footer></project-footer>

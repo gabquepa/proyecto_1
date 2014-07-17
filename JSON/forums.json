@@ -15,11 +15,16 @@
 }],
 "comments":[{
 	"nombre":"gaby@cenfotec.ac.cr",
-	"texto":"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+	"texto":"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+	"fecha":"01/01/2000",
+	"calificacion":"3"
 },
 {
 	"nombre":"gaby@cenfotec.ac.cr",
-	"texto":"test - - - -  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+	"texto":"test - - - -  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+	"fecha":"25/12/2013",
+	"calificacion":"1"
+
 }]
 },
 {
@@ -59,10 +64,14 @@
 }],
 "comments":[{
 	"nombre":"alejandro@cenfotec.ac.cr",
-	"texto":"a verb? what?"
+	"texto":"a verb? what?",
+	"fecha":"23/11/1988",
+	"calificacion":"1"
 },
 {
 	"nombre":"gaby@cenfotec.ac.cr",
-	"texto":"This is a comment made by Gaby Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+	"texto":"This is a comment made by Gaby Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+	"fecha":"15/09/2012",
+	"calificacion":"4"
 }]
 }]
