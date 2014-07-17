@@ -16,13 +16,13 @@
                 "comentarios": [
                     {
                         "idComentario": "0",
-                        "Participante": "1@cenfotec.ca.cr",
+                        "Participante": "1@cenfotec.ac.cr",
                         "fecha": "2014/08/09",
                         "texto": "text1"
                     },
                     {
                         "idComentario": "1",
-                        "Participante": "2@cenfotec.ca.cr",
+                        "Participante": "2@cenfotec.ac.cr",
                         "fecha": "2014/08/10",
                         "texto": "text2 "
                     }
@@ -36,13 +36,13 @@
                 "comentarios": [
                     {
                         "idComentario": "0",
-                        "Participante": "estudiante@cenfotec.ca.cr",
+                        "Participante": "estudiante@cenfotec.ac.cr",
                         "fecha": "2014/08/11",
                         "texto": "lasdñlasdmas "
                     },
                     {
                         "idComentario": "1",
-                        "Participante": "e@cenfotec.ca.cr",
+                        "Participante": "e@cenfotec.ac.cr",
                         "fecha": "2014/08/12",
                         "texto": "lasdñlasdmas basjbdjabsjd asj dashd asjdbas djas jdas d "
                     }
@@ -67,7 +67,7 @@
                 "comentarios": [
                     {
                         "idComentario": "0",
-                        "Participante": "profesor@cenfotec.ca.cr",
+                        "Participante": "profesor@cenfotec.ac.cr",
                         "fecha": "2014/08/13",
                         "texto": "hate it"
                     }
