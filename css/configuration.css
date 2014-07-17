@@ -5,11 +5,20 @@
 /***********************************************Navegacion Configuracion del sistema *********************************************************/
 .confHeader{margin: 0 auto; width: 100%; height: 155px; padding: 1px 0 0 26px}
 .confNavBar{margin: 0 auto; width: 100%; padding-left: 14px}
-.confNavBtn{width: 13.3333%; height: 37px; background-color: #196c94; -moz-border-radius: 0px;
+.confNavBtn{width: 13.3333%; height: 37px; color: #ffffff ;background-color: #196c94; -moz-border-radius: 0px;
 -webkit-border-radius: 5px 5px 0px 0px;
 border-radius: 5px 5px 0px 0px; box-shadow: 0px -2px 3px 1px rgba(0,0,0,0.75)}
-.confNavBtn a{color: #ffffff}
-.confNavBtn a:hover{color: #f38919}
+
+.activetab{
+	padding:0;
+	font-size:1.1em;
+	width: 20%; height: 2em; 
+	background-color: #196A95;
+	color: #fff !important;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px; box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.75)
+}
 /**********************************************************************************************************************************************/
 
 
@@ -66,6 +75,9 @@ box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.75);}
 /***********************************************TAB de Foros *********************************************************/
 .caption{display: none;}
 .vistaUsuarios input[type=number]{width: 35px}
+
+.starsGuia{width: 190px; display: block;}
+.starsImg{width: 130px}
 /**********************************************************************************************************************************************/
 /***********************************************TAB de Denuncias *********************************************************/
 .denuncia{margin-top: 25px; border-top: 1px solid #000000;}

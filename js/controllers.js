@@ -90,10 +90,25 @@ app.controller('CarrerasController', ['$http', function($http){
 		var carrera = $('.select-carrera option:selected').attr('val');
 		var cursos = this;
 		universidad.cursos=[];
+		// this.getTab=function(getTab){
+		// 	$('#mensajePerfil').html("");
+		// 	this.tabperfil = getTab;
+		// 	limpiarForms();
+		// 	if (getTab==1) {
+		// 		$('#infuser').attr('class',"btn activetab");
+		// 		$('#changepass').attr('class',"btn profBtn");
+		// 	} else{
+		// 		$('#infuser').attr('class',"btn profBtn");
+		// 		$('#changepass').attr('class',"btn activetab");
+		// 	};
+				
+		// };
 		
 		if(carrera ==="1"){
 			$http.get('/Proyecto_1/JSON/cursosDW.json').success(function(data){
 				universidad.cursos = data;
+				$('#confNavBtn1').attr('class',"btn activetab");
+				// $('#changepass').attr('class',"btn profBtn");
 			});
 		}
 		else if(carrera ==="2"){
@@ -275,9 +290,12 @@ app.controller("crearUserController", function(){
 		this.addUser = function(pUser){
 			  // console.log(pUser.correo);
 			  console.log(this.user);
+
+			  this.user.estado = "activo";
 			pUser.push(this.user);
+
 			 
-			 console.log(this.user.correo);
+			 console.log(this.user);
 			//  console.log(pUser[0].nombre);
 			//  console.log(pUser[1].nombre);
 			//  console.log(pUser[2].nombre);
@@ -380,12 +398,15 @@ app.controller("inhabilitarUserController", function(){
 			 	// console.log('test');
 			 	// console.log(this.user);
 			 	pModif[temp] = this.user.estado;
+			 	console.log(pModif[temp]);
 			 	if(pModif[temp].estado === "activo"){
 			 		$('#activo').attr('checked', 'checked');
+			 		console.log('entro');
 			 	}else{
 			 		$('#inactivo').attr('checked', 'checked');
+			 		console.log('no entro');
 			 	}
-			 	 console.log(pModif[temp]);
+			 	 
 			
 
 			 this.user = {};
