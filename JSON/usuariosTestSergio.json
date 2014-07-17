@@ -1,6 +1,6 @@
 [
     {
-        "idUsuario": "0001",
+        "idUsuario": "1",
         "tipo": "P",
         "nombre": "Álvaro Cordero Peña",
         "genero": "Hombre",
@@ -9,19 +9,21 @@
         "estado": "A",
         "blog": [
             {
-                "idPost": 0,
+                "idPost":"0",
                 "titulo": "Mi gran Tema1",
-                "texto": "adsbnamsd ds  asdas,",
+                "texto": "Un blog (en español,1 también bitácora digital, cuaderno de bitácora, ciber bitácora, ciber diario, o web blog, o weblog)1 es un sitio web en el que uno o varios autores publican cronológicamente textos o artículos, apareciendo primero el más reciente, y donde el autor conserva siempre la libertad de dejar publicado lo que crea pertinente. También suele ser habitual que los propios lectores participen activamente a través de los comentarios. Un blog puede servir para publicar ideas propias y opiniones de terceros sobre diversos temas.",
                 "fecha": "18/08/2014",
                 "comentarios": [
                     {
-                        "idComentario": 0,
+                        "idComentario": "0",
                         "Participante": "1@cenfotec.ca.cr",
+                        "fecha": "2014/08/09",
                         "texto": "text1"
                     },
                     {
-                        "idComentario": 1,
+                        "idComentario": "1",
                         "Participante": "2@cenfotec.ca.cr",
+                        "fecha": "2014/08/10",
                         "texto": "text2 "
                     }
                 ]
@@ -29,17 +31,19 @@
             {
                 "idPost": 1,
                 "titulo": "Mi gran Tema2",
-                "texto": "adsbnamsd ds  asdas,",
+                "texto": "El web blog es una publicación en línea de historias publicadas con una periodicidad muy alta, que son presentadas en orden cronológico inverso, es decir, lo más reciente que se ha publicado es lo primero que aparece en la pantalla. Es muy frecuente que los weblogs dispongan de una lista de enlaces a otros weblogs, a páginas para ampliar información, citar fuentes o hacer notar que se continúa con un tema que empezó otro weblog. También suelen disponer de un sistema de comentarios que permiten a los lectores establecer una conversación con el autor y entre ellos acerca de lo publicado.",
                 "fecha": "18/10/2014",
                 "comentarios": [
                     {
-                        "idComentario": 0,
+                        "idComentario": "0",
                         "Participante": "estudiante@cenfotec.ca.cr",
+                        "fecha": "2014/08/11",
                         "texto": "lasdñlasdmas "
                     },
                     {
-                        "idComentario": 1,
+                        "idComentario": "1",
                         "Participante": "e@cenfotec.ca.cr",
+                        "fecha": "2014/08/12",
                         "texto": "lasdñlasdmas basjbdjabsjd asj dashd asjdbas djas jdas d "
                     }
                 ]
@@ -47,23 +51,24 @@
         ]
     },
     {
-        "idUsuario": "0002",
+        "idUsuario": "2",
         "tipo": "E",
         "nombre": "Juan Pérez Padilla",
         "genero": "Mujer",
-        "usuario": "juan@cenfotec.ca.cr",
+        "usuario": "juan@cenfotec.ac.cr",
         "pass": "123",
         "estado": "A",
         "blog": [
             {
-                "idPost": 0,
+                "idPost": "0",
                 "titulo": "Mi gran Tema",
                 "texto": "adsbnamsd ds  asdas,d asdn,as d,as dnas d as d,asdn,as d,m as,das d asd",
                 "fecha": "12/08/2014",
                 "comentarios": [
                     {
-                        "idComentario": 0,
+                        "idComentario": "0",
                         "Participante": "profesor@cenfotec.ca.cr",
+                        "fecha": "2014/08/13",
                         "texto": "hate it"
                     }
                 ]

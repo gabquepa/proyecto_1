@@ -1,7 +1,31 @@
 
-<div ng-show="carreraContr.isSelected(3, confPanel.tab)" >
- <h4>Lista de Carreras</h4>
-                          <div class="vistaUsuarios">
+<div ng-show="carreraContr.isSelected(3, confPanel.tab)" ng-controller="inhabilitarCarreraController as inhabilitarCarrera" >
+ <h5><a href="#">Lista de Carreras</a></h5>
+
+
+    <ul>
+      <li ng-repeat="carrera in conf.carreras" class="list-group-item">
+       <h5><a  ng-click="inhabilitarCarrera.validarCarreras(carrera.estado)">Lista de Carreras</a></h5> 
+
+      <table cellpading="0" cellspacing="0" border="0"  align="center"><tr>
+ 
+        {{carrera.estado}}
+              <td width="300" height="50" align="left"><p>{{carrera.nombre}}</p></td>
+              <td width="300" height="50" align="left"><label>Inactivo</label>
+              <input type="radio" name="{{carrera.codigo}}" id="carreraInactivo" value="inactivo"></td>
+              <td width="300" height="50" align="left"><label>Activo</label>
+              <input type="radio" name="{{carrera.codigo}}" id="carreraActivo" value="activo" > </td>
+      </tr></table>
+
+
+
+      </li>
+
+
+
+    </ul>
+
+                            <!--   <div class="vistaUsuarios">
                                 <p>Nombre de Carrera</p>
                                 <label>Inactivo</label>
                                <input type="radio" name="estado">
@@ -35,7 +59,7 @@
                                <input type="radio" name="estado">
                                <label>Activo</label>
                                <input type="radio" name="estado" checked> 
-                              </div>
+                              </div> -->
 
                               <button type="submit" class="guardarBtn ">Guardar</button>
 </div>
