@@ -69,6 +69,17 @@ app.directive('projectSideNav', function(){
 		
 	});
 	
+	//Esta es una directiva que contiene el blog de usuario2
+	app.directive('userBlog2',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/user-blog2.html'
+		};
+		
+	});
+	
+	
 	//Esta es una directiva que contiene el blog de usuario3
 	app.directive('userBlog3',function(){
 		return{
@@ -85,6 +96,42 @@ app.directive('projectSideNav', function(){
 			
 			restrict:'E', //esto es un elemento
 			templateUrl:'/Proyecto_1/partials/user-blog4.html'
+		};
+		
+	});
+	
+	app.directive('blogButton2',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/blog-Button2.html'
+		};
+		
+	});
+	
+	app.directive('blogButton',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/blog-Button.html'
+		};
+		
+	});
+	
+	app.directive('blogTitle1',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/blog-Title1.html'
+		};
+		
+	});
+	
+	app.directive('blogTitle2',function(){
+		return{
+			
+			restrict:'E', //esto es un elemento
+			templateUrl:'/Proyecto_1/partials/blog-Title2.html'
 		};
 		
 	});

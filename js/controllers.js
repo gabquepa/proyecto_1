@@ -616,8 +616,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				$("#pass").val("");
 			};
 	   };
-	}]);
-	
+	}]);	
 	
 //controlador recupera cuenta de ususarios
 	app.controller('recuperarPass', function(){
@@ -627,15 +626,9 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			var estado=false;
 			for (var i=0; i < pUsuario.length; i++) {
 			  if (pName==pUsuario[i].usuario) {
-				if (pUsuario[i].estado=="A") {
 		        	   $('#mensajeRec').html("");
 		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'se envión un correo a su cuanta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
-				} else{
-					$('#mensajeRec').html("");
-					$('#mensajeRec').append('USUARIO INACTIVO');
-					$("#usuarioRec").val("");
-				};	
-                 estado=true;	   
+		        	   estado=true;	   
 			   };
 			   
 			};
@@ -682,7 +675,157 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		
 	});
 	
+	
+//controlador muestra y oculta contenedores del perfil
+	app.controller('controlPerfil', function(){
+		this.tabperfil = 1;
+		
+		this.getTab=function(getTab){
+			$('#mensajePerfil').html("");
+			this.tabperfil = getTab;
+			limpiarForms();
+			if (getTab==1) {
+				$('#infuser').attr('class',"btn activetab");
+				$('#changepass').attr('class',"btn profBtn");
+			} else{
+				$('#infuser').attr('class',"btn profBtn");
+				$('#changepass').attr('class',"btn activetab");
+			};
+				
+		};
 
+		this.isSelected = function(checkedTab, pTab){
+			//	if(pTab != 0){
+				//	this.tablog=0;
+			//	}
+
+			return this.tabperfil ===checkedTab;
+			
+		};
+		this.pass={};
+		this.cambiarPass = function(pPassAct){	
+        	
+        	if (this.pass.pactual==pPassAct) {
+        		if (this.pass.pnew==this.pass.pnewconf) {
+        			$('#mensajePerfil').html("");
+        			$('#mensajePerfil').append("Su contraseña se cambió con éxito");
+        			return 	this.pass.pnewconf;
+        		} else{
+        			$('#mensajePerfil').html("");
+        			$('#mensajePerfil').append("La confirmación es incorrecta");
+        			return 	pPassAct;
+        		};
+        		
+        		
+        	} else{
+        		$('#mensajePerfil').html("");
+        		$('#mensajePerfil').append("Contraseña inválida");
+                return 	pPassAct;        	
+        	};
+        	
+        
+			this.pass={};
+			
+		};
+		
+		
+		function limpiarForms () {
+		   $('#passuser').val("");
+			$('#newpass').val("");
+			$("#confirmnew").val("");
+		}
+		
+		
+		
+	});
+	
+	
+	//controlador muestra y oculta contenedores del blogs
+	app.controller('controlBlog', function(){
+		this.tabblog ="b1";
+		if (this.tabblog=="b1") { 
+				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
+		}; 
+		this.getTab=function(getTab){
+			this.tabblog = getTab;
+			if (this.tabblog=="b1") { 
+				$("#styleTemp").html("");	
+				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
+			} else{
+				$("#styleTemp").html("");
+				$("#styleTemp").append('#blogsUser2{background-color: #196A95 !important;}');	
+			};
+			//limpiarForms();
+		};
+		
+		this.isSelected = function(checkedTab){
+			return this.tabblog ===checkedTab;	
+		};
+
+		
+		
+	});
+
+
+//controlador muestra y oculta contenedores dentro del blogs
+	app.controller('controlBlog', function(){
+		this.tabblog ="b1";
+		this.tabblogIn =1;
+		this.blogtemp =0;
+		if (this.tabblog=="b1") { 
+				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
+		}; 
+		this.getTab=function(getTab){
+			this.tabblog = getTab;
+			if (this.tabblog=="b1") { 
+				$("#styleTemp").html("");	
+				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
+			} else{
+				$("#styleTemp").html("");
+				$("#styleTemp").append('#blogsUser2{background-color: #196A95 !important;}');	
+				this.tabblogIn =3;
+			};
+			//limpiarForms();
+		};
+		
+		this.getTabIn=function(getTab,pidBlog){
+            this.tabblogIn = getTab;
+            this.blogtemp=pidBlog;
+			
+			//limpiarForms();
+		};
+		
+		
+		this.isSelected = function(checkedTab){
+			return this.tabblog ===checkedTab;	
+		};
+		
+		this.isSelectedIn = function(checkedTab){
+			return this.tabblogIn ===checkedTab;	
+		};
+
+		this.miBlog = function(){
+			return this.blogtemp;	
+		};
+		
+	});
+	
+	app.controller("AddBlogController",function(){
+		var cont=0;
+		this.newblog={};
+		this.coment={};
+	    this.addPost = function(puser){	
+			cont=puser.blog.length;
+			this.newblog.idPost=cont;
+			this.newblog.comentarios=[];
+			//this.coment.idComentario=2;
+			//this.coment.Participante="sergio";
+			//this.coment.texto="hola";
+			puser.blog.push(this.newblog);
+			//puser.blog[cont].comentarios.push(this.coment);
+			this.newblog={};
+	    };
+	});
 
 //Termina Sergio Herrera Durán----------------------------------------------
 

@@ -4,10 +4,10 @@
 	<p>En esta sección usted podrá configurar su perfil seleccionando las opciones brindadas.</p>
 </section>
 
-<section class="contprofile" ng-controller="controlPerfil as perfil"">
+<section class="contprofile" ng-controller="controlPerfil as perfil">
 	<div class="contBtn">
-		<button type="button" class="btn profBtn" ng-click="perfil.getTab(1)">Info Usuario</button>
-    	<button type="button" class="btn profBtn" ng-click="perfil.getTab(2)">Contraseña</button>	
+		<button id="infuser" type="button" class="btn activetab" ng-click="perfil.getTab(1)">Info Usuario</button>
+    	<button id="changepass" type="button" class="btn profBtn" ng-click="perfil.getTab(2)">Contraseña</button>	
 	</div>
 	<div class="contUser" ng-show="perfil.isSelected(1)">
 		<section class="infoprofile clearfix">
@@ -15,12 +15,12 @@
 				<img src="/Proyecto_1/img/avatar.png"/>
 				<img src="/Proyecto_1/img/sample-stars.png"/>
 				<figcaption>
-					Puesto en el Ranking: 25
+					Candidad de Votos: 125
 				</figcaption>
 			</figure>
 		    <aside class="infousuario clearfix">
 				<label>Nombre:</label>
-				<span>Mi nombre de Usuario Completo</span>
+				<span>{{usuario.user[cookieValue].nombre}}</span>
 				<label>Carrera:</label>
 				<span>Nombre de la Carrera</span>
 				<label>Cursos:</label>
@@ -37,16 +37,17 @@
 	</div>
 	
 	<div class="contPass clearfix" ng-show="perfil.isSelected(2)">	
-		<form class="passprofile">
+		<strong id="mensajePerfil" class="msjerror"></strong>
+		<form role="form" class="passprofile" name="changpass" ng-submit="changpass.$valid && (usuario.user[cookieValue].pass=perfil.cambiarPass(usuario.user[cookieValue].pass))">
+			
 			<label for="passuser" class="passform">Digite su contraseña:</label>
-			<input id="passuser" type="password" class="passform"/>
+			<input id="passuser" type="password" class="passform" ng-model="perfil.pass.pactual" required/>
 			<label for="newpass" class="passform">Digite su nueva contraseña:</label>
-			<input id="newpass" type="password" class="passform"/>
+			<input id="newpass" type="password" class="passform" ng-model="perfil.pass.pnew" required/>
 			<label for="confirmnew" class="passform">Confirme su nueva contraseña:</label>
-			<input id="confirmnew" type="password" class="passform"/>
-			<button type="submit" class="formpassbot">Guardar Cambios</button>
+			<input id="confirmnew" type="password" class="passform" ng-model="perfil.pass.pnewconf" required/>
+			<button type="submit" class="formpassbot" value="submit">Guardar Cambios</button>
 		</form>
-		
 	</div>
 	
 	

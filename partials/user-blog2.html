@@ -1,0 +1,51 @@
+
+
+      <div ng-controller='editarComentController as editComen'>
+		<a href ng-click="tabs.getTabIn(1)" class="editdelete ">Regresar</a>
+        <div id='divEditarPost' class='cf clearfix'>
+            
+            <div class='titulo-fecha cf'>
+              <span>{{usuario.user[cookieValue].blog[tabs.miBlog()].titulo}}</span>
+              <span>{{usuario.user[cookieValue].blog[tabs.miBlog()].fecha}}</span>
+            </div>
+            <div class='clearfix'>
+              <a href='' ng-click='editComen.editarComent();' class="editdelete"><span class='glyphicon glyphicon-pencil'></span>Editar</a>
+              <a href=''><span class='glyphicon glyphicon-remove' class="editdelete"></span>Eliminar</a>
+            </div>
+
+            <div class='post-editado'>
+              <textarea ng-disabled='editComen.value==true'>{{usuario.user[cookieValue].blog[tabs.miBlog()].texto}}</textarea>
+            </div>
+            <div class="redesSociales cf" >
+              <span class="compartirPost">Compartir:</span>
+              <ul class="lista">
+                  <li><a href="#" class="ir sprites" id="Twitter">Twitter</a></li>
+                  <li><a href="#" class="ir sprites" id="Facebook" >Facebook</a></li>
+                  <li><a href="#" class="ir sprites" id="GooglePlus">Google Plus</a></li>
+              </ul>
+          </div> 
+          
+          
+              <h3  class='comentarios'>Comentarios</h3>
+          <ul class="list-group clearfix">
+    	 	<li class="list-group-item clearfix" ng-repeat="comentarios in usuario.user[cookieValue].blog[tabs.miBlog()].comentarios">
+              <section class="misBlogs1">
+                <section class="headerMiblogs clearfix">
+                  <a href="#" class="pull-left linktituloBlog1">{{comentarios.Participante}}</a>
+                  <span class="fechasComent pull-left ">dd/mm/aaaa</span>
+                </section>
+                <section class="contMiBlog1 clearfix">
+                  <p class="textmiblog">
+                    {{comentarios.texto}}
+                  </p>
+                </section>
+                <a href="" class="pull-right editdelete clearfix">Denunciar</a>
+              </section>
+           </li>
+          </ul> 
+        </div>
+      </div>
+      
+  </div> 
+
+    

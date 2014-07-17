@@ -17,11 +17,11 @@
     
     <body>
     	
-    	<div class="container">
+    	<div class="container" ng-controller="controlBlog as tabs">
 			 <project-header></project-header>
     		 <project-side-nav></project-side-nav>
 
-			  <div class="main row">
+			  <div class="main row" ng-controller="UserController as usuario">
 			            
 			        <user-profile></user-profile>
 			      
@@ -36,6 +36,8 @@
     	 <script src="js/vendor/angular.min.js"></script>
 		  <script src="js/vendor/jquery-1.11.0.min.js"></script>
 		  <script src="js/vendor/bootstrap.min.js"></script>
+		  <script src="js/vendor/angular-cookies.min.js"></script>
+  		  <script src="js/vendor/star-rating.min.js"></script>
 		  <script src="js/app.js"></script>
 		  <script src="js/services.js"></script>
 		  <script src="js/controllers.js"></script>

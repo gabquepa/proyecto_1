@@ -1,23 +1,46 @@
 [
     {
         "idUsuario": "0001",
-        "clase": "P",
-        "nombre": "Nombre Profesor",
+        "tipo": "P",
+        "nombre": "Nombre Apellido1 Apellido2",
         "genero": "Hombre",
-        "usuario": "profesor@cenfotec.ca.cr",
+        "usuario": "profesor@ucenfotec.ac.cr",
         "pass": "p1",
         "estado": "A",
         "blog": [
             {
-                "idPost": 1,
+                "idPost": 0,
                 "titulo": "Mi gran Tema1",
                 "texto": "adsbnamsd ds  asdas,",
                 "fecha": "18/08/2014",
                 "comentarios": [
                     {
+                        "idComentario": 0,
+                        "Participante": "1@cenfotec.ca.cr",
+                        "texto": "text1"
+                    },
+                    {
                         "idComentario": 1,
+                        "Participante": "2@cenfotec.ca.cr",
+                        "texto": "text2 "
+                    }
+                ]
+            },
+            {
+                "idPost": 1,
+                "titulo": "Mi gran Tema2",
+                "texto": "adsbnamsd ds  asdas,",
+                "fecha": "18/10/2014",
+                "comentarios": [
+                    {
+                        "idComentario": 0,
                         "Participante": "estudiante@cenfotec.ca.cr",
-                        "texto": "lasdñlasdmas asdñlasd asñdas,dasñd asda"
+                        "texto": "lasdñlasdmas "
+                    },
+                    {
+                        "idComentario": 1,
+                        "Participante": "e@cenfotec.ca.cr",
+                        "texto": "lasdñlasdmas basjbdjabsjd asj dashd asjdbas djas jdas d "
                     }
                 ]
             }
@@ -25,21 +48,21 @@
     },
     {
         "idUsuario": "0002",
-        "clase": "E",
+        "tipo": "E",
         "nombre": "Nombre Estudiante",
         "genero": "Mujer",
         "usuario": "estudiante@cenfotec.ca.cr",
         "pass": "e1",
-        "estado": "I",
+        "estado": "A",
         "blog": [
             {
-                "idPost": 1,
+                "idPost": 0,
                 "titulo": "Mi gran Tema",
                 "texto": "adsbnamsd ds  asdas,d asdn,as d,as dnas d as d,asdn,as d,m as,das d asd",
                 "fecha": "12/08/2014",
                 "comentarios": [
                     {
-                        "idComentario": 1,
+                        "idComentario": 0,
                         "Participante": "profesor@cenfotec.ca.cr",
                         "texto": "hate it"
                     }
