@@ -1,6 +1,6 @@
 <!-- cerrar Sesión Sergio Herrera-->
 <div class="topHeaderNav clearfix" ng-controller="UserController as usuario">
-	    <a href="/Proyecto_1/login.html" id="cerrarSesion" class="pull-right clearfix">Cerrar Sesión</a>
+	    <a href="" ng-controller="validarLogin as login" id="cerrarSesion" class="pull-right clearfix" ng-click="login.logOut()">Cerrar Sesión</a>
 	  	<a href="/Proyecto_1/user-profile.html" class="pull-right clearfix">{{usuario.user[cookieValue].usuario}}</a>
 </div>
 <!-- cerrar Sesión Sergio Herrera-->
