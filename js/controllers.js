@@ -616,6 +616,14 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				$("#pass").val("");
 			};
 	   };
+	   
+	    this.logOut = function(){
+	    	alert("hola");
+			$cookieStore.remove("usuario");
+			window.location = "/Proyecto_1/login.html";
+			
+	    };
+	   
 	}]);	
 	
 //controlador recupera cuenta de ususarios
@@ -826,7 +834,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			this.newblog={};
 	    };
 	});
-
+	
+	
 //Termina Sergio Herrera Durán----------------------------------------------
 
 
