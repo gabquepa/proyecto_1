@@ -269,10 +269,43 @@ app.controller('estudianteController', function(){
 //Termina Alejandro Zuñiga
 
 //Controllers Keilyn Sibaja
+app.controller('agregarDocController',['$http', function($http){
+	var controller = this;
+		controller.documentos= [];
+
+		$http.get('/proyecto_1/JSON/topDoc.json').success(function(data){
+			controller.documentos =data;
+		});
+
+		this.addDoc={};
+
+		this.datosDoc=function(){
+			this.addDoc.votacion=0;
+			controller.documentos.push(this.addDoc);
+			alert(controller.documentos[5].nombre);
+			this.addDoc={};
+		}
+
+		this.busqueda=function(){
+			var h=arguments;
+			for(var i=0; i<controller.documentos.length; i++){
+				var doc=controller.documentos[i];
+
+				if(doc.nombre.toUpperCase()===arguments[0].toUpperCase() && 
+					doc.carrera.toUpperCase()===arguments[1].toUpperCase() && 
+					doc.curso.toUpperCase()===arguments[2].toUpperCase()){
+
+					
+					break;
+				}
+			}
+		}
+
+}]);
 
 app.controller('seccionDocumentosShow', function(){
 	
-	this.tab=2;
+	this.tab=1;
 
 	this.mostrarSecc=function(pTab){
 		if(pTab==1){
@@ -360,15 +393,6 @@ app.controller('subirDocController',function(){//Controlador de mi seccion Subir
 
 		}
 });
-
-app.controller('topDocController',['$http', function($http){ //controlador de mi seccion top de documentos
-		var docTop = this;
-		docTop.librosTop= [];
-
-		$http.get('/proyecto_1/JSON/topDoc.json').success(function(data){
-			docTop.librosTop =data;
-		});
-}]);
 
 app.controller('historialDesController',['$http', function($http){//controlador de mi seccion historial de descarga
 		var docDesc = this;

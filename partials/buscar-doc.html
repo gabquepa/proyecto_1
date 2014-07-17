@@ -1,46 +1,33 @@
 <!--Busqueda de Documentos-->
-<div ng-controller='buscarDocController as buscarDoc'>
+<div>
             <div class='doc_header'>
               <h1>Documentos_</h1>
               <p>En esta sección usted podrá ver todos los documentos y descargarlos</p>
             </div>
 
-            <button class='btn-subir-down btn-blue' ng-click='buscarDoc.showBtn();'>Buscar Documento</button>
+            <div ng-controller='buscarDocController as buscarDoc'>
+              <button class='btn-subir-down btn-blue' ng-click='buscarDoc.showBtn();'>Buscar Documento</button>
 
-            <div id='doc_subirdoc' class='cf' ng-show='buscarDoc.value===2'>
-              <div class="form-group div_docsubir" ng-controller='misCarreras-cursos as cyc'>
-                <span>Ingrese el criterio de búsqueda</span>
-                  <input type='text' placeholder='Busqueda' id='doc_inpbuscardoc'>
-                  <span>Carrera:</span>
-                  <select ng-model='value' ng-click='cyc.carreraSelect(value);'>
-                    <option  value ="{{miCarrera.carrera}}" ng-repeat='miCarrera in cyc.carrerasycursos'>{{miCarrera.carrera}}</option>
-                  </select>
-                  <span>Curso:</span>
-                  <select>
-                    <option ng-repeat='curso in cyc.cursos'>{{curso.c}}</option>
-                  </select>
-                  <span>Resultados</span>
-                  <ul>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a><img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a><img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                    <li>
-                      <span class='doc_lispandoc'>Autor</span>
-                      <a href="#">Libro1</a><img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>Carrera/Curso</span>
-                      <a href="#">Descargar</a>
-                    </li>
-                  </ul>
-                  </div>
+              <div id='doc_subirdoc' class='cf' ng-show='buscarDoc.value===2'>
+
+                <div class="form-group div_docsubir" ng-controller='misCarreras-cursos as cyc'>
+
+                  <span>Ingrese el criterio de búsqueda</span>
+                    <input type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc'>
+                    <span>Carrera:</span>
+                    <select ng-model='carrera' ng-click='cyc.carreraSelect(carrera);'>
+                      <option  value ="{{miCarrera.carrera}}" ng-repeat='miCarrera in cyc.carrerasycursos'>{{miCarrera.carrera}}</option>
+                    </select>
+                    <span>Curso:</span>
+                    <select ng-model='curso'>
+                      <option ng-repeat='curso in cyc.cursos'>{{curso.c}}</option>
+                    </select>
+                    <button class='btn-subir' ng-click='add.busqueda(busqueda,carrera,curso);'>Buscar</button>
+
+                </div>
+
               </div>
+
+            </div>
 </div>
       <!--Busqueda de Documentos-->

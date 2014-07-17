@@ -1,14 +1,20 @@
 <!--Top Documentos-->
-              <div ng-controller='topDocController as topDoc'>
+              <div>
                 <h2>Top Documentos más votados</h2>
                 <ul>
-                    <li ng-repeat="top in topDoc.librosTop | orderBy:'-votacion'">
+                    <li ng-repeat="top in add.documentos | orderBy:'-votacion'">
                       <span class='doc_lispandoc'>{{top.autor}}</span>
                       <a href="#">{{top.nombre}}</a>
+                      <span class='doc_lispandoc'>{{top.fecha}}</span>
                       <img src="img/sample-stars.png">
                       <span class='doc_lispandoc'>{{top.carrera}}/{{top.curso}}</span>
-                      <a href="#">Descargar</a>
                     </li>
+
+                    <!--
+                    <li>
+                      
+                    </li>
+                  -->
                   </ul>
               </div>
 <!--Top Documentos-->

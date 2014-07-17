@@ -2,57 +2,41 @@
 {
 "nombre":"Libro1",
 "autor":"Profe1",
-"carrera":"Carrera1",
-"curso":"Curso1",
+"carrera":"IT English",
+"curso":"curso1 IT",
 "votacion":"5",
 "fecha":"09/10/11"
 },
 {
 "nombre":"Libro2",
 "autor":"Profe2",
-"carrera":"Carrera2",
-"curso":"Curso2",
+"carrera":"Telematica",
+"curso":"curso1 Telematica",
 "votacion":"2",
 "fecha":"10/11/12"
 },
 {
 "nombre":"Libro3",
 "autor":"Profe3",
-"carrera":"Carrera3",
-"curso":"Curso3",
+"carrera":"Integracion de Tecnologias",
+"curso":"curso1 Integracion",
 "votacion":"1",
 "fecha":"11/12/13"
 },
 {
 "nombre":"Libro4",
 "autor":"Profe4",
-"carrera":"Carrera4",
-"curso":"Curso4",
+"carrera":"Desarrollo y Diseño Web",
+"curso":"curso1 web",
 "votacion":"3",
 "fecha":"12/13/14"
 },
 {
 "nombre":"Libro5",
 "autor":"Profe5",
-"carrera":"Carrera5",
-"curso":"Curso5",
+"carrera":"Desarrollo de Software",
+"curso":"curso1 Software",
 "votacion":"4",
 "fecha":"10/11/12"
-},
-{
-"nombre":"Libro6",
-"autor":"Profe6",
-"carrera":"Carrera6",
-"curso":"Curso6",
-"votacion":"6",
-"fecha":"11/12/13"
-},
-{
-"nombre":"Libro7",
-"autor":"Profe7",
-"carrera":"Carrera7",
-"curso":"Curso7",
-"votacion":"0",
-"fecha":"12/13/14"
 }
 ]

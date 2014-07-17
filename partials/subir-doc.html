@@ -8,17 +8,17 @@
             <button class='btn-subir-down btn-blue' ng-click='subirDoc.showBtn();'>Subir Documento</button>
 
             <div id='doc_subirdoc' class='cf' ng-show='subirDoc.value===2'>
-              <form class="form-group div_docsubir">
-                  <input type='text' placeholder='Titulo'>
-                  <input type='text' placeholder='Autor'>
-                  <input type='date'>
+              <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.datosDoc();'>
+                  <input type='text' placeholder='Titulo' ng-model='add.addDoc.nombre'>
+                  <input type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
+                  <input type='date' ng-model='add.addDoc.fecha'>
                   <section ng-controller='misCarreras-cursos as cyc'>
                     <span>Carrera:</span>
-                    <select ng-model='value' ng-click='cyc.carreraSelect(value);'>
+                    <select ng-model='add.addDoc.carrera' ng-click='cyc.carreraSelect(add.addDoc.carrera);'>
                       <option  value ="{{miCarrera.carrera}}" ng-repeat='miCarrera in cyc.carrerasycursos'>{{miCarrera.carrera}}</option>
                     </select>
                     <span>Curso:</span>
-                    <select>
+                    <select ng-model='add.addDoc.curso'>
                       <option value="{{curso.c}}" ng-repeat='curso in cyc.cursos'>{{curso.c}}</option>
                     </select>
                   </section>
