@@ -31,35 +31,39 @@
           <h3>Foros_</h3>
           <p>En esta sección usted podrá buscar foros de interés y comentar los mismos de estar invitado.</p>
           <h3  class="search-title btn-blue">Buscar Foro </h3>
-          <div class="search-section" ng-controller="CarrerasController as universidad" >
-            <input id="inputbusqueda" class="form-control" placeholder="Buscar">
-            <span></span>
-            <h4>Búsqueda Avanzada</h4>
-            <select ng-mouseleave="universidad.selectCurso()" class="select-carrera">
-              <option val="-1" disable>Seleccione una Carrera</option>
-              <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
-            </select>
-            <select class="select-curso">
-              <option val="-1" disable>Seleccione un Curso</option>
-              <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
-            </select>
-            <select style="width: 100%;">
-              <option val="-1" disable>Seleccione un Tema</option>
-              <option val="1" disable>Tema 1</option>
-              <option val="1" disable>Tema 2</option>
-              <option val="1" disable>Tema 3</option>
-            </select>
-            <button class="btn-blue" ng-click="forum.buscarForo()">Buscar</button><br>
-            <div style="text-align: center;"><img src="/Proyecto_1/img/loading.gif" class="loading" /> </div>
-          </div>
+          <form name="forumForm" ng-submit="forumForm.$valid && forum.buscarForo()">
+            <div class="search-section" ng-controller="CarrerasController as universidad" >
+              <input id="inputbusqueda" class="form-control" placeholder="Buscar" required>
+              <span></span>
+              <h4>Búsqueda Avanzada</h4>
+              <select ng-mouseleave="universidad.selectCurso()" class="select-carrera">
+                <option val="-1" disable>Seleccione una Carrera</option>
+                <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
+              </select>
+              <select class="select-curso">
+                <option val="-1" disable>Seleccione un Curso</option>
+                <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
+              </select>
+              <select style="width: 100%;">
+                <option val="-1" disable>Seleccione un Tema</option>
+                <option val="1" disable>Tema 1</option>
+                <option val="1" disable>Tema 2</option>
+                <option val="1" disable>Tema 3</option>
+              </select>
+              <button class="btn-blue">Buscar</button><br>
+              <div style="text-align: center;"><img src="/Proyecto_1/img/loading.gif" class="loading" /> </div>
+            </div>
+          </form>
           <div class="Foro-lst" ng-show="forum.showForumList">
             <br>
             <br>
             <label>Resultados de la búsqueda: </label><br>
+
             <h3>Foros</h3>
             <a href="#" class="Forum-name">pablo@ucenfotec.ac.cr</a> <span>01/01/2014</span>
             <div class="forum">
-              <p>Que opinan de la universidad? y de los cursos de 'proyecto 1' para nosotros es importante la opinión de los estudiantes para poder seguir mejorando día con día</p>
+              <p>Que opinan de la universidad? y de los cursos de 'proyecto 1' para nosotros es importante la opinión de los estudiantes para poder seguir mejorando día con día.
+              Los verdaderos líderes deben estar dispuestos a sacrificarlo todo por la libertad de su pueblo.</p>
             </div>
           </div>
         </div>   

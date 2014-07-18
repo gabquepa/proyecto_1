@@ -1,51 +1,65 @@
 [{
 "id":"1",
 "profesor": "0001",
-"titulo":"Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+"titulo":"ABC -  de las bases de datos (mySQL rocks!)",
 "periodo":"I-2014",
-"CarreraId":"1",
-"CursoId":"DW2",
-"tema":"Tecnicas de diseño web actuales",
-"moderador":"test@cenfotec.ac.cr",
+"CarreraId":"5",
+"CursoId":"BD4",
+"tema":"Una base de datos es un “almacén” que nos permite guardar grandes cantidades de información de forma organizada para que luego podamos encontrar y utilizar fácilmente. A continuación te presentamos una guía que te explicará el concepto y características de las bases de datos.",
+"moderador":"rodrigo@cenfotec.ac.cr",
 "invitados":[{
-	"email": "test@cenfotec.ac.cr"
+	"email": "keilyn@cenfotec.ac.cr"
 },
 {
 	"email": "gaby@cenfotec.ac.cr"
 }],
 "comments":[{
 	"nombre":"gaby@cenfotec.ac.cr",
-	"texto":"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-	"fecha":"01/01/2000",
+	"texto":"No se si sabian, pero: El término de bases de datos fue escuchado por primera vez en 1963, en un simposio celebrado en California, USA. Una base de datos se puede definir como un conjunto de información relacionada que se encuentra agrupada ó estructurada.",
+	"fecha":"24/12/2013",
 	"calificacion":"3"
 },
 {
 	"nombre":"gaby@cenfotec.ac.cr",
-	"texto":"test - - - -  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+	"texto":"Keilyn, ud sabía?",
 	"fecha":"25/12/2013",
 	"calificacion":"1"
+},
+{
+	"nombre":"keilyn@cenfotec.ac.cr",
+	"texto":"Obvio Gaby... todo mundo sabe eso. Desde el punto de vista informático, la base de datos es un sistema formado por un conjunto de datos almacenados en discos que permiten el acceso directo a ellos y un conjunto de programas que manipulen ese conjunto de datos.",
+	"fecha":"25/12/2013",
+	"calificacion":"4"
 
-}]
+}],
+"estado":"A"
 },
 {
 "id":"2",
 "profesor": "0001",
-"titulo":"test test Software",
+"titulo":"Conozca las ventajas de implementar la ingeniería de software",
 "periodo":"III-2013",
 "CarreraId":"2",
 "CursoId":"DS18",
-"tema":"Que es la ingenería de Software? Que estoy estudiando?",
+"tema":"Cuando las compañías deciden instaurar esta tecnología, no sólo se vuelven más productivas, sino también más eficientes y competitivas. Lo importante es que estas soluciones estén alineadas con la estrategia del negocio y sean desarrolladas por especialistas en el área. A medida que la base de clientes crece y las operaciones aumentan, el manejo de la información relativa a la provisión de bienes o servicios en una empresa se vuelve cada vez más difícil de manejar por métodos manuales. Es por esto que se hace indispensable el uso de sistemas de información computacionales que permitan el manejo eficaz y eficiente de los procesos productivos.",
 "moderador":"gaby@cenfotec.ac.cr",
 "invitados":[{
-	"email": "test@cenfotec.ac.cr"
+	"email": "manuel@cenfotec.ac.cr"
 },
 {
 	"email": "keilyn@cenfotec.ac.cr"
 },
 {
-	"email": "gaby@cenfotec.ac.cr"
+	"email": "julian@cenfotec.ac.cr"
+},
+{
+	"email": "alejandro@cenfotec.ac.cr"
+},
+{
+	"email": "sergio@cenfotec.ac.cr"
 }],
-"comments":[{}]
+"comments":[{}],
+"estado":"A"
 },
 {
 "id":"3",
@@ -65,13 +79,14 @@
 "comments":[{
 	"nombre":"alejandro@cenfotec.ac.cr",
 	"texto":"a verb? what?",
-	"fecha":"23/11/1988",
+	"fecha":"23/01/2014",
 	"calificacion":"1"
 },
 {
 	"nombre":"gaby@cenfotec.ac.cr",
-	"texto":"This is a comment made by Gaby Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-	"fecha":"15/09/2012",
+	"texto":"Alejandro! please! focus, this is serious",
+	"fecha":"24/01/2014",
 	"calificacion":"4"
-}]
+}],
+"estado":"A"
 }]

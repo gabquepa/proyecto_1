@@ -26,8 +26,8 @@
     <project-header></project-header>
     <project-side-nav></project-side-nav>
 
-    <div class="main row">
-        <div class="forum-config" ng-show="{{!showConfig}}" ng-controller="ForumController as forum">
+    <div class="main row" ng-controller="ForumController as forum">
+        <div class="forum-config" ng-show="{{!showConfig}}">
           <h3>Mis Foros_</h3>
           <p>En esta sección podra accesar a los foros invitados y crear y editar los personales.</p>
           <h3  class="config-forumTitle btn-blue">Foro </h3>
@@ -47,23 +47,29 @@
           </div>
           <div class="inine-forum-display" ng-show="{{showForum}}">
             <div class="config-forumSection">
+              <input id="id-foro" hidden>
               <h4 id="course-title" class="course-title"></h4>
-              <a class="glyphicon glyphicon-remove pull-right" href="#" ng-click="forum.hideForum()">Cerrar</a> 
-              <a class="glyphicon glyphicon-pencil pull-right collapsed" href="#forum-usrs" data-toggle="collapse" ng-click="forum.enableTxt()" >Editar</a> 
+              <a class="glyphicon glyphicon-remove pull-right" href="#" ng-click="forum.hideForum()">Cerrar</a>
+              <a class="glyphicon glyphicon-pencil pull-right collapsed edit" href="#forum-usrs" data-toggle="collapse" ng-click="forum.enableTxt()" >Editar</a> 
+              <a style="display:none;" class="glyphicon glyphicon-floppy-saved pull-right save" href="#" ng-click="forum.editarForo()">Guardar</a> 
+
               <textarea class="main-forum" ng-disabled="{{enable}}" ></textarea>
               <div id="forum-usrs" class="forum-usrs panel-collapse collapse">
                 <div>
-                  <label>Moderador: </label>
+                  <label>Cerrar foro?</label>
+                  <br><input type="radio" name="estado" value="1">  Si
+                  <br><input type="radio" name="estado" value="2">  No
+                  <br><label>Moderador: </label>
                   <input type="email" class="form-control moderador">
                   <label>Invitar Usuarios:</label>
                   <textarea class="form-control invitados" ></textarea>
-                  <button class="btn-blue pull-right" ng-click="forum.addToForum()">Agregar</button>
+                  <!-- <button class="btn-blue pull-right" ng-click="forum.addToForum()">Agregar</button> -->
                 </div>
                 <div class="clearfix">
-                  <label>Moderador: </label> <p id="moderadorDisplay"></p>
+                  <!-- <label>Moderador: </label> <p id="moderadorDisplay"></p>
                   <label>Usuarios Invitados</label> 
                   <ul id="invitadosDisplay">
-                  </ul>
+                  </ul> -->
                 </div>  
               </div>
             </div>
@@ -82,7 +88,7 @@
           </div>  
 
           <!-- CREAR FOROS -->
-          <div class="forum-create" ng-show="{{showCreate}}" ng-controller="ForumController as forum">
+          <div class="forum-create" ng-show="{{showCreate}}">
             <h3>Mis Foros_</h3>
             <p>En esta sección podra accesar a los foros invitados y crear y editar los personales.</p>
             <h3  class="create-forumTitle btn-blue">Crear Foro</h3>
@@ -104,7 +110,7 @@
                 <textarea required></textarea >
                 <div class="clearfix">
                   <h4>Moderador: </h4>
-                  <input type="email" class="form-control moderador" required>
+                  <input type="email" class="form-control moderador">
                   <h4>Invitar Usuarios:</h4>
                   <textarea class="form-control invitados" required></textarea>
                 </div>
