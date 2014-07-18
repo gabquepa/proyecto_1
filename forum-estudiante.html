@@ -37,7 +37,15 @@
           <div class="inine-forum-list">
             <h4>Foros</h4>
             <ul class="clearfix">
-              <li style="list-style:none;" ng-repeat="list in forum.lists" data-forumId="{{list.id}}"><a style="text-decoration:none;" ng-click="forum.displayForum(list)">{{list.titulo}}</a></li>
+              <li style="list-style:none;" ng-repeat="list in forum.lists" data-forumId="{{list.id}}">
+                <span ng-if="list.estado == 'A'">
+                    Activo - 
+                </span>
+                <span ng-if="list.estado == 'I'">
+                    Inactivo - 
+                </span>
+                <a style="text-decoration:none;" ng-click="forum.displayForum(list)">{{list.titulo}}</a>
+              </li>
             </ul>
           </div>
           <div class="inine-forum-display">

@@ -38,7 +38,15 @@
             
             <h4>Mis foros</h4>
             <ul class="clearfix">
-              <li ng-repeat="list in forum.lists" data-forumId="{{list.id}}"><a ng-click="forum.displayForum(list)">{{list.titulo}}</a></li>
+              <li ng-repeat="list in forum.lists" data-forumId="{{list.id}}">
+                <span ng-if="list.estado == 'A'">
+                    Activo - 
+                </span>
+                <span ng-if="list.estado == 'I'">
+                    Inactivo - 
+                </span>
+                <a ng-click="forum.displayForum(list)"> {{list.titulo}}</a>
+              </li>
             </ul>
             <h4>Otros foros</h4>
             <ul class="clearfix">

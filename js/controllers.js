@@ -100,6 +100,12 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$scope.showConfig=false;
 		$('.forum-config').addClass('ng-hide');
 		$('.forum-create').removeClass('ng-hide');
+
+		$('.create-forumSection .invitados').val('');
+		$('.forum-title').val('');
+		$('.forum-periodo').val('');
+		$('.create-forumSection textarea').val('');
+		$('.create-forumSection .moderador').val('');
 	};
 	this.denunciar = function(){
 		alert('su denuncia ha sido enviada');
@@ -135,15 +141,6 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$scope.showConfig=true;
 		$('.forum-config').removeClass('ng-hide');
 		$('.forum-create').addClass('ng-hide');
-
-		// $('.create-forumSection .invitados').val('');
-		// $('.forum-title').val('');
-		// $('.forum-periodo').val('');
-		// $('.select-carrera option:selected').attr('val','-1');;
-		// $('.select-curso option:selected').attr('val');
-		// $('.create-forumSection textarea').val('');
-		// $('.create-forumSection .moderador').val();
-
 	};
 
 	this.editarForo = function(){
