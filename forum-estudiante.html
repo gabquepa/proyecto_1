@@ -48,7 +48,7 @@
               </li>
             </ul>
           </div>
-          <div class="inine-forum-display">
+          <div class="inine-forum-display" style="display:none;">
             <div class="forum-lst">
               <h3 id="course" class="course">  </h3>
               <h4 id="course-title" class="course-title"></h4>
@@ -58,9 +58,11 @@
               <a href="#add-comment" data-toggle="collapse" class="pull-right">Comentar</a>
               <div id="add-comment" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <h3>Ingrese su Comentario</h3>
-                  <textarea placeholder="Comentario ..."></textarea>
-                  <button class="btn-blue pull-right">Publicar</button>
+                  <form name="forumForm" ng-submit="forumForm.$valid && forum.addComment()">
+                    <h3>Ingrese su Comentario</h3>
+                    <textarea placeholder="Comentario ..." class="comment-text" required></textarea>
+                    <button class="btn-blue pull-right">Publicar</button>
+                  </form>
                 </div>
               </div>
             </div>

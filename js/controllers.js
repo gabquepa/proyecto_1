@@ -194,9 +194,29 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 	});
 
 	this.displayForum = function(forum){
-		$('.course').text(forum.CursoId);
+		$('.inine-forum-display').show();
+		// $('.course').text(forum.CursoId);
 		$('.course-title').text(forum.titulo);
 		$('.main-forum').text(forum.tema);
+		var carrera;
+		if((forum.CarreraId)==='1'){carrera="cursosDW.json";}
+		if((forum.CarreraId)==='2'){carrera="cursosDS.json";}
+		if((forum.CarreraId)==='3'){carrera="cursosInT.json";}
+		if((forum.CarreraId)==='4'){carrera="cursosT.json";}
+		if((forum.CarreraId)==='5'){carrera="cursosCS.json";}
+		if((forum.CarreraId)==='6'){carrera="cursosBD.json";}
+		if((forum.CarreraId)==='7'){carrera="cursosI.json";}
+
+		$http.get('/Proyecto_1/JSON/'+carrera).success(function(data){
+			for(var i= 0; i<data.length;i++){
+				if(data[i].id === forum.CursoId){
+					$('.course').text(data[i].name);
+				}
+			}
+		});
+
+
+
 		if((forum.comments).length > 1){
 			$scope.comments= forum.comments;
 			$('.comments-lst').show();
@@ -204,6 +224,7 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 			$('.comments-lst').hide();
 		}
 	};
+
 	this.denunciar = function(){
 		alert('Su denuncia ha sido enviada');
 	};
@@ -214,8 +235,12 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 			$scope.showForumList=true;
 			$('.Foro-lst').removeClass('ng-hide');
 		}, 3000);
+	};
+	this.addComment = function(){
+		alert('aqui estoy '+$('.comment-text').val());
 
-
+		$('#add-comment').collapse('toggle');
+		$('.comment-text').val('');
 	};
 
 }]);

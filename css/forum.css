@@ -20,8 +20,10 @@ body{
   color: #686666;
 }
 .forum .course{
-  font-size: 16px;
-  color: #595959;
+  font-size: 24px;
+  color: #196A95;
+  text-align: center;
+  margin-top: 45px;
 }
 .forum .course-title, .forum-config .config-forumSection .course-title{
   font-size: 16px;
@@ -49,6 +51,9 @@ body{
   margin-left: 2%;
   margin-right: 2%;
   min-height: 180px !important;
+}
+.forum .comments-lst h3{
+  margin-top: 50px;
 }
 .forum #add-comment h3, .forum .comments-lst h3, .forum-search .Foro-lst h3, .forum-config .comments-lst h3 {
   font-size: 16px;
