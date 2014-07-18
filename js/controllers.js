@@ -815,22 +815,8 @@ app.controller('misCarreras-cursos',['$http', function($http){
 	};
 }]);
 
-app.controller('editarComentController',function(){
-	this.value=false;
-
-	this.editarComent=function(){
-
-		//false esconder ----- true mostrar
-		
-		if(this.value===false){
-			return this.value=true;
-		}
-
-		if(this.value===true){
-			return this.value=false;
-		}
-	}
-});
+//cambie el controlador a los mios para poder guardar cambios en el arreglo de post
+//Sergio Herrera 
 app.controller('buscarDocController',function(){//Controlador de mi seccion de Buscar Documento
 
 	//1=esconder 2=mostrar
@@ -1099,6 +1085,10 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		this.tabblog ="b1";
 		this.tabblogIn =1;
 		this.blogtemp =0;
+		this.value=false;
+		this.guardar={'display':'none'};
+		this.editar="";
+		
 		if (this.tabblog=="b1") { 
 				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
 		}; 
@@ -1116,16 +1106,19 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		};
 		
 		this.getTabIn=function(getTab,pidBlog,puser){
-            $("#divEditarPost").show();        
+            $("#divEditarPost").show(); 
+            $("#newPost").val()       
             this.tabblogIn = getTab;
            for (var i=0; i < puser.blog.length; i++) {
 			  if (puser.blog[i].idPost==pidBlog) {
 	    		 this.blogtemp=i;
+	    		 $("#newPost").val(puser.blog[i].texto)
 	    	  };
 			};
          };  
          this.regresar=function(getTab){  
-            this.tabblogIn = getTab;		
+            this.tabblogIn = getTab;
+           	
 			//limpiarForms();
 		};
 		
@@ -1139,8 +1132,27 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		};
 
 		this.miBlog = function(){
-			return this.blogtemp;	
+			
+			return this.blogtemp;
+				
 		};
+		
+			
+			this.editarComent=function(){
+					this.guardar={'':''};
+					this.editar={'display':'none'};
+					this.value=true;
+			}
+	
+			this.saveComent=function(user,i,ipost){
+				    this.editar={'':''};
+					this.guardar={'display':'none'};
+				    var tempText="";
+				    tempText=$("#newPost").val();
+				    user[i].blog[ipost].texto=tempText;
+		            alert(user[i].blog[ipost].texto);
+					this.value=false;
+			}
 		
 	});
 	

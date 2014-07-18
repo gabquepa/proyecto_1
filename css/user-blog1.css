@@ -298,14 +298,13 @@
 	padding: 1em;
 }
 .titulo-fecha{
-	float: left;
-	width: 30%;
-	margin-right: 49%;
-	margin-left: 2%;
+	width: 100%;
+
 }
 .titulo-fecha span:nth-child(2){
 	color: gray;
 	margin-left: 2%;
+
 }
 .editar-eliminar{
 	margin-bottom: 1em;

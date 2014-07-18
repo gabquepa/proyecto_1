@@ -14,7 +14,7 @@
 			<option value="" >Seleccione un Carrera</option>	
 
             </select>
-            {{carr}}
+        
             <select class="slctSearchblog" ng-model="buscarBlog.mycurso" ng-style="buscarBlog.styleSelectCurso" ng-options="curs.nombre for curs in buscarBlog.CursoList()" ng-disabled="buscarBlog.tempEstadoCurso" ng-change="buscarBlog.buscarCurso(carreraTemp)">
               <option value="" >Seleccione un Curso</option>
 
