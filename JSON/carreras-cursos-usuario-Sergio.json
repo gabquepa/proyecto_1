@@ -6,7 +6,7 @@
                 "nombre": "curso1 IT",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -17,7 +17,7 @@
                 "nombre": "curso2 IT",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -33,7 +33,7 @@
                 "nombre": "curso1 Telematica",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -44,7 +44,7 @@
                 "nombre": "curso2 Telematica",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -60,7 +60,7 @@
                 "nombre": "curso3 Integracion",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -71,7 +71,7 @@
                 "nombre": "curso4 Integracion",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -87,7 +87,7 @@
                 "nombre": "curso3 Web",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -98,7 +98,7 @@
                 "nombre": "curso4 Web",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -114,7 +114,7 @@
                 "nombre": "curso3 Software",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
@@ -125,7 +125,7 @@
                 "nombre": "curso4 Software",
                 "usuario": [
                     {
-                        "usuario": "juan@cenfotec.ac.cr"
+                        "usuario": "juan@ucenfotec.ac.cr"
                     },
                     {
                         "usuario": "alvaro@ucenfotec.ac.cr"
