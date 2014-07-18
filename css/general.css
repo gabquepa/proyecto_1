@@ -134,7 +134,7 @@ body{
   margin: 0 !important;
 }
 .navbar-collapse.collapse form, .navbar-collapse.collapsing form{
-  display: none;
+  /*display: none;*/
 }
 
 .footer{

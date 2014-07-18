@@ -28,7 +28,8 @@
 	      </ul>
 	      <form class="navbar-form navbar-left pull-right" role="search">
 	        <div class="nav navbar-nav navbar-right form-group">
-			  <input type="text" class="form-control" placeholder="Search">
+			  <input id="textbox" class="form-control" type="text" placeholder="Search..." onkeydown="if (event.keyCode == 13 || event.which == 13) { location='http://www.google.com/search?q=' + encodeURIComponent(document.getElementById('textbox').value);}" />
+
 			</div>
 	      </form>
 	    </div><!-- /.navbar-collapse -->
