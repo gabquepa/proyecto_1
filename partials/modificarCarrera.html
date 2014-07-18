@@ -3,21 +3,22 @@
                         <div class="contenedorInputs">
                               <label>Seleccione una Carrera</label>
 
-                              <select class="form-control" ng-model="carrera">
-                                <option  value ="{{conf.carreras.nombre}}" ng-repeat='nombre in conf.carreras'>{{conf.carreras.nombre}}</option>
-                                
-                              </select>
+                              <select id="cursoslt" class="form-control" ng-model="conf.miCarrera" ng-options="carrera.nombre for carrera in conf.carreras"
+                              ng-change="conf.modifCarrera()">
+                              <option value="" >Seleccione un Carrera</option>  
+
+                                    </select>
                               
                           </div>
 
                         <div class="contenedorInputs">
                                 <label>Codigo de Carrera</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" id="codCarrera" ng-model="conf.miCarrera.codigo">
                         </div>
                         <div class="contenedorInputs">
                                 <label>Nombre de la Carrera</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" id="nomCarrera" ng-model="conf.miCarrera.nombre">
                         </div>
 
-            <button type="submit" class="guardarBtn ">Guardar</button>
+            <button type="submit" class="guardarBtn " ng-click="conf.actualizarCarrera()">Guardar</button>
 </div>
