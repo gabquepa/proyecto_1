@@ -1150,7 +1150,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				    var tempText="";
 				    tempText=$("#newPost").val();
 				    user[i].blog[ipost].texto=tempText;
-		            alert(user[i].blog[ipost].texto);
 					this.value=false;
 			}
 		
