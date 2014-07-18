@@ -186,6 +186,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 app.controller('StudentForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
 	forum.lists=[];
+	this.comment = {};
+	$scope.date = new Date();
 	$http.get('/Proyecto_1/JSON/forums.json').success(function(data){
 		for(var i= 0; i<data.length;i++){
 			// if()
@@ -198,6 +200,7 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 		// $('.course').text(forum.CursoId);
 		$('.course-title').text(forum.titulo);
 		$('.main-forum').text(forum.tema);
+		$('#id-foro').attr('value', forum.id);
 		var carrera;
 		if((forum.CarreraId)==='1'){carrera="cursosDW.json";}
 		if((forum.CarreraId)==='2'){carrera="cursosDS.json";}
@@ -225,6 +228,12 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 		}
 	};
 
+	this.setInfo = function(){
+		var d = new Date();
+		$('#textAuthor').val('test@test.test');
+		$('#textDate').val(d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear());		
+	};
+
 	this.denunciar = function(){
 		alert('Su denuncia ha sido enviada');
 	};
@@ -236,11 +245,23 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 			$('.Foro-lst').removeClass('ng-hide');
 		}, 3000);
 	};
-	this.addComment = function(){
-		alert('aqui estoy '+$('.comment-text').val());
 
+	this.addComment = function(){
+		var forumId= $('#id-foro').val();
+		var forumS = [];
+		
+		for(var i= 0; i<(forum.lists).length;i++){
+			if((forum.lists)[i].id == forumId){
+				forumS = (forum.lists)[i];
+			}
+		}	
+		console.log(this.comment);
+
+		forumS.comments.push(this.comment);
+		this.comment={};
 		$('#add-comment').collapse('toggle');
 		$('.comment-text').val('');
+		$('.comments-lst').show();
 	};
 
 }]);

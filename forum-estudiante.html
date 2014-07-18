@@ -50,17 +50,20 @@
           </div>
           <div class="inine-forum-display" style="display:none;">
             <div class="forum-lst">
+              <input id="id-foro" hidden>
               <h3 id="course" class="course">  </h3>
               <h4 id="course-title" class="course-title"></h4>
               <div class="main-forum">
                
               </div>
-              <a href="#add-comment" data-toggle="collapse" class="pull-right">Comentar</a>
+              <a href="#add-comment" data-toggle="collapse" class="pull-right" ng-click="forum.setInfo()">Comentar</a>
               <div id="add-comment" class="panel-collapse collapse">
                 <div class="panel-body">
                   <form name="forumForm" ng-submit="forumForm.$valid && forum.addComment()">
                     <h3>Ingrese su Comentario</h3>
-                    <textarea placeholder="Comentario ..." class="comment-text" required></textarea>
+                    <textarea ng-model="forum.comment.texto" placeholder="Comentario ..." class="comment-text" required></textarea>
+                    <input id="textAuthor" ng-model="forum.comment.nombre" hidden>
+                    <input id="textDate" ng-model="forum.comment.fecha" hidden>
                     <button class="btn-blue pull-right">Publicar</button>
                   </form>
                 </div>
