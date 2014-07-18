@@ -8,11 +8,14 @@ var app = angular.module('controllers-project',[]);
 /************** Route Controllers **************/
 app.controller('routeController', function($scope, $cookieStore) {
 	var tipo = $cookieStore.get('usuarioTipo');
-	if(tipo==="P"){
-		$(".headForum").attr("href", "/Proyecto_1/forum-profesor.html");
+	if(tipo==='P'){
+		$('.headForum').attr('href', '/Proyecto_1/forum-profesor.html');
 	}
-	else{
-		$(".headForum").attr("href", "/Proyecto_1/forum-estudiante.html");
+	if(tipo==='E'){
+		$('.headForum').attr('href', '/Proyecto_1/forum-estudiante.html');
+	}
+	if(window.location.pathname === '/Proyecto_1/forum-profesor.html' || window.location.pathname === '/Proyecto_1/forum-estudiante.html'){
+		$('.forumOpt').addClass('active');
 	}
 });
 
@@ -808,6 +811,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				if (pUsuario[i].estado=="A") {
 		        	   $('#mensajeLogin').html("");
 		        	   $cookieStore.put('usuario', i);
+		        	   $cookieStore.put('usuarioTipo', pUsuario[i].tipo);
+
 		        	   window.location = "/Proyecto_1/user-blog1.html";
 				} else{
 					$('#mensajeLogin').html("");
@@ -829,6 +834,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   
 	    this.logOut = function(){
 			$cookieStore.remove("usuario");
+			$cookieStore.remove("usuarioTipo");
 			window.location = "/Proyecto_1/login.html";
 			
 	    };
