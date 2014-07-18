@@ -1,31 +1,26 @@
 
  <div ng-show="cursoContr.isSelected(1, confPanel.tab)">
 
- <!--  <form role="form cf" name="crearCursoForm" ng-controller="crearCursoController as crearCurso" ng-submit="crearCurso.addCurso()"> -->
+
                           <div class="contenedorInputs">
                               
-                              <select id="cursoslt" class="form-control" ng-model="conf.miCarrera" ng-options="carrera.nombre for carrera in conf.carreras">
+                              <select id="crearCursoSel" class="form-control" ng-model="conf.miCarreraCC" ng-options="carrera.nombre for carrera in conf.carreras">
                               <option value="" >Seleccione un Carrera</option>  
 
                                     </select>
-                              <!-- <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                              </select> -->
+                            
                           </div>
 
                         <div class="contenedorInputs">
                                 <label>Codigo del Curso</label>
-                                <input type="text" class="form-control" ng-model="conf.miCurso.idCurso">
+                                <input type="text" class="form-control" ng-model="conf.miCursoCC.idCurso">
                         </div>
                         <div class="contenedorInputs">
                                 <label>Nombre del Curso</label>
-                                <input type="text" class="form-control" ng-model="conf.miCurso.nombreCurso">
+                                <input type="text" class="form-control" ng-model="conf.miCursoCC.nombreCurso">
+  
                         </div>
 
-            <button type="submit" class="guardarBtn " ng-click="conf.buscarIndex()" >Guardar</button> 
+            <button type="submit" class="guardarBtn " ng-click="conf.crearCurso()" >Guardar</button> 
   <!-- </form> -->
 </div>

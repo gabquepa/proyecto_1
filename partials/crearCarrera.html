@@ -1,16 +1,16 @@
 
 <div ng-show="carreraContr.isSelected(1, confPanel.tab)" >
 
-	 <form role="form cf" name="crearCarreaForm" ng-controller="crearCarreraController as crearCarrera" ng-submit="crearCarrera.addCarrera(conf.carreras)">
+	 <form role="form cf" name="crearCarreaForm" ng-submit="conf.addCarrera()">
 
 		<div class="contenedorInputs">		
 		      <label>Codigo de Carrera</label>
-			  <input type="text" class="form-control" ng-model="crearCarrera.carrera.codigo" required>
+			  <input type="text" class="form-control" ng-model="conf.miCarrera.codigo" required>
 		</div>
 
 		<div class="contenedorInputs">
 		      <label>Nombre Carrera</label>
-		      <input type="text" class="form-control" ng-model="crearCarrera.carrera.nombre" required>
+		      <input type="text" class="form-control" ng-model="conf.miCarrera.nombre" required>
 		</div>
 
 		<button type="submit" class="guardarBtn" value="submit">Guardar</button>

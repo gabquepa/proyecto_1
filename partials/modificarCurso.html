@@ -1,36 +1,29 @@
   <div ng-show="cursoContr.isSelected(2, confPanel.tab)" >  
 
                              <div class="contenedorInputs">
-                                  <label>Seleccione una Carrera</label>
-                                  <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                  </select>
+                                  <select id="modifCurso" class="form-control" ng-model="conf.miCarreraMC" ng-options="carrera.nombre for carrera in conf.carreras">
+                              <option value="" >Seleccione un Carrera</option>  
+
+                                    </select>
                               </div>
 
                               <div class="contenedorInputs">
-                                  <label>Seleccione un Curso</label>
-                                  <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                  </select>
+                                   <select id="modiCurso1" class="form-control" ng-model="conf.miCursoMC" ng-options="curso.nombreCurso for curso in conf.getCurso()"
+                                   ng-change="conf.modifCurso()">
+                                   <option value="" >Seleccione un Curso</option>  
+
+                                    </select>
                               </div>
 
 
                         <div class="contenedorInputs">
                                 <label>Codigo del Curso</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" ng-model="conf.miCursoMC.idCurso" id="modifIdCurso">
                         </div>
                         <div class="contenedorInputs">
                                 <label>Nombre del Curso</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" ng-model="conf.miCursoMC.nombreCurso" id="modifNombreCurso">
                         </div>
 
-            <button type="submit" class="guardarBtn ">Guardar</button> 
+            <button type="submit" class="guardarBtn" ng-click="conf.actualizarCurso()">Guardar</button> 
 </div>
