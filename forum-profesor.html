@@ -32,7 +32,10 @@
           <p>En esta sección podra accesar a los foros invitados y crear y editar los personales.</p>
           <h3  class="config-forumTitle btn-blue">Foro </h3>
           <div class="inine-forum-list" ng-show="{{showList}}" ng-click="forum.showForum()">
+            <br>
             <button class="btn-blue clearfix" style="color:white;" ng-click="forum.showCreateForum()">Crear Foro</button>
+            <button class="btn-blue clearfix" style="color:white;" ng-click="forum.showCreateForum()"><a style="color:white; text-decoration:none;" href="/Proyecto_1/forum-search.html">Buscar Foros</a></button>
+            
             <h4>Mis foros</h4>
             <ul class="clearfix">
               <li ng-repeat="list in forum.lists" data-forumId="{{list.id}}"><a ng-click="forum.displayForum(list)">{{list.titulo}}</a></li>

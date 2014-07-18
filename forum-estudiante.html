@@ -30,7 +30,10 @@
         <div class="forum" ng-controller="StudentForumController as forum">
           <h3>Mis Foros_</h3>
           <p>En esta sección podrá ver los foros de este curso y si está invitado puede participar y comentar en el mismo.</p>
-          <a href="/Proyecto_1/forum-search.html">Buscar Foros</a>
+          <h3  class="header-forum-est btn-blue" style="color:white; font-size:16px;">Foro </h3>
+          <br>
+          <button class="btn-blue clearfix" style="color:white;" ng-click="forum.showCreateForum()"><a style="color:white; text-decoration:none;" href="/Proyecto_1/forum-search.html">Buscar Foros</a></button>
+          
           <div class="inine-forum-list">
             <h4>Foros</h4>
             <ul class="clearfix">

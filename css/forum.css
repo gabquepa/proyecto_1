@@ -94,7 +94,7 @@ body{
   display: none;
 }
 
-/************** forum 2 **************/
+/************** forum search **************/
 
 .forum-search .search-section, .forum-create .create-forumSection{
   -webkit-box-shadow: -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
@@ -102,7 +102,7 @@ body{
   box-shadow:         -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
   padding: 2%;
 }
-.forum-search .search-title, .forum-config .config-forumTitle, .forum-create .create-forumTitle {
+.forum-search .search-title, .forum-config .config-forumTitle, .forum-create .create-forumTitle, .header-forum-est{
   color: white;
   text-align: center;
   border-radius: 5px;
@@ -139,6 +139,14 @@ body{
   display: inline-block;
   text-align: right;
 }
+
+.forum-search div .loading{
+  width: auto;
+  max-width: 35px;
+  margin-top: 10px;
+  display: none;
+}
+
 
 /************** forum 3 **************/
 

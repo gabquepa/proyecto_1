@@ -27,12 +27,12 @@
     <project-side-nav></project-side-nav>
 
     <div class="main row">
-        <div class="forum-search" ng-controller="ForumController as forum">
+        <div class="forum-search" ng-controller="StudentForumController as forum" >
           <h3>Foros_</h3>
           <p>En esta sección usted podrá buscar foros de interés y comentar los mismos de estar invitado.</p>
           <h3  class="search-title btn-blue">Buscar Foro </h3>
-          <div class="search-section" ng-controller="CarrerasController as universidad">
-            <input class="form-control" placeholder="Buscar">
+          <div class="search-section" ng-controller="CarrerasController as universidad" >
+            <input id="inputbusqueda" class="form-control" placeholder="Buscar">
             <span></span>
             <h4>Búsqueda Avanzada</h4>
             <select ng-mouseleave="universidad.selectCurso()" class="select-carrera">
@@ -49,13 +49,17 @@
               <option val="1" disable>Tema 2</option>
               <option val="1" disable>Tema 3</option>
             </select>
-            <button class="btn-blue" ng-click="forum.buscarForo()">Buscar</button>
+            <button class="btn-blue" ng-click="forum.buscarForo()">Buscar</button><br>
+            <div style="text-align: center;"><img src="/Proyecto_1/img/loading.gif" class="loading" /> </div>
           </div>
-          <div class="Foro-lst" ng-show="showForumList">
+          <div class="Foro-lst" ng-show="forum.showForumList">
+            <br>
+            <br>
+            <label>Resultados de la búsqueda: </label><br>
             <h3>Foros</h3>
-            <a href="#" class="Forum-name">Nombre</a> <span>01/01/2014</span>
+            <a href="#" class="Forum-name">pablo@ucenfotec.ac.cr</a> <span>01/01/2014</span>
             <div class="forum">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent in turpis non quam tempor tempus. Integer ac est interdum, dictum ante ut, porta sem.</p>
+              <p>Que opinan de la universidad? y de los cursos de 'proyecto 1' para nosotros es importante la opinión de los estudiantes para poder seguir mejorando día con día</p>
             </div>
           </div>
         </div>   

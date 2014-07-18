@@ -14,7 +14,7 @@ app.controller('routeController', function($scope, $cookieStore) {
 	if(tipo==='E'){
 		$('.headForum').attr('href', '/Proyecto_1/forum-estudiante.html');
 	}
-	if(window.location.pathname === '/Proyecto_1/forum-profesor.html' || window.location.pathname === '/Proyecto_1/forum-estudiante.html'){
+	if(window.location.pathname === '/Proyecto_1/forum-profesor.html' || window.location.pathname === '/Proyecto_1/forum-estudiante.html' || window.location.pathname === '/Proyecto_1/forum-search.html'){
 		$('.forumOpt').addClass('active');
 	}
 });
@@ -22,6 +22,8 @@ app.controller('routeController', function($scope, $cookieStore) {
 
 
 /************** Forum Controllers **************/
+
+/************** PROFESOR Forum Controllers **************/
 app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
 	forum.lists=[];
@@ -138,6 +140,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	};
 
 }]);	
+
+/************** ESTUDIANTE Forum Controllers **************/
 app.controller('StudentForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
 	forum.lists=[];
@@ -163,8 +167,20 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 	this.denunciar = function(){
 		alert('su denuncia ha sido enviada');
 	};
+	this.buscarForo = function(){
+		$('.forum-search div .loading').show();
+		setTimeout(function(){
+			$('.forum-search div .loading').hide();
+			$scope.showForumList=true;
+			$('.Foro-lst').removeClass('ng-hide');
+		}, 3000);
+
+
+	};
 
 }]);
+
+/************** HERRAMIENTAS **************/
 
 app.controller('CarrerasController', ['$http', function($http){
 	var universidad = this;
