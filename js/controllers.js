@@ -785,10 +785,16 @@ app.controller('historialDesController',['$http', function($http){//controlador 
 app.controller('UserController',['$http',function($http){
 		var store = this;
 		store.user=[];
+		store.carreras=[];
+		$http.get('/proyecto_1/JSON/carreras-cursos-usuario-Sergio.json').success(function(data){ //
+			store.carreras = data;
+		});
 		$http.get('/proyecto_1/JSON/usuariosTestSergio.json').success(function(data){ //
 			store.user = data;
 		});
 }]);
+
+
 
 //controlador valida info de usuarios para ingresar al sistema
 app.controller('validarLogin', ['$cookieStore',function($cookieStore){
@@ -802,9 +808,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				if (pUsuario[i].estado=="A") {
 		        	   $('#mensajeLogin').html("");
 		        	   $cookieStore.put('usuario', i);
-		        	   $cookieStore.put('usuarioTipo', pUsuario[i].tipo);
-
-		        	   console.log(pUsuario[i].tipo);
 		        	   window.location = "/Proyecto_1/user-blog1.html";
 				} else{
 					$('#mensajeLogin').html("");
@@ -826,7 +829,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   
 	    this.logOut = function(){
 			$cookieStore.remove("usuario");
-			$cookieStore.remove("usuarioTipo");
 			window.location = "/Proyecto_1/login.html";
 			
 	    };
@@ -958,6 +960,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	//controlador muestra y oculta contenedores del blogs
 	app.controller('controlBlog', function(){
 		this.tabblog ="b1";
+		this.tabblogTipo="";
 		if (this.tabblog=="b1") { 
 				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
 		}; 
@@ -972,6 +975,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			};
 			//limpiarForms();
 		};
+		
 		
 		this.isSelected = function(checkedTab){
 			return this.tabblog ===checkedTab;	
@@ -1081,10 +1085,48 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 	app.controller("buscarUser",function(){
 	   this.tempDuenio="";
-	    this.buscarUs= function(pIdDueno,puser){	
-
+	   this.tempEstadoCurso=true;
+	   this.tempEstadoUsuario=true;
+	   this.styleSelectCurso={'background-color': '#ebebeb'};
+	   this.styleSelectUser={'background-color': '#ebebeb'};
+	   this.styleBlogResult={'color':'#ebebeb'};
+	   this.mycarrera={};
+	   this.mycurso={};
+	   this.myuser={};
+	   this.user="";
+	    this.buscarCarrera= function(){	
+             this.tempEstadoCurso=false;
+             this.styleSelectCurso={'background-color':''};
+                       
+             
+	    };
+	    
+	    this.CursoList= function(){	
+            return this.mycarrera.cursos;
+	    };
+	    
+	    this.buscarCurso= function(){
+             this.tempEstadoUsuario=false;
+             this.styleSelectUser={'background-color':''};
+	    };
+	    
+	     this.userList= function(){	
+            return this.mycurso.usuario;
+	    };
+	    
+	    this.buscarUs= function(puser){	
+             this.styleBlogResult={'color':''};
 			for (var i=0; i < puser.length; i++) {
-			  if (puser[i].idUsuario==pIdDueno) {
+			  if (puser[i].usuario==this.myuser.usuario) {
+			  	this.tempDuenio=i;
+			  }
+			};
+	    }; 
+	    
+	    this.buscarUser= function(puser){	
+	    	alert(this.user);
+			for (var i=0; i < puser.length; i++) {
+			  if (puser[i].usuario==this.user) {
 			  	this.tempDuenio=i;
 			  }
 			};
@@ -1093,14 +1135,18 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    this.getDuenio = function(pIdDueno,puser){	
 			return this.tempDuenio;
 	    }; 
+	    
+	    
+	    
+	    
 	       
 	});
 	
 	
 	
 	
+	
 //Termina Sergio Herrera Durán----------------------------------------------
-
 
 
 

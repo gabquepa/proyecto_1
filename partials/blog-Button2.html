@@ -5,29 +5,26 @@
 	 		
 	 	<form class="formAddBlog clearfix">	
 
-			<input type="search" class="form-control blogsearch" placeholder="Search"/>
+			<input type="search" class="form-control blogsearch" placeholder="Search" model="buscarBlog.user" ng-keypress="buscarBlog.buscarUser(usuario.user)"/>
 			<span class="linea"></span>
-                           
+
             <h4>Búsqueda Avanzada</h4>
-            <select class="slctSearchblog">
-              <option value="" disable>Seleccione una Carrera</option>
-              <option value="" disable>Carrera 1</option>
-              <option value="" disable>Carrera 2</option>
-              <option value="" disable>Carrera 3</option>
-            </select>
-            <select class="slctSearchblog">
-              <option value="" disable>Seleccione un Curso</option>
-              <option value="" disable>Curso 1</option>
-              <option value="" disable>Curso 2</option>
-              <option value="" disable>Curso 3</option>
-            </select>
-            <select class="slctSearchblog" ng-model="usTemp">
-              <option value="" disable>Seleccione un Usuario</option>
-              <option value="1" disable>Usuario 1</option>
-              <option value="2" disable>Usuario 2</option>
+
+            <select id="cursoslt" class="slctSearchblog" ng-model="buscarBlog.mycarrera" ng-options="carre.carrera for carre in usuario.carreras" ng-change="buscarBlog.buscarCarrera()" >
+			<option value="" >Seleccione un Carrera</option>	
 
             </select>
-	 		<button type="submit" class="btnaddBlog pull-right" ng-click="buscarBlog.buscarUs(usTemp,usuario.user)">Buscar</button>
+            {{carr}}
+            <select class="slctSearchblog" ng-model="buscarBlog.mycurso" ng-style="buscarBlog.styleSelectCurso" ng-options="curs.nombre for curs in buscarBlog.CursoList()" ng-disabled="buscarBlog.tempEstadoCurso" ng-change="buscarBlog.buscarCurso(carreraTemp)">
+              <option value="" >Seleccione un Curso</option>
+
+            </select>
+            <select class="slctSearchblog" ng-model="buscarBlog.myuser" ng-options="user.usuario for user in buscarBlog.userList()" ng-style="buscarBlog.styleSelectUser" ng-disabled="buscarBlog.tempEstadoUsuario">
+              <option value="" >Seleccione un Usuario</option>
+
+
+            </select>
+	 		<button type="submit" class="btnaddBlog pull-right" ng-click="buscarBlog.buscarUs(usuario.user)">Buscar</button>
 
  		</form>
 	</div>
