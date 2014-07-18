@@ -1,14 +1,18 @@
 <!--Top Documentos-->
               <div>
                 <h2>Top Documentos más votados</h2>
-                <ul>
-                    <li ng-repeat="top in add.documentos | orderBy:'-votacion'">
-                      <span class='doc_lispandoc'>{{top.autor}}</span>
-                      <a href="#">{{top.nombre}}</a>
-                      <span class='doc_lispandoc'>{{top.fecha}}</span>
-                      <img src="img/sample-stars.png">
-                      <span class='doc_lispandoc'>{{top.carrera}}/{{top.curso}}</span>
-                    </li>
-                  </ul>
+                <table id='tableDoc'>
+                  <tr ng-repeat="top in add.documentos | orderBy:'-votacion'">
+                    <td class='tbautor'><span class='doc_lispandoc'>{{top.autor}}</span></td>
+                  
+                    <td class='tbnombre'><a href="#">{{top.nombre}}</a></td>
+                  
+                    <td class='tbfecha'><span class='doc_lispandoc'>{{top.fecha}}</span></td>
+                  
+                    <td class='tbimg'><img src="img/sample-stars.png"></td>
+                  
+                    <td class='tbcyc'><span class='doc_lispandoc'>{{top.carrera}}/{{top.curso}}</span></td>
+                  </tr>
+                </table>
               </div>
 <!--Top Documentos-->

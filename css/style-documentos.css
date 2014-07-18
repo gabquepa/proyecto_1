@@ -50,6 +50,29 @@
  float: left;
 }
 
+#tableDoc .tbautor{
+	width: 15%;
+}
+
+#tableDoc .tbnombre{
+	width: 25%;
+	text-align: center; 
+}
+
+#tableDoc .tbfecha{
+	width: 10%;
+	text-align: center; 
+}
+
+#tableDoc .tbimg{
+	text-align: center; 
+}
+
+#tableDoc .tbcyc{
+	width: 25%;
+	text-align: center; 
+}
+
 /*BUSQUEDA DE DOCUMENTO*/
 #doc_inpbuscardoc{
 	width: 100%;

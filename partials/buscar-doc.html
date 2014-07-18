@@ -14,7 +14,7 @@
                     <span>Ingrese el criterio de búsqueda</span>
                     <input type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc'>
                     <select  ng-mouseleave="cyc.selectCurso()" class="select-carrera" >
-                      <option val="-1" disable>Seleccione una Carrera</option>
+                      <option val="-1">Seleccione una Carrera</option>
                       <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                     </select>
                     <select class="select-curso">

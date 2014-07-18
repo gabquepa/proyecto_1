@@ -611,7 +611,7 @@ app.controller('agregarDocController',['$http', function($http){
 	var controller = this;
 		controller.documentos= [];
 
-		$http.get('/proyecto_1/JSON/topDoc.json').success(function(data){
+		$http.get('/proyecto_1/JSON/docs.json').success(function(data){
 			controller.documentos =data;
 		});
 
@@ -671,8 +671,6 @@ app.controller('misCarreras-cursos',['$http', function($http){
 		if(carrera ==="1"){
 			$http.get('/Proyecto_1/JSON/cursosDW.json').success(function(data){
 				universidad.cursos = data;
-				$('#confNavBtn1').attr('class',"btn activetab");
-				// $('#changepass').attr('class',"btn profBtn");
 			});
 		}
 		else if(carrera ==="2"){
@@ -774,7 +772,7 @@ app.controller('historialDesController',['$http', function($http){//controlador 
 
 		console.log('Test');
 
-		$http.get('/proyecto_1/JSON/historialDescargas.json').success(function(data){
+		$http.get('/proyecto_1/JSON/docs.json').success(function(data){
 			docDesc.descargas =data;
 			console.log(data);
 		});
