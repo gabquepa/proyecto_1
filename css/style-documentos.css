@@ -51,24 +51,29 @@
 }
 
 #tableDoc .tbautor{
+	height: 5em;
 	width: 15%;
 }
 
 #tableDoc .tbnombre{
+	height: 5em;
 	width: 25%;
 	text-align: center; 
 }
 
 #tableDoc .tbfecha{
+	height: 5em;
 	width: 10%;
 	text-align: center; 
 }
 
 #tableDoc .tbimg{
+	height: 5em;
 	text-align: center; 
 }
 
 #tableDoc .tbcyc{
+	height: 5em;
 	width: 25%;
 	text-align: center; 
 }
