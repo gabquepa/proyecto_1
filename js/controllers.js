@@ -62,6 +62,13 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		}else{
 			$('.comments-lst').hide();
 		}
+
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 400);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 500);
 	};
 	this.hideForum = function(){
 		$scope.showForum=true;
@@ -117,7 +124,10 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		for(var i= 0; i<invitados.length;i++){
 			invitados[i] = 'email":"'+invitados[i];
 		}
-		console.log(invitados);
+		// var rv = {};
+	 //  for (var i = 0; i < invitados.length; ++i)
+	 //    rv[i] = invitados[i];
+	 //  console.log(rv);
 
 		this.newforum.id=(forum.lists).length+1;
 		this.newforum.profesor="0001";
@@ -256,7 +266,7 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 			}
 		}	
 		
-		$scope.forumForm.$pristine = true;	
+		// $scope.forumForm.$pristine = true;	
 		this.comment.nombre = $('#usuario').text();
 		this.comment.fecha = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
 		forumS.comments.push(this.comment);

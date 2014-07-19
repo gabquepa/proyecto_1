@@ -96,7 +96,7 @@ body{
 .forum .comments-lst .star-rating{
   display: inline-block;
 }
-.forum .comments-lst .star-rating .caption{
+.forum .comments-lst .star-rating .caption, .forum-config .comments-lst .star-rating .caption{
   display: none;
 }
 
