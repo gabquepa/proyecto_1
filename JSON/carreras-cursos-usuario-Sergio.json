@@ -3,7 +3,7 @@
         "carrera": "IT English",
         "cursos": [
             {
-                "nombre": "curso1 IT",
+                "nombre": "Inglés 1",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -14,7 +14,7 @@
                 ]
             },
             {
-                "nombre": "curso2 IT",
+                "nombre": "Inglés 2",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -30,7 +30,7 @@
         "carrera": "Telematica",
         "cursos": [
             {
-                "nombre": "curso1 Telematica",
+                "nombre": "Telematica 1",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -41,7 +41,7 @@
                 ]
             },
             {
-                "nombre": "curso2 Telematica",
+                "nombre": "Telematica 2",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -57,7 +57,7 @@
         "carrera": "Integracion de Tecnologias",
         "cursos": [
             {
-                "nombre": "curso3 Integracion",
+                "nombre": "Tecnología 1",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -68,7 +68,7 @@
                 ]
             },
             {
-                "nombre": "curso4 Integracion",
+                "nombre": "Integracion 1",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -84,7 +84,7 @@
         "carrera": "Desarrollo y Diseño Web",
         "cursos": [
             {
-                "nombre": "curso3 Web",
+                "nombre": "Proyecto 1",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -95,7 +95,7 @@
                 ]
             },
             {
-                "nombre": "curso4 Web",
+                "nombre": "Diseño Web 2",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -111,7 +111,7 @@
         "carrera": "Desarrollo de Software",
         "cursos": [
             {
-                "nombre": "curso3 Software",
+                "nombre": "Introducción Programación",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"
@@ -122,7 +122,7 @@
                 ]
             },
             {
-                "nombre": "curso4 Software",
+                "nombre": "Programación 2",
                 "usuario": [
                     {
                         "usuario": "juan@ucenfotec.ac.cr"

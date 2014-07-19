@@ -141,6 +141,15 @@ app.directive('projectSideNav', function(){
 //Comienza Alejandro 
 
 ///////DIRECTIVAS DE CONFIGURACION///////////////////
+
+app.directive('headerConfig', function(){
+		return{
+			restrict: 'E',
+			// restrict: 'A',
+			templateUrl: '/Proyecto_1/partials/headerconfig.html'
+
+		};
+	});
 /*********************************Configuration Header***************************************************/
 		app.directive('confHeader', function(){
 		return{

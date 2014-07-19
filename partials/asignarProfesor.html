@@ -1,31 +1,29 @@
-   <div ng-show="profesorContr.isSelected(1, confPanel.tab)" >                  
+   <div ng-show="profesorContr.isSelected(1, confPanel.tab)" ng-controller="ControlProfesores as profes">                  
+                    <span ng-style="profes.msg">El profesor ya está asignado a un curso</span>
                     <div class="contenedorInputs">
                                     <label>Nombre del Profesor</label>
-                                    <select class="form-control">
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-                                      <option>5</option>
-                                    </select>
+                                   
+                                       <select class="form-control" ng-model="profes.profe" ng-options="profe.correo as profe.correo for profe in conf.usuarios | filter: {categoria: 'profesor'}" ng-change="profes.activarCarrera()">
+                                       	    <option value="" >Seleccione un Profesor</option>	
+                                        </select>
                                 </div>
                                   <div class="profesoresInput cf">
                                          <div class="contenedorInputsSep">
                                           <label>Seleccione una Carrera</label><br>
-                                          <select class="inhabilitarSlct">
-                                             <option>Option1</option>
-                                            <option>Option2</option>
+                                          <select ng-disabled="profes.estadoCarrera"  class="inhabilitarSlct" ng-style="profes.styleCarrera" ng-model="profes.carrera" ng-options="carrera.id  as carrera.nombre for carrera in conf.carreras" ng-change="profes.activarCurso()">
+                                          
                                           </select>
+                                         
                                       </div>
 
                                       <div class="contenedorInputsSep">
                                           <label>Seleccione un Curso</label><br>
-                                          <select class="inhabilitarSlct">
-                                             <option>Option1</option>
-                                            <option>Option2</option>
+                                          <select ng-disabled="profes.estadoCurso" class="inhabilitarSlct" ng-style="profes.styleCurso" ng-model="profes.curso" ng-options="curso.id  as curso.nombreCurso for curso in conf.carreras[profes.carrera].cursos">
+                                      
                                           </select>
                                       </div>
+
                                   </div>
 
-                            <button type="submit" class="guardarBtn pull-right">Guardar</button>
+                            <button type="submit" class="guardarBtn pull-right" ng-click="profes.guardarProfesor(conf.carreras,conf.profecurso)">Guardar</button>
       </div>

@@ -21,13 +21,16 @@
 		    <aside class="infousuario clearfix">
 				<label>Nombre:</label>
 				<span>{{usuario.user[cookieValue].nombre}}</span>
-				<label>Carrera:</label>
-				<span>Nombre de la Carrera</span>
-				<label>Cursos:</label>
+	
+				<label>{{usuario.user[cookieValue].carrera}}</label>
 				<ul>
-					<li>Nombre del Curso 1</li>
-					<li>Nombre del Curso 2</li>
-					<li>Nombre del Curso 3</li>
+					<li>
+						{{usuario.user[cookieValue].Curso1}}
+					</li>
+					<li>
+						{{usuario.user[cookieValue].Curso2}}
+					</li>
+
 				</ul>
 			</aside>
 		</section>

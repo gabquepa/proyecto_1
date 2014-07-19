@@ -359,17 +359,96 @@ app.controller('CarrerasController', ['$http', function($http){
 /********************************************CONTROLADORES********************************************************/
 
 app.controller('configurationController', function(){
-		
+		this.style1={'':''};
+		this.style2={'':''};
+		this.style3={'':''};
+		this.style4={'':''};
+		this.style5={'':''};
+		this.style6={'':''};
+		this.style7={'':''};
 		this.tab = 1;
 		this.selectTab=function(setTab){			
 			this.tab = setTab;
-
-			
-		};
+            
+            switch (setTab){
+            	
+            	case 1:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+				this.style4={'':''};
+				this.style5={'':''};
+				this.style6={'':''};
+				this.style7={'':''};
+            	this.style1={'background-color': '#196A95'};
+            	break;
+            	case 2:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+				this.style4={'':''};
+				this.style5={'':''};
+				this.style6={'':''};
+				this.style7={'':''};
+            	this.style2={'background-color': '#196A95'};
+            	break;
+            	case 3:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+				this.style4={'':''};
+				this.style5={'':''};
+				this.style6={'':''};
+				this.style7={'':''};
+            	this.style3={'background-color': '#196A95'};
+            	break;
+            	case 4:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+				this.style4={'':''};
+				this.style5={'':''};
+				this.style6={'':''};
+				this.style7={'':''};
+            	this.style4={'background-color': '#196A95'};
+            	break;
+            	case 5:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+				this.style4={'':''};
+				this.style5={'':''};
+				this.style6={'':''};
+				this.style7={'':''};
+            	this.style5={'background-color': '#196A95'};
+            	break;
+            	case 6:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+				this.style4={'':''};
+				this.style5={'':''};
+				this.style6={'':''};
+				this.style7={'':''};            
+            	this.style6={'background-color': '#196A95'};
+            	break;
+            	case 7:
+         
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+				this.style4={'':''};
+				this.style5={'':''};
+				this.style6={'':''};
+				this.style7={'':''};
+            	this.style7={'background-color': '#196A95'};
+            	break;
+            } 
+            
+        };
 		this.isSelected = function(checkedTab){
 			return this.tab ===checkedTab;
 		};
-
 
 
 
@@ -624,28 +703,6 @@ app.controller("inhabilitarUserController", function(){
 			 		
 
 });
-/*****************************************************************************************************************/	
-app.controller("crearCarreraController", function(){
-
-		this.carrera = {};
-
-		this.addCarrera = function(pCarrera){
-			  
-			this.carrera.estado = "activo";  
-			pCarrera.push(this.carrera);
-
-			 
-			 //  console.log(this.carrera);
-			 console.log(pCarrera[0].nombre);
-			 console.log(pCarrera[1].nombre);
-			 console.log(pCarrera[2].nombre);
-			 console.log(pCarrera[3].nombre);
-			
-			this.carrera = {};	
-		};
-
-	});
-/*****************************************************************************************************************/	
 app.controller("inhabilitarCarreraController", function(){
 
 		this.validarCarrerasAct = function(pCarrera){
@@ -728,6 +785,93 @@ app.controller("respuestaForos", function(){
 
 
 });
+
+//------------------------Profesores-----------------------------
+	app.controller("ControlProfesores",function(){
+	  
+	 this.msg={'display':'none'};
+	 this.profe ="";
+     this.carrera="";
+     this.curso="";
+     this.estadoCarrera=true;
+     this.estadoCurso=true;
+     this.styleCarrera={'background-color': '#ebebeb'};
+     this.styleCurso={'background-color': '#ebebeb'};;                               
+     
+    this.activarCarrera=function(){  
+      	this.estadoCarrera=false;
+      	this.styleCarrera={'background-color':'', };
+    }
+			 
+     this.activarCurso=function(){  
+      	this.estadoCurso=false;
+      	this.styleCurso={'background-color':'', };
+    } 
+
+    this.activarCurso=function(){  
+      	this.estadoCurso=false;
+      	this.styleCurso={'background-color':'', };
+    } 
+
+	this.guardarProfesor=function(pCarreras,pProfeCurso){
+		 var arregloTemp={};
+		
+		 for (var i=0; i < pProfeCurso.length; i++) {
+		    if ((pProfeCurso[i].carrera==pCarreras[this.carrera].nombre)&&(pProfeCurso[i].curso==pCarreras[this.carrera].cursos[this.curso].nombreCurso)&&(pProfeCurso[i].profe==this.profe)) {
+
+		    	 this.msg={'color': '#ebebeb','display':'block','color':'#F58e25','text-align': 'center','font-size':'2em','margin-top':'2em' };
+		    	 this.profe ="";
+			     this.carrera="";
+			     this.curso="";
+			     this.estadoCarrera=true;
+			     this.estadoCurso=true;
+			     this.styleCarrera={'background-color': '#ebebeb'};
+			     this.styleCurso={'background-color': '#ebebeb'};; 
+		 
+		 
+		 } else{
+		 	     
+		 	      arregloTemp.carrera=pCarreras[this.carrera].nombre;
+				  arregloTemp.curso=pCarreras[this.carrera].cursos[this.curso].nombreCurso;
+				  arregloTemp.profe=this.profe;
+				  pProfeCurso.push(arregloTemp);
+				 
+				 this.profe ="";
+			     this.carrera="";
+			     this.curso="";
+			     this.estadoCarrera=true;
+			     this.estadoCurso=true;
+			     this.styleCarrera={'background-color': '#ebebeb'};
+			     this.styleCurso={'background-color': '#ebebeb'};; 
+			     this.msg={'display':'none'};
+		 };
+		   
+	  }; 
+		
+	}    
+	   	       
+});
+
+
+app.controller("desasignarCurso", function(){
+
+	this.desProfesor=function(aProfeCurso,pCarrera,pCurso,pProfe){  
+
+      	for (var i=0; i < aProfeCurso.length; i++) {
+			
+			if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
+				     aProfeCurso.splice( i , 1 );
+			} 
+			
+		 };
+      	 	
+    } 
+
+});
+	
+
+
+//---------------------------------------------------------------
 //Termina Alejandro Zuñiga
 
 //Controllers Keilyn Sibaja
@@ -930,8 +1074,13 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		        	   $('#mensajeLogin').html("");
 		        	   $cookieStore.put('usuario', i);
 		        	   $cookieStore.put('usuarioTipo', pUsuario[i].tipo);
-
-		        	   window.location = "/Proyecto_1/user-blog1.html";
+ 				     if (pUsuario[i].tipo=="A") {
+ 				     	window.location = "/Proyecto_1/configuration.html";
+ 				     } else{
+ 				     	window.location = "/Proyecto_1/user-blog1.html";
+ 				     };		
+		        	   
+				
 				} else{
 					$('#mensajeLogin').html("");
 					$('#mensajeLogin').append('Acceso Denegado <br> USUARIO INACTIVO');

@@ -7,40 +7,27 @@
 
 		 this.usuarios = arregloUsuarios;
 		  this.carreras = arregloCarreras;
+		   this.profecurso =arregloProfeCurso;
 		  this.miCarrera = {};
 		  this.miCarreraCC = {};
 		  this.miCursoCC = {};
 		  this.miCarreraMC = {};
 		  this.miCursoMC = {};
 		  this.indextemp = 0;
-
+          
 
 
 		this.addCarrera = function(){
-			
+			this.miCarrera.id =this.carreras.length;
 			this.miCarrera.estado = 'activo';
-			this.miCarrera.cursos = {};
-			 console.log(this.miCarrera.estado);
-			console.log(this.miCarrera.cursos);
+			this.miCarrera.cursos= [];
 			this.carreras.push(this.miCarrera);
+			this.miCarrera = {};
 			
-			console.log(this.carreras[3].estado);
-			console.log(this.carreras[3].cursos);
-			 
-			 // console.log(this.carrera[3].estado);
-			 // console.log(this.carrera[3].cursos);
-			 // console.log(this.carreras[0].nombre);
-			 // console.log(this.carreras[1].nombre);
-			 // console.log(this.carreras[2].nombre);
-			 // console.log(this.carreras[3].nombre);
-			
-			 this.miCarrera = {};	
 		};
 
 
 		  this.modifCarrera= function(){
-
-		  	
 		  	for(i=0;i<this.carreras.length;i++){
 
 		  		if(this.carreras[i].nombre === this.miCarrera.nombre){
@@ -52,8 +39,6 @@
 
 		  		}
 		  	}
-
-		  this.miCarrera = {};
 		  }
 		  this.actualizarCarrera= function(){
 		  		if (!this.miCarrera.nombre=="") {
@@ -74,33 +59,28 @@
 
 
 		  this.crearCurso= function(){
-
+             
             
 		  	for(var i=0;i<this.carreras.length;i++){
-              
+                
 		  		if(this.carreras[i].nombre === this.miCarreraCC.nombre){
-		  		    // console.log(this.miCursoCC.nombreCurso);
-		  		    // console.log(this.miCursoCC.idCurso);
-		  		    // console.log(this.miCursoCC);
-		  		    // console.log(this.carreras[i].cursos);
-		  			//this.carreras[i].cursos.push(this.miCursoCC);
-		  			this.carreras[i].cursos.nombreCurso=this.miCursoCC.nombreCurso;
-		  			this.carreras[i].cursos.idCurso=this.miCursoCC.idCurso;
-		  		    console.log(this.carreras[i].cursos);
+		  		    
+					this.miCursoCC.id=this.carreras[i].cursos.length;
+		  			this.carreras[i].cursos.push(this.miCursoCC);
 		  		}
 		  	}
 		 
-
+			this.miCursoCC={};
 		  }
 
 
  			this.getCurso = function(){
- 					console.log(this.miCarreraMC.cursos);
+ 					
 		  		return this.miCarreraMC.cursos;
 		 	 }
 
 		   this.modifCurso= function(){
-		   			console.log('HHH');
+		   		
 		  	
 		  	for(i=0;i<this.carreras.length;i++){
 
@@ -142,19 +122,36 @@
 
 	});
 //Arreglo Carreras//
+    var arregloProfeCurso =[
+	{
+		carrera:'Desarrollo y Diseño Web',
+		curso:'Proyecto 1',
+		profe:'alvaro@ucenfotec.ac.cr',
+	},
+	{
+		carrera:'Desarrollo y Diseño Web',
+		curso:'Web 2',
+		profe:'alvaro@ucenfotec.ac.cr',
+	}	
+	];
+
+
+
+
+
 	var arregloUsuarios =[
 	{
-		nombre:'pepe',
+		nombre:'Álvaro Cordero Peña',
 		genero:'masculino',
-		correo:'p@p.com',
+		correo:'alvaro@ucenfotec.ac.cr',
 		password:'123',
 		categoria:'profesor',
 		estado:'activo'
 	},
 	{
-		nombre:'coco',
+		nombre:'Juan Pérez Padilla',
 		genero:'masculino',
-		correo:'c@c.com',
+		correo:'juan@ucenfotec.ac.cr',
 		password:'123',
 		categoria:'estudiante',
 		estado:'inactivo'
@@ -166,17 +163,20 @@
 //Arreglo Carreras//
 	var arregloCarreras =[
 	{
-		codigo:1,	
-		nombre:'Desarrollo y diseño Web',
+		id:0,
+		codigo:0,	
+		nombre:'Desarrollo y Diseño Web',
 		estado:'activo',
 		cursos: [
 		{
-			idCurso: 1,
-			nombreCurso: 'Web 1'
+			id:0,
+			idCurso: 0,
+			nombreCurso: 'Proyecto 1'
 			
 		},
 		{
-			idCurso: 2,
+			id:1,
+			idCurso: 1,
 			nombreCurso: 'Web 2'
 			
 		},
@@ -184,34 +184,40 @@
 
 	},
 	{
-		codigo:2,	
+		id:1,
+		codigo:1,	
 		nombre:'Desarrollo de software',
 		estado:'inactivo',
 		cursos: [
 		{
-			idCurso: 1,
+			id:0,
+			idCurso: 0,
 			nombreCurso: 'Programacion 1'
 			
 		},
 		{
-			idCurso: 2,
+			id:1,
+			idCurso: 1,
 			nombreCurso: 'Programacion 2'
 			
 		},
 		]
 	 },
 	 {
-	 	codigo:3,	
+	 	id:2,
+	 	codigo:2,	
 		nombre:'Inglés',
 		estado:'inactivo',
 		cursos: [
 		{
-			idCurso: 1,
+			id:0,
+			idCurso: 0,
 			nombreCurso: 'Ingles 1'
 			
 		},
 		{
-			idCurso: 2,
+			id:1,
+			idCurso: 1,
 			nombreCurso: 'Ingles 2'
 			
 		},
@@ -219,4 +225,8 @@
 	 }
 
 	];
+
+
+
+
 })();

@@ -7,44 +7,47 @@
         "usuario": "alvaro@ucenfotec.ac.cr",
         "pass": "123",
         "estado": "A",
+        "carrera":"Diseño y Desarrollo Web",
+        "Curso1":"Proyecto 1",
+        "Curso2":"Proyecto 2",
         "blog": [
             {
                 "idPost":"0",
-                "titulo": "Mi gran Tema1",
+                "titulo": "¿Qué es un Blog?",
                 "texto": "Un blog (en español,1 también bitácora digital, cuaderno de bitácora, ciber bitácora, ciber diario, o web blog, o weblog)1 es un sitio web en el que uno o varios autores publican cronológicamente textos o artículos, apareciendo primero el más reciente, y donde el autor conserva siempre la libertad de dejar publicado lo que crea pertinente. También suele ser habitual que los propios lectores participen activamente a través de los comentarios. Un blog puede servir para publicar ideas propias y opiniones de terceros sobre diversos temas.",
                 "fecha": "18/08/2014",
                 "comentarios": [
                     {
                         "idComentario": "0",
-                        "Participante": "1@ucenfotec.ac.cr",
+                        "Participante": "andrés@ucenfotec.ac.cr",
                         "fecha": "2014/08/09",
-                        "texto": "text1"
+                        "texto": "Creo que es muy importante poder comunicar nuestra opiniones por estos medios."
                     },
                     {
                         "idComentario": "1",
                         "Participante": "2@ucenfotec.ac.cr",
                         "fecha": "2014/08/10",
-                        "texto": "text2 "
+                        "texto": "La verdad me gustaría cominicarme más en persona"
                     }
                 ]
             },
             {
                 "idPost": 1,
-                "titulo": "Mi gran Tema2",
+                "titulo": "¿Cómo trabaja un Blog?",
                 "texto": "El web blog es una publicación en línea de historias publicadas con una periodicidad muy alta, que son presentadas en orden cronológico inverso, es decir, lo más reciente que se ha publicado es lo primero que aparece en la pantalla. Es muy frecuente que los weblogs dispongan de una lista de enlaces a otros weblogs, a páginas para ampliar información, citar fuentes o hacer notar que se continúa con un tema que empezó otro weblog. También suelen disponer de un sistema de comentarios que permiten a los lectores establecer una conversación con el autor y entre ellos acerca de lo publicado.",
                 "fecha": "18/10/2014",
                 "comentarios": [
                     {
                         "idComentario": "0",
-                        "Participante": "estudiante@ucenfotec.ac.cr",
+                        "Participante": "paola@ucenfotec.ac.cr",
                         "fecha": "2014/08/11",
-                        "texto": "lasdñlasdmas "
+                        "texto": "Me gusta saber de esta cosas para aplicarlas en mi vida "
                     },
                     {
                         "idComentario": "1",
                         "Participante": "e@ucenfotec.ac.cr",
                         "fecha": "2014/08/12",
-                        "texto": "lasdñlasdmas basjbdjabsjd asj dashd asjdbas djas jdas d "
+                        "texto": "Este tema es realmente muy interesante voy a seguir esta publicación "
                     }
                 ]
             }
@@ -58,21 +61,37 @@
         "usuario": "juan@ucenfotec.ac.cr",
         "pass": "123",
         "estado": "A",
+        "carrera":"Diseño y Desarrollo Web",
+        "Curso1":"Proyecto 1",
+         "Curso2":"Programación 2",
         "blog": [
             {
                 "idPost": "0",
-                "titulo": "Mi gran Tema",
-                "texto": "adsbnamsd ds  asdas,d asdn,as d,as dnas d as d,asdn,as d,m as,das d asd",
+                "titulo": "Pedagogía",
+                "texto": " Es una ciencia perteneciente al campo de las Ciencias Sociales y Humanas, y tiene como fundamento principal los estudios de Kant y Herbart. Usualmente se logra apreciar, en textos académicos y documentos universitarios oficiales, la presencia ya sea de Ciencias Sociales y Humanidades, como dos campos independientes o, como aquí se trata, de ambas en una misma categoría, que no equivale a igualdad absoluta sino a lazos de comunicación y similitud etimológica.",
                 "fecha": "12/08/2014",
                 "comentarios": [
                     {
                         "idComentario": "0",
-                        "Participante": "profesor@ucenfotec.ac.cr",
+                        "Participante": "carlos@ucenfotec.ac.cr",
                         "fecha": "2014/08/13",
-                        "texto": "hate it"
+                        "texto": "Realmente pienso lo mismo, es importante la forma de educar."
                     }
                 ]
             }
         ]
+    },
+    {
+        "idUsuario": "3",
+        "tipo": "A",
+        "nombre": "Alejandro Zúñiga Chin",
+        "genero": "Hombre",
+        "usuario": "admin@ucenfotec.ac.cr",
+        "pass": "admin",
+        "estado": "A",
+        "carrera":"",
+        "Curso1":"",
+         "Curso2":"",
+        "blog": []
     }
 ]

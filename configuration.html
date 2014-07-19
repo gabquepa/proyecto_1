@@ -25,10 +25,10 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-    <project-header></project-header>
-    <project-side-nav></project-side-nav>
+    <header-config></header-config>
+    <!--<project-side-nav></project-side-nav>-->
 
-    <div class="main row">
+    
             
  <div class="wrapper" ng-controller="configController as conf">
   
@@ -77,9 +77,12 @@
              </div>
               <!-- /////////////////////////////////Configuracion Tab PROFESORES//////////////////////////////////////// --> 
               <div ng-controller="profesorController as profesorContr">
-                             <profesores-menu></profesores-menu> 
+              	
+                          
+                                  <profesores-menu></profesores-menu> 
                                   <asignar-profesor></asignar-profesor>
                                   <desasignar-profesor></desasignar-profesor>
+                           
               </div>
                <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
                <!-- /////////////////////////////////Configuracion Tab ESTUDIANTES//////////////////////////////////////// --> 
@@ -102,7 +105,7 @@
       
           
       </div> <!--Fin De config controller -->
-  </div> 
+  
 
    
 
