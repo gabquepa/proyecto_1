@@ -281,8 +281,14 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 		$('#add-comment').collapse('toggle');
 		$('.comment-text').val('');
 		$('.comments-lst').show();
-	};
 
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 500);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 600);
+	};
 }]);
 
 /************** HERRAMIENTAS **************/
