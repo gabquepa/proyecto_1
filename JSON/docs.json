@@ -6,25 +6,25 @@
 "curso":"Proyecto de desarrollo Web 1",
 "estado":"F",
 "votacion":"5",
-"fecha":"09/10/11"
+"fecha":"2011-09-10"
 },
 {
-"nombre":"Introduccion a Progamacion",
+"nombre":"Introducción a Progamación",
 "autor":"Diego Vargas",
 "carrera":"Telematica",
-"curso":"Fundamentos de Progamacion",
+"curso":"Fundamentos de Progamación",
 "estado":"T",
 "votacion":"2",
-"fecha":"10/11/12"
+"fecha":"2012-10-11"
 },
 {
-"nombre":"Ingles 1",
+"nombre":"Inglés 1",
 "autor":"Roger Solis",
 "carrera":"Desarrollo de Software",
-"curso":"Ingles para tecnologias de informacion 1",
+"curso":"Inglés para tecnologías de información 1",
 "estado":"F",
 "votacion":"1",
-"fecha":"11/12/13"
+"fecha":"2013-11-12"
 },
 {
 "nombre":"HTML",
@@ -33,7 +33,7 @@
 "curso":"Diseño web 1",
 "estado":"T",
 "votacion":"3",
-"fecha":"12/13/14"
+"fecha":"2014-12-13"
 },
 {
 "nombre":"Angularjs",
@@ -42,6 +42,6 @@
 "curso":"Proyecto de desarrollo Web 1",
 "estado":"F",
 "votacion":"4",
-"fecha":"10/11/12"
+"fecha":"2012-10-11"
 }
 ]

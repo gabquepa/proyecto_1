@@ -63,7 +63,7 @@
 
 #tableDoc .tbfecha{
 	height: 5em;
-	width: 10%;
+	width: 15%;
 	text-align: center; 
 }
 
@@ -76,6 +76,9 @@
 	height: 5em;
 	width: 25%;
 	text-align: center; 
+}
+.result{
+	display: block;
 }
 
 /*BUSQUEDA DE DOCUMENTO*/

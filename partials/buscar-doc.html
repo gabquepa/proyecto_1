@@ -13,16 +13,31 @@
                 <section ng-controller='misCarreras-cursos as cyc' class="form-group div_docsubir">
                     <span>Ingrese el criterio de búsqueda</span>
                     <input type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc'>
-                    <select  ng-mouseleave="cyc.selectCurso()" class="select-carrera" >
+                    <select ng-model='busquedaCarrera' ng-mouseleave="cyc.selectCurso()" class="carrera-select" >
                       <option val="-1">Seleccione una Carrera</option>
                       <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                     </select>
-                    <select class="select-curso">
+                    <select ng-model='busquedaCurso' class="select-curso">
                       <option val="-1" disable>Seleccione un Curso</option>
                       <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                     </select>
-                  </section>
-                  
+                    <button class='btn-subir' ng-click="add.busqueda(busqueda,busquedaCarrera,busquedaCurso);">Buscar</button>
+                </section>
+                  <table ng-show='add.resultado===true'>
+                      <span ng-show='add.resultado===true'class='result'>Resultados:</span>
+                      <tr>
+
+                        <td style="width:100px;"><span class='doc_lispandoc'>{{add.mostrarautor}}</span></td>
+
+                        <td style="width:100px; text-align:center;"><a href="#">{{add.mostrarnombre}}</a></td>
+
+                        <td style="width:100px; text-align:center;"><span class='doc_lispandoc'>{{add.mostrarfecha}}</span></td>
+
+                        <td style="width:135px; text-align:center;"><img src="img/sample-stars.png" style="width:100px"></td>
+
+                        <td style="width:195px; text-align:center;"><span class='doc_lispandoc'>{{add.mostrarcarrera}} / {{add.mostrarcurso}}</span></td>
+                      </tr>
+                  </table>
               </div>
 
             </div>
