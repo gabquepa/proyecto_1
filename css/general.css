@@ -201,7 +201,6 @@ body{
 .side-nav ul li:hover, .side-nav ul li.active{
   background-color: #ebebeb;
   border-left: 5px #00a79c solid;
-  padding-left:22.5%;
 }
 
 .side-nav ul li a{
