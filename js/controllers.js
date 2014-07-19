@@ -17,6 +17,13 @@ app.controller('routeController', function($scope, $cookieStore) {
 	if(window.location.pathname === '/Proyecto_1/forum-profesor.html' || window.location.pathname === '/Proyecto_1/forum-estudiante.html' || window.location.pathname === '/Proyecto_1/forum-search.html'){
 		$('.forumOpt').addClass('active');
 	}
+	if(window.location.pathname === '/Proyecto_1/documentos.html'){
+		$('.descargasOpt').addClass('active');
+	}
+	if(window.location.pathname === '/Proyecto_1/user-blog1.html'){
+		$('#blogsUser1').addClass('active');
+	}
+	
 });
 
 
