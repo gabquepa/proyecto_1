@@ -62,18 +62,16 @@
                   <form name="forumForm" ng-submit="forumForm.$valid && forum.addComment()">
                     <h3>Ingrese su Comentario</h3>
                     <textarea ng-model="forum.comment.texto" placeholder="Comentario ..." class="comment-text" required></textarea>
-                    <input id="textAuthor" ng-model="forum.comment.nombre" hidden>
-                    <input id="textDate" ng-model="forum.comment.fecha" hidden>
-                    <button class="btn-blue pull-right">Publicar</button>
+                    <button class="btn-blue pull-right" [ng-value="sss"]>Publicar</button>
                   </form>
                 </div>
               </div>
             </div>
             <div class="comments-lst">
               <h3>Comentarios</h3>
-                <div ng-repeat="comment in comments">
+                <div style="margin-top:40px;" ng-repeat="comment in comments">
                   <a href="#" class="contributor-name">{{comment.nombre}}</a> <span>{{comment.fecha}}</span>
-                  <div class="comment-stars pull-right"><img class="usr-avatar" src="/Proyecto_1/img/sample-stars.png"></div>
+                  <div class="comment-stars pull-right"><input class="stars" data-size="xs" disabled value="{{comment.calificacion}}"></div>
                   <div class="forum">
                     <p>{{comment.texto}}</p>
                   </div>

@@ -56,7 +56,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		}
 		$('.invitados').val(invi);	
 
-		if((forum.comments).length > 1){
+		if((forum.comments).length >=1){
 			$scope.comments= forum.comments;
 			$('.comments-lst').show();
 		}else{
@@ -218,20 +218,19 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 			}
 		});
 
-
-
-		if((forum.comments).length > 1){
+		if((forum.comments).length >= 1){
 			$scope.comments= forum.comments;
 			$('.comments-lst').show();
 		}else{
 			$('.comments-lst').hide();
 		}
-	};
 
-	this.setInfo = function(){
-		var d = new Date();
-		$('#textAuthor').val('test@test.test');
-		$('#textDate').val(d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear());		
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 400);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 500);
 	};
 
 	this.denunciar = function(){
@@ -249,14 +248,17 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 	this.addComment = function(){
 		var forumId= $('#id-foro').val();
 		var forumS = [];
+		var d = new Date();
 		
 		for(var i= 0; i<(forum.lists).length;i++){
 			if((forum.lists)[i].id == forumId){
 				forumS = (forum.lists)[i];
 			}
 		}	
-		console.log(this.comment);
-
+		
+		$scope.forumForm.$pristine = true;	
+		this.comment.nombre = $('#usuario').text();
+		this.comment.fecha = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
 		forumS.comments.push(this.comment);
 		this.comment={};
 		$('#add-comment').collapse('toggle');

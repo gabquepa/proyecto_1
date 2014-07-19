@@ -41,7 +41,7 @@
 "periodo":"III-2013",
 "CarreraId":"2",
 "CursoId":"DS19",
-"tema":"Cuando las compañías deciden instaurar esta tecnología, no sólo se vuelven más productivas, sino también más eficientes y competitivas. Lo importante es que estas soluciones estén alineadas con la estrategia del negocio y sean desarrolladas por especialistas en el área. A medida que la base de clientes crece y las operaciones aumentan, el manejo de la información relativa a la provisión de bienes o servicios en una empresa se vuelve cada vez más difícil de manejar por métodos manuales. Es por esto que se hace indispensable el uso de sistemas de información computacionales que permitan el manejo eficaz y eficiente de los procesos productivos.",
+"tema":"-Cuando las compañías deciden instaurar esta tecnología, no sólo se vuelven más productivas, sino también más eficientes y competitivas. Lo importante es que estas soluciones estén alineadas con la estrategia del negocio y sean desarrolladas por especialistas en el área. A medida que la base de clientes crece y las operaciones aumentan, el manejo de la información relativa a la provisión de bienes o servicios en una empresa se vuelve cada vez más difícil de manejar por métodos manuales. Es por esto que se hace indispensable el uso de sistemas de información computacionales que permitan el manejo eficaz y eficiente de los procesos productivos.",
 "moderador":"gaby@cenfotec.ac.cr",
 "invitados":[{
 	"email": "manuel@cenfotec.ac.cr"
@@ -58,7 +58,12 @@
 {
 	"email": "sergio@cenfotec.ac.cr"
 }],
-"comments":[{}],
+"comments":[{
+	"nombre":"sergio@cenfotec.ac.cr",
+	"texto":" Gracias por el aporte!",
+	"fecha":"18/06/2014",
+	"calificacion":"3"
+}],
 "estado":"A"
 },
 {

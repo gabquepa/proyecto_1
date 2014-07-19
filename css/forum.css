@@ -74,6 +74,7 @@ body{
   display: inline-block;
   width: 15%;
   vertical-align: top;
+  margin-right: 40px;
 }
 .forum .comments-lst .forum, .forum-search .Foro-lst p, .forum-config .comments-lst .forum, .forum-search .Foro-lst p{
   -webkit-box-shadow: inset -6px 0px 29px 2px rgba(50, 50, 50, 0.49);
