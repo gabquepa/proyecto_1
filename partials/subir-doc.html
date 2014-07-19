@@ -8,22 +8,22 @@
             <button class='btn-subir-down btn-blue' ng-click='subirDoc.showBtn();'>Subir Documento</button>
 
             <div id='doc_subirdoc' class='cf' ng-show='subirDoc.value===2'>
-              <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.datosDoc();'>
+              <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.datosDoc();'> 
                   <input type='text' placeholder='Titulo' ng-model='add.addDoc.nombre'>
                   <input type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
                   <input type='date' ng-model='add.addDoc.fecha'>
-                  <section ng-controller='misCarreras-cursos as cyc'>
-                    <select  ng-mouseleave="cyc.selectCurso()" class="select-carrera" >
+                  <section ng-controller='CarrerasController as cyc'>
+                    <select ng-model='add.addDoc.carrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera" >
                       <option val="-1" disable>Seleccione una Carrera</option>
-                      <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
+                      <option ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                     </select>
-                    <select class="select-curso">
+                    <select ng-model='add.addDoc.curso' class="select-curso">
                       <option val="-1" disable>Seleccione un Curso</option>
-                      <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
+                      <option ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                     </select>
                   </section>
                     <input type="file" id="exampleInputFile">
-                    <input  type='submit'value='submit' class='btn-subir'>
+                    <input  type='submit'value='Subir' class='btn-subir'>
                   </form>
         </div>
  </div> 

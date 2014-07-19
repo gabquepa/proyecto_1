@@ -714,6 +714,7 @@ app.controller("respuestaForos", function(){
 //Termina Alejandro Zuñiga
 
 //Controllers Keilyn Sibaja
+
 app.controller('agregarDocController',['$http', function($http){
 	var controller = this;
 		controller.documentos= [];
@@ -723,11 +724,16 @@ app.controller('agregarDocController',['$http', function($http){
 		});
 
 		this.addDoc={};
+		this.resultado=false;
+		this.mostrarnombre='';
+		this.mostrarautor='';
+		this.mostrarfecha='';
+		this.mostrarcarrera='';
+		this.mostrarcurso='';
 
 		this.datosDoc=function(){
 			this.addDoc.votacion=0;
 			controller.documentos.push(this.addDoc);
-			alert(controller.documentos[5].nombre);
 			this.addDoc={};
 		}
 
@@ -739,7 +745,12 @@ app.controller('agregarDocController',['$http', function($http){
 				if(doc.nombre.toUpperCase()===arguments[0].toUpperCase() && 
 					doc.carrera.toUpperCase()===arguments[1].toUpperCase() && 
 					doc.curso.toUpperCase()===arguments[2].toUpperCase()){
-
+					this.resultado=true;
+					this.mostrarnombre= doc.nombre;
+					this.mostrarautor=doc.autor;
+					this.mostrarfecha=doc.fecha;
+					this.mostrarcarrera=doc.carrera;
+					this.mostrarcurso=doc.curso;
 					
 					break;
 				}
@@ -750,7 +761,7 @@ app.controller('agregarDocController',['$http', function($http){
 
 app.controller('seccionDocumentosShow', function(){
 	
-	this.tab=1;
+	this.tab=2;
 
 	this.mostrarSecc=function(pTab){
 		if(pTab==1){
@@ -771,7 +782,7 @@ app.controller('misCarreras-cursos',['$http', function($http){
 	});
 
 	this.selectCurso = function(){
-		var carrera = $('.select-carrera option:selected').attr('val');
+		var carrera = $('.carrera-select option:selected').attr('val');
 		var cursos = this;
 		universidad.cursos=[];
 		
