@@ -21,23 +21,22 @@
                       <option val="-1" disable>Seleccione un Curso</option>
                       <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                     </select>
-                    <button class='btn-subir' ng-click="add.busqueda(busqueda,busquedaCarrera,busquedaCurso);">Buscar</button>
+                    <button class='btn-buscar' ng-click="add.busqueda(busqueda,busquedaCarrera,busquedaCurso);">Buscar</button>
                 </section>
-                  <table ng-show='add.resultado===true'>
-                      <span ng-show='add.resultado===true'class='result'>Resultados:</span>
-                      <tr>
-
-                        <td style="width:100px;"><span class='doc_lispandoc'>{{add.mostrarautor}}</span></td>
-
-                        <td style="width:100px; text-align:center;"><a href="#">{{add.mostrarnombre}}</a></td>
-
-                        <td style="width:100px; text-align:center;"><span class='doc_lispandoc'>{{add.mostrarfecha}}</span></td>
-
-                        <td style="width:135px; text-align:center;"><img src="img/sample-stars.png" style="width:100px"></td>
-
-                        <td style="width:195px; text-align:center;"><span class='doc_lispandoc'>{{add.mostrarcarrera}} / {{add.mostrarcurso}}</span></td>
-                      </tr>
-                  </table>
+                  <div class='divDescarg cf' span ng-show='add.resultado===true'>
+                    <span class='result'>Resultados:</span>
+                    <section class='imgDescarg'>
+                        <a href=""><img src="img/btn-pdf.png"></a>
+                        <img src="img/sample-stars.png">
+                    </section>
+                    <section class='infoDescarg'>
+                        <span class='doc_lispandoc'>Nombre: <a href="#">{{add.mostrarnombre}}</a></span>
+                        <span class='doc_lispandoc'>Autor: {{add.mostrarautor}}</span>
+                        <span class='doc_lispandoc'>Fecha: {{add.mostrarfecha}}</span>
+                        <span class='doc_lispandoc'>Carrera: {{add.mostrarcarrera}}</span>
+                        <span class='doc_lispandoc'>Curso: {{add.mostrarcurso}}</span>
+                    </section>
+                  </div>
               </div>
 
             </div>

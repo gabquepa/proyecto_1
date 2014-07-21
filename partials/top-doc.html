@@ -1,18 +1,21 @@
 <!--Top Documentos-->
               <div>
-                <h2>Top Documentos más votados</h2>
-                <table id='tableDoc'>
-                  <tr ng-repeat="top in add.documentos | orderBy:'-votacion'">
-                    <td class='tbautor'><span class='doc_lispandoc'>{{top.autor}}</span></td>
-                  
-                    <td class='tbnombre'><a href="#">{{top.nombre}}</a></td>
-                  
-                    <td class='tbfecha'><span class='doc_lispandoc'>{{top.fecha}}</span></td>
-                  
-                    <td class='tbimg'><img src="img/sample-stars.png"></td>
-                  
-                    <td class='tbcyc'><span class='doc_lispandoc'>{{top.carrera}} / {{top.curso}}</span></td>
-                  </tr>
-                </table>
+                <h2>Intercambio de Conocimiento</h2>
+
+                <div id='divDoc'>
+                  <div ng-repeat="top in add.documentos | orderBy:'-votacion'" class='divDescarg cf'>
+                    <section class='imgDescarg'>
+                        <a href=""><img src="img/btn-pdf.png"></a>
+                        <img src="img/sample-stars.png">
+                    </section>
+                    <section class='infoDescarg'>
+                        <span class='doc_lispandoc'>Nombre: <a href="#">{{top.nombre}}</a></span>
+                        <span class='doc_lispandoc'>Autor: {{top.autor}}</span>
+                        <span class='doc_lispandoc'>Fecha: {{top.fecha}}</span>
+                        <span class='doc_lispandoc'>Carrera: {{top.carrera}}</span>
+                        <span class='doc_lispandoc'>Curso: {{top.curso}}</span>
+                    </section>
+                  </div>
+                </div>
               </div>
 <!--Top Documentos-->

@@ -11,7 +11,7 @@
               <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.datosDoc();'> 
                   <input type='text' placeholder='Titulo' ng-model='add.addDoc.nombre'>
                   <input type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
-                  <input type='date' ng-model='add.addDoc.fecha'>
+                  <input class='iptDate' type='date' ng-model='add.addDoc.fecha'>
                   <section ng-controller='CarrerasController as cyc'>
                     <select ng-model='add.addDoc.carrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera" >
                       <option val="-1" disable>Seleccione una Carrera</option>
@@ -23,7 +23,7 @@
                     </select>
                   </section>
                     <input type="file" id="exampleInputFile">
-                    <input  type='submit'value='Subir' class='btn-subir'>
+                    <input  type='submit'value='Subir' id='btn-subir'>
                   </form>
         </div>
  </div> 
