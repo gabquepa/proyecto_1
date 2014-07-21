@@ -365,7 +365,7 @@ app.controller('CarrerasController', ['$http', function($http){
 /********************************************CONTROLADORES********************************************************/
 
 app.controller('configurationController', function(){
-		this.style1={'':''};
+		this.style1={'background-color': '#196A95'};
 		this.style2={'':''};
 		this.style3={'':''};
 		this.style4={'':''};
