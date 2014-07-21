@@ -50,7 +50,7 @@ border-radius: 5px 5px 0px 0px; box-shadow: 0px -2px 3px 1px rgba(0,0,0,0.75)}
 
 
 /***********************************************Contenedor Borde Gris *********************************************************/
-.content{width: 96.8%;border: 1px solid #b7b7b7;margin: 0 auto;padding-left: 25px; padding-bottom: 25px; padding-right: 25px}
+.content{width: 96.8%;margin: 0 auto; padding-bottom: 25px; }
 
 /**********************************************************************************************************************************************/
 

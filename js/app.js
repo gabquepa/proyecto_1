@@ -60,6 +60,12 @@
 
 		  this.crearCurso= function(){
              
+             var codCurso = $('#codCurso').val();
+             var nomCurso = $('#nomCurso').val();
+             console.log(codCurso);
+             if (codCurso == '' || nomCurso == '') {
+             	alert("Debe llenar todos los campos");
+             }else{
             
 		  	for(var i=0;i<this.carreras.length;i++){
                 
@@ -71,9 +77,10 @@
 		  	}
 		 
 			this.miCursoCC={};
+			alert("El curso se guardo correctamente");
 		  }
 
-
+		}//Fin de Validacion
  			this.getCurso = function(){
  					
 		  		return this.miCarreraMC.cursos;
@@ -99,6 +106,14 @@
 
 		  this.actualizarCurso= function(){
 
+		  	 var codCurso = $('#modifIdCurso').val();
+             var nomCurso = $('#modifNombreCurso').val();
+
+             console.log(codCurso);
+             if (codCurso == '' || nomCurso == '') {
+             	alert("Debe llenar todos los campos");
+             }else{
+
 		  	for(i=0;i<this.carreras[this.indextemp].cursos.length;i++){
 
 		  		if(this.carreras[this.indextemp].cursos[i].nombreCurso === this.miCursoMC.nombreCurso){
@@ -115,6 +130,8 @@
 				this.miCarreraMC = {};
 				this.indextemp="";
 				this.miCursoMC={};
+				alert("El curso se modifico correctamente");
+			}//Fin validacion
 
 		  }
 

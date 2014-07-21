@@ -4,9 +4,9 @@
 <div class="crearUsuario cf" ng-controller="modificarUserController as modificarUser">
 
                            
-                        <form role="form" name="modificarUsuarioForm"  ng-submit="modificarUser.modifUser(conf.usuarios, correo)" novalidate>
+                        <form role="form" name="modificarUsuarioForm"  ng-submit="modificarUser.modifUser(conf.usuarios, correo)" >
                                  <div class="buscarUserContent">
-                                    <label>Usuario</label>
+                                    <label>Correo del Usuario</label>
                                     <input type="text" class="buscarUserInput" placeholder="usuario@ucenfotec.ac.cr" ng-model="correo" required>
                                     <button type="submit" class="buscarBtn" value="submit">Buscar</button>
                                 </div>
@@ -14,14 +14,14 @@
 
                         
                        <!--  <form role="form" name="modificarUsuarioForm2"  ng-submit="modificarUsuarioForm2.$valid && modificarUser.saveModif(conf.usuarios)" novalidate> -->
-                        <form role="form" name="pruebaForm"  ng-submit="pruebaForm.$valid && modificarUser.saveModif(conf.usuarios)" novalidate>
+                        <form role="form" name="pruebaForm"  ng-submit="pruebaForm.$valid && modificarUser.saveModif(conf.usuarios)">
                                 <div class="contenedorInputs">
                                     <label>Nombre del Usuario</label>
                                     <input type="text" class="form-control" id="nombreEncontrado" ng-model="modificarUser.user.nombre" required>
                                 </div>
 
                                  <div class="contenedorInputs contenedorInputsSep">
-                                  <label>Genero</label><br>
+                                 <label>Género</label><br>
                                  
                                  <label>Hombre</label>
                                  <input type="radio" class="genero" name="genero" value="hombre" id="generoHombre" ng-model="modificarUser.user.genero" required>
@@ -38,7 +38,7 @@
                                 </div>
 
                               <div class="contenedorInputs labels">
-                                 <label>Categoria</label>
+                                  <label>Categoría</label>
                                      
                                      <label>Director</label>
                                      <input type="radio" name="tipoUsuario" value="director" id="director" ng-model="modificarUser.user.categoria" required>

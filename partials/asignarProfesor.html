@@ -10,16 +10,16 @@
                                   <div class="profesoresInput cf">
                                          <div class="contenedorInputsSep">
                                           <label>Seleccione una Carrera</label><br>
-                                          <select ng-disabled="profes.estadoCarrera"  class="inhabilitarSlct" ng-style="profes.styleCarrera" ng-model="profes.carrera" ng-options="carrera.id  as carrera.nombre for carrera in conf.carreras" ng-change="profes.activarCurso()">
-                                          
+                                          <select ng-disabled="profes.estadoCarrera"  class="form-control inhabilitarSlct" ng-style="profes.styleCarrera" ng-model="profes.carrera" ng-options="carrera.id  as carrera.nombre for carrera in conf.carreras" ng-change="profes.activarCurso()">
+                                          <option value="" >Seleccione una Carrera</option>
                                           </select>
                                          
                                       </div>
 
                                       <div class="contenedorInputsSep">
                                           <label>Seleccione un Curso</label><br>
-                                          <select ng-disabled="profes.estadoCurso" class="inhabilitarSlct" ng-style="profes.styleCurso" ng-model="profes.curso" ng-options="curso.id  as curso.nombreCurso for curso in conf.carreras[profes.carrera].cursos">
-                                      
+                                          <select ng-disabled="profes.estadoCurso" class="form-control inhabilitarSlct" ng-style="profes.styleCurso" ng-model="profes.curso" ng-options="curso.id  as curso.nombreCurso for curso in conf.carreras[profes.carrera].cursos">
+                                          <option value="" >Seleccione un Curso</option>
                                           </select>
                                       </div>
 

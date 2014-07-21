@@ -3,20 +3,20 @@
 <div ng-show="userContr.isSelected(3, confPanel.tab)"  >
  <div class="crearUsuario cf" ng-controller="inhabilitarUserController as inhabilitarUser"> 
 
-                      <form role="form" name="inhabilitarUsuarioForm"  ng-submit="inhabilitarUser.buscaUser(conf.usuarios, correo)" novalidate>
+                      <form role="form" name="inhabilitarUsuarioForm"  ng-submit="inhabilitarUser.buscaUser(conf.usuarios, correo)" >
                            <div class="buscarUserContent">
-                              <label>Usuario</label>
+                              <label>Ingrese el correo del usuario</label>
                               <input type="text" class="buscarUserInput" placeholder="usuario@ucenfotec.ac.cr" ng-model="correo" required>
                               <button type="submit" class="buscarBtn" value="submit">Buscar</button>
                           </div>
                       </form>
 
-                      <form role="form" name="inhabilitarUsuarioForm2"  ng-submit="inhabilitarUsuarioForm2.$valid && inhabilitarUser.inaUser(conf.usuarios)" novalidate> 
+                      <form role="form" name="inhabilitarUsuarioForm2"  ng-submit="inhabilitarUsuarioForm2.$valid && inhabilitarUser.inaUser(conf.usuarios)" > 
                           <div class="buscarUserContent cf" >
                               <div class="vistaUsuarios">
 
 
-                                  <table cellpading="0" cellspacing="0" border="0" width="400" align="center"><tr>
+                                  <table cellpading="0" cellspacing="0" border="0" align="center"><tr>
                                     <td width="300" height="50"><p id="nombreUser"></p></td>
                                     <td width="300" height="50"><p id="correoUser"></p></td>
                                     <td width="300" height="50"><label>Inactivo</label>

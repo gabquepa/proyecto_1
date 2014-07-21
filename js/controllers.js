@@ -464,7 +464,9 @@ app.controller('configurationController', function(){
 app.controller('usuarioController', function(){
 		this.tab = 1;		
 		this.selectTab=function(setTab){		
-				this.tab = setTab;			
+				this.tab = setTab;
+					
+				console.log(setTab);
 		};
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 1){
@@ -586,7 +588,7 @@ app.controller("crearUserController", function(){
 
 			  this.user.estado = "activo";
 			pUser.push(this.user);
-
+			alert("El usuario fue creado correctamente");
 			 
 			 console.log(this.user);
 			//  console.log(pUser[0].nombre);
@@ -646,9 +648,11 @@ app.controller("modificarUserController", function(){
 			
 
 			 this.user = {};
+			 alert("El usuario fue modificado correctamente");
 
 
 		}
+
 
 	});
 
@@ -703,6 +707,7 @@ app.controller("inhabilitarUserController", function(){
 			
 
 			 this.user = {};
+			 alert("El cambio se guardo correctamente");
 
 
 			 }
