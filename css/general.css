@@ -28,6 +28,9 @@ body{
   /* Opera 11.10+ */
   background: -o-linear-gradient(left, #fed312, #F58e25);
 }
+.form-control{
+  display: inline-block;
+}
 .container{
   background-color: white;
   max-width: 960px;

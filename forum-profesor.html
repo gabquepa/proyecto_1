@@ -61,7 +61,7 @@
               <a class="glyphicon glyphicon-pencil pull-right collapsed edit" href="#forum-usrs" data-toggle="collapse" ng-click="forum.enableTxt()" >Editar</a> 
               <a style="display:none;" class="glyphicon glyphicon-floppy-saved pull-right save" href="#" ng-click="forum.editarForo()">Guardar</a> 
 
-              <textarea class="main-forum" ng-disabled="{{enable}}" ></textarea>
+              <textarea class="main-forum form-control" ng-disabled="{{enable}}" ></textarea>
               <div id="forum-usrs" class="forum-usrs panel-collapse collapse">
                 <div>
                   <label>Cerrar foro?</label>
@@ -115,7 +115,7 @@
                   <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
                 </select>
                 <h4>Tema del foro</h4>
-                <textarea required></textarea >
+                <textarea required class="form-control"></textarea >
                 <div class="clearfix">
                   <h4>Moderador: </h4>
                   <input type="email" class="form-control moderador">

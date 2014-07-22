@@ -44,11 +44,11 @@
 		<form role="form" class="passprofile" name="changpass" ng-submit="changpass.$valid && (usuario.user[cookieValue].pass=perfil.cambiarPass(usuario.user[cookieValue].pass))">
 			
 			<label for="passuser" class="passform">Digite su contraseña:</label>
-			<input id="passuser" type="password" class="passform" ng-model="perfil.pass.pactual" required/>
+			<input id="passuser" type="password" class="passform form-control" ng-model="perfil.pass.pactual" required/>
 			<label for="newpass" class="passform">Digite su nueva contraseña:</label>
-			<input id="newpass" type="password" class="passform" ng-model="perfil.pass.pnew" required/>
+			<input id="newpass" type="password" class="passform form-control" ng-model="perfil.pass.pnew" required/>
 			<label for="confirmnew" class="passform">Confirme su nueva contraseña:</label>
-			<input id="confirmnew" type="password" class="passform" ng-model="perfil.pass.pnewconf" required/>
+			<input id="confirmnew" type="password" class="passform form-control" ng-model="perfil.pass.pnewconf" required/>
 			<button type="submit" class="formpassbot" value="submit">Guardar Cambios</button>
 		</form>
 	</div>

@@ -9,9 +9,9 @@
 
             <div id='doc_subirdoc' class='cf' ng-show='subirDoc.value===2'>
               <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.datosDoc();' action="" method="post"> 
-                  <input type='text' placeholder='Titulo' ng-model='add.addDoc.nombre' required>
-                  <input type='text' placeholder='Autor' ng-model='add.addDoc.autor' required>
-                  <input class='iptDate' type='date' ng-model='add.addDoc.fecha' required>
+                  <input class="form-control" type='text' placeholder='Titulo' ng-model='add.addDoc.nombre' required>
+                  <input class="form-control" type='text' placeholder='Autor' ng-model='add.addDoc.autor' required>
+                  <input class="iptDate form-control" type='date' ng-model='add.addDoc.fecha' required>
                   <section ng-controller='CarrerasController as cyc'>
                     <select ng-model='add.addDoc.carrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera form-control" required="required" >
                       <option val="" selected disable>Seleccione una Carrera</option>

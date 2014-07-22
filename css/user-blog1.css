@@ -61,33 +61,35 @@
 /**inicia contenedor form */
 	
 .contBlog1 .formAddBlog {
-	width: 100%
+	width: 100%;
 }
 
 .contBlog1 .formAddBlog label, input, textarea{
-	margin-bottom: 1em
+	margin-bottom: 1em;
 }
 
 .contBlog1 .formAddBlog label{
-	width: 8%
+	width: 8%;
 }
 
 #tituloBlog1{
-	width: 60%
+	width: 60%;
+	display: inline-block;
 }
 
 #dateBlog1{
 	width: 22%;
-	height: 1.9em
+	height: 1.9em;
+	display: inline-block;
 }
 
 #textB1{
 	width:100%;
-	display: block
+	display: block;
 }
 
 #textBlog1{
-	width: 100%
+	width: 100%;
 }
 
 .btnaddBlog{

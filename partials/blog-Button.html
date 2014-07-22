@@ -5,11 +5,11 @@
 	 		
 	 	<form ng-controller="AddBlogController as addblog" class="formAddBlog clearfix" role="form" name="addBlogs" ng-submit="addBlogs.$valid && addblog.addPost(usuario.user[cookieValue])">	
 	 		<label for="tituloBlog1">Título:</label>
-	 		<input type="text" class="imptitulo" id="tituloBlog1" placeholder="Mi título" ng-model="addblog.newblog.titulo"/>
+	 		<input type="text" class="imptitulo form-control" id="tituloBlog1" placeholder="Mi título" ng-model="addblog.newblog.titulo"/>
 	 		<label for="dateBlog1">Fecha:</label>
-	 		<input type="date" id="dateBlog1" ng-model="addblog.newblog.fecha"/>
+	 		<input type="date" id="dateBlog1" ng-model="addblog.newblog.fecha" class="form-control"/>
 	 		<label for="textBlog1" id="textB1">Ingresar Post:</label>
-	 		<textarea name="Name" rows="8" cols="80" id="textBlog1" placeholder="Mi texto" ng-model="addblog.newblog.texto"></textarea>
+	 		<textarea name="Name" class="form-control" rows="8" cols="80" id="textBlog1" placeholder="Mi texto" ng-model="addblog.newblog.texto"></textarea>
  			<button type="submit" class="btnaddBlog pull-right" value="submit">Guardar</button>
  			<a href="#addBlog" class="pull-right" data-toggle="collapse">Cerrar</a>
  		</form>

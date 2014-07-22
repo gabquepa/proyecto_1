@@ -13,7 +13,7 @@
                 <section ng-controller='misCarreras-cursos as cyc' class="form-group div_docsubir">
                     <span>Ingrese el criterio de búsqueda</span>
                     <form name="forumSearch" ng-submit="forumSearch.$valid && add.busqueda(busqueda,busquedaCarrera,busquedaCurso)">
-                      <input type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc' required>
+                      <input class="form-control" type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc' required>
                       <select ng-model='busquedaCarrera' ng-mouseleave="cyc.selectCurso()" class="form-control carrera-select" >
                         <option val="-1">Seleccione una Carrera</option>
                         <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
