@@ -926,6 +926,9 @@ app.controller('agregarDocController',['$http', function($http){
 					
 					break;
 				}
+				else{
+					this.resultado=null;
+				}
 			}
 		}
 

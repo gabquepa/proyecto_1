@@ -25,22 +25,25 @@
                       <button type="submit" class='btn-buscar'>Buscar</button>
                     </form>
                 </section>
-                  <div class='divDescarg cf' span ng-show='add.resultado===true'>
-                    <span class='result'>Resultados:</span>
-                    <section class='imgDescarg'>
-                        <a href=""><img src="img/btn-pdf.png"></a>
+              </div>
+
+                <div class='divdoc-buscado cf' ng-show='add.resultado===true'>
+                    <h3 class='result'>Resultado:</h3>
+                    <section class='imgdoc-buscado'>
+                        <a href="doc-pdf/angularjs.pdf"><img src="img/btn-pdf.png"></a>
                         <img src="img/sample-stars.png">
                     </section>
-                    <section class='infoDescarg'>
+                    <section class='infodoc-buscado'>
                         <span class='doc_lispandoc'>Nombre: <a href="#">{{add.mostrarnombre}}</a></span>
                         <span class='doc_lispandoc'>Autor: {{add.mostrarautor}}</span>
                         <span class='doc_lispandoc'>Fecha: {{add.mostrarfecha}}</span>
                         <span class='doc_lispandoc'>Carrera: {{add.mostrarcarrera}}</span>
                         <span class='doc_lispandoc'>Curso: {{add.mostrarcurso}}</span>
                     </section>
-                  </div>
-              </div>
-
+                </div>
+                <section class='divdoc-buscado' ng-show='add.resultado===null'>
+                  <h3  class='doc_lispandoc'>No hay resultados</h3>
+                </section>
             </div>
 </div>
       <!--Busqueda de Documentos-->

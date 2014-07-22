@@ -135,10 +135,20 @@ h2{
 	border-bottom: 1px solid gray; 
 	padding: 1em;
 }
-#divDocRs {
-	width: 100%
+#divDoc .imgDescarg img {
+	margin-bottom: 1em;
 }
 
-select{
-	width: 49%;
+.divdoc-buscado .imgdoc-buscado{
+	width: 20%;
+	float: left;
+	margin-right: 5%;
+}
+.divdoc-buscado .infodoc-buscado span{
+	display: block;
+	margin: 0.5em;
+}
+.divdoc-buscado{
+	margin-bottom: 8em;
+	margin-top: 2em;
 }
