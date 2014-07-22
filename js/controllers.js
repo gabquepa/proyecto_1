@@ -1128,7 +1128,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			for (var i=0; i < pUsuario.length; i++) {
 			  if (pName==pUsuario[i].usuario) {
 		        	   $('#mensajeRec').html("");
-		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'se envión un correo a su cuanta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
+		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'se envió un correo a su cuanta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
 		        	   estado=true;	   
 			   };
 			   

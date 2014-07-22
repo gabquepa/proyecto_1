@@ -12,16 +12,18 @@
 
                 <section ng-controller='misCarreras-cursos as cyc' class="form-group div_docsubir">
                     <span>Ingrese el criterio de búsqueda</span>
-                    <input type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc'>
-                    <select ng-model='busquedaCarrera' ng-mouseleave="cyc.selectCurso()" class="carrera-select" >
-                      <option val="-1">Seleccione una Carrera</option>
-                      <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
-                    </select>
-                    <select ng-model='busquedaCurso' class="select-curso">
-                      <option val="-1" disable>Seleccione un Curso</option>
-                      <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
-                    </select>
-                    <button class='btn-buscar' ng-click="add.busqueda(busqueda,busquedaCarrera,busquedaCurso);">Buscar</button>
+                    <form name="forumSearch" ng-submit="forumSearch.$valid && add.busqueda(busqueda,busquedaCarrera,busquedaCurso)">
+                      <input type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc' required>
+                      <select ng-model='busquedaCarrera' ng-mouseleave="cyc.selectCurso()" class="form-control carrera-select" >
+                        <option val="-1">Seleccione una Carrera</option>
+                        <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
+                      </select>
+                      <select ng-model='busquedaCurso' class=" form-control select-curso">
+                        <option val="-1" disable>Seleccione un Curso</option>
+                        <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
+                      </select>
+                      <button type="submit" class='btn-buscar'>Buscar</button>
+                    </form>
                 </section>
                   <div class='divDescarg cf' span ng-show='add.resultado===true'>
                     <span class='result'>Resultados:</span>

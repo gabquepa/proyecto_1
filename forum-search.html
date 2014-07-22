@@ -36,15 +36,15 @@
               <input id="inputbusqueda" class="form-control" placeholder="Buscar" required>
               <span></span>
               <h4>Búsqueda Avanzada</h4>
-              <select ng-mouseleave="universidad.selectCurso()" class="select-carrera">
+              <select ng-mouseleave="universidad.selectCurso()" class="form-control select-carrera">
                 <option val="-1" disable>Seleccione una Carrera</option>
                 <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
               </select>
-              <select class="select-curso">
+              <select class="select-curso form-control">
                 <option val="-1" disable>Seleccione un Curso</option>
                 <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
               </select>
-              <select style="width: 100%;">
+              <select style="width: 100%;" class="form-control">
                 <option val="-1" disable>Seleccione un Tema</option>
                 <option val="1" disable>Tema 1</option>
                 <option val="1" disable>Tema 2</option>
