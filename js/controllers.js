@@ -17,7 +17,7 @@ app.controller('routeController', function($scope, $cookieStore) {
 	if(window.location.pathname === '/Proyecto_1/forum-profesor.html' || window.location.pathname === '/Proyecto_1/forum-estudiante.html' || window.location.pathname === '/Proyecto_1/forum-search.html'){
 		$('.forumOpt').addClass('active');
 	}
-	if(window.location.pathname === '/Proyecto_1/documentos.html'){
+	if(window.location.pathname === '/Proyecto_1/documents.html'){
 		$('.descargasOpt').addClass('active');
 	}
 	if(window.location.pathname === '/Proyecto_1/user-blog1.html'){
@@ -1128,7 +1128,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			for (var i=0; i < pUsuario.length; i++) {
 			  if (pName==pUsuario[i].usuario) {
 		        	   $('#mensajeRec').html("");
-		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'se envió un correo a su cuanta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
+		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'Se envió un correo a su cuanta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
 		        	   estado=true;	   
 			   };
 			   

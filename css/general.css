@@ -39,12 +39,25 @@ body{
   padding: 0;
 }
 .main{
-  padding: 2%;
+  padding: 3.5%;
   display: inline-block;
   width: 79.166666666667%;/*760px*/
   vertical-align: top;
   min-height: 500px;
 }
+.main .main-header{
+  font-size: 27px;
+  color: #434343;
+  font-weight: normal;
+  color: black;  
+}
+.main .main-text, .main-text{
+  font-size: 16px;
+  color: #686666;
+  padding-bottom: 2.5em;
+  margin:0;
+}
+
 .header, .footer, .side-nav h3, .btn-blue{
   /* fallback */
   background-color: #196A95;

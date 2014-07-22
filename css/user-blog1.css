@@ -1,14 +1,12 @@
 /**inicia blog1 MK2 Sergio Herrera */
 .userblog, .userblogVisit{
 	width: 100%;
-	padding: 0em 0% 0em 3%;
+	padding: 0em 0% 0em 0;
 }
 
 
 .titleblog{
 	width: 100%;
-	padding-bottom: 2.5em;
-	
 }
 
 .titleblog h1{
