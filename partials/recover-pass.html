@@ -11,12 +11,13 @@
     			</section>
     			
     			<form class="formlogin" name="recPass" role="form" ng-controller="recuperarPass as recuperar" ng-submit="recPass.$valid && recuperar.recUser(username,usuario.user)">
-    				<strong id="mensajeRec" class="msjerror"></strong>
+    				
     				<label for="usuarioRec">Usuario</label>
-    				<input type="email"  id="usuarioRec" placeholder="usuario@cenfotec.ca.cr" ng-model="username" required/>
+    				<input type="email"  id="usuarioRec" placeholder="usuario@cenfotec.ca.cr" ng-model="username" class="form-control" required/>
     				<button type="submit" class="botlogin" value="submit">Recuperar</button>
     				
     				<a href ng-click="navLogin.getTab(1)" id="recoverylink">Regresar</a>
+                    <strong id="mensajeRec" class="msjerror"></strong>
     				
     			</form>
 

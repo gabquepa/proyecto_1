@@ -32,6 +32,7 @@
 	margin-top:10em;
 	margin-bottom:25em;
 	box-shadow: 0em 0em 1em;
+	height: 400px;
 }
 
 .contloging .headcontlog{
@@ -41,9 +42,9 @@
 
 .contloging .headcontlog h3{
 	margin:0;
-	font-size: 2em;
+	font-size: 1.7em;
 	color: #fff;
-	padding: 0.3em 16.5%
+	padding: 0.3em 5%
 }
 /* class para form login */
 
@@ -87,7 +88,7 @@
 	margin:0;
 	font-size: 1.7em;
 	color: #fff;
-	padding: 0.3em 16.5%
+	padding: 0.3em 5%
 }
 
 .msjerror{

@@ -1135,7 +1135,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			};
 			if (!estado) {
 				$('#mensajeRec').html("");
-				$('#mensajeRec').append('USUARIO INCORRECTO');
+				$('#mensajeRec').append('Usuario Incorrecto');
 				$("#usuarioRec").val("");
 			};
 			
