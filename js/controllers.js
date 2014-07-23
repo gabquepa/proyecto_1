@@ -648,7 +648,7 @@ app.controller("modificarUserController", function(){
 			
 
 			 this.user = {};
-			 alert("El usuario fue modificado correctamente");
+			 alert("El usuario se midificó correctamente");
 
 
 		}
@@ -707,7 +707,7 @@ app.controller("inhabilitarUserController", function(){
 			
 
 			 this.user = {};
-			 alert("El cambio se guardo correctamente");
+			 alert("El cambio se guardó correctamente");
 
 
 			 }
@@ -799,7 +799,6 @@ app.controller("respuestaForos", function(){
 
 //------------------------Profesores-----------------------------
 	app.controller("ControlProfesores",function(){
-	  
 	 this.msg={'display':'none'};
 	 this.profe ="";
      this.carrera="";
@@ -826,11 +825,14 @@ app.controller("respuestaForos", function(){
 
 	this.guardarProfesor=function(pCarreras,pProfeCurso){
 		 var arregloTemp={};
-		
+		 var estado=true;
+		 arregloTemp.carrera=pCarreras[this.carrera].nombre;
+	     arregloTemp.curso=pCarreras[this.carrera].cursos[this.curso].nombreCurso;
+		 arregloTemp.profe=this.profe;
 		 for (var i=0; i < pProfeCurso.length; i++) {
-		    if ((pProfeCurso[i].carrera==pCarreras[this.carrera].nombre)&&(pProfeCurso[i].curso==pCarreras[this.carrera].cursos[this.curso].nombreCurso)&&(pProfeCurso[i].profe==this.profe)) {
-
-		    	 this.msg={'color': '#ebebeb','display':'block','color':'#F58e25','text-align': 'center','font-size':'2em','margin-top':'2em' };
+		    if ((pProfeCurso[i].carrera==arregloTemp.carrera)&&(pProfeCurso[i].curso==arregloTemp.curso)&&(pProfeCurso[i].profe==arregloTemp.profe)) {
+ 
+		    	 this.msg={'color': '#ebebeb','display':'block','color':'#F58e25','text-align': 'center','font-size':'1em','margin-top':'2em' };
 		    	 this.profe ="";
 			     this.carrera="";
 			     this.curso="";
@@ -838,13 +840,15 @@ app.controller("respuestaForos", function(){
 			     this.estadoCurso=true;
 			     this.styleCarrera={'background-color': '#ebebeb'};
 			     this.styleCurso={'background-color': '#ebebeb'};; 
+		         estado=false;
 		 
-		 
-		 } else{
-		 	     
-		 	      arregloTemp.carrera=pCarreras[this.carrera].nombre;
-				  arregloTemp.curso=pCarreras[this.carrera].cursos[this.curso].nombreCurso;
-				  arregloTemp.profe=this.profe;
+		     };
+
+	  }; 
+	  
+	  if (estado==true) {
+		 	
+		 	      
 				  pProfeCurso.push(arregloTemp);
 				 
 				 this.profe ="";
@@ -855,9 +859,7 @@ app.controller("respuestaForos", function(){
 			     this.styleCarrera={'background-color': '#ebebeb'};
 			     this.styleCurso={'background-color': '#ebebeb'};; 
 			     this.msg={'display':'none'};
-		 };
-		   
-	  }; 
+	};
 		
 	}    
 	   	       
@@ -1084,7 +1086,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			var estado=false;
 			for (var i=0; i < pUsuario.length; i++) {
 			  if (pPass==pUsuario[i].pass && pName==pUsuario[i].usuario) {
-				if (pUsuario[i].estado=="A") {
 		        	   $('#mensajeLogin').html("");
 		        	   $cookieStore.put('usuario', i);
 		        	   $cookieStore.put('usuarioTipo', pUsuario[i].tipo);
@@ -1093,14 +1094,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
  				     } else{
  				     	window.location = "/Proyecto_1/user-blog1.html";
  				     };		
-		        	   
-				
-				} else{
-					$('#mensajeLogin').html("");
-					$('#mensajeLogin').append('Acceso Denegado <br> USUARIO INACTIVO');
-					$("#usuario").val("");
-					$("#pass").val("");	
-				};	
                  estado=true;	   
 			   };
 			   
@@ -1131,7 +1124,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			for (var i=0; i < pUsuario.length; i++) {
 			  if (pName==pUsuario[i].usuario) {
 		        	   $('#mensajeRec').html("");
-		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'Se envió un correo a su cuanta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
+		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'Se envió un correo a su cuenta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
 		        	   estado=true;	   
 			   };
 			   
@@ -1216,7 +1209,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
         			return 	this.pass.pnewconf;
         		} else{
         			$('#mensajePerfil').html("");
-        			$('#mensajePerfil').append("La confirmación es incorrecta");
+        			$('#mensajePerfil').append("La confirmación de la nueva contraseña es incorrecta");
         			return 	pPassAct;
         		};
         		
@@ -1346,6 +1339,12 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 					this.value=false;
 			}
 		
+		 	this.denunciar = function(){
+				alert('su denuncia ha sido enviada');
+			}
+		    
+		
+		
 	});
 	
 	app.controller("AddBlogController",function(){
@@ -1427,12 +1426,21 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    };
 	    
 	    this.buscarUs= function(puser){	
-             this.styleBlogResult={'color':''};
+	    	
+	    	this.styleBlogResult={'color':''};
 			for (var i=0; i < puser.length; i++) {
 			  if (puser[i].usuario==this.myuser.usuario) {
 			  	this.tempDuenio=i;
 			  }
 			};
+	    	
+	    	$('.loading').show();
+		setTimeout(function(){
+			$('.loading').hide();
+			
+		}, 500);
+	    	
+            
 	    }; 
 	    
 	    this.buscarUser= function(puser){	

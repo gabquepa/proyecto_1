@@ -128,12 +128,16 @@
 
 .editdelete{
 	text-align: right;
-	width: 10%;
+	width: 12%;
 	color:#196A95
 }
 
 .contMiBlog1{
 	width: 100%
+}
+
+.cerrar{
+	padding: 0.2em 2%;
 }
 
 .contMiBlog1 .textmiblog{
@@ -341,5 +345,13 @@
   background-color: #ebebeb;
   border-left: 5px #00a79c solid;
   padding-left:22.5%;
+}
+
+
+.loading{
+  width: auto;
+  max-width: 35px;
+  margin-top: 10px;
+  display: none;
 }
 /*user-blog5*/
