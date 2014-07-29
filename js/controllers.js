@@ -109,18 +109,6 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		console.log('remove');
 	};
 
-	this.showCreateForum = function(){
-		$scope.showCreate = true;
-		$scope.showConfig=false;
-		$('.forum-config').addClass('ng-hide');
-		$('.forum-create').removeClass('ng-hide');
-
-		$('.create-forumSection .invitados').val('');
-		$('.forum-title').val('');
-		$('.forum-periodo').val('');
-		$('.create-forumSection textarea').val('');
-		$('.create-forumSection .moderador').val('');
-	};
 	this.denunciar = function(){
 		alert('su denuncia ha sido enviada');
 	};
@@ -153,11 +141,41 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		console.log(forum.lists); 
 
 		alert('Foro creado');
+		$('#forum-create').collapse('toggle');
 
-		$scope.showCreate = false;
-		$scope.showConfig=true;
-		$('.forum-config').removeClass('ng-hide');
-		$('.forum-create').addClass('ng-hide');
+		$('.create-forumSection .invitados').val('');
+		$('.forum-title').val('');
+		$('.forum-periodo').val('');
+		$('.create-forumSection textarea').val('');
+		$('.create-forumSection .moderador').val('');
+	};
+	this.addComment = function(){
+		var forumId= $('#id-foro').val();
+		var forumS = [];
+		var d = new Date();
+		
+		for(var i= 0; i<(forum.lists).length;i++){
+			if((forum.lists)[i].id == forumId){
+				forumS = (forum.lists)[i];
+			}
+		}	
+		
+		// // $scope.forumForm.$pristine = true;	
+		this.comment.nombre = $('#usuario').text();
+		this.comment.fecha = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
+		forumS.comments.push(this.comment);
+
+		this.comment={};
+		$('#add-comment').collapse('toggle');
+		$('.comment-text').val('');
+		$('.comments-lst').show();
+
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 500);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 600);
 	};
 
 	this.editarForo = function(){
