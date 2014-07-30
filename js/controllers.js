@@ -110,7 +110,14 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	};
 
 	this.denunciar = function(){
-		alert('su denuncia ha sido enviada');
+		alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
+		    if (e) {
+		        alertify.log("Su denuncia ha sido enviada");
+		    } else {
+		        
+		    }
+		});
+		
 	};
 	this.createForum = function(){
 		var invitados = $('.create-forumSection .invitados').val().split(', ');
@@ -135,12 +142,12 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		this.newforum.invitados = invitados;
 		this.newforum.comments={};
 		this.newforum.estado='A';
-		
+
+
 		forum.lists.push(this.newforum);
 		newforum={};
 		console.log(forum.lists); 
-
-		alert('Foro creado');
+		alertify.success("Foro creado");
 		$('#forum-create').collapse('toggle');
 
 		$('.create-forumSection .invitados').val('');
@@ -232,6 +239,8 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 
 	this.displayForum = function(forum){
 		$('.inine-forum-display').show();
+
+		// $('.config-forumTitle').hide();
 		// $('.course').text(forum.CursoId);
 		$('.course-title').text(forum.titulo);
 		$('.main-forum').text(forum.tema);
