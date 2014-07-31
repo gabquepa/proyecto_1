@@ -1130,8 +1130,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			   
 			};
 			if (!estado) {
-				$('#mensajeLogin').html("");
-				$('#mensajeLogin').append('Usuario o Contraseña Inválida');
+				alertify.error("Usuario o Contraseña Inválida");
 				$("#usuario").val("");
 				$("#pass").val("");
 			};
@@ -1154,15 +1153,13 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			var estado=false;
 			for (var i=0; i < pUsuario.length; i++) {
 			  if (pName==pUsuario[i].usuario) {
-		        	   $('#mensajeRec').html("");
-		        	   $('#mensajeRec').append(pUsuario[i].nombre + '<br>' + 'Se envió un correo a su cuenta:'+'<br>'+pUsuario[i].usuario+'<br>'+'con su nueva contraseña');
+		        	   alertify.success("Se envió un correo a su cuenta: "+pUsuario[i].usuario);
 		        	   estado=true;	   
 			   };
 			   
 			};
 			if (!estado) {
-				$('#mensajeRec').html("");
-				$('#mensajeRec').append('Usuario Incorrecto');
+				alertify.error("Usuario Incorrecto");
 				$("#usuarioRec").val("");
 			};
 			

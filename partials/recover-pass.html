@@ -1,26 +1,16 @@
-
-    	<section class="container" ng-controller="UserController as usuario">
-    		
-    		<div class="header headerlog logo">
-    			<img src="img/logo_cenfo.png"/>
-    		</div>
-
-    		<div class="contloging">
-    			<section class="headcontlog header">
-    				<h3 id="titlerecover">Recuperar Contraseña_</h2>
-    			</section>
-    			
-    			<form class="formlogin" name="recPass" role="form" ng-controller="recuperarPass as recuperar" ng-submit="recPass.$valid && recuperar.recUser(username,usuario.user)">
-    				
-    				<label for="usuarioRec">Usuario</label>
-    				<input type="email"  id="usuarioRec" placeholder="usuario@cenfotec.ca.cr" ng-model="username" class="form-control" required/>
-    				<button type="submit" class="botlogin" value="submit">Recuperar</button>
-    				
-    				<a href ng-click="navLogin.getTab(1)" id="recoverylink">Regresar</a>
-                    <strong id="mensajeRec" class="msjerror"></strong>
-    				
-    			</form>
-
-    		</div>
-    		
-    	</section>
+<section class="container" ng-controller="UserController as usuario">
+	<div class="header headerlog logo">
+		<img src="img/logo_cenfo.png"/>
+	</div>
+	<div class="contloging">
+		<section class="headcontlog header">
+			<h3 id="titlerecover">Recuperar Contraseña_</h2>
+		</section>
+		<form class="formlogin" name="recPass" role="form" ng-controller="recuperarPass as recuperar" ng-submit="recPass.$valid && recuperar.recUser(username,usuario.user)">
+			<label for="usuarioRec">Usuario</label>
+			<input type="email"  id="usuarioRec" placeholder="usuario@cenfotec.ca.cr" ng-model="username" class="form-control" required/>
+			<button type="submit" class="botlogin" value="submit">Recuperar</button>
+			<a href ng-click="navLogin.getTab(1)" id="recoverylink">Regresar</a>
+		</form>
+	</div>
+</section>
