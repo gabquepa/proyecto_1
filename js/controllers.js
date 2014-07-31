@@ -1,7 +1,5 @@
 /* Controllers */
 
-
-
 (function(){
 var app = angular.module('controllers-project',[]);
 
@@ -26,10 +24,7 @@ app.controller('routeController', function($scope, $cookieStore) {
 	
 });
 
-
-
 /************** Forum Controllers **************/
-
 /************** PROFESOR Forum Controllers **************/
 app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
@@ -82,6 +77,17 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$scope.showList=false;
 		$('.inine-forum-list').removeClass('ng-hide');
 		$('.inine-forum-display').addClass('ng-hide');
+		if($('#forum-usrs').hasClass('in')){
+			$('#forum-usrs').collapse('toggle'); 
+			$('.forum-config .save').hide();
+			$('.forum-config .edit').show();
+			$scope.enable = true;
+			$('.main-forum').attr('disabled',true);	
+		}
+		if($('#add-comment').hasClass('in')){
+			$('#add-comment').collapse('toggle'); 
+		}
+		
 	};
 
 	this.enableTxt  = function(){
@@ -113,11 +119,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
 		    if (e) {
 		        alertify.log("Su denuncia ha sido enviada");
-		    } else {
-		        
 		    }
 		});
-		
 	};
 	this.createForum = function(){
 		var invitados = $('.create-forumSection .invitados').val().split(', ');
@@ -176,6 +179,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$('#add-comment').collapse('toggle');
 		$('.comment-text').val('');
 		$('.comments-lst').show();
+		alertify.success("El comentario fue enviado");
 
 		setTimeout(function(){
 			$(".stars").rating();
@@ -190,36 +194,45 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		var invitados = $('.inine-forum-display .invitados').val().split(', ');
 		var cerrar = $("input:radio[name=estado]").val();
 		var estado = 'A';
+		alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
+		    if (e) {
+		        if (cerrar === '1'){
+					estado = 'I';
+				}
 
-		if (cerrar === '1'){
-			estado = 'I';
-		}
+				for (var i = invitados.length - 1; i >= 0; i--) {
+					invitados[i] = 'nombre":'+ '"' + invitados[i];
+				}
 
-		for (var i = invitados.length - 1; i >= 0; i--) {
-			invitados[i] = 'nombre":'+ '"' + invitados[i];
-		}
+				for (var i = (forum.lists).length - 1; i >= 0; i--) {
+					if((forum.lists)[i].id == idF){
+						(forum.lists)[i].tema=$('.inine-forum-display .main-forum').val();
+						(forum.lists)[i].moderador=$('.inine-forum-display #moderadorDisplay').text();
+						(forum.lists)[i].invitados = invitados;
+						(forum.lists)[i].estado= estado;
+					}
+				}
+				console.log(forum.lists);
 
-		for (var i = (forum.lists).length - 1; i >= 0; i--) {
-			if((forum.lists)[i].id == idF){
-				(forum.lists)[i].tema=$('.inine-forum-display .main-forum').val();
-				(forum.lists)[i].moderador=$('.inine-forum-display #moderadorDisplay').text();
-				(forum.lists)[i].invitados = invitados;
-				(forum.lists)[i].estado= estado;
-			}
-		}
-		console.log(forum.lists);
+				$('.forum-config .save').hide();
+				$('.forum-config .edit').show();
+				$('#forum-usrs').collapse('toggle');
+				if($scope.enable = true && $(".main-forum").attr('disabled')==='disabled'){
+					$scope.enable = false;
+					$('.main-forum').attr('disabled',false);	
+				}
+				else{
+					$scope.enable = true;
+					$('.main-forum').attr('disabled',true);	
+				}
+				alertify.success("El foro fue editado");
+		    }// fin if
+		    else{
+		    	alertify.error("Error");
+		    }
+		});
 
-		$('.forum-config .save').hide();
-		$('.forum-config .edit').show();
-		$('#forum-usrs').collapse('toggle');
-		if($scope.enable = true && $(".main-forum").attr('disabled')==='disabled'){
-			$scope.enable = false;
-			$('.main-forum').attr('disabled',false);	
-		}
-		else{
-			$scope.enable = true;
-			$('.main-forum').attr('disabled',true);	
-		}
+		
 	};
 
 }]);	
@@ -278,7 +291,11 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 	};
 
 	this.denunciar = function(){
-		alert('Su denuncia ha sido enviada');
+		alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
+		    if (e) {
+		        alertify.log("Su denuncia ha sido enviada");
+		    }
+		});
 	};
 	this.buscarForo = function(){
 		$('.forum-search div .loading').show();
@@ -308,6 +325,7 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 		$('#add-comment').collapse('toggle');
 		$('.comment-text').val('');
 		$('.comments-lst').show();
+		alertify.success("El comentario fue enviado");
 
 		setTimeout(function(){
 			$(".stars").rating();
@@ -1368,7 +1386,11 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			}
 		
 		 	this.denunciar = function(){
-				alert('su denuncia ha sido enviada');
+				alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
+				    if (e) {
+				        alertify.log("Su denuncia ha sido enviada");
+				    }
+				});
 			}
 		    
 		
@@ -1389,6 +1411,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			//puser.blog[cont].comentarios.push(this.coment);
 			this.newblog={};
 			cont++;
+			alertify.success("El post fue creado");
+			$('#addBlog').collapse('toggle');
 	    };
 	    
 	});
@@ -1418,6 +1442,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
       
 			this.newCom={};
 			cont++;
+			alertify.success("El comentario fue enviado");
+			$('#contcomentblog').collapse('toggle');
 	    };    
 	});
 	

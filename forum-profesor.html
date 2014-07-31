@@ -91,7 +91,6 @@
               <a style="display:none;" class="glyphicon glyphicon-floppy-saved pull-right save" href="#" ng-click="forum.editarForo()">Guardar</a> 
 
               <textarea class="main-forum form-control" ng-disabled="{{enable}}" ></textarea>
-              <a href="#add-comment" data-toggle="collapse" class="pull-right" ng-click="forum.setInfo()">Comentar</a>
               <div id="add-comment" class="panel-collapse collapse">
                 <div class="panel-body">
                   <form name="forumForm" ng-submit="forumForm.$valid && forum.addComment()">
@@ -119,6 +118,7 @@
                   </ul> -->
                 </div>  
               </div>
+              <a href="#add-comment" data-toggle="collapse" class="pull-right" ng-click="forum.setInfo()">Comentar</a>
             </div>
             <div class="comments-lst">
                 <h3>Comentarios</h3>

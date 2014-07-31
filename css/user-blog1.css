@@ -1,4 +1,8 @@
 /**inicia blog1 MK2 Sergio Herrera */
+
+.list-group-item{
+	border:none;
+}
 .userblog, .userblogVisit{
 	width: 100%;
 	padding: 0em 0% 0em 0;
@@ -122,14 +126,16 @@
 }
 
 .linktituloBlog1{
-	width: 20%;
-	color:#196A95
+	width: auto;
+	text-decoration: underline;
+	color: #428bca;
+	padding-right: 1%;
+	max-width: 30%;
 }
 
 .editdelete{
 	text-align: right;
-	width: 12%;
-	color:#196A95
+	color:black
 }
 
 .contMiBlog1{
@@ -141,29 +147,24 @@
 }
 
 .contMiBlog1 .textmiblog{
-	width: 100%;
+ 	-webkit-box-shadow: inset -6px 0px 29px 2px rgba(50, 50, 50, 0.49);
+	-moz-box-shadow: inset -6px 0px 29px 2px rgba(50, 50, 50, 0.49);
+	box-shadow: inset -6px 0px 29px 2px rgba(50, 50, 50, 0.49);
+	background-color: #f5f5f5;
+	color: #606060;
+	font-size: 16px;
+	padding: 1em 2%;
 	max-height:3em;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	background-color: #f5f5f5;
-	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-  	-moz-box-shadow:    inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
- 	 box-shadow:         inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
- 	 padding: 1em 2%
 }
-
-
 /**cierra blog1 MK2 Sergio Herrera */
-
-
 /**Iniciablog3 MK4 Sergio Herrera */
-	
 .blogsearch{
 	width: 100%;
 	margin-bottom: 0.5em
 }
-
 .linea{
   width: 100%;
   height: 0.2em;
@@ -187,6 +188,10 @@
 	width: 100%;
 }
 
+.contblog h3{
+	font-size: 20px;
+}
+
 	
 .misBlogs4 .miblog4{
 	width: 100%;
@@ -198,7 +203,12 @@
 }
 
 .misBlogs4 .linkcometarblog{
-	color: #196A95
+	color: black;
+	text-decoration: none;
+}
+.misBlogs4 .linkcometarblog:hover, .editdelete:hover{
+	color: black;
+	text-decoration: none;
 }
 
 #contcomentblog{
@@ -218,6 +228,10 @@
 }
 #contcomentblog textarea{
 	width: 100%
+}
+.comentBlogs h3{
+	font-size: 16px;
+	color: #434343;	
 }
 .comentBlogs .comentmiblog4{
 	width: 100%;

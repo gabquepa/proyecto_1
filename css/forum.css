@@ -104,9 +104,7 @@ body{
 /************** forum search **************/
 
 .forum-search .search-section, .forum-create .create-forumSection{
-  -webkit-box-shadow: -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
-  -moz-box-shadow:    -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
-  box-shadow:         -6px 0px 15px 0px rgba(50, 50, 50, 0.49);
+  box-shadow: 0px 0px 5px 0px;
   padding: 2%;
 }
 .forum-search .search-title, .forum-config .config-forumTitle, .forum-config a .config-forumTitle, .forum-create .create-forumTitle, .header-forum-est{
