@@ -924,6 +924,9 @@ app.controller('agregarDocController',['$http', function($http){
 			controller.documentos =data;
 		});
 
+		var f = new Date();
+		this.fechaAct=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+
 		this.addDoc={};
 		this.resultado=false;
 		this.mostrarnombre='';
@@ -960,6 +963,7 @@ app.controller('agregarDocController',['$http', function($http){
 				}
 			}
 		}
+
 
 }]);
 
