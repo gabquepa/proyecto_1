@@ -628,14 +628,24 @@ app.controller("crearUserController", function(){
 		this.user = {};
 
 		this.addUser = function(pUser){
-			  // console.log(pUser.correo);
-			  console.log(this.user);
+			   
+			  // console.log(this.user);
+			 var nombUser = $('#nombUser').val();
+             var correoUser = $('#correoUser').val();
+             var passwUser = $('#passwUser').val();
+             // console.log(codCurso);
+             if (nombUser == '' || correoUser == '' || passwUser == '' ) {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar todos los campos");
+             	// alertify.success("OJO");
+             }else{
 
 			  this.user.estado = "activo";
 			pUser.push(this.user);
-			alert("El usuario fue creado correctamente");
-			 
-			 console.log(this.user);
+			// alert("El usuario fue creado correctamente");
+			alertify.success("El usuario fue creado correctamente");
+			 }
+			 // console.log(this.user);
 			//  console.log(pUser[0].nombre);
 			//  console.log(pUser[1].nombre);
 			//  console.log(pUser[2].nombre);
@@ -683,19 +693,27 @@ app.controller("modificarUserController", function(){
 
 		this.user = {};
 		this.saveModif = function(pModif){
-			// console.log(this.user);
-			// console.log(temp);
 
-			// console.log(pModif[temp].nombre);
+			 var nombreEncontrado = $('#nombreEncontrado').val();
+             var correoEncontrado = $('#correoEncontrado').val();
+             var passwordEncontrado = $('#passwordEncontrado').val();
+             // console.log(codCurso);
+             if (nombreEncontrado == '' || correoEncontrado == '' || passwordEncontrado == '' ) {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar todos los campos");
+             	// alertify.success("OJO");
+             }else{
+			
 			 pModif[temp] = this.user;
-			 // console.log(pModif[temp].nombre);
+			 
 			  console.log(pModif[temp]);
 			
 
 			 this.user = {};
-			 alert("El usuario se midificó correctamente");
+			
+			 alertify.success("El usuario se modificó correctamente");
 
-
+			}
 		}
 
 
@@ -752,7 +770,7 @@ app.controller("inhabilitarUserController", function(){
 			
 
 			 this.user = {};
-			 alert("El cambio se guardó correctamente");
+			 alertify.success("El cambio se guardo correctamente");
 
 
 			 }
@@ -815,26 +833,37 @@ app.controller("inhabilitarCarreraController", function(){
 /*****************************************************************************************************************/	
 app.controller("respuestaForos", function(){
 	var respuestaForo = true;
-
-	this.respDefault = function(){
-		if(respuestaForo){
-		$('#permitirRespuesta').attr('checked', 'checked');
-		}else{
-			$('#denegarRespuesta').attr('checked', 'checked');
-		}
-	}
+	
+	//  console.log('Testing');
+	
+	// this.respDefault = function(){
+	// 	console.log("Hola");
+	// 	if(respuestaForo){
+	// 	$('#permitirRespuesta').attr('checked', 'checked');
+	// 	}else{
+	// 		$('#denegarRespuesta').attr('checked', 'checked');
+	// 	}
+	// }
 
 	this.cambiarRespuesta = function(){
-		console.log('cambiar');
-		var resp = $('#denegarRespuesta').val();
-		if(resp === 'noPermitir'){
-			$('#denegarRespuesta').attr('checked', 'checked');
-			respuestaForo = false;
-		}
-		// console.log(resp);
+		// console.log("entro");
+		 var permitir = $('#permitirResp').val();
+		 var denegar = $('#denegarResp').val();
 
+		if ($('#permitirResp').is(':checked')) {
+        	respuestaForo = true;
+		    
+		}else {
+		    respuestaForo = false;
+		 }
 
+		 alertify.success("El cambio se guardo correctamente");
 	}
+		
+		
+		
+
+	
 
 
 

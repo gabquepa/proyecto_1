@@ -18,11 +18,25 @@
 
 
 		this.addCarrera = function(){
+
+			var codCarrera = $('#codCarrera').val();
+            var nomCarrera = $('#nomCarrera').val();
+             
+             if (codCarrera == '' || nomCarrera == '' ) {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar todos los campos");
+             	// alertify.success("OJO");
+             }else{
+
+
+
 			this.miCarrera.id =this.carreras.length;
 			this.miCarrera.estado = 'activo';
 			this.miCarrera.cursos= [];
 			this.carreras.push(this.miCarrera);
 			this.miCarrera = {};
+			 alertify.success("La carrera se guardo correctamente");
+		}
 			
 		};
 
