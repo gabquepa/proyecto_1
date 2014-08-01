@@ -1251,18 +1251,18 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
         	if (this.pass.pactual==pPassAct) {
         		if (this.pass.pnew==this.pass.pnewconf) {
         			$('#mensajePerfil').html("");
-        			$('#mensajePerfil').append("Su contraseña se cambió con éxito");
+        			alertify.success("Su contraseña se cambió con éxito");
         			return 	this.pass.pnewconf;
         		} else{
         			$('#mensajePerfil').html("");
-        			$('#mensajePerfil').append("La confirmación de la nueva contraseña es incorrecta");
+        			alertify.error("La confirmación de la nueva contraseña es incorrecta");
         			return 	pPassAct;
         		};
         		
         		
         	} else{
         		$('#mensajePerfil').html("");
-        		$('#mensajePerfil').append("Contraseña inválida");
+        		alertify.error("Contraseña inválida");
                 return 	pPassAct;        	
         	};
         	
@@ -1418,16 +1418,20 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	});
 	
 	app.controller("deletePostUser",function(){
-	    
+
 	    this.deletePost = function(postid,puser){
+
+	
 	    	for (var i=0; i < puser.blog.length; i++) {
 			  if (puser.blog[i].idPost==postid) {
-	    		 puser.blog.splice( i , 1 );
+                     puser.blog.splice(i , 1 );
 	    	  };
+	    	  
 			};
-			$("#divEditarPost").hide();
 
+			$("#divEditarPost").hide();
 	    };
+	    
 	    
 	});
 	
