@@ -9,11 +9,11 @@
                     <span>Ingrese el criterio de búsqueda</span>
                     <form name="forumSearch" ng-submit="forumSearch.$valid && add.busqueda(busqueda,busquedaCarrera,busquedaCurso)">
                       <input class="form-control" type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc' required>
-                      <select ng-model='busquedaCarrera' ng-mouseleave="cyc.selectCurso()" class="form-control carrera-select" >
+                      <select ng-model='busquedaCarrera' ng-mouseleave="cyc.selectCurso()" class="form-control carrera-select selectStyle" >
                         <option val="-1">Seleccione una Carrera</option>
                         <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                       </select>
-                      <select ng-model='busquedaCurso' class=" form-control select-curso">
+                      <select ng-model='busquedaCurso' class=" form-control select-curso selectStyle">
                         <option val="-1" disable>Seleccione un Curso</option>
                         <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                       </select>
@@ -26,7 +26,9 @@
                     <h3 class='result'>Resultado:</h3>
                     <section class='imgdoc-buscado'>
                         <a href="doc-pdf/angularjs.pdf"><img src="img/btn-pdf.png"></a>
-                        <img src="img/sample-stars.png">
+                        <div class="comment-stars">
+                          <input  class="stars star-rating"  data-size="xs" disabledtype="number" value="{{add.mostrarvotacion}}">
+                        </div>
                     </section>
                     <section class='infodoc-buscado'>
                         <span class='doc_lispandoc'>Nombre: <a href="#">{{add.mostrarnombre}}</a></span>

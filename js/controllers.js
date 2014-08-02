@@ -943,7 +943,6 @@ app.controller('agregarDocController',['$http', function($http){
 		});
 
 		var f = new Date();
-		this.fechaAct=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
 
 		this.addDoc={};
 		this.resultado=false;
@@ -952,9 +951,11 @@ app.controller('agregarDocController',['$http', function($http){
 		this.mostrarfecha='';
 		this.mostrarcarrera='';
 		this.mostrarcurso='';
+		this.mostrarvotacion='';
 
 		this.datosDoc=function(){
 			this.addDoc.votacion=0;
+			this.addDoc.fecha=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
 			controller.documentos.push(this.addDoc);
 			this.addDoc={};
 		}
@@ -968,6 +969,7 @@ app.controller('agregarDocController',['$http', function($http){
 					doc.carrera.toUpperCase()===arguments[1].toUpperCase() && 
 					doc.curso.toUpperCase()===arguments[2].toUpperCase()){
 					this.resultado=true;
+					this.mostrarvotacion=doc.votacion;
 					this.mostrarnombre= doc.nombre;
 					this.mostrarautor=doc.autor;
 					this.mostrarfecha=doc.fecha;
@@ -981,6 +983,13 @@ app.controller('agregarDocController',['$http', function($http){
 				}
 			}
 		}
+
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 400);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 500);
 
 
 }]);
@@ -1100,12 +1109,20 @@ app.controller('historialDesController',['$http', function($http){//controlador 
 		var docDesc = this;
 		docDesc.descargas= [];
 
-		console.log('Test');
+		//console.log('Test');
 
 		$http.get('/proyecto_1/JSON/docs.json').success(function(data){
 			docDesc.descargas =data;
-			console.log(data);
+			//console.log(data);
 		});
+
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 400);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 500);
+
 }]);
 //Controllers Keilyn Sibaja
 
