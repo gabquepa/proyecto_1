@@ -507,12 +507,38 @@ app.controller('configurationController', function(){
 /*****************************************************************************************************************/
 
 app.controller('usuarioController', function(){
-		this.tab = 1;		
+		this.tab = 1;	
+		this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+		this.style2={'':''};
+		this.style3={'':''};	
 		this.selectTab=function(setTab){		
-				this.tab = setTab;
-					
+				this.tab = setTab;	
 				console.log(setTab);
+
+				switch (setTab){
+
+					case 1:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 2:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style2={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 3:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style3={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+				}
+
 		};
+
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 1){
 					this.tab=0;
@@ -526,8 +552,24 @@ app.controller('usuarioController', function(){
 /*****************************************************************************************************************/
 app.controller('foroController', function(){
 		this.tab = 1;
+		this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+		this.style2={'':''};
 		this.selectTab=function(setTab){
 			this.tab = setTab;
+
+			switch (setTab){
+
+					case 1:
+            	this.style1={'':''};
+				this.style2={'':''};
+            	this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 2:
+            	this.style1={'':''};
+				this.style2={'':''};
+            	this.style2={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            }
 		};
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 2){
@@ -559,8 +601,32 @@ app.controller('denunciasController', function(){
 /*****************************************************************************************************************/	
 app.controller('carreraController', function(){
 		this.tab = 1;
+		this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+		this.style2={'':''};
+		this.style3={'':''};
 		this.selectTab=function(setTab){
 			this.tab = setTab;
+			switch (setTab){
+
+					case 1:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 2:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style2={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 3:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style3={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+				}
 		};
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 4){
@@ -575,8 +641,32 @@ app.controller('carreraController', function(){
 /*****************************************************************************************************************/	
 app.controller('cursoController', function(){
 		this.tab = 1;
+		this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+		this.style2={'':''};
+		this.style3={'':''};
 		this.selectTab=function(setTab){
 			this.tab = setTab;
+			switch (setTab){
+
+					case 1:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 2:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style2={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 3:
+            	this.style1={'':''};
+				this.style2={'':''};
+				this.style3={'':''};
+            	this.style3={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+				}
 		};
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 5){
@@ -591,8 +681,23 @@ app.controller('cursoController', function(){
 /*****************************************************************************************************************/	
 app.controller('profesorController', function(){
 		this.tab = 1;
+		this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+		this.style2={'':''};
 		this.selectTab=function(setTab){
 			this.tab = setTab;
+			switch (setTab){
+
+					case 1:
+            	this.style1={'':''};
+				this.style2={'':''};
+            	this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 2:
+            	this.style1={'':''};
+				this.style2={'':''};
+            	this.style2={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            }
 		};
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 6){
@@ -607,8 +712,23 @@ app.controller('profesorController', function(){
 /*****************************************************************************************************************/	
 app.controller('estudianteController', function(){
 		this.tab = 1;
+		this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+		this.style2={'':''};
 		this.selectTab=function(setTab){
 			this.tab = setTab;
+			switch (setTab){
+
+					case 1:
+            	this.style1={'':''};
+				this.style2={'':''};
+            	this.style1={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            	case 2:
+            	this.style1={'':''};
+				this.style2={'':''};
+            	this.style2={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
+            	break;
+            }
 		};
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 7){
