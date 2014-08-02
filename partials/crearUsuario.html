@@ -7,37 +7,37 @@
                   <div class="contenedorInputs">
                       <label>Nombre del Usuario</label>
                       <!-- <h1>{{conf.usuarios[1].nombre}}</h1> -->
-                      <input type="text" class="form-control" ng-model="crearUser.user.nombre" required>
+                      <input type="text" class="form-control" ng-model="crearUser.user.nombre" id="nombUser">
                   </div>
                     
                       <div class="contenedorInputs contenedorInputsSep">
                             <label>Género</label><br>
                            
                            <label>Hombre</label>
-                           <input type="radio" class="genero" name="genero" value="masculino" ng-model="crearUser.user.genero" required>
+                           <input type="radio" class="genero" name="genero" value="masculino" ng-model="crearUser.user.genero" required >
                            <label>Mujer</label>
-                           <input type="radio" class="genero" name="genero" value="femenino" ng-model="crearUser.user.genero" required> 
+                           <input type="radio" class="genero" name="genero" value="femenino" ng-model="crearUser.user.genero" required > 
                        </div>
                        <div class="contenedorInputs contenedorInputsSep">
                            <label>Correo del Usuario</label>
-                          <input type="email" class="form-control" ng-model="crearUser.user.correo" required> 
+                          <input type="email" class="form-control" ng-model="crearUser.user.correo" id="correoUser" > 
                       </div>
                      <div class="contenedorInputs">
                           <label>Contraseña</label>
-                          <input type="password" class="form-control" ng-model="crearUser.user.password" required>
+                          <input type="password" class="form-control" ng-model="crearUser.user.password" id="passwUser" >
                       </div>
 
                     <div class="contenedorInputs labels">
                        <label>Categoría</label>
                            
                            <label>Director</label>
-                           <input type="radio" name="tipoUsuario" value="director" ng-model="crearUser.user.categoria" required>
+                           <input type="radio" name="tipoUsuario" value="director" ng-model="crearUser.user.categoria" required >
                            <label>Rector</label>
-                           <input type="radio" name="tipoUsuario" value="rector" ng-model="crearUser.user.categoria" required> 
+                           <input type="radio" name="tipoUsuario" value="rector" ng-model="crearUser.user.categoria" required > 
                            <label>Profesor</label>
-                           <input type="radio" name="tipoUsuario" value="profesor" ng-model="crearUser.user.categoria" required>
+                           <input type="radio" name="tipoUsuario" value="profesor" ng-model="crearUser.user.categoria" required >
                            <label>Estudiante</label>
-                           <input type="radio" name="tipoUsuario" value="estudiante" ng-model="crearUser.user.categoria" required>  
+                           <input type="radio" name="tipoUsuario" value="estudiante" ng-model="crearUser.user.categoria" required >  
                     </div>
 
                     <button type="submit" class="guardarBtn pull-right" value="submit">Guardar</button>

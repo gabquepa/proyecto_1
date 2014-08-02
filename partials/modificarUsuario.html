@@ -17,37 +17,37 @@
                         <form role="form" name="pruebaForm"  ng-submit="pruebaForm.$valid && modificarUser.saveModif(conf.usuarios)">
                                 <div class="contenedorInputs">
                                     <label>Nombre del Usuario</label>
-                                    <input type="text" class="form-control" id="nombreEncontrado" ng-model="modificarUser.user.nombre" required>
+                                    <input type="text" class="form-control" id="nombreEncontrado" ng-model="modificarUser.user.nombre">
                                 </div>
 
                                  <div class="contenedorInputs contenedorInputsSep">
                                  <label>Género</label><br>
                                  
                                  <label>Hombre</label>
-                                 <input type="radio" class="genero" name="genero" value="hombre" id="generoHombre" ng-model="modificarUser.user.genero" required>
+                                 <input type="radio" class="genero" name="genero" value="hombre" id="generoHombre" ng-model="modificarUser.user.genero">
                                  <label>Mujer</label>
-                                 <input type="radio" class="genero" name="genero" value="mujer" id="generoMujer" ng-model="modificarUser.user.genero" required> 
+                                 <input type="radio" class="genero" name="genero" value="mujer" id="generoMujer" ng-model="modificarUser.user.genero"> 
                                  </div>
                                  <div class="contenedorInputs contenedorInputsSep">
                                      <label>Correo del Usuario</label>
-                                    <input type="email" class="form-control" id="correoEncontrado" ng-model="modificarUser.user.correo" required> 
+                                    <input type="email" class="form-control" id="correoEncontrado" ng-model="modificarUser.user.correo" > 
                                 </div>
                                <div class="contenedorInputs">
                                     <label>Contraseña</label>
-                                    <input type="password" class="form-control" id="passwordEncontrado" ng-model="modificarUser.user.password" required>
+                                    <input type="password" class="form-control" id="passwordEncontrado" ng-model="modificarUser.user.password">
                                 </div>
 
                               <div class="contenedorInputs labels">
                                   <label>Categoría</label>
                                      
                                      <label>Director</label>
-                                     <input type="radio" name="tipoUsuario" value="director" id="director" ng-model="modificarUser.user.categoria" required>
+                                     <input type="radio" name="tipoUsuario" value="director" id="director" ng-model="modificarUser.user.categoria" >
                                      <label>Rector</label>
-                                     <input type="radio" name="tipoUsuario" value="rector" id="rector" ng-model="modificarUser.user.categoria" required> 
+                                     <input type="radio" name="tipoUsuario" value="rector" id="rector" ng-model="modificarUser.user.categoria" > 
                                      <label>Profesor</label>
-                                     <input type="radio" name="tipoUsuario" value="profesor" id="profesor" ng-model="modificarUser.user.categoria" required>
+                                     <input type="radio" name="tipoUsuario" value="profesor" id="profesor" ng-model="modificarUser.user.categoria" >
                                      <label>Estudiante</label>
-                                     <input type="radio" name="tipoUsuario" value="estudiante" id="estudiante" ng-model="modificarUser.user.categoria" required>  
+                                     <input type="radio" name="tipoUsuario" value="estudiante" id="estudiante" ng-model="modificarUser.user.categoria" >  
                               </div>
 
                               <button type="submit" class="guardarBtn pull-right" value="submit">Guardar</button>

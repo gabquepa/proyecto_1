@@ -628,14 +628,24 @@ app.controller("crearUserController", function(){
 		this.user = {};
 
 		this.addUser = function(pUser){
-			  // console.log(pUser.correo);
-			  console.log(this.user);
+			   
+			  // console.log(this.user);
+			 var nombUser = $('#nombUser').val();
+             var correoUser = $('#correoUser').val();
+             var passwUser = $('#passwUser').val();
+             // console.log(codCurso);
+             if (nombUser == '' || correoUser == '' || passwUser == '' ) {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar todos los campos");
+             	// alertify.success("OJO");
+             }else{
 
 			  this.user.estado = "activo";
 			pUser.push(this.user);
-			alert("El usuario fue creado correctamente");
-			 
-			 console.log(this.user);
+			// alert("El usuario fue creado correctamente");
+			alertify.success("El usuario fue creado correctamente");
+			 }
+			 // console.log(this.user);
 			//  console.log(pUser[0].nombre);
 			//  console.log(pUser[1].nombre);
 			//  console.log(pUser[2].nombre);
@@ -683,19 +693,27 @@ app.controller("modificarUserController", function(){
 
 		this.user = {};
 		this.saveModif = function(pModif){
-			// console.log(this.user);
-			// console.log(temp);
 
-			// console.log(pModif[temp].nombre);
+			 var nombreEncontrado = $('#nombreEncontrado').val();
+             var correoEncontrado = $('#correoEncontrado').val();
+             var passwordEncontrado = $('#passwordEncontrado').val();
+             // console.log(codCurso);
+             if (nombreEncontrado == '' || correoEncontrado == '' || passwordEncontrado == '' ) {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar todos los campos");
+             	// alertify.success("OJO");
+             }else{
+			
 			 pModif[temp] = this.user;
-			 // console.log(pModif[temp].nombre);
+			 
 			  console.log(pModif[temp]);
 			
 
 			 this.user = {};
-			 alert("El usuario se midificó correctamente");
+			
+			 alertify.success("El usuario se modificó correctamente");
 
-
+			}
 		}
 
 
@@ -752,7 +770,7 @@ app.controller("inhabilitarUserController", function(){
 			
 
 			 this.user = {};
-			 alert("El cambio se guardó correctamente");
+			 alertify.success("El cambio se guardo correctamente");
 
 
 			 }
@@ -815,26 +833,37 @@ app.controller("inhabilitarCarreraController", function(){
 /*****************************************************************************************************************/	
 app.controller("respuestaForos", function(){
 	var respuestaForo = true;
-
-	this.respDefault = function(){
-		if(respuestaForo){
-		$('#permitirRespuesta').attr('checked', 'checked');
-		}else{
-			$('#denegarRespuesta').attr('checked', 'checked');
-		}
-	}
+	
+	//  console.log('Testing');
+	
+	// this.respDefault = function(){
+	// 	console.log("Hola");
+	// 	if(respuestaForo){
+	// 	$('#permitirRespuesta').attr('checked', 'checked');
+	// 	}else{
+	// 		$('#denegarRespuesta').attr('checked', 'checked');
+	// 	}
+	// }
 
 	this.cambiarRespuesta = function(){
-		console.log('cambiar');
-		var resp = $('#denegarRespuesta').val();
-		if(resp === 'noPermitir'){
-			$('#denegarRespuesta').attr('checked', 'checked');
-			respuestaForo = false;
-		}
-		// console.log(resp);
+		// console.log("entro");
+		 var permitir = $('#permitirResp').val();
+		 var denegar = $('#denegarResp').val();
 
+		if ($('#permitirResp').is(':checked')) {
+        	respuestaForo = true;
+		    
+		}else {
+		    respuestaForo = false;
+		 }
 
+		 alertify.success("El cambio se guardo correctamente");
 	}
+		
+		
+		
+
+	
 
 
 
@@ -886,8 +915,10 @@ app.controller("respuestaForos", function(){
 			     this.styleCarrera={'background-color': '#ebebeb'};
 			     this.styleCurso={'background-color': '#ebebeb'};; 
 		         estado=false;
+		         /** alertify.success("El profesor se asigno correctamente");**/
 		 
 		     };
+		    
 
 	  }; 
 	  
@@ -904,9 +935,14 @@ app.controller("respuestaForos", function(){
 			     this.styleCarrera={'background-color': '#ebebeb'};
 			     this.styleCurso={'background-color': '#ebebeb'};; 
 			     this.msg={'display':'none'};
+			     /**alertify.log("El profesor ya está asignado a un curso");**/
+
 	};
-		
-	}    
+
+		console.log("aa");
+		alertify.success("El profesor se asigno correctamente");
+	} //Fin guardarProfesor  
+
 	   	       
 });
 
@@ -915,15 +951,35 @@ app.controller("desasignarCurso", function(){
 
 	this.desProfesor=function(aProfeCurso,pCarrera,pCurso,pProfe){  
 
-      	for (var i=0; i < aProfeCurso.length; i++) {
-			
-			if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
-				     aProfeCurso.splice( i , 1 );
-			} 
-			
-		 };
+		alertify.confirm("Desea desasignar este curso?", function (e) {
+		    if (e) {
+
+		    	for (var i=0; i < aProfeCurso.length; i++) {
+					
+					if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
+						     aProfeCurso.splice( i , 1 );
+					} 
+					
+				 };// Fin For
+		        
+		    } else {
+		        // user clicked "cancel"
+		    }
+		});
+
+
+
+
+		   //    	for (var i=0; i < aProfeCurso.length; i++) {
+					
+					// if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
+					// 	     aProfeCurso.splice( i , 1 );
+					// } 
+					
+				 // };// FIn For
+
       	 	
-    } 
+    } //Fin desProfesor
 
 });
 	
@@ -1268,18 +1324,18 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
         	if (this.pass.pactual==pPassAct) {
         		if (this.pass.pnew==this.pass.pnewconf) {
         			$('#mensajePerfil').html("");
-        			$('#mensajePerfil').append("Su contraseña se cambió con éxito");
+        			alertify.success("Su contraseña se cambió con éxito");
         			return 	this.pass.pnewconf;
         		} else{
         			$('#mensajePerfil').html("");
-        			$('#mensajePerfil').append("La confirmación de la nueva contraseña es incorrecta");
+        			alertify.error("La confirmación de la nueva contraseña es incorrecta");
         			return 	pPassAct;
         		};
         		
         		
         	} else{
         		$('#mensajePerfil').html("");
-        		$('#mensajePerfil').append("Contraseña inválida");
+        		alertify.error("Contraseña inválida");
                 return 	pPassAct;        	
         	};
         	
@@ -1435,16 +1491,20 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	});
 	
 	app.controller("deletePostUser",function(){
-	    
+
 	    this.deletePost = function(postid,puser){
+
+	
 	    	for (var i=0; i < puser.blog.length; i++) {
 			  if (puser.blog[i].idPost==postid) {
-	    		 puser.blog.splice( i , 1 );
+                     puser.blog.splice(i , 1 );
 	    	  };
+	    	  
 			};
-			$("#divEditarPost").hide();
 
+			$("#divEditarPost").hide();
 	    };
+	    
 	    
 	});
 	
