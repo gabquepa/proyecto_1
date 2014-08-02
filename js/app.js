@@ -55,6 +55,16 @@
 		  	}
 		  }
 		  this.actualizarCarrera= function(){
+
+		  	var codCarrera = $('#mcodCarrera').val();
+            var nomCarrera = $('#mnomCarrera').val();
+             
+             if (codCarrera == '' || nomCarrera == '' ) {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar todos los campos");
+             	// alertify.success("OJO");
+             }else{
+
 		  		if (!this.miCarrera.nombre=="") {
 		  			this.carreras[this.indextemp].nombre=this.miCarrera.nombre;
 		  		};
@@ -67,7 +77,11 @@
 		  		$('#nomCarrera').val("");
 				this.miCarrera = {};
 				this.indextemp="";
-		  }
+				alertify.success("La carrera se modifico correctamente");
+			}
+
+
+		  }//Fin FUncion
 
 		 
 
@@ -78,7 +92,7 @@
              var nomCurso = $('#nomCurso').val();
              console.log(codCurso);
              if (codCurso == '' || nomCurso == '') {
-             	alert("Debe llenar todos los campos");
+             	alertify.log("Debe completar todos los campos");
              }else{
             
 		  	for(var i=0;i<this.carreras.length;i++){
@@ -91,7 +105,7 @@
 		  	}
 		 
 			this.miCursoCC={};
-			alert("El curso se guardo correctamente");
+			alertify.success("El curso se creo correctamente");
 		  }
 
 		}//Fin de Validacion
@@ -101,22 +115,25 @@
 		 	 }
 
 		   this.modifCurso= function(){
+
+		   	
 		   		
 		  	
-		  	for(i=0;i<this.carreras.length;i++){
+				  	for(i=0;i<this.carreras.length;i++){
 
-		  		if(this.carreras[i].nombre === this.miCarreraMC.nombre){
-		  		
-		  			// this.carreras[i].cursos.push(this.miCurso);
-		  			$('#modifIdCurso').val(this.carreras[i].codigo);
-		  			$('#modifNombreCurso').val(this.carreras[i].nombre);
-		  			this.indextemp=i;
+				  		if(this.carreras[i].nombre === this.miCarreraMC.nombre){
+				  		
+				  			// this.carreras[i].cursos.push(this.miCurso);
+				  			$('#modifIdCurso').val(this.carreras[i].codigo);
+				  			$('#modifNombreCurso').val(this.carreras[i].nombre);
+				  			this.indextemp=i;
 
-		  		}
-		  	}
-
+				  		}
+				  	}
+				  	
+			
 		  //this.miCarrera = {};
-		  }
+		  }// Fin Funcion
 
 		  this.actualizarCurso= function(){
 
@@ -125,7 +142,7 @@
 
              console.log(codCurso);
              if (codCurso == '' || nomCurso == '') {
-             	alert("Debe llenar todos los campos");
+             	alertify.log("Debe completar todos los campos");
              }else{
 
 		  	for(i=0;i<this.carreras[this.indextemp].cursos.length;i++){
@@ -144,7 +161,7 @@
 				this.miCarreraMC = {};
 				this.indextemp="";
 				this.miCursoMC={};
-				alert("El curso se modifico correctamente");
+				alertify.success("El curso se modifico correctamente");
 			}//Fin validacion
 
 		  }

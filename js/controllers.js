@@ -915,8 +915,10 @@ app.controller("respuestaForos", function(){
 			     this.styleCarrera={'background-color': '#ebebeb'};
 			     this.styleCurso={'background-color': '#ebebeb'};; 
 		         estado=false;
+		         /** alertify.success("El profesor se asigno correctamente");**/
 		 
 		     };
+		    
 
 	  }; 
 	  
@@ -933,9 +935,14 @@ app.controller("respuestaForos", function(){
 			     this.styleCarrera={'background-color': '#ebebeb'};
 			     this.styleCurso={'background-color': '#ebebeb'};; 
 			     this.msg={'display':'none'};
+			     /**alertify.log("El profesor ya está asignado a un curso");**/
+
 	};
-		
-	}    
+
+		console.log("aa");
+		alertify.success("El profesor se asigno correctamente");
+	} //Fin guardarProfesor  
+
 	   	       
 });
 
@@ -944,15 +951,35 @@ app.controller("desasignarCurso", function(){
 
 	this.desProfesor=function(aProfeCurso,pCarrera,pCurso,pProfe){  
 
-      	for (var i=0; i < aProfeCurso.length; i++) {
-			
-			if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
-				     aProfeCurso.splice( i , 1 );
-			} 
-			
-		 };
+		alertify.confirm("Desea desasignar este curso?", function (e) {
+		    if (e) {
+
+		    	for (var i=0; i < aProfeCurso.length; i++) {
+					
+					if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
+						     aProfeCurso.splice( i , 1 );
+					} 
+					
+				 };// Fin For
+		        
+		    } else {
+		        // user clicked "cancel"
+		    }
+		});
+
+
+
+
+		   //    	for (var i=0; i < aProfeCurso.length; i++) {
+					
+					// if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
+					// 	     aProfeCurso.splice( i , 1 );
+					// } 
+					
+				 // };// FIn For
+
       	 	
-    } 
+    } //Fin desProfesor
 
 });
 	
