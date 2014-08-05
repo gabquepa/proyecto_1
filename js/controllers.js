@@ -1119,7 +1119,8 @@ app.controller('agregarDocController',['$http', function($http){
 		});
 
 		var f = new Date();
-		this.fechaAct=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+
+
 
 		this.addDoc={};
 		this.resultado=false;
@@ -1128,35 +1129,61 @@ app.controller('agregarDocController',['$http', function($http){
 		this.mostrarfecha='';
 		this.mostrarcarrera='';
 		this.mostrarcurso='';
+		this.mostrarvotacion='';
 
-		this.datosDoc=function(){
-			this.addDoc.votacion=0;
-			controller.documentos.push(this.addDoc);
-			this.addDoc={};
-		}
+		this.validacionbuscar=function(){
+			if(arguments[0]==undefined || arguments[1]==undefined || arguments[2]==undefined){
+				alertify.error("Debe completar todos los campos");
+				arguments[0]
+			}
+			else{
+				var h=arguments;
+				for(var i=0; i<controller.documentos.length; i++){
+					var doc=controller.documentos[i];
 
-		this.busqueda=function(){
-			var h=arguments;
-			for(var i=0; i<controller.documentos.length; i++){
-				var doc=controller.documentos[i];
-
-				if(doc.nombre.toUpperCase()===arguments[0].toUpperCase() && 
-					doc.carrera.toUpperCase()===arguments[1].toUpperCase() && 
-					doc.curso.toUpperCase()===arguments[2].toUpperCase()){
-					this.resultado=true;
-					this.mostrarnombre= doc.nombre;
-					this.mostrarautor=doc.autor;
-					this.mostrarfecha=doc.fecha;
-					this.mostrarcarrera=doc.carrera;
-					this.mostrarcurso=doc.curso;
-					
-					break;
-				}
-				else{
-					this.resultado=null;
+					if(doc.nombre.toUpperCase()===arguments[0].toUpperCase() && 
+						doc.carrera.toUpperCase()===arguments[1].toUpperCase() && 
+						doc.curso.toUpperCase()===arguments[2].toUpperCase()){
+						this.resultado=true;
+						this.mostrarvotacion=doc.votacion;
+						this.mostrarnombre= doc.nombre;
+						this.mostrarautor=doc.autor;
+						this.mostrarfecha=doc.fecha;
+						this.mostrarcarrera=doc.carrera;
+						this.mostrarcurso=doc.curso;
+						
+						break;
+					}
+					else{
+						this.resultado=null;
+					}
 				}
 			}
 		}
+
+		this.validacionsubir=function(){
+			if(arguments[0]==undefined || arguments[1]==undefined || arguments[2]==undefined || arguments[3]==undefined){
+				alertify.error("Debe completar todos los campos");
+			}
+			else{
+				this.addDoc.votacion=0;
+				this.addDoc.fecha=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+				controller.documentos.push(this.addDoc);
+				this.addDoc={};
+				alertify.success("El documento se subio correctamente");
+			}
+		}
+
+		this.datosDoc=function(){
+			
+		}
+
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 400);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 500);
 
 
 }]);
@@ -1276,12 +1303,20 @@ app.controller('historialDesController',['$http', function($http){//controlador 
 		var docDesc = this;
 		docDesc.descargas= [];
 
-		console.log('Test');
+		//console.log('Test');
 
 		$http.get('/proyecto_1/JSON/docs.json').success(function(data){
 			docDesc.descargas =data;
-			console.log(data);
+			//console.log(data);
 		});
+
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 400);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 500);
+
 }]);
 //Controllers Keilyn Sibaja
 

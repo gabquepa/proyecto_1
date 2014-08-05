@@ -17,13 +17,10 @@
 
 .div_docsubir input{
 	margin-right: 2.5%;
-	width: 30%;
+	width: 47%;
 	text-align: center;
 	padding: 0.5%;
 	margin-bottom: 1.5em;
-}
-.div_docsubir .iptDate{
-	height: 2em;
 }
 .div_docsubir select{
 	margin-bottom: 2em;
@@ -131,12 +128,13 @@ h2{
 	margin: 0.5em;
 }
 #divDoc .divDescarg{
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 	border-bottom: 1px solid gray; 
 	padding: 1em;
 }
 #divDoc .imgDescarg img {
 	margin-bottom: 1em;
+	display: block;
 }
 
 .divdoc-buscado .imgdoc-buscado{
@@ -152,3 +150,24 @@ h2{
 	margin-bottom: 8em;
 	margin-top: 2em;
 }
+
+/***************/
+
+.selectStyle{
+	width: 49%;
+}
+
+.comment-stars{
+  display: block;
+  width: 15%;
+  vertical-align: top;
+  height: 3em;
+}
+.star-rating{
+	 display: block;
+	 margin-right: 1%;
+}
+.label,.label-default{
+	display: none;
+}
+

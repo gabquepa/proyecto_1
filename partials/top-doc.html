@@ -6,7 +6,9 @@
                   <div ng-repeat="top in add.documentos | orderBy:'-votacion'" class='divDescarg cf'>
                     <section class='imgDescarg'>
                         <a href=""><img src="img/btn-pdf.png"></a>
-                        <img src="img/sample-stars.png">
+                        <div class="comment-stars">
+                          <input  class="stars star-rating"  data-size="xs" disabledtype="number" value="{{top.votacion}}">
+                        </div>
                     </section>
                     <section class='infoDescarg'>
                         <span class='doc_lispandoc'>Nombre: <a href="#">{{top.nombre}}</a></span>

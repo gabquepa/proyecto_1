@@ -9,7 +9,11 @@
 
                     <td class='tbfecha'><span class='doc_lispandoc'>{{documento.fecha}}</span></td>
 
-                    <td class='tbimg'><img src="img/sample-stars.png"></td>
+                    <td>
+                      <div class="comment-stars">
+                          <input  class="stars star-rating"  data-size="xs" disabledtype="number" value="{{documento.votacion}}">
+                      </div>
+                    </td>
 
                     <td class='tbcyc'><span class='doc_lispandoc'>{{documento.carrera}} / {{documento.curso}}</span></td>
                   </tr>

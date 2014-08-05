@@ -4,21 +4,20 @@
             <button class='btn-subir-down btn-blue' ng-click='subirDoc.showBtn();'>Subir Documento</button>
 
             <div id='doc_subirdoc' class='cf' ng-show='subirDoc.value===2'>
-              <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.datosDoc(); ' action="" method="post"> 
-                  <input class="form-control" type='text' placeholder='Titulo' ng-model='add.addDoc.nombre' required>
-                  <input class="form-control" type='text' placeholder='Autor' ng-model='add.addDoc.autor' required>
-                  <input class="iptDate form-control" type='date' ng-model='add.addDoc.fecha' required>
+              <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.validacionsubir(add.addDoc.nombre,add.addDoc.autor,add.addDoc.carrera,add.addDoc.curso); ' action="" method="post" id='resetForm'> 
+                  <input class="form-control" type='text' placeholder='Titulo' ng-model='add.addDoc.nombre'>
+                  <input class="form-control" type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
                   <section ng-controller='CarrerasController as cyc'>
-                    <select ng-model='add.addDoc.carrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera form-control" required="required" >
-                      <option val="" selected disable>Seleccione una Carrera</option>
+                    <select ng-model='add.addDoc.carrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera form-control selectStyle">
+                      <option val=""selected disable>Seleccione una Carrera</option>
                       <option ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                     </select>
-                    <select ng-model='add.addDoc.curso' class="select-curso form-control" required>
+                    <select ng-model='add.addDoc.curso' class="select-curso form-control selectStyle">
                       <option val="" selected disable>Seleccione un Curso</option>
                       <option ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                     </select>
                   </section>
-                    <input type="file" id="exampleInputFile" required>
+                    <input type="file" id="exampleInputFile" >
                     <input  type='submit'value='Subir' id='btn-subir'>
                   </form>
         </div>
