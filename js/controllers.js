@@ -12,10 +12,10 @@ app.controller('routeController', function($scope, $cookieStore) {
 	if(tipo==='E'){
 		$('.headForum').attr('href', '/Proyecto_1/forum-estudiante.html');
 	}
-	if(window.location.pathname === '/Proyecto_1/forum-profesor.html' || window.location.pathname === '/Proyecto_1/forum-estudiante.html' || window.location.pathname === '/Proyecto_1/forum-search.html'){
+	if(window.location.pathname === '/Proyecto_1/forum-profesor.html' || window.location.pathname === '/Proyecto_1/forum-estudiante.html'){
 		$('.forumOpt').addClass('active');
 	}
-	if(window.location.pathname === '/Proyecto_1/documents.html'){
+	if(window.location.pathname === '/Proyecto_1/documentos.html'){
 		$('.descargasOpt').addClass('active');
 	}
 	if(window.location.pathname === '/Proyecto_1/user-blog1.html'){
