@@ -31,7 +31,7 @@
 			     </div>
 			      <div class="userblogVisit" ng-show="tabs.isSelected('b2')" ng-controller="buscarUser as buscarBlog">  
 			      	<blog-title2></blog-title2>       
-			        <blog-button2></blog-button2> 
+			        <blog-button2 ng-show="tabs.isSelectedIn(3)"></blog-button2> 
 			        <user-blog3 ng-show="tabs.isSelectedIn(3)"></user-blog3>
 			        <user-blog4 ng-show="tabs.isSelectedIn(4)"></user-blog4>
 			     </div>

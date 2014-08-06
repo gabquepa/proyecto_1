@@ -1320,6 +1320,7 @@ app.controller('historialDesController',['$http', function($http){//controlador 
 }]);
 //Controllers Keilyn Sibaja
 
+
 //Sergio Herrera Durán----------------------------------------------
 
 //controlador recive json de usuarios
@@ -1610,9 +1611,14 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 	app.controller("AddBlogController",function(){
 		var cont=2;
+		var d = new Date();
+		var strDate =d.getDate()+ "/" + (d.getMonth()+1)+ "/" + d.getFullYear();
 		this.newblog={};
 		this.coment={};
+		this.newblog.fecha=strDate;
+		//$("#dateBlog1").val(strDate);
 	    this.addPost = function(puser){	
+	    	
 			this.newblog.idPost=cont;
 			this.newblog.comentarios=[];
 			//this.coment.idComentario=2;
@@ -1622,6 +1628,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			//puser.blog[cont].comentarios.push(this.coment);
 			this.newblog={};
 			cont++;
+			this.newblog.fecha=strDate;
 			alertify.success("El post fue creado");
 			$('#addBlog').collapse('toggle');
 	    };
@@ -1648,8 +1655,10 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 	app.controller("addComent",function(){
 	    var cont=2;
+	    var d = new Date();
+		var strDate =d.getDate()+ "/" + (d.getMonth()+1)+ "/" + d.getFullYear();
 		this.newCom={};
-
+        this.newCom.fecha=strDate;
 	    this.addComt = function(pIdPost,pPart,pDueño){	
 			this.newCom.idComentario=cont;
 			this.newCom.Participante=pPart;
@@ -1657,6 +1666,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
       
 			this.newCom={};
 			cont++;
+			this.newCom.fecha=strDate;
 			alertify.success("El comentario fue enviado");
 			$('#contcomentblog').collapse('toggle');
 	    };    
@@ -1696,19 +1706,14 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    
 	    this.buscarUs= function(puser){	
 	    	
-	    	this.styleBlogResult={'color':''};
+	    	
 			for (var i=0; i < puser.length; i++) {
 			  if (puser[i].usuario==this.myuser.usuario) {
-			  	this.tempDuenio=i;
-			  }
+		     	this.tempDuenio=i;
+			  	this.styleBlogResult={'color':''};
+			  	$('#srchBlog').collapse('toggle');
+			  };
 			};
-	    	
-	    	$('.loading').show();
-		setTimeout(function(){
-			$('.loading').hide();
-			
-		}, 500);
-	    	
             
 	    }; 
 	    

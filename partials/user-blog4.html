@@ -1,6 +1,6 @@
 
 <section class="contblog">
-    <a href ng-click="tabs.regresar(3)">Regresar</a>
+    <a href ng-click="tabs.regresar(3)" class="editdelete pull-right">Regresar<span class='glyphicon glyphicon-arrow-left'></a>
 	<h3>{{usuario.user[buscarBlog.getDuenio()].nombre}}</h3>
     <section class="misBlogs4">
     	<section class="headerMiblogs clearfix">
@@ -14,7 +14,7 @@
     	
     	<form ng-controller="addComent as addC" role="form" id="contcomentblog" class="panel-collapse collapse clearfix pull-left" name="addComent" ng-submit="addComent.$valid && addC.addComt(tabs.miBlog(), usuario.user[cookieValue].usuario,usuario.user[buscarBlog.getDuenio()])">
     		<label>{{usuario.user[cookieValue].nombre}}</label>
-    		<input type="date" ng-model="addC.newCom.fecha" required/>
+    		<input type="text" ng-model="addC.newCom.fecha" placeholder="{{addC.newCom.fecha}}" required disabled/>
     		<textarea id="comentblog" class="textcomentblog" ng-model="addC.newCom.texto" required></textarea>
     		<button type="submit" class="btnaddBlog pull-right" value="submit">Publicar</button>
     	</form>

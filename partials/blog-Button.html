@@ -7,18 +7,9 @@
 	 		<label for="tituloBlog1">Título:</label>
 	 		<input type="text" class="imptitulo form-control" id="tituloBlog1" placeholder="Mi título" ng-model="addblog.newblog.titulo" required/>
 	 		<label for="dateBlog1">Fecha:</label>
-	 		<input type="date" id="dateBlog1" ng-model="addblog.newblog.fecha" class="form-control" required/>
+	 		<input type="text" id="dateBlog1" ng-model="addblog.newblog.fecha" placeholder="{{addblog.newblog.fecha}}" class="form-control" required disabled/>
 	 		<label for="textBlog1" id="textB1">Ingresar Post:</label>
 	 		<textarea name="Name" class="form-control" rows="8" cols="80" id="textBlog1" placeholder="Mi texto" ng-model="addblog.newblog.texto" required></textarea>
  			<button type="submit" class="btnaddBlog pull-right" value="submit">Guardar</button>
- 			<a href="#addBlog" class="pull-right cerrar" data-toggle="collapse">Cerrar</a>
  		</form>
-        <div class="redesSociales cf">
-            <span class="compartirPost">Compartir:</span>
-            <ul class="lista">
-                <li><a href="#" class="ir sprites" id="Twitter">Twitter</a></li>
-                <li><a href="#" class="ir sprites" id="Facebook" >Facebook</a></li>
-                <li><a href="#" class="ir sprites" id="GooglePlus">Google Plus</a></li>
-            </ul>
-        </div>
 </div>

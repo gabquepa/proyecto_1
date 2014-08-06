@@ -1,7 +1,7 @@
 <div class="contBtn">
 		<button href="#srchBlog" id="blog1Btnid" type="button" data-toggle="collapse" class="btn blog1Btn btn-blue">Buscar Blog</button>
 	</div>
-	<div id="srchBlog" class="contBlog1 panel-collapse collapse" >
+	<div id="srchBlog" class="contBlog1 panel-collapse collapse.in" >
 	 		
 	 	<form class="formAddBlog clearfix">	
 
@@ -25,7 +25,7 @@
 
 
             </select>
-	 		<button type="submit" class="btnaddBlog pull-right" ng-click="buscarBlog.buscarUs(usuario.user)">Buscar</button>
+	 		<button id="btnBusAvan" type="submit" class="btnaddBlog pull-right" ng-click="buscarBlog.buscarUs(usuario.user)">Buscar</button>
 			<div style="text-align: center;"><img src="/Proyecto_1/img/loading.gif" class="loading" /> </div>
  		</form>
 	</div>
