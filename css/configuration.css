@@ -44,7 +44,7 @@ border-radius: 5px 5px 0px 0px; box-shadow: 0px -2px 3px 1px rgba(0,0,0,0.75)}
 
 
 /***********************************************Navegacion Crear/Modificar/Inhabilitar Usuario *********************************************************/
-.usuariosBtn{background-color: #ffffff; color: #196c94; border: 0px; font-size: 16px; margin-right: 35px}
+.usuariosBtn{background-color: #ffffff; color: #196c94; border: 0px; font-size: 16px; margin-right: 35px; outline: none}
 .usuarioMenu{padding-top: 18px;  margin: 0 auto; padding-top: 18px;text-align: center; width: 100%;}
 /**********************************************************************************************************************************************/
 
@@ -111,10 +111,10 @@ box-shadow: 0px 1px 6px 2px rgba(0,0,0,0.75);}
 /**********************************************************************************************************************************************/
 
 
-
-@media only all and (max-width : 620px){
+@media only all and (max-width : 640px){
 	.profBtn{width:100%}
 	.usuariosBtn{display: block; margin: 0 auto}
+	.navbar-toggle{display: none;}
 
 
 }

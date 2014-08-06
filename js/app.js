@@ -22,7 +22,7 @@
 			var codCarrera = $('#codCarrera').val();
             var nomCarrera = $('#nomCarrera').val();
              
-             if (codCarrera == '' || nomCarrera == '' ) {
+             if (codCarrera.trim() == '' || nomCarrera.trim() == '' ) {
              	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe completar todos los campos");
              	// alertify.success("OJO");
@@ -59,7 +59,7 @@
 		  	var codCarrera = $('#mcodCarrera').val();
             var nomCarrera = $('#mnomCarrera').val();
              
-             if (codCarrera == '' || nomCarrera == '' ) {
+             if (codCarrera.trim() == '' || nomCarrera.trim() == '' ) {
              	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe completar todos los campos");
              	// alertify.success("OJO");
@@ -91,7 +91,7 @@
              var codCurso = $('#codCurso').val();
              var nomCurso = $('#nomCurso').val();
              console.log(codCurso);
-             if (codCurso == '' || nomCurso == '') {
+             if (codCurso.trim() == '' || nomCurso.trim() == '') {
              	alertify.log("Debe completar todos los campos");
              }else{
             
@@ -141,7 +141,7 @@
              var nomCurso = $('#modifNombreCurso').val();
 
              console.log(codCurso);
-             if (codCurso == '' || nomCurso == '') {
+             if (codCurso.trim() == '' || nomCurso.trim() == '') {
              	alertify.log("Debe completar todos los campos");
              }else{
 
