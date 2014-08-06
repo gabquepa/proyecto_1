@@ -753,8 +753,10 @@ app.controller("crearUserController", function(){
 			 var nombUser = $('#nombUser').val();
              var correoUser = $('#correoUser').val();
              var passwUser = $('#passwUser').val();
-             // console.log(codCurso);
-             if (nombUser == '' || correoUser == '' || passwUser == '' ) {
+             
+ 
+
+             if (nombUser.trim() == '' || correoUser.trim() == '' || passwUser.trim() == '' ) {
              	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe completar todos los campos");
              	// alertify.success("OJO");
@@ -765,13 +767,10 @@ app.controller("crearUserController", function(){
 			// alert("El usuario fue creado correctamente");
 			alertify.success("El usuario fue creado correctamente");
 			 }
-			 // console.log(this.user);
-			//  console.log(pUser[0].nombre);
-			//  console.log(pUser[1].nombre);
-			//  console.log(pUser[2].nombre);
+			
 			
 			this.user = {};	
-		};
+		};//Fin funcion
 
 	});
 /*****************************************************************************************************************/	
@@ -818,7 +817,7 @@ app.controller("modificarUserController", function(){
              var correoEncontrado = $('#correoEncontrado').val();
              var passwordEncontrado = $('#passwordEncontrado').val();
              // console.log(codCurso);
-             if (nombreEncontrado == '' || correoEncontrado == '' || passwordEncontrado == '' ) {
+             if (nombreEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ) {
              	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe completar todos los campos");
              	// alertify.success("OJO");
