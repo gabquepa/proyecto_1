@@ -1155,9 +1155,10 @@ app.controller('agregarDocController',['$http', function($http){
 		this.mostrarvotacion='';
 
 		this.validacionbuscar=function(){
+
 			if(arguments[0]==undefined || arguments[1]==undefined || arguments[2]==undefined){
-				alertify.error("Debe completar todos los campos");
-				arguments[0]
+				alertify.log("Debe completar todos los campos");
+				
 			}
 			else{
 				var h=arguments;
@@ -1185,8 +1186,10 @@ app.controller('agregarDocController',['$http', function($http){
 		}
 
 		this.validacionsubir=function(){
-			if(arguments[0]==undefined || arguments[1]==undefined || arguments[2]==undefined || arguments[3]==undefined){
-				alertify.error("Debe completar todos los campos");
+			var input =  $("#exampleInputFile")[0].files[0];
+
+			if(input==undefined ||arguments[0]==undefined || arguments[1]==undefined || arguments[2]==undefined || arguments[3]==undefined){
+				alertify.log("Debe completar todos los campos");
 			}
 			else{
 				this.addDoc.votacion=0;
@@ -1194,6 +1197,7 @@ app.controller('agregarDocController',['$http', function($http){
 				controller.documentos.push(this.addDoc);
 				this.addDoc={};
 				alertify.success("El documento se subio correctamente");
+				input.reset();
 			}
 		}
 
