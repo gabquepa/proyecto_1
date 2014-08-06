@@ -13,12 +13,12 @@
 			    			{{blog.texto}}
 			    		</p>
 			    	</section>
-			    	<div class="redesSociales cf">
+			    	<div class="redesSociales cf" ng-controller="socialShare as share">
 			            <span class="compartirPost">Compartir:</span>
 			            <ul class="lista">
-			                <li><a href="#" class="ir sprites" id="Twitter">Twitter</a></li>
-			                <li><a href="#" class="ir sprites" id="Facebook" >Facebook</a></li>
-			                <li><a href="#" class="ir sprites" id="GooglePlus">Google Plus</a></li>
+			                <li><a ng-click="share.shareTwitter()" class="ir sprites" id="Twitter">Twitter</a></li>
+			                <li><a ng-click="share.shareFacebook()" class="ir sprites" id="Facebook" >Facebook</a></li>
+			                <li><a ng-click="share.shareG()" class="ir sprites" id="GooglePlus">Google Plus</a></li>
 			            </ul>
 			        </div>
 			    </section>  	 		
