@@ -123,6 +123,20 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		});
 	};
 	this.createForum = function(){
+		// console.log("test");
+		 var titulo = $('#fTitulo').val();
+         var periodo = $('#fPeriodo').val();
+         var tema = $('#fTema').val();
+         var invitar = $('#fInvitar').val();
+         
+             if (titulo.trim() == '' || periodo.trim() == '' || tema.trim() == '' || invitar.trim() == '' ) {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar todos los campos");
+             	// alertify.success("OJO");
+             }else{
+
+
+
 		var invitados = $('.create-forumSection .invitados').val().split(', ');
 		this.newforum={};
 		
@@ -158,8 +172,17 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$('.forum-periodo').val('');
 		$('.create-forumSection textarea').val('');
 		$('.create-forumSection .moderador').val('');
+		}
 	};
 	this.addComment = function(){
+		 var comment = $('#fComment').val();
+		 if (comment.trim() == '') {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe agregar un comentario");
+             	// alertify.success("OJO");
+             }else{
+
+
 		var forumId= $('#id-foro').val();
 		var forumS = [];
 		var d = new Date();
@@ -187,6 +210,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		setTimeout(function(){
 			$('.comment-stars .clear-rating').hide();
 		}, 600);
+	  }
 	};
 
 	this.editarForo = function(){

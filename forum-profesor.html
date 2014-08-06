@@ -39,9 +39,9 @@
             <div class="create-forumSection" ng-controller="CarrerasController as universidad">
               <form name="forumForm" ng-submit="forumForm.$valid && forum.createForum() && forum.displayForum()">
                 <h4>Titulo</h4>
-                <input class="forum-title form-control" required>
+                <input class="forum-title form-control" id="fTitulo">
                 <h4>Periodo</h4>
-                <input class="forum-periodo form-control" required>
+                <input class="forum-periodo form-control" id="fPeriodo">
                 <select ng-mouseleave="universidad.selectCurso()" class="form-control select-carrera">
                   <option val="-1" disable>Seleccione una Carrera</option>
                   <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
@@ -51,12 +51,12 @@
                   <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
                 </select>
                 <h4>Tema del foro</h4>
-                <textarea required class="form-control"></textarea >
+                <textarea id="fTema" class="form-control"></textarea >
                 <div class="clearfix">
                   <h4>Moderador: </h4>
-                  <input type="email" class="form-control moderador">
+                  <input type="email" class="form-control moderador" >
                   <h4>Invitar Usuarios:</h4>
-                  <textarea class="form-control invitados" required></textarea>
+                  <textarea class="form-control invitados" id="fInvitar"></textarea>
                 </div>
                 <div class="clearfix">
                   <button type="submit" class="btn-blue pull-right">Guardar</button>
@@ -95,7 +95,7 @@
                 <div class="panel-body">
                   <form name="forumForm" ng-submit="forumForm.$valid && forum.addComment()">
                     <h3>Ingrese su Comentario</h3>
-                    <textarea ng-model="forum.comment.texto" placeholder="Comentario ..." class="comment-text" required></textarea>
+                    <textarea ng-model="forum.comment.texto" placeholder="Comentario ..." class="comment-text" id="fComment"></textarea>
                     <button class="btn-blue pull-right" [ng-value="sss"]>Publicar</button>
                   </form>
                 </div>
