@@ -1729,19 +1729,35 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			return this.tempDuenio;
 	    }; 
 	    
-	    
-	    
-	    
-	       
 	});
-	
-	
-	
-	
-	
-//Termina Sergio Herrera Durán----------------------------------------------
 
+	app.controller("socialShare",function(){
+		var vUrl =  window.location.href,
+			vTitle="test";
 
+		this.shareTwitter = function(){
+			window.open(
+				'http://twitter.com/share?url='+vUrl + '&text=' . vTitle,
+				'twitterShareDialog',
+				'width=575,height=400');
+
+		};
+		this.shareFacebook = function(){
+			window.open(
+		      'https://www.facebook.com/sharer/sharer.php?u='+vUrl, 
+		      'facebookShareDialog', 
+		      'width=626,height=436'); 
+
+		};
+		this.shareG = function(){
+			window.open(
+				'https://plus.google.com/share?url='+vUrl,
+				'googlePlusShareDialog',
+				'width=575,height=400');
+
+		};
+
+	});
 
 
 })();
