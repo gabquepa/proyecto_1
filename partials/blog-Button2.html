@@ -10,16 +10,16 @@
 
             <h4>Búsqueda Avanzada</h4>
 
-            <select id="cursoslt" class="slctSearchblog form-control" ng-model="buscarBlog.mycarrera" ng-options="carre.carrera for carre in usuario.carreras" ng-change="buscarBlog.buscarCarrera()" required>
-			<option value="" disabled>Seleccione un Carrera</option>	
+            <select id="cursoslt" class="slctSearchblog form-control" ng-model="buscarBlog.mycarrera" ng-options="carre.carrera for carre in usuario.carreras" ng-change="buscarBlog.buscarCarrera()">
+			<option id="opt1" value="">Seleccione un Carrera</option>	
 
             </select>
         
-            <select class="form-control slctSearchblog" ng-model="buscarBlog.mycurso" ng-style="buscarBlog.styleSelectCurso" ng-options="curs.nombre for curs in buscarBlog.CursoList()" ng-disabled="buscarBlog.tempEstadoCurso" ng-change="buscarBlog.buscarCurso(carreraTemp)" required>
+            <select id="cursosslt" class="form-control slctSearchblog" ng-model="buscarBlog.mycurso" ng-style="buscarBlog.styleSelectCurso" ng-options="curs.nombre for curs in buscarBlog.CursoList()" ng-disabled="buscarBlog.tempEstadoCurso" ng-change="buscarBlog.buscarCurso(carreraTemp)">
               <option value="" disabled>Seleccione un Curso</option>
 
             </select>
-            <select class="slctSearchblog form-control" ng-model="buscarBlog.myuser" ng-options="user.usuario for user in buscarBlog.userList()" ng-style="buscarBlog.styleSelectUser" ng-disabled="buscarBlog.tempEstadoUsuario" ng-change="buscarBlog.resetSearch()" required>
+            <select id="userslt" class="slctSearchblog form-control" ng-model="buscarBlog.myuser" ng-options="user.usuario for user in buscarBlog.userList()" ng-style="buscarBlog.styleSelectUser" ng-disabled="buscarBlog.tempEstadoUsuario" ng-change="buscarBlog.resetSearch()">
               <option value="" disabled>Seleccione un Usuario</option>
 
 

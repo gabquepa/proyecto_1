@@ -1535,35 +1535,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		
 	});
 	
-	
-	//controlador muestra y oculta contenedores del blogs
-	app.controller('controlBlog', function(){
-		this.tabblog ="b1";
-		this.tabblogTipo="";
-		if (this.tabblog=="b1") { 
-				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
-		}; 
-		this.getTab=function(getTab){
-			this.tabblog = getTab;
-			if (this.tabblog=="b1") { 
-				$("#styleTemp").html("");	
-				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
-			} else{
-				$("#styleTemp").html("");
-				$("#styleTemp").append('#blogsUser2{background-color: #196A95 !important;}');	
-			};
-			//limpiarForms();
-		};
-		
-		
-		this.isSelected = function(checkedTab){
-			return this.tabblog ===checkedTab;	
-		};
-
-		
-		
-	});
-
 
 //controlador muestra y oculta contenedores dentro del blogs
 	app.controller('controlBlog', function(){
@@ -1635,7 +1606,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		
 		    this.regresar=function(getTab){  
 		            if (this.value) {
-		            	alertify.error("Debe guardar los cambios realizados en el post");
+		            	alertify.log("Debe guardar los cambios" + "<br>" + "realizados en el post");
 		            } else{
 		            	this.tabblogIn = getTab;
 		            };
@@ -1655,6 +1626,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 	app.controller("AddBlogController",function(){
 		var cont=2;
+		var temp=true;
 		var d = new Date();
 		var strDate =d.getDate()+ "/" + (d.getMonth()+1)+ "/" + d.getFullYear();
 		this.newblog={};
@@ -1662,19 +1634,33 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		this.newblog.fecha=strDate;
 		//$("#dateBlog1").val(strDate);
 	    this.addPost = function(puser){	
-	    	
-			this.newblog.idPost=cont;
+	     var temp=true;
+	     $(".addBlogBtn").css("border","solid #ccc 1px");
+	     validarCampo($('#tituloBlog1'));
+	     validarCampo($('#textBlog1'));
+	     	 
+	     if(temp){
+
+	     	this.newblog.idPost=cont;
 			this.newblog.comentarios=[];
-			//this.coment.idComentario=2;
-			//this.coment.Participante="sergio";
-			//this.coment.texto="hola";
 			puser.blog.push(this.newblog);
-			//puser.blog[cont].comentarios.push(this.coment);
 			this.newblog={};
 			cont++;
 			this.newblog.fecha=strDate;
 			alertify.success("El post fue creado");
 			$('#addBlog').collapse('toggle');
+	     }else{
+	     	 alertify.log("Debe completar todos los campos");
+	     };
+	     
+	     function validarCampo (pcampo) {
+		   if (pcampo.val()=="") {
+		   	temp=false;
+		   	pcampo.css("border","solid #fa787e 1px");
+		   };
+		 }
+			
+	   
 	    };
 	    
 	});
@@ -1732,13 +1718,14 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   this.myuser={};
 	   this.user="";
 	    this.buscarCarrera= function(){	
+             $('#opt1').attr("disabled","disabled");
+              $('#userslt').val("");
              $("#searchBlog").val("");
              $('.loading').hide();
              this.tempEstadoCurso=false;
              this.styleSelectCurso={'background-color':''};
              this.tempEstadoUsuario=true;
              this.styleSelectUser={'background-color': '#ebebeb'};               
-             
 	    };
 	    
 	
@@ -1751,12 +1738,14 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			  if (puser[i].usuario==this.user || puser[i].nombre==this.user ) {
 			  	 this.tempDuenio=i;
 			  	 $('.loading').hide();
+			     this.styleBlogResult={'color':''};
 			  }
 			  
 			  for (var a=0; a < puser[i].blog.length; a++) {
 				      if (puser[i].blog[a].titulo==this.user){
 				      	 this.tempDuenio=i;
 				      	 $('.loading').hide();
+				      	  this.styleBlogResult={'color':''};
 				      };
 			  };
 			}
@@ -1786,28 +1775,45 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    
 	    
 	    this.buscarUs= function(puser){
-	    	$("#searchBlog").val("");
-	    	$('.loading').hide();
-			for (var i=0; i < puser.length; i++) {
-			  if (puser[i].usuario==this.myuser.usuario) {
-                 $('.loading').show();
-				setTimeout(function(){
-					$('.loading').hide();
-	                $('#srchBlog').collapse('toggle'); 
-				}, 500);
-			   this.tempDuenio=i;
-			   this.styleBlogResult={'color':''};
-			  };
-			
+	         var temp=true;
+	        
+		     $(".slctSearchblog").css("border","solid #ccc 1px");
+		     validarCampo($('#cursoslt'));
+		     validarCampo($('#cursosslt'));
+		     validarCampo($('#userslt'));
+	    	 $("#searchBlog").val("");
+	    	 $('.loading').hide();
+	    	 
+	    	 if (temp){
+				for (var i=0; i < puser.length; i++) {
+				  if (puser[i].usuario==this.myuser.usuario) {
+	                 $('.loading').show();
+					setTimeout(function(){
+						$('.loading').hide();
+		                $('#srchBlog').collapse('toggle'); 
+					}, 500);
+				   this.tempDuenio=i;
+				   this.styleBlogResult={'color':''};
+				  };
+				
+				};
+			}else{
+				alertify.log("Debe completar todos los campos");
 			};
-
-			function temp() {
-			  return tempi;
-			}
+				
 			
+			function validarCampo (pcampo) {
+				
+			   if (pcampo.val()==null || pcampo.val()=="" ) {
+		
+			   	temp=false;
+			   	pcampo.css("border","solid #fa787e 1px");
+		      };
+		   };
             
-	    }; 
+	    };
 	    
+	   
 	    this.resetSearch = function () {
 		    $("#searchBlog").val("");
 	    	$('.loading').hide();
