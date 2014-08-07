@@ -10,11 +10,11 @@
                     <form name="forumSearch" ng-submit="forumSearch.$valid && add.validacionbuscar(busqueda,busquedaCarrera,busquedaCurso)">
                       <input class="form-control" type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc'>
                       <select ng-model='busquedaCarrera' ng-mouseleave="cyc.selectCurso()" class="form-control carrera-select selectStyle" >
-                        <option val="-1">Seleccione una Carrera</option>
+                        <option val="">Seleccione una Carrera</option>
                         <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                       </select>
                       <select ng-model='busquedaCurso' class=" form-control select-curso selectStyle">
-                        <option val="-1" disable>Seleccione un Curso</option>
+                        <option val="">Seleccione un Curso</option>
                         <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                       </select>
                       <button type="submit" class='btn-buscar'>Buscar</button>
@@ -27,7 +27,7 @@
                     <section class='imgdoc-buscado'>
                         <a href="doc-pdf/angularjs.pdf"><img src="img/btn-pdf.png"></a>
                         <div class="comment-stars">
-                          <input  disabled class="stars star-rating"  data-size="xs" disabled type="number" value="{{add.mostrarvotacion}}">
+                          <input class="stars star-rating"  data-size="xs" disabled type="number" value="{{add.mostrarvotacion}}"/>
                         </div>
                     </section>
                     <section class='infodoc-buscado'>

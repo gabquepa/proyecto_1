@@ -125,6 +125,20 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		});
 	};
 	this.createForum = function(){
+		// console.log("test");
+		 var titulo = $('#fTitulo').val();
+         var periodo = $('#fPeriodo').val();
+         var tema = $('#fTema').val();
+         var invitar = $('#fInvitar').val();
+         
+             if (titulo.trim() == '' || periodo.trim() == '' || tema.trim() == '' || invitar.trim() == '' ) {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar todos los campos");
+             	// alertify.success("OJO");
+             }else{
+
+
+
 		var invitados = $('.create-forumSection .invitados').val().split(', ');
 		this.newforum={};
 		
@@ -160,8 +174,17 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$('.forum-periodo').val('');
 		$('.create-forumSection textarea').val('');
 		$('.create-forumSection .moderador').val('');
+		}
 	};
 	this.addComment = function(){
+		 var comment = $('#fComment').val();
+		 if (comment.trim() == '') {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe agregar un comentario");
+             	// alertify.success("OJO");
+             }else{
+
+
 		var forumId= $('#id-foro').val();
 		var forumS = [];
 		var d = new Date();
@@ -189,6 +212,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		setTimeout(function(){
 			$('.comment-stars .clear-rating').hide();
 		}, 600);
+	  }
 	};
 
 	this.editarForo = function(){
@@ -1109,6 +1133,11 @@ app.controller("desasignarCurso", function(){
 //---------------------------------------------------------------
 //Termina Alejandro Zuñiga
 
+
+
+
+//********************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 //Controllers Keilyn Sibaja
 
 app.controller('agregarDocController',['$http', function($http){
@@ -1121,8 +1150,6 @@ app.controller('agregarDocController',['$http', function($http){
 
 		var f = new Date();
 
-
-
 		this.addDoc={};
 		this.resultado=false;
 		this.mostrarnombre='';
@@ -1130,12 +1157,13 @@ app.controller('agregarDocController',['$http', function($http){
 		this.mostrarfecha='';
 		this.mostrarcarrera='';
 		this.mostrarcurso='';
-		this.mostrarvotacion='';
+		this.mostrarvotacion=0;
 
 		this.validacionbuscar=function(){
+
 			if(arguments[0]==undefined || arguments[1]==undefined || arguments[2]==undefined){
-				alertify.error("Debe completar todos los campos");
-				arguments[0]
+				alertify.log("Debe completar todos los campos");
+				
 			}
 			else{
 				var h=arguments;
@@ -1145,6 +1173,7 @@ app.controller('agregarDocController',['$http', function($http){
 					if(doc.nombre.toUpperCase()===arguments[0].toUpperCase() && 
 						doc.carrera.toUpperCase()===arguments[1].toUpperCase() && 
 						doc.curso.toUpperCase()===arguments[2].toUpperCase()){
+
 						this.resultado=true;
 						this.mostrarvotacion=doc.votacion;
 						this.mostrarnombre= doc.nombre;
@@ -1163,20 +1192,22 @@ app.controller('agregarDocController',['$http', function($http){
 		}
 
 		this.validacionsubir=function(){
-			if(arguments[0]==undefined || arguments[1]==undefined || arguments[2]==undefined || arguments[3]==undefined){
-				alertify.error("Debe completar todos los campos");
+			var input =  $("#exampleInputFile")[0].files[0];
+
+			if(input==undefined ||arguments[0]==undefined || arguments[1]==undefined || 
+				arguments[2]==undefined || arguments[3]==undefined){
+
+				alertify.log("Debe completar todos los campos");
 			}
 			else{
 				this.addDoc.votacion=0;
 				this.addDoc.fecha=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
 				controller.documentos.push(this.addDoc);
 				this.addDoc={};
+				document.getElementById('exampleInputFile').value ='';
+
 				alertify.success("El documento se subio correctamente");
 			}
-		}
-
-		this.datosDoc=function(){
-			
 		}
 
 		setTimeout(function(){

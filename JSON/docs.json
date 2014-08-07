@@ -4,16 +4,14 @@
 "autor":"Alvaro Cordero",
 "carrera":"Desarrollo y diseño Web",
 "curso":"Proyecto de desarrollo Web 1",
-"estado":"F",
 "votacion":"5",
 "fecha":"09/10/2011"
 },
 {
-"nombre":"Introducción a Progamación",
+"nombre":"Introducción a Programación",
 "autor":"Diego Vargas",
-"carrera":"Telematica",
-"curso":"Fundamentos de Progamación",
-"estado":"T",
+"carrera":"Telemática",
+"curso":"T-Fundamentos de programación",
 "votacion":"2",
 "fecha":"10/11/2012"
 },
@@ -22,7 +20,6 @@
 "autor":"Roger Solis",
 "carrera":"Desarrollo de Software",
 "curso":"Inglés para tecnologías de información 1",
-"estado":"F",
 "votacion":"1",
 "fecha":"11/12/2013"
 },
@@ -31,7 +28,6 @@
 "autor":"Alejandro Rojas",
 "carrera":"Desarrollo y Diseño Web",
 "curso":"Diseño web 1",
-"estado":"T",
 "votacion":"3",
 "fecha":"12/13/2014"
 },
@@ -40,7 +36,6 @@
 "autor":"Alonso Guevara",
 "carrera":"Desarrollo y diseño Web",
 "curso":"Proyecto de desarrollo Web 1",
-"estado":"F",
 "votacion":"4",
 "fecha":"10/11/2012"
 }
