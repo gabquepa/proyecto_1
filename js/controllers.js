@@ -1479,8 +1479,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		this.getTab=function(getTab){
 			$('#mensajePerfil').html("");
 			this.tabperfil = getTab;
-			limpiarForms();
 			if (getTab==1) {
+				limpiarForms ();
 				$('#infuser').attr('class',"btn activetab");
 				$('#changepass').attr('class',"btn profBtn");
 			} else{
@@ -1499,37 +1499,57 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			
 		};
 		this.pass={};
+		
 		this.cambiarPass = function(pPassAct){	
+        var temp=true;
+        var tempPass="";
+        $(".passnew").css("border","solid #ccc 1px");
+        validarCampo($('#passuser'));
+        validarCampo($('#newpass'));
+        validarCampo($('#confirmnew'));
+
+        if(temp){
         	
-        	if (this.pass.pactual==pPassAct) {
+        	if (this.pass.pactual==pPassAct.pass) {
         		if (this.pass.pnew==this.pass.pnewconf) {
         			$('#mensajePerfil').html("");
+        			tempPass=this.pass.pnewconf;
+        			this.pass={};
+        			limpiarForms ();
         			alertify.success("Su contraseña se cambió con éxito");
-        			return 	this.pass.pnewconf;
+        			pPassAct.pass=tempPass;
+        			
         		} else{
         			$('#mensajePerfil').html("");
         			alertify.error("La confirmación de la nueva contraseña es incorrecta");
-        			return 	pPassAct;
+        			
         		};
         		
         		
-        	} else{
-        		$('#mensajePerfil').html("");
-        		alertify.error("Contraseña inválida");
-                return 	pPassAct;        	
-        	};
+	        	} else{
+	        		$('#mensajePerfil').html("");
+	        		alertify.error("Contraseña inválida");
+	                       	
+	        	};
         	
-        
-			this.pass={};
-			
+        	}else{
+	     	 alertify.log("Debe completar todos los campos");
+	        };
+        	
+        	function validarCampo (pcampo) {
+			   if (pcampo.val()=="") {
+			   	temp=false;
+			   	pcampo.css("border","solid #fa787e 1px");
+			   };
+		    };
 		};
-		
 		
 		function limpiarForms () {
 		   $('#passuser').val("");
 			$('#newpass').val("");
 			$("#confirmnew").val("");
 		}
+		
 		
 		
 		

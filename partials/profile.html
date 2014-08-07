@@ -41,14 +41,14 @@
 	
 	<div class="contPass clearfix" ng-show="perfil.isSelected(2)">	
 		<strong id="mensajePerfil" class="msjerror"></strong>
-		<form role="form" class="passprofile" name="changpass" ng-submit="changpass.$valid && (usuario.user[cookieValue].pass=perfil.cambiarPass(usuario.user[cookieValue].pass))">
+		<form role="form" class="passprofile" name="changpass" ng-submit="perfil.cambiarPass(usuario.user[cookieValue])">
 			
-			<label for="passuser" class="passform">Digite su contraseña:</label>
-			<input id="passuser" type="password" class="passform form-control" ng-model="perfil.pass.pactual" required/>
+			<label for="passuser" class="passform">Digite su contraseña: {{usuario.user[cookieValue].pass}}</label>
+			<input id="passuser" type="password" class="passform form-control passnew" ng-model="perfil.pass.pactual" />
 			<label for="newpass" class="passform">Digite su nueva contraseña:</label>
-			<input id="newpass" type="password" class="passform form-control" ng-model="perfil.pass.pnew" required/>
+			<input id="newpass" type="password" class="passform form-control passnew" ng-model="perfil.pass.pnew" />
 			<label for="confirmnew" class="passform">Confirme su nueva contraseña:</label>
-			<input id="confirmnew" type="password" class="passform form-control" ng-model="perfil.pass.pnewconf" required/>
+			<input id="confirmnew" type="password" class="passform form-control passnew" ng-model="perfil.pass.pnewconf" />
 			<button type="submit" class="formpassbot" value="submit">Guardar Cambios</button>
 		</form>
 	</div>
