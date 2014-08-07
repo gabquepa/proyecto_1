@@ -1592,11 +1592,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    	  };
 			};
          };  
-         this.regresar=function(getTab){  
-            this.tabblogIn = getTab;
-           	
-			//limpiarForms();
-		};
 		
 		
 		this.isSelected = function(checkedTab){
@@ -1614,20 +1609,28 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		};
 		
 			
-			this.editarComent=function(){
+			this.editarPost=function(){
 					this.guardar={'':''};
 					this.editar={'display':'none'};
 					this.value=true;
-			}
+			};
 	
-			this.saveComent=function(user,i,ipost){
+			this.savePost=function(user,i,ipost){
 				    this.editar={'':''};
 					this.guardar={'display':'none'};
 				    var tempText="";
 				    tempText=$("#newPost").val();
 				    user[i].blog[ipost].texto=tempText;
 					this.value=false;
-			}
+			};
+		
+		    this.regresar=function(getTab){  
+		            if (this.value) {
+		            	alertify.error("Debe guardar los cambios realizados en el post");
+		            } else{
+		            	this.tabblogIn = getTab;
+		            };
+		    };
 		
 		 	this.denunciar = function(){
 				alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
@@ -1695,18 +1698,21 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			this.newCom.idComentario=cont;
 			this.newCom.Participante=pPart;
             pDueño.blog[pIdPost].comentarios.push(this.newCom);
-      
+            
 			this.newCom={};
 			cont++;
 			this.newCom.fecha=strDate;
 			alertify.success("El comentario fue enviado");
 			$('#contcomentblog').collapse('toggle');
-	    };    
+	    }; 
+	    
+	       
 	});
 	
 	
 	app.controller("buscarUser",function(){
 	   this.tempDuenio="";
+	   this.nombre="";
 	   this.tempEstadoCurso=true;
 	   this.tempEstadoUsuario=true;
 	   this.styleSelectCurso={'background-color': '#ebebeb'};
@@ -1717,17 +1723,49 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   this.myuser={};
 	   this.user="";
 	    this.buscarCarrera= function(){	
+             $("#searchBlog").val("");
+             $('.loading').hide();
              this.tempEstadoCurso=false;
              this.styleSelectCurso={'background-color':''};
-                       
+             this.tempEstadoUsuario=true;
+             this.styleSelectUser={'background-color': '#ebebeb'};               
              
 	    };
 	    
+	
+         this.searchUser= function(puser){	
+         	this.styleBlogResult={'color':'#ebebeb'};
+         	this.tempDuenio="";
+         	$('.loading').show();
+			  for (var i=0; i < puser.length; i++) {
+			  	
+			  if (puser[i].usuario==this.user || puser[i].nombre==this.user ) {
+			  	 this.tempDuenio=i;
+			  	 $('.loading').hide();
+			  }
+			  
+			  for (var a=0; a < puser[i].blog.length; a++) {
+				      if (puser[i].blog[a].titulo==this.user){
+				      	 this.tempDuenio=i;
+				      	 $('.loading').hide();
+				      };
+			  };
+			}
+			if (this.user=="") {
+				$('.loading').hide();
+			};
+	    }; 
+
+	    
 	    this.CursoList= function(){	
+             
             return this.mycarrera.cursos;
+	    
 	    };
 	    
 	    this.buscarCurso= function(){
+             $("#searchBlog").val("");
+             $('.loading').hide();
              this.tempEstadoUsuario=false;
              this.styleSelectUser={'background-color':''};
 	    };
@@ -1736,21 +1774,37 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
             return this.mycurso.usuario;
 	    };
 	    
-	    this.buscarUs= function(puser){	
-	    	
-	    	
+	    
+	    
+	    this.buscarUs= function(puser){
+	    	$("#searchBlog").val("");
+	    	$('.loading').hide();
 			for (var i=0; i < puser.length; i++) {
 			  if (puser[i].usuario==this.myuser.usuario) {
-		     	this.tempDuenio=i;
-			  	this.styleBlogResult={'color':''};
-			  	$('#srchBlog').collapse('toggle');
+                 $('.loading').show();
+				setTimeout(function(){
+					$('.loading').hide();
+	                $('#srchBlog').collapse('toggle'); 
+				}, 500);
+			   this.tempDuenio=i;
+			   this.styleBlogResult={'color':''};
 			  };
+			
 			};
+
+			function temp() {
+			  return tempi;
+			}
+			
             
 	    }; 
 	    
+	    this.resetSearch = function () {
+		    $("#searchBlog").val("");
+	    	$('.loading').hide();
+		}
+	    
 	    this.buscarUser= function(puser){	
-	    	alert(this.user);
 			for (var i=0; i < puser.length; i++) {
 			  if (puser[i].usuario==this.user) {
 			  	this.tempDuenio=i;
@@ -1761,7 +1815,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    this.getDuenio = function(pIdDueno,puser){	
 			return this.tempDuenio;
 	    }; 
-	    
+	       
 	});
 
 	app.controller("socialShare",function(){
