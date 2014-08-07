@@ -324,12 +324,21 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 		});
 	};
 	this.buscarForo = function(){
+		 var inputbusqueda = $('#inputbusqueda').val();
+		 if (inputbusqueda.trim() == '') {
+             	 // alert("Debe llenar todos los campos");
+             	 alertify.log("Debe completar el campo");
+             	// alertify.success("OJO");
+             }else{
+
+
 		$('.forum-search div .loading').show();
 		setTimeout(function(){
 			$('.forum-search div .loading').hide();
 			$scope.showForumList=true;
 			$('.Foro-lst').removeClass('ng-hide');
 		}, 3000);
+	  }
 	};
 
 	this.addComment = function(){
