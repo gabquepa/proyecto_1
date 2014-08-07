@@ -87,13 +87,15 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		if($('#add-comment').hasClass('in')){
 			$('#add-comment').collapse('toggle'); 
 		}
+		$('.comentar-link').show();
 		
 	};
 
 	this.enableTxt  = function(){
 		if($scope.enable = true && $(".main-forum").attr('disabled')==='disabled'){
 			$scope.enable = false;
-			$('.main-forum').attr('disabled',false);	
+			$('.main-forum').attr('disabled',false);
+			$('.comentar-link').hide();
 		}
 		else{
 			$scope.enable = true;
@@ -218,7 +220,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		var invitados = $('.inine-forum-display .invitados').val().split(', ');
 		var cerrar = $("input:radio[name=estado]").val();
 		var estado = 'A';
-		alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
+		alertify.confirm("Esta seguro que desea enviar los cambios?", function (e) {
 		    if (e) {
 		        if (cerrar === '1'){
 					estado = 'I';
@@ -251,9 +253,9 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 				}
 				alertify.success("El foro fue editado");
 		    }// fin if
-		    else{
-		    	alertify.error("Error");
-		    }
+		    // else{
+		    // 	alertify.error("Error");
+		    // }
 		});
 
 		
