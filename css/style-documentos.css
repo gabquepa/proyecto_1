@@ -171,3 +171,10 @@ h2{
 	display: none;
 }
 
+.carrera-select option:nth-child(1){
+	display: none;
+}
+
+.select-curso option:nth-child(1){
+	display: none;
+}

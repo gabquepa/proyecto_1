@@ -1131,6 +1131,11 @@ app.controller("desasignarCurso", function(){
 //---------------------------------------------------------------
 //Termina Alejandro Zuñiga
 
+
+
+
+//********************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 //Controllers Keilyn Sibaja
 
 app.controller('agregarDocController',['$http', function($http){
@@ -1143,8 +1148,6 @@ app.controller('agregarDocController',['$http', function($http){
 
 		var f = new Date();
 
-
-
 		this.addDoc={};
 		this.resultado=false;
 		this.mostrarnombre='';
@@ -1152,7 +1155,7 @@ app.controller('agregarDocController',['$http', function($http){
 		this.mostrarfecha='';
 		this.mostrarcarrera='';
 		this.mostrarcurso='';
-		this.mostrarvotacion='';
+		this.mostrarvotacion=0;
 
 		this.validacionbuscar=function(){
 
@@ -1168,6 +1171,7 @@ app.controller('agregarDocController',['$http', function($http){
 					if(doc.nombre.toUpperCase()===arguments[0].toUpperCase() && 
 						doc.carrera.toUpperCase()===arguments[1].toUpperCase() && 
 						doc.curso.toUpperCase()===arguments[2].toUpperCase()){
+
 						this.resultado=true;
 						this.mostrarvotacion=doc.votacion;
 						this.mostrarnombre= doc.nombre;
@@ -1188,7 +1192,9 @@ app.controller('agregarDocController',['$http', function($http){
 		this.validacionsubir=function(){
 			var input =  $("#exampleInputFile")[0].files[0];
 
-			if(input==undefined ||arguments[0]==undefined || arguments[1]==undefined || arguments[2]==undefined || arguments[3]==undefined){
+			if(input==undefined ||arguments[0]==undefined || arguments[1]==undefined || 
+				arguments[2]==undefined || arguments[3]==undefined){
+
 				alertify.log("Debe completar todos los campos");
 			}
 			else{
@@ -1196,13 +1202,10 @@ app.controller('agregarDocController',['$http', function($http){
 				this.addDoc.fecha=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
 				controller.documentos.push(this.addDoc);
 				this.addDoc={};
-				alertify.success("El documento se subio correctamente");
-				input.reset();
-			}
-		}
+				document.getElementById('exampleInputFile').value ='';
 
-		this.datosDoc=function(){
-			
+				alertify.success("El documento se subio correctamente");
+			}
 		}
 
 		setTimeout(function(){
