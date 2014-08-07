@@ -15,7 +15,7 @@
     	<form ng-controller="addComent as addC" role="form" id="contcomentblog" class="panel-collapse collapse clearfix pull-left" name="addComent" ng-submit="addComent.$valid && addC.addComt(tabs.miBlog(), usuario.user[cookieValue].usuario,usuario.user[buscarBlog.getDuenio()])">
     		<label>{{usuario.user[cookieValue].nombre}}</label>
     		<input type="text" ng-model="addC.newCom.fecha" placeholder="{{addC.newCom.fecha}}" required disabled/>
-    		<textarea id="comentblog" class="textcomentblog" ng-model="addC.newCom.texto" required></textarea>
+    		<textarea id="comentblog" class="textcomentblog" ng-model="addC.newCom.texto"></textarea>
     		<button type="submit" class="btnaddBlog pull-right" value="submit">Publicar</button>
     	</form>
     </section>

@@ -1687,18 +1687,37 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    var cont=2;
 	    var d = new Date();
 		var strDate =d.getDate()+ "/" + (d.getMonth()+1)+ "/" + d.getFullYear();
+		
 		this.newCom={};
         this.newCom.fecha=strDate;
-	    this.addComt = function(pIdPost,pPart,pDueño){	
-			this.newCom.idComentario=cont;
-			this.newCom.Participante=pPart;
-            pDueño.blog[pIdPost].comentarios.push(this.newCom);
-            
-			this.newCom={};
-			cont++;
-			this.newCom.fecha=strDate;
-			alertify.success("El comentario fue enviado");
-			$('#contcomentblog').collapse('toggle');
+       
+	    this.addComt = function(pIdPost,pPart,pDueño){
+	    	 var temp=true;
+	    	 $("#comentblog").css("border","solid #ccc 1px");
+             validarCampo($('#comentblog'));	
+		     
+		     if(temp){
+		     	    this.newCom.idComentario=cont;
+					this.newCom.Participante=pPart;
+		            pDueño.blog[pIdPost].comentarios.push(this.newCom);
+		            
+					this.newCom={};
+					cont++;
+					this.newCom.fecha=strDate;
+					alertify.success("El comentario fue enviado");
+					$('#contcomentblog').collapse('toggle');
+		     }else{
+		     	alertify.log("Debe completar el campo");
+		     };	
+						  
+		    
+		    function validarCampo (pcampo) {
+			   if (pcampo.val()=="") {
+			   	temp=false;
+			   	pcampo.css("border","solid #fa787e 1px");
+			   };
+			 }
+		    
 	    }; 
 	    
 	       
