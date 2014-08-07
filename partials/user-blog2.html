@@ -1,15 +1,15 @@
 
 
       <div>
-         <div id='divEditarPost' class='cf clearfix'>
+        <div id='divEditarPost' class='cf clearfix'>
             
             <div class='titulo-fecha clearfix'>
               <span class="pull-left">{{usuario.user[cookieValue].blog[tabs.miBlog()].titulo}}</span>
               <span class="pull-left">{{usuario.user[cookieValue].blog[tabs.miBlog()].fecha}}</span>
             <div class='clearfix'>
               <a ng-controller="deletePostUser as deletePosts" href="" class="pull-right editdelete" ng-click="deletePosts.deletePost(usuario.user[cookieValue].blog[tabs.miBlog()].idPost,usuario.user[cookieValue])">Eliminar<span class="glyphicon glyphicon-remove"></span></a>
-              <a  href="" ng-style="tabs.guardar"  ng-click="tabs.savePost(usuario.user,cookieValue,tabs.miBlog())" class="pull-right editdelete">Guardar<span class="glyphicon glyphicon-floppy-saved"></span></a> 
-              <a href="" ng-style="tabs.editar" ng-click='tabs.editarPost();' class="pull-right editdelete">Editar<span class='glyphicon glyphicon-pencil'></span></a>
+              <a  href="" ng-style="tabs.guardar"  ng-click="tabs.saveComent(usuario.user,cookieValue,tabs.miBlog())" class="pull-right editdelete">Guardar<span class="glyphicon glyphicon-floppy-saved"></span></a> 
+              <a href="" ng-style="tabs.editar" ng-click='tabs.editarComent();' class="pull-right editdelete">Editar<span class='glyphicon glyphicon-pencil'></span></a>
               <a href ng-click="tabs.regresar(1)" class="editdelete pull-right">Regresar<span class='glyphicon glyphicon-arrow-left'></a>
              
             </div>
