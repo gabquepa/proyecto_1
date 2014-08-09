@@ -4,15 +4,15 @@
             <button class='btn-subir-down btn-blue' ng-click='subirDoc.showBtn();'>Subir Documento</button>
 
             <div id='doc_subirdoc' class='cf' ng-show='subirDoc.value===2'>
-              <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.validacionsubir(add.addDoc.nombre,add.addDoc.autor,add.addDoc.carrera,add.addDoc.curso); ' action="" method="post" id='resetForm'> 
+              <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.validacionsubir(add.addDoc.nombre,add.addDoc.autor); ' action="" method="post" id='resetForm'> 
                   <input class="form-control" type='text' placeholder='Titulo' ng-model='add.addDoc.nombre'>
                   <input class="form-control" type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
                   <section ng-controller='CarrerasController as cyc'>
-                    <select ng-model='add.addDoc.carrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera form-control selectStyle">
-                      <option val=""selected disable>Seleccione una Carrera</option>
+                    <select id='add.addDoc.carrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera form-control">
+                      <option selected disable val=''>Seleccione una Carrera</option>
                       <option ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                     </select>
-                    <select ng-model='add.addDoc.curso' class="select-curso form-control selectStyle">
+                    <select id='add.addDoc.curso' class="select-curso form-control selectStyle">
                       <option val="" selected disable>Seleccione un Curso</option>
                       <option ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                     </select>

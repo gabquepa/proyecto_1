@@ -175,6 +175,14 @@ h2{
 	display: none;
 }
 
+.select-carrera option:nth-child(1){
+	display: none;
+}
+
 .select-curso option:nth-child(1){
 	display: none;
+}
+
+.select-carrera{
+	width: 48%;
 }
