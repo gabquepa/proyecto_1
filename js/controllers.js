@@ -1658,7 +1658,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 		    	for (var i=0; i < puser.blog.length; i++) {
 				  if (puser.blog[i].idPost==postid) {  
-		            	alertify.success("Se el post fue eliminado");
+		            	alertify.success("El post fue eliminado");
 		            	this.tabblogIn = tab;
 	                    puser.blog.splice(i , 1 );
 
