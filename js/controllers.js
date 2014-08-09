@@ -1653,6 +1653,21 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				});
 			}
 		    
+		    this.deletePost = function(postid,puser,tab){
+
+	
+		    	for (var i=0; i < puser.blog.length; i++) {
+				  if (puser.blog[i].idPost==postid) {  
+		            	alertify.success("Se el post fue eliminado");
+		            	this.tabblogIn = tab;
+	                    puser.blog.splice(i , 1 );
+
+		    	  };
+		    	  
+				};
+	            
+				$("#divEditarPost").hide();
+	        };
 		
 		
 	});
@@ -1698,23 +1713,6 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    
 	});
 	
-	app.controller("deletePostUser",function(){
-
-	    this.deletePost = function(postid,puser){
-
-	
-	    	for (var i=0; i < puser.blog.length; i++) {
-			  if (puser.blog[i].idPost==postid) {
-                     puser.blog.splice(i , 1 );
-	    	  };
-	    	  
-			};
-
-			$("#divEditarPost").hide();
-	    };
-	    
-	    
-	});
 	
 	app.controller("addComent",function(){
 	    var cont=2;

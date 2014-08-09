@@ -6,7 +6,7 @@
 			    	<section class="headerMiblogs clearfix">
 			    		<a href="" class="pull-left linktituloBlog1" ng-click="tabs.getTabIn(2,blog.idPost,usuario.user[cookieValue])">{{blog.titulo}}</a>
 			    		<span class="fechablog pull-left ">{{blog.fecha}}</span>
-			    		<a ng-controller="deletePostUser as deletePosts" href="" class="pull-right editdelete" ng-click="deletePosts.deletePost(blog.idPost,usuario.user[cookieValue])">Eliminar</a><span class="pull-right glyphicon glyphicon-remove"></span>
+			    		<a href="" class="pull-right editdelete" ng-click="tabs.deletePost(blog.idPost,usuario.user[cookieValue],1)">Eliminar</a><span class="pull-right glyphicon glyphicon-remove"></span>
 			    	</section>
 			    	<section class="contMiBlog1 ">
 			    		<p class="textmiblog">
