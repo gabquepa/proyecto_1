@@ -6,11 +6,11 @@
 		<section class="headcontlog header">	
 			<h3>Ingresar al Sistema_</h2>
 		</section>
-		<form class="formlogin" name="loginUser" role="form" ng-controller="validarLogin as login" ng-submit="loginUser.$valid && login.testUser(username,userpass,usuario.user)">
+		<form class="formlogin" name="loginUser" role="form" ng-controller="validarLogin as login" ng-submit="login.testUser(username,userpass,usuario.user)">
 			<label for="usuario">Usuario</label>
-			<input class="form-control" type="email"  id="usuario" placeholder="usuario@ucenfotec.ac.cr" ng-model="username" required/>
+			<input class="form-control" type="email" class="logincampo" id="usuario" placeholder="usuario@ucenfotec.ac.cr" ng-model="username"/>
 			<label for="pass">Contraseña</label>
-			<input class="form-control" type="password" id="pass" ng-model="userpass" required/>
+			<input class="form-control" class="logincampo" type="password" id="pass" ng-model="userpass"/>
 			<button type="submit" class="botlogin" value="submit">Ingresar</button>
 			<a href ng-click="navLogin.getTab(2)">Recuperar Contraseña</a>
 		</form>
