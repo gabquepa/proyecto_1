@@ -20,11 +20,14 @@ for ($i=0; $i < $nfilas; $i++) {
 	print "<br>Texto: " .$fila["texto"];
 	print "<br>Fecha: " .$fila["fecha"];
 
-	if($fila["id_usuario"]==$filaProfe["id_usuario"]){
-		print "<br>Profe: " .$filaProfe["nombre"]." ".$filaProfe["apellido"]."<br>";
-	}
-	else{
-		print("<br>ERROR<br>");
+	for($j=0; $j < $nfilasProfe; $j++){
+		if($fila["id_usuario"]==$filaProfe["id_usuario"]){
+			print "<br>Profe: " .$filaProfe["nombre"]." ".$filaProfe["apellido"]."<br>";
+			break;
+		}
+		else{
+			print("<br>ERROR<br>");
+		}
 	}
 }
 

@@ -8,11 +8,11 @@
                   <input class="form-control" type='text' placeholder='Titulo' ng-model='add.addDoc.nombre'>
                   <input class="form-control" type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
                   <section ng-controller='CarrerasController as cyc'>
-                    <select id='add.addDoc.carrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera form-control">
+                    <select id='addcarrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera form-control">
                       <option selected disable val=''>Seleccione una Carrera</option>
                       <option ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
                     </select>
-                    <select id='add.addDoc.curso' class="select-curso form-control selectStyle">
+                    <select id='addcurso' class="select-curso form-control selectStyle">
                       <option val="" selected disable>Seleccione un Curso</option>
                       <option ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
                     </select>
