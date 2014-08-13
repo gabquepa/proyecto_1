@@ -33,13 +33,21 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	$scope.showForum=false;
 	$scope.showList=true;
 
-	$http.get('/Proyecto_1/JSON/forums.json').success(function(data){
+	$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : "1"}).
+	success(function(data, status) {
+		
+	}).
+	error(function(data, status) {
+		alertify.error("Ocurrio un error");
+	});
+
+	/*$http.get('/Proyecto_1/JSON/forums.json').success(function(data){
 		for(var i= 0; i<data.length;i++){
 			console.log('el profesor: ' +data[i].profesor);	
 			// if()
 			forum.lists = data;
 		}
-	});
+	});*/
 
 	this.displayForum = function(forum){
 		
@@ -131,42 +139,58 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
          var tema = $('#fTema').val();
          var invitar = $('#fInvitar').val();
          
-             if (titulo.trim() == '' || periodo.trim() == '' || tema.trim() == '' || invitar.trim() == '' ) {
+        if (titulo.trim() == '' || periodo.trim() == '' || tema.trim() == '' || invitar.trim() == '' ) {
              	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe completar todos los campos");
              	// alertify.success("OJO");
-             }else{
-
-
-
-		var invitados = $('.create-forumSection .invitados').val().split(', ');
-		this.newforum={};
+             }
+        else{
+				var invitados = $('.create-forumSection .invitados').val().split(', ');
+					this.newforum={};
 		
-		for(var i= 0; i<invitados.length;i++){
-			invitados[i] = 'email":"'+invitados[i];
-		}
+				for(var i= 0; i<invitados.length;i++){
+					invitados[i] = 'email":"'+invitados[i];
+				}
 		// var rv = {};
 	 //  for (var i = 0; i < invitados.length; ++i)
 	 //    rv[i] = invitados[i];
 	 //  console.log(rv);
 
-		this.newforum.id=(forum.lists).length+1;
-		this.newforum.profesor="0001";
-		this.newforum.titulo= $('.forum-title').val();
-		this.newforum.periodo=$('.forum-periodo').val();
-		this.newforum.CarreraId=$('.select-carrera option:selected').attr('val');;
-		this.newforum.CursoId=$('.select-curso option:selected').attr('val');
-		this.newforum.tema=$('.create-forumSection textarea').val();
-		this.newforum.moderador=$('.create-forumSection .moderador').val();
-		this.newforum.invitados = invitados;
-		this.newforum.comments={};
-		this.newforum.estado='A';
+	 	var f=new Date(),
+	 		fecha= f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
+			profesor="1",
+			titulo= $('.forum-title').val(),
+			periodo=$('.forum-periodo').val(),
+			CarreraId=$('.select-carrera option:selected').attr('val'),
+			CursoId=$('.select-curso option:selected').attr('val'),
+			tema=$('.create-forumSection textarea').val(),
+			moderador=$('.create-forumSection .moderador').val(),
+			invitados = invitados,
+			comments={},
+			estado='1';
+
+	 	$http.post("/Proyecto_1/php/forum/crearForo.php", { 
+	 														"id_usuario" : profesor,  
+	 														"id_curso" : CursoId, 
+	 														"id_moderador": "2",
+	 														"titulo" : titulo,  
+	 														"estado" : estado,  
+	 														"fecha": fecha ,
+	 														"texto" : tema,  
+	 														"periodo": periodo
+		}).
+		success(function(data, status) {
+			alertify.success("El foro fue creado correctamente");
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
 
 
-		forum.lists.push(this.newforum);
-		newforum={};
-		console.log(forum.lists); 
-		alertify.success("Foro creado");
+		/*forum.lists.push(this.newforum);
+		
+		console.log(forum.lists); */
+
 		$('#forum-create').collapse('toggle');
 
 		$('.create-forumSection .invitados').val('');
@@ -176,6 +200,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$('.create-forumSection .moderador').val('');
 		}
 	};
+
+	
 	this.addComment = function(){
 		 var comment = $('#fComment').val();
 		 if (comment.trim() == '') {
