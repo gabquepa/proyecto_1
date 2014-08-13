@@ -653,6 +653,9 @@ app.controller('carreraController', function(){
             	this.style3={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
             	break;
 				}
+				if(setTab === 2){
+					
+				}
 		};
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 4){
@@ -805,40 +808,51 @@ app.controller("crearUserController", ['$scope', '$http', function($scope, $http
 
 	}]);
 /*****************************************************************************************************************/	
-app.controller("modificarUserController", function(){
-		  var temp = 0;	
-
-		  
+app.controller("modificarUserController", ['$scope', '$http', function($scope, $http){
+		var temp = 0;	 
 		this.modifUser = function(pUser, pCorreo){
-			
-			 for(i=0;i<pUser.length;i++){
-			 	if(pUser[i].correo === pCorreo){
-			 		temp = i;
-			 		console.log(temp);
-			 		$('#nombreEncontrado').val(pUser[i].nombre);
-			 		$('#correoEncontrado').val(pUser[i].correo);
-			 		$('#passwordEncontrado').val(pUser[i].password);
-			 		if(pUser[i].genero ==='masculino'){
-			 			$('#generoHombre').attr('checked', 'checked');
-			 		}
-			 		else{
-			 			$('#generoMujer').attr('checked', 'checked');
-			 		}
-			 		//If de categoria
-			 		if(pUser[i].categoria ==='estudiante'){
-			 			$('#estudiante').attr('checked', 'checked');
-			 		}
-			 		else if(pUser[i].categoria ==='profesor'){
-			 			$('#profesor').attr('checked', 'checked');
-			 		}else if(pUser[i].categoria ==='rector'){
-			 			$('#rector').attr('checked', 'checked');
-			 		}else if(pUser[i].categoria ==='director'){
-			 			$('#director').attr('checked', 'checked');
-			 		}		 		
-			 	}//FIn del if
-			 }//Fin del for	
-
-
+			if(pCorreo.toLowerCase().indexOf("@ucenfotec.ac.cr") >= 0){
+				 $http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { "email" : pCorreo
+					}).
+					success(function(data, status) {
+						for(var i= 0; i<data.length;i++){
+							if(data[i] === false){
+								alertify.log("No se encontró ningún usuario");
+								limpiar();
+							}else{
+								$('#nombreEncontrado').val(data[i].nombre);
+								$('#apellidoEncontrado').val(data[i].apellido);
+						 		$('#correoEncontrado').val(data[i].email);
+						 		$('#passwordEncontrado').val(data[i].password);
+						 		if(data[i].genero ==='m'){
+						 			$('#generoHombre').attr('checked', 'checked');
+						 		}
+						 		else{
+						 			$('#generoMujer').attr('checked', 'checked');
+						 		}
+						 		//If de categoria
+						 		if(data[i].tipo ==='e'){
+						 			$('#estudiante').attr('checked', 'checked');
+						 		}
+						 		else if(data[i].tipo ==='p'){
+						 			$('#profesor').attr('checked', 'checked');
+						 		}else if(data[i].tipo ==='r'){
+						 			$('#rector').attr('checked', 'checked');
+						 		}else if(data[i].tipo ==='d'){
+						 			$('#director').attr('checked', 'checked');
+						 		}
+							}
+						}
+					})
+					.
+					error(function(data, status) {
+						alertify.error("Error");
+						limpiar();
+					});
+			}else{
+				alertify.log("Debe buscar un correo válido");
+				limpiar();
+			}
 		};//Fin de funcion
 
 		this.user = {};
@@ -867,7 +881,7 @@ app.controller("modificarUserController", function(){
 		}
 
 
-	});
+	}]);
 
 /*****************************************************************************************************************/	
 app.controller("inhabilitarUserController", function(){
@@ -1982,3 +1996,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
 
 })();
+
+function limpiar(){
+	$('input').val('');
+}
