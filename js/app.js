@@ -3,11 +3,14 @@
 
 
 
-	app.controller('configController', function($scope) {
+	app.controller('configController', ['$scope', '$http', function($scope, $http){
 
-		 this.usuarios = arregloUsuarios;
+		this.usuarios = arregloUsuarios;
 		  this.carreras = arregloCarreras;
 		   this.profecurso =arregloProfeCurso;
+		   this.estudcurso =arregloEstuCurso;
+		   this.estudcursotemp =arregloEstuCursoTemp;
+		   this.estudcursobusctemp=arregloEstuCursoBuscTemp;
 		  this.miCarrera = {};
 		  this.miCarreraCC = {};
 		  this.miCursoCC = {};
@@ -18,26 +21,20 @@
 
 
 		this.addCarrera = function(){
-
-			var codCarrera = $('#codCarrera').val();
             var nomCarrera = $('#nomCarrera').val();
-             
-             if (codCarrera.trim() == '' || nomCarrera.trim() == '' ) {
-             	 // alert("Debe llenar todos los campos");
+             if (nomCarrera.trim() == '') {
              	 alertify.log("Debe completar todos los campos");
-             	// alertify.success("OJO");
              }else{
-
-
-
-			this.miCarrera.id =this.carreras.length;
-			this.miCarrera.estado = 'activo';
-			this.miCarrera.cursos= [];
-			this.carreras.push(this.miCarrera);
-			this.miCarrera = {};
-			 alertify.success("La carrera se guardo correctamente");
-		}
-			
+				$http.post("/Proyecto_1/php/configuration/crea_carrera.php", { "nombre" : nomCarrera,  "estado" : '1', "thumb" : "test.png"
+				}).
+				success(function(data, status) {
+					alertify.success("La carrera fue creada correctamente");
+				})
+				.
+				error(function(data, status) {
+					alertify.error("Error");
+				});
+			 }
 		};
 
 
@@ -168,7 +165,30 @@
 
 		  
 
-	});
+}]);
+
+
+//Arreglo cursoEstudianteTemp//
+    var arregloEstuCursoBuscTemp =[
+	];
+    var arregloEstuCursoTemp =[
+	];
+	
+	//Arreglo cursoEstudiante//
+    var arregloEstuCurso =[
+	{
+		
+		curso:'Proyecto 1',
+		estudiante:'sergio@ucenfotec.ac.cr',
+	},
+	{
+		
+		curso:'Proyecto 1',
+		estudiante:'alejandro@ucenfotec.ac.cr',
+	}	
+	];
+	
+	
 //Arreglo Carreras//
     var arregloProfeCurso =[
 	{
