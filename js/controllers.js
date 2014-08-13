@@ -1753,7 +1753,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		
 	});
 	
-	app.controller("AddBlogController",function(){
+	// app.controller("AddBlogController",['$scope', '$http' function($scope, $http){
+	app.controller("AddBlogController", function(){
 		var cont=2;
 		var temp=true;
 		var d = new Date();
@@ -1776,6 +1777,21 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			this.newblog={};
 			cont++;
 			this.newblog.fecha=strDate;
+
+			console.log(this.newblog.fecha);
+			console.log(this.newblog[1]);
+
+
+			// $http.post("/Proyecto_1/php/blog/crea_post.php", { "tipo" : this.user.categoria ,  "email" : correoUser,  "nombre": nombUser,"apellido" : apellidoUser,  "estado" : '1',  "genero": this.user.genero,"calificacion" : '0',  "password": passwUser
+			// 	}).
+			// 	success(function(data, status) {
+			// 		alertify.success("El usuario fue creado correctamente");
+			// 	})
+			// 	.
+			// 	error(function(data, status) {
+			// 		alertify.error("Error");
+			// 	})
+
 			alertify.success("El post fue creado");
 			$('#addBlog').collapse('toggle');
 	     }else{
@@ -1793,9 +1809,10 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   
 	    };
 	    
+	// }]);
+	
 	});
-	
-	
+
 	app.controller("addComent",function(){
 	    var cont=2;
 	    var d = new Date();
