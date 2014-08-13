@@ -5,9 +5,11 @@
 
 	app.controller('configController', ['$scope', '$http', function($scope, $http){
 
-		 this.usuarios = arregloUsuarios;
+		this.usuarios = arregloUsuarios;
 		  this.carreras = arregloCarreras;
 		   this.profecurso =arregloProfeCurso;
+		   this.estudcurso =arregloEstuCurso;
+		   this.estudcursotemp =arregloEstuCursoTemp;
 		  this.miCarrera = {};
 		  this.miCarreraCC = {};
 		  this.miCursoCC = {};
@@ -163,6 +165,27 @@
 		  
 
 }]);
+
+
+//Arreglo cursoEstudianteTemp//
+    var arregloEstuCursoTemp =[
+	];
+	
+	//Arreglo cursoEstudiante//
+    var arregloEstuCurso =[
+	{
+		
+		curso:'Proyecto 1',
+		estudiante:'sergio@ucenfotec.ac.cr',
+	},
+	{
+		
+		curso:'Proyecto 1',
+		estudiante:'alejandro@ucenfotec.ac.cr',
+	}	
+	];
+	
+	
 //Arreglo Carreras//
     var arregloProfeCurso =[
 	{

@@ -1035,6 +1035,85 @@ app.controller("respuestaForos", function(){
 
 });
 
+//-----------------------Estudiantes----------------------------
+app.controller("controlEstudiantes",function(){
+	 this.estudiantes ="";
+	 this.asignados={};
+	 this.agregados="";
+     this.carrera="";
+     this.curso="";
+     this.estudiantesTemp={};
+     this.estadoUser=true;
+     this.estadoCurso=true;
+     this.styleUser={'background-color': '#ebebeb'};
+     this.styleCurso={'background-color': '#ebebeb'}; 
+     var cont=2;                              
+
+     
+    this.getArreglo=function(){  
+      return this.estudiantesTemp;
+    };
+
+    this.activarEst=function(){  
+      	this.estadoUser=false;
+      	this.styleUser={'background-color':'', };
+    };
+    
+     this.activarCurso=function(){  
+      	this.estadoCurso=false;
+      	this.styleCurso={'background-color':'', };
+      	this.estadoUser=true;
+      	this.styleUser={'background-color': '#ebebeb'};
+    };
+    this.agregarEstudiantes=function(pcursoest){
+           this.asignados = $('#asig').val().split(', ') && $('#asig').val().split(',');
+           for (var i=0; i < this.asignados.length; i++) {
+	            this.estudiantesTemp.curso=this.curso;
+		        this.estudiantesTemp.estudiante=this.asignados[i];//this.agregados;
+		        pcursoest.push(this.estudiantesTemp);
+		        this.estudiantesTemp={};
+           };
+           $('#asig').val("");  
+	 }; 
+
+	 this.eliminarEstudiantes=function(pestu,pcurso,pcursoest){
+	     for (var i=0; i < pcursoest.length; i++) {
+	       if (pcursoest[i].estudiante==pestu && pcursoest[i].curso==pcurso){
+	        	pcursoest.splice( i , 1 );
+	        }
+	     };   
+	 }; 
+	 
+	 this.guardarEstudiantes=function(pcurest,pcuresttemp){      
+	       for (var i=0; i < pcuresttemp.length; i++) {
+				 this.estudiantesTemp.curso=pcuresttemp[i].curso;
+				 this.estudiantesTemp.estudiante=pcuresttemp[i].estudiante;
+				 pcurest.push(this.estudiantesTemp);
+				 this.estudiantesTemp={};
+		   };
+	       pcuresttemp.length=0;
+	 }; 
+	 
+	 this.desasignarEstudiantes=function(pcurest,pestu,pcurso){
+		for (var i=0; i < pcurest.length; i++) {
+
+	       if (pcursoest[i].estudiante==pestu && pcursoest[i].curso==pcurso){
+	        	pcurest.splice( i , 1 );
+	        }
+	     };   
+	 }; 
+    
+       
+});
+
+
+
+
+
+//------------------------Fin Estudiantes________________________
+
+
+
 //------------------------Profesores-----------------------------
 	app.controller("ControlProfesores",function(){
 	 this.msg={'display':'none'};

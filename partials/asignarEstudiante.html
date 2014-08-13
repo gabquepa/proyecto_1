@@ -1,39 +1,44 @@
-    <div ng-show="estudianteContr.isSelected(1, confPanel.tab)" >                         
+    <div ng-show="estudianteContr.isSelected(1, confPanel.tab)"  ng-controller="controlEstudiantes as est">                         
                             <div class="profesoresInput cf">
                                          <div class="contenedorInputsSep">
                                           <label>Seleccione una Carrera</label><br>
-                                          <select class="inhabilitarSlct form-control">
-                                             <option>Option1</option>
-                                            <option>Option2</option>
+                                          <select class="form-control inhabilitarSlct"  ng-model="est.carrera" ng-options="carrera.id  as carrera.nombre for carrera in conf.carreras" ng-change="est.activarCurso()" required> 
+                                          <option value="" >Seleccione una Carrera</option>
                                           </select>
+                                         
                                       </div>
 
                                       <div class="contenedorInputsSep">
                                           <label>Seleccione un Curso</label><br>
-                                          <select class="inhabilitarSlct form-control">
-                                             <option>Option1</option>
-                                            <option>Option2</option>
+                                          <select ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct" ng-style="est.styleCurso" ng-model="est.curso" ng-options="curso.nombreCurso  as curso.nombreCurso for curso in conf.carreras[est.carrera].cursos" ng-change="est.activarEst()">
+                                          <option value="" >Seleccione un Curso</option>
                                           </select>
                                       </div>
+
                                   </div>
                                   <div class="buscarUserContent cf">
                                         <h4>Ingresar Estudiantes</h4>
-                                        <!-- ASIGNAR ESTUDIANTES   -->
-                                        <div><img src="img/asignarEstudiante.jpg"></div>
-                                        <!-- ASIGNAR ESTUDIANTES   -->
-                                         <button type="submit" class="guardarBtn pull-right">Guardar</button>
+                                         <input id="asig" ng-disabled="est.estadoUser" ng-style="est.styleUser" type="text" class="form-control" ng-model="est.agregados"/>
+                                         <button type="submit" class="guardarBtn pull-right" ng-click="est.agregarEstudiantes(conf.estudcursotemp)">Agregar</button>
                                    </div>
+                                   <div>
                                    <h4>Agregados</h4>
-                                   <div class="eliminarProfesores">
-                                    <p>Nombre de Usuario</p> <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-                                    </div>
-                                    <div class="eliminarProfesores">
-                                    <p>Nombre de Usuario</p> <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-                                    </div>
-                                    <div class="eliminarProfesores">
-                                    <p>Nombre de Usuario</p> <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-                                    </div>
-                                    <div class="eliminarProfesores">
-                                    <p>Nombre de Usuario</p> <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-                                    </div>
+                                   <ul>
+		                                   	<li class="list-group-item" ng-repeat="estu in conf.estudcurso">
+			                                   	<div class="eliminarEstudiantes">
+			                                    <span>Estudiantes: {{estu.estudiante}}</span> <span>Curso: {{estu.curso}}</span>
+		
+		                                   	</li>
+	                                   <ul>
+		                                   	<li class="list-group-item" ng-repeat="estu in conf.estudcursotemp">
+			                                   	<div class="eliminarEstudiantes">
+			                                    <span>Estudiantes: {{estu.estudiante}}</span> <span>Curso: {{estu.curso}}</span><a href class="btn btn-danger" ng-click="est.eliminarEstudiantes(estu.estudiante,estu.curso,conf.estudcursotemp)"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+		
+		                                   	</li>
+	                                   </ul>
+	                                   <button type="submit" class="guardarBtn pull-right" ng-click="est.guardarEstudiantes(conf.estudcurso,conf.estudcursotemp)">Guardar</button>
+											
+	                                   </ul>
+                                   </div>
+                                   
   </div>
