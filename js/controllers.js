@@ -35,7 +35,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 
 	$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : "1"}).
 	success(function(data, status) {
-		
+			forum.lists=data;
 	}).
 	error(function(data, status) {
 		alertify.error("Ocurrio un error");
@@ -53,10 +53,11 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		
         $scope.showForum=true;
 		$scope.showList=false;
+
 		
 		$('#course-title').text(forum.titulo);
 		$('.inine-forum-list').addClass('ng-hide');
-		$('.main-forum').val(forum.tema);
+		$('.main-forum').val(forum.tema);//////aquiiiiiiiiiiiiiii
 		$('.inine-forum-display').removeClass('ng-hide');
 		$('.moderador').val(forum.moderador);
 		$('#id-foro').attr('value', forum.id);
@@ -764,6 +765,7 @@ app.controller('profesorController', function(){
 			
 		};
 	});
+
 /*****************************************************************************************************************/	
 app.controller('estudianteController', function(){
 		this.tab = 1;
