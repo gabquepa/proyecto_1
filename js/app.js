@@ -10,6 +10,7 @@
 		   this.profecurso =arregloProfeCurso;
 		   this.estudcurso =arregloEstuCurso;
 		   this.estudcursotemp =arregloEstuCursoTemp;
+		   this.estudcursobusctemp=arregloEstuCursoBuscTemp;
 		  this.miCarrera = {};
 		  this.miCarreraCC = {};
 		  this.miCursoCC = {};
@@ -168,6 +169,8 @@
 
 
 //Arreglo cursoEstudianteTemp//
+    var arregloEstuCursoBuscTemp =[
+	];
     var arregloEstuCursoTemp =[
 	];
 	

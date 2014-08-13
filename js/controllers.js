@@ -1038,15 +1038,22 @@ app.controller("respuestaForos", function(){
 //-----------------------Estudiantes----------------------------
 app.controller("controlEstudiantes",function(){
 	 this.estudiantes ="";
+	 this.temp=[];
+	 this.buscados="";
+	 this.encontrados={};
 	 this.asignados={};
 	 this.agregados="";
      this.carrera="";
+     this.carreraBus="";
      this.curso="";
+     this.cursoDes="Resultados de Búsqueda";
      this.estudiantesTemp={};
      this.estadoUser=true;
      this.estadoCurso=true;
      this.styleUser={'background-color': '#ebebeb'};
      this.styleCurso={'background-color': '#ebebeb'}; 
+     this.estadoCursoDes=true;
+     this.styleCursoDes={'background-color': '#ebebeb'};
      var cont=2;                              
 
      
@@ -1065,8 +1072,13 @@ app.controller("controlEstudiantes",function(){
       	this.estadoUser=true;
       	this.styleUser={'background-color': '#ebebeb'};
     };
+    this.activarCursoDes=function(){  
+      	this.estadoCursoDes=false;
+      	this.styleCursoDes={'background-color':'', };
+      
+    };
     this.agregarEstudiantes=function(pcursoest){
-           this.asignados = $('#asig').val().split(', ') && $('#asig').val().split(',');
+           this.asignados = this.agregados.split(', ') && $('#asig').val().split(',');
            for (var i=0; i < this.asignados.length; i++) {
 	            this.estudiantesTemp.curso=this.curso;
 		        this.estudiantesTemp.estudiante=this.asignados[i];//this.agregados;
@@ -1094,16 +1106,89 @@ app.controller("controlEstudiantes",function(){
 	       pcuresttemp.length=0;
 	 }; 
 	 
-	 this.desasignarEstudiantes=function(pcurest,pestu,pcurso){
+	 this.encontrarEstudiantes=function(pcurest,pcurestBustemp){
+	 	this.encontrados= this.buscados.split(', ') && $('#desasig').val().split(',');
+		var estado=true;
+		var estadoarre=false;
+		
+		for (var i=0; i < this.encontrados.length; i++) {
+				estado=true; 
+				for (var e=0; e < pcurest.length; e++) {
+			          if (this.encontrados[i]==pcurest[e].estudiante) {
+			          	this.estudiantesTemp.curso=pcurest[e].curso;
+				        this.estudiantesTemp.estudiante=this.encontrados[i];
+				        pcurestBustemp.push(this.estudiantesTemp);
+				        this.estudiantesTemp={};
+				        estado=false;
+			          } 
+		         }; 
+		         if (estado) {
+		         	this.temp.push(this.encontrados[i]);
+		         	estadoarre=true;
+		         }; 
+		         
+		};	
+		
+		if (estadoarre) {
+			alertify.log("Los siguientes estudiantes no pertenecen a ningún curso:"+"<br>"+this.temp.join('<br>'));
+			this.temp.length=0;
+		};
+	    $('#desasig').val(""); 
+	 }; 
+	 
+	 this.desasignarredoEstudiantes=function(pestu,pcurso,pcurest){
 		for (var i=0; i < pcurest.length; i++) {
-
-	       if (pcursoest[i].estudiante==pestu && pcursoest[i].curso==pcurso){
+	       if (pcurest[i].estudiante==pestu && pcurest[i].curso==pcurso){
 	        	pcurest.splice( i , 1 );
 	        }
 	     };   
 	 }; 
+	 
+	 this.desasignarEstudiantes=function(pcurest,ptemp){
+		for (var i=0; i < pcurest.length; i++) {
+	      for (var e=0; e < ptemp.length; e++) {
+	       
+	       if (pcurest[i].estudiante==ptemp[e].estudiante && pcurest[i].curso==ptemp[e].curso){
+	        	pcurest.splice( i , 1 );
+	        }
+	     
+	     }; 
+	    
+	    };
+	    ptemp.length=0;    
+	 }; 
     
-       
+     this.desasignarEstudiantesAv=function(pestu,pcurso,pcursoest){
+	     for (var i=0; i < pcursoest.length; i++) {
+	       if (pcursoest[i].estudiante==pestu && pcursoest[i].curso==pcurso){
+	        	pcursoest.splice( i , 1 );
+	        }
+	     };   
+	 }; 
+	 
+	 this.desasignarEstudiantesComp=function(pcursoest,pcurso){
+	     var cont=[];
+	     for (var i=0; i < pcursoest.length; i++) {
+	       if (pcursoest[i].curso==pcurso){
+	        	cont.push(pcurso);
+	        }
+	     };
+	      
+	     for (var e=0; e < cont.length; e++) {
+	        for (var i=0; i < pcursoest.length; i++) {
+		       if (pcursoest[i].curso==cont[e]){
+		        	pcursoest.splice(i, 1 );
+		        }
+	     	};
+		      
+		 };
+
+	 }; 
+	 
+	 this.descartarBus=function(){
+	 	this.cursoDes="Resultados de Búsqueda";
+	 }
+      
 });
 
 

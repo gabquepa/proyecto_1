@@ -1,4 +1,4 @@
-    <div ng-show="estudianteContr.isSelected(1, confPanel.tab)"  ng-controller="controlEstudiantes as est">                         
+    <div ng-show="estudianteContr.isSelected(1, confPanel.tab)" >                         
                             <div class="profesoresInput cf">
                                          <div class="contenedorInputsSep">
                                           <label>Seleccione una Carrera</label><br>
@@ -27,7 +27,7 @@
 		                                   	<li class="list-group-item" ng-repeat="estu in conf.estudcurso">
 			                                   	<div class="eliminarEstudiantes">
 			                                    <span>Estudiantes: {{estu.estudiante}}</span> <span>Curso: {{estu.curso}}</span>
-		
+												</div>
 		                                   	</li>
 	                                   <ul>
 		                                   	<li class="list-group-item" ng-repeat="estu in conf.estudcursotemp">
