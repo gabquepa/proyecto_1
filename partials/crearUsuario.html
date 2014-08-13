@@ -6,17 +6,18 @@
               <form role="form cf" name="crearUsuarioForm" ng-controller="crearUserController as crearUser" ng-submit="crearUsuarioForm.$valid && crearUser.addUser(conf.usuarios)">
                   <div class="contenedorInputs">
                       <label>Nombre del Usuario</label>
-                      <!-- <h1>{{conf.usuarios[1].nombre}}</h1> -->
                       <input type="text" class="form-control" ng-model="crearUser.user.nombre" id="nombUser">
+                      <label>Apellido del Usuario</label>
+                      <input type="text" class="form-control" ng-model="crearUser.user.apellido" id="apellidoUser">
                   </div>
                     
                       <div class="contenedorInputs contenedorInputsSep">
                             <label>Género</label><br>
                            
                            <label>Hombre</label>
-                           <input type="radio" class="genero" name="genero" value="masculino" ng-model="crearUser.user.genero" required >
+                           <input type="radio" class="genero" name="genero" value="m" ng-model="crearUser.user.genero" required >
                            <label>Mujer</label>
-                           <input type="radio" class="genero" name="genero" value="femenino" ng-model="crearUser.user.genero" required > 
+                           <input type="radio" class="genero" name="genero" value="f" ng-model="crearUser.user.genero" required > 
                        </div>
                        <div class="contenedorInputs contenedorInputsSep">
                            <label>Correo del Usuario</label>
@@ -31,13 +32,13 @@
                        <label>Categoría</label>
                            
                            <label>Director</label>
-                           <input type="radio" name="tipoUsuario" value="director" ng-model="crearUser.user.categoria" required >
+                           <input type="radio" name="tipoUsuario" value="d" ng-model="crearUser.user.categoria" required >
                            <label>Rector</label>
-                           <input type="radio" name="tipoUsuario" value="rector" ng-model="crearUser.user.categoria" required > 
+                           <input type="radio" name="tipoUsuario" value="r" ng-model="crearUser.user.categoria" required > 
                            <label>Profesor</label>
-                           <input type="radio" name="tipoUsuario" value="profesor" ng-model="crearUser.user.categoria" required >
+                           <input type="radio" name="tipoUsuario" value="p" ng-model="crearUser.user.categoria" required >
                            <label>Estudiante</label>
-                           <input type="radio" name="tipoUsuario" value="estudiante" ng-model="crearUser.user.categoria" required >  
+                           <input type="radio" name="tipoUsuario" value="e" ng-model="crearUser.user.categoria" required >  
                     </div>
 
                     <button type="submit" class="guardarBtn pull-right" value="submit">Guardar</button>

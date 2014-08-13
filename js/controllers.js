@@ -769,8 +769,7 @@ app.controller('estudianteController', function(){
 
 
 /*****************************************************************************************************************/	
-app.controller("crearUserController", function(){
-
+app.controller("crearUserController", ['$scope', '$http', function($scope, $http){
 		this.user = {};
 
 		this.addUser = function(pUser){
@@ -779,26 +778,32 @@ app.controller("crearUserController", function(){
 			 var nombUser = $('#nombUser').val();
              var correoUser = $('#correoUser').val();
              var passwUser = $('#passwUser').val();
+             var apellidoUser = $('#apellidoUser').val();
              
  
 
-             if (nombUser.trim() == '' || correoUser.trim() == '' || passwUser.trim() == '' ) {
-             	 // alert("Debe llenar todos los campos");
+             if (nombUser.trim() == '' || correoUser.trim() == '' || passwUser.trim() == '' || apellidoUser.trim() == '') {
              	 alertify.log("Debe completar todos los campos");
-             	// alertify.success("OJO");
              }else{
-
-			  this.user.estado = "activo";
-			pUser.push(this.user);
-			// alert("El usuario fue creado correctamente");
-			alertify.success("El usuario fue creado correctamente");
+				this.user.estado = "activo";
+				pUser.push(this.user);
+				/*aqui*/
+				$http.post("/Proyecto_1/php/configuration/crea_usuario.php", { "tipo" : this.user.categoria ,  "email" : correoUser,  "nombre": nombUser,"apellido" : apellidoUser,  "estado" : '1',  "genero": this.user.genero,"calificacion" : '0',  "password": passwUser
+				}).
+				success(function(data, status) {
+					alertify.success("El usuario fue creado correctamente");
+				})
+				.
+				error(function(data, status) {
+					alertify.error("Error");
+				})
 			 }
 			
 			
 			this.user = {};	
 		};//Fin funcion
 
-	});
+	}]);
 /*****************************************************************************************************************/	
 app.controller("modificarUserController", function(){
 		  var temp = 0;	
