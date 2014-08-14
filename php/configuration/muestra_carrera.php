@@ -15,6 +15,6 @@ $resulto[] = $fila;
 
 echo json_encode($resulto);
 
-mysql_close($result);
+mysql_close($conexion);
 
 ?>

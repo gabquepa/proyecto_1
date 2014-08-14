@@ -856,6 +856,7 @@ app.controller("modificarUserController", ['$scope', '$http', function($scope, $
 								alertify.log("No se encontró ningún usuario");
 								limpiar();
 							}else{
+								$('#id-usuario-mod').val(data[i].id_usuario);
 								$('#nombreEncontrado').val(data[i].nombre);
 								$('#apellidoEncontrado').val(data[i].apellido);
 						 		$('#correoEncontrado').val(data[i].email);
@@ -893,30 +894,35 @@ app.controller("modificarUserController", ['$scope', '$http', function($scope, $
 
 		this.user = {};
 		this.saveModif = function(pModif){
-
 			 var nombreEncontrado = $('#nombreEncontrado').val();
+			 var apellidoEncontrado = $('#apellidoEncontrado').val();
              var correoEncontrado = $('#correoEncontrado').val();
              var passwordEncontrado = $('#passwordEncontrado').val();
-             // console.log(codCurso);
-             if (nombreEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ) {
-             	 // alert("Debe llenar todos los campos");
+             var genero = $("input:radio[name=genero]:checked").val();
+             var tipo = $("input:radio[name=tipoUsuario]:checked").val();
+             var id = $('#id-usuario-mod').val();
+
+             if(nombreEncontrado.trim() == '' || apellidoEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ){
              	 alertify.log("Debe completar todos los campos");
-             	// alertify.success("OJO");
-             }else{
-			
-			 pModif[temp] = this.user;
-			 
-			  console.log(pModif[temp]);
-			
-
-			 this.user = {};
-			
-			 alertify.success("El usuario se modificó correctamente");
-
+			}else{
+				console.log('aqui esta');
+				$http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { 
+				"tipo" : tipo, "email" : correoEncontrado, "nombre" : nombreEncontrado, "apellido" : apellidoEncontrado, "genero" : genero, "id_usuario" : id, "password" : passwordEncontrado
+				// "tipo" : "e", "email" : "julian@ucenfotec.ac.cr", "nombre" : "nombreEncontrado", "apellido" : "apellidoEncontrado", "genero" : "m", "password" : "123", "id_usuario" : "5"
+				}).
+				success(function(data, status) {
+					console.log(data);
+					console.log('B-I-E-N');
+				})
+				.
+				error(function(data, status) {
+					$('.result-usuario').hide();
+					alertify.error("Error");
+					limpiar();
+				});
+				// alertify.success("El usuario se modificó correctamente");	
 			}
 		}
-
-
 	}]);
 
 /*****************************************************************************************************************/	

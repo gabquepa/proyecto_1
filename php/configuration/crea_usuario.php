@@ -5,8 +5,7 @@ mysql_select_db("Proyecto_1") or die ("no se puede conectar");
 $data = file_get_contents("php://input");
 $objData = json_decode($data);
 
-$query = mysql_query('CALL crea_usuario("'.$objData->tipo.'","'.$objData->email.'","'.$objData->nombre.'","'.$objData->apellido.'","'.$objData->estado.'","'.$objData->genero.'","'.$objData->calificacion.'","'.$objData->password.'");') or die ("Error");
+$query = mysql_query('CALL crea_usuario("'.$objData->tipo.'","'.$objData->email.'","'.$objData->nombre.'","'.$objData->apellido.'","'.$objData->estado.'","'.$objData->genero.'","'.$objData->password.'");') or die ("Error");
 
 mysql_close($conexion);
-
 ?>
