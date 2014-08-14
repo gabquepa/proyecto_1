@@ -67,11 +67,11 @@
 
             <h4>Mis foros</h4>
             <ul class="clearfix">
-              <li ng-repeat="list in forum.lists" data-forumId="{{list.id}}">
-                <span ng-if="list.estado == 'A'">
+              <li ng-repeat="list in forum.lists" data-forumId="{{list.id_foro}}">
+                <span ng-if="list.estado == '1'">
                     Activo - 
                 </span>
-                <span ng-if="list.estado == 'I'">
+                <span ng-if="list.estado == '2'">
                     Inactivo - 
                 </span>
                 <a ng-click="forum.displayForum(list)"> {{list.titulo}}</a>
@@ -91,6 +91,7 @@
               <a style="display:none;" class="glyphicon glyphicon-floppy-saved pull-right save" href="#" ng-click="forum.editarForo()">Guardar</a> 
 
               <textarea class="main-forum form-control" ng-disabled="{{enable}}" ></textarea>
+              
               <div id="add-comment" class="panel-collapse collapse">
                 <div class="panel-body">
                   <form name="forumForm" ng-submit="forumForm.$valid && forum.addComment()">

@@ -5,7 +5,16 @@ mysql_select_db("Proyecto_1") or die ("no se puede conectar");
 $data = file_get_contents("php://input");
 $objData = json_decode($data);
 
-$query = mysql_query('CALL crea_usuario("'.$objData->tipo.'","'.$objData->email.'","'.$objData->nombre.'","'.$objData->apellido.'","'.$objData->estado.'","'.$objData->genero.'","'.$objData->password.'");') or die ("Error");
+mysql_query("SET CHARACTER SET utf8");
+
+$query = mysql_query('select * from carrera') or die ("Error");
+
+$fila = mysql_fetch_assoc($query);
+$resulto[] = $fila;
+// var_dump($fila);
+
+echo json_encode($resulto);
 
 mysql_close($conexion);
+
 ?>

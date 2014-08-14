@@ -33,44 +33,67 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	$scope.showForum=false;
 	$scope.showList=true;
 
-	$http.get('/Proyecto_1/JSON/forums.json').success(function(data){
+	$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : "1"}).
+	success(function(data, status) {
+			forum.lists=data;
+	}).
+	error(function(data, status) {
+		alertify.error("Ocurrio un error");
+	});
+
+	/*$http.get('/Proyecto_1/JSON/forums.json').success(function(data){
 		for(var i= 0; i<data.length;i++){
 			console.log('el profesor: ' +data[i].profesor);	
 			// if()
 			forum.lists = data;
 		}
-	});
+	});*/
+
+	var idForo='';
 
 	this.displayForum = function(forum){
 		
         $scope.showForum=true;
 		$scope.showList=false;
-		
-		$('#course-title').text(forum.titulo);
-		$('.inine-forum-list').addClass('ng-hide');
-		$('.main-forum').val(forum.tema);
-		$('.inine-forum-display').removeClass('ng-hide');
-		$('.moderador').val(forum.moderador);
-		$('#id-foro').attr('value', forum.id);
-		var invi=[];
-		for(var i= 0; i<(forum.invitados).length;i++){
-			 invi.push(' '+(forum.invitados)[i].email);
-		}
-		$('.invitados').val(invi);	
 
-		if((forum.comments).length >=1){
-			$scope.comments= forum.comments;
-			$('.comments-lst').show();
-		}else{
-			$('.comments-lst').hide();
-		}
+		idForo= forum.id_foro;
 
-		setTimeout(function(){
-			$(".stars").rating();
-		}, 400);
-		setTimeout(function(){
-			$('.comment-stars .clear-rating').hide();
-		}, 500);
+		$http.post("/Proyecto_1/php/forum/textoForos.php", {"id_foro": forum.id_foro}).
+		success(function(data, status) {
+			forum.tema=data['texto'];
+
+
+			$('#course-title').text(forum.titulo);
+			$('.inine-forum-list').addClass('ng-hide');
+			$('.main-forum').val(forum.tema);
+			$('.inine-forum-display').removeClass('ng-hide');
+			$('.moderador').val(forum.moderador);
+			$('#id-foro').attr('value', forum.id);
+			var invi=[];
+
+			//INVITADOS Y COMENTARIOS
+			/*for(var i= 0; i<forum.invitados.length;i++){
+				 invi.push(' '+(forum.invitados)[i].email);
+			}
+			$('.invitados').val(invi);	
+
+			if((forum.comments).length >=1){
+				$scope.comments= forum.comments;
+				$('.comments-lst').show();
+			}else{
+				$('.comments-lst').hide();
+			}*/
+
+			setTimeout(function(){
+				$(".stars").rating();
+			}, 400);
+			setTimeout(function(){
+				$('.comment-stars .clear-rating').hide();
+			}, 500);
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
 	};
 	this.hideForum = function(){
 		$scope.showForum=true;
@@ -131,42 +154,68 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
          var tema = $('#fTema').val();
          var invitar = $('#fInvitar').val();
          
-             if (titulo.trim() == '' || periodo.trim() == '' || tema.trim() == '' || invitar.trim() == '' ) {
+        if (titulo.trim() == '' || periodo.trim() == '' || tema.trim() == '' || invitar.trim() == '' ) {
              	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe completar todos los campos");
              	// alertify.success("OJO");
-             }else{
-
-
-
-		var invitados = $('.create-forumSection .invitados').val().split(', ');
-		this.newforum={};
+             }
+        else{
+				var invitados = $('.create-forumSection .invitados').val().split(', ');
+					this.newforum={};
 		
-		for(var i= 0; i<invitados.length;i++){
-			invitados[i] = 'email":"'+invitados[i];
-		}
+				for(var i= 0; i<invitados.length;i++){
+					invitados[i] = 'email":"'+invitados[i];
+				}
 		// var rv = {};
 	 //  for (var i = 0; i < invitados.length; ++i)
 	 //    rv[i] = invitados[i];
 	 //  console.log(rv);
 
-		this.newforum.id=(forum.lists).length+1;
-		this.newforum.profesor="0001";
-		this.newforum.titulo= $('.forum-title').val();
-		this.newforum.periodo=$('.forum-periodo').val();
-		this.newforum.CarreraId=$('.select-carrera option:selected').attr('val');;
-		this.newforum.CursoId=$('.select-curso option:selected').attr('val');
-		this.newforum.tema=$('.create-forumSection textarea').val();
-		this.newforum.moderador=$('.create-forumSection .moderador').val();
-		this.newforum.invitados = invitados;
-		this.newforum.comments={};
-		this.newforum.estado='A';
+	 	var f=new Date(),
+	 		fecha= f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate(),
+			profesor="1",
+			titulo= $('.forum-title').val(),
+			periodo=$('.forum-periodo').val(),
+			CursoId=$('.select-curso option:selected').attr('val'),
+			tema=$('.create-forumSection textarea').val(),
+			moderador=$('.create-forumSection .moderador').val(),//calcular el id;
+			invitados = invitados,
+			comments={},
+			estado='1',
+			moderadorid='';
+
+		$http.post("/Proyecto_1/php/forum/moderador.php", { 
+	 														"email" : moderador
+		}).
+		success(function(data, status) {
+			moderadorid=data[0];
+		}).
+		error(function(data, status) {
+			alertify.error("Error");
+		});
+
+	 	$http.post("/Proyecto_1/php/forum/crearForo.php", { 
+	 														"id_usuario" : profesor,  
+	 														"id_curso" : CursoId, 
+	 														"id_moderador": moderadorid,
+	 														"titulo" : titulo,  
+	 														"estado" : estado,  
+	 														"fecha": fecha ,
+	 														"texto" : tema,  
+	 														"periodo": periodo
+		}).
+		success(function(data, status) {
+			alertify.success("El foro fue creado correctamente");
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
 
 
-		forum.lists.push(this.newforum);
-		newforum={};
-		console.log(forum.lists); 
-		alertify.success("Foro creado");
+		/*forum.lists.push(this.newforum);
+		
+		console.log(forum.lists); */
+
 		$('#forum-create').collapse('toggle');
 
 		$('.create-forumSection .invitados').val('');
@@ -176,6 +225,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$('.create-forumSection .moderador').val('');
 		}
 	};
+
+	
 	this.addComment = function(){
 		 var comment = $('#fComment').val();
 		 if (comment.trim() == '') {
@@ -216,7 +267,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	};
 
 	this.editarForo = function(){
-		var idF = $('#id-foro').val();
+		var idF = idForo;
 		var invitados = $('.inine-forum-display .invitados').val().split(', ');
 		var cerrar = $("input:radio[name=estado]").val();
 		var estado = 'A';
@@ -226,18 +277,29 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 					estado = 'I';
 				}
 
-				for (var i = invitados.length - 1; i >= 0; i--) {
+				// INVITADOS
+				/*for (var i = invitados.length - 1; i >= 0; i--) {
 					invitados[i] = 'nombre":'+ '"' + invitados[i];
-				}
+				}*/
 
 				for (var i = (forum.lists).length - 1; i >= 0; i--) {
-					if((forum.lists)[i].id == idF){
-						(forum.lists)[i].tema=$('.inine-forum-display .main-forum').val();
-						(forum.lists)[i].moderador=$('.inine-forum-display #moderadorDisplay').text();
-						(forum.lists)[i].invitados = invitados;
-						(forum.lists)[i].estado= estado;
+					if((forum.lists)[i].id_foro == idF){
+						var tema=$('.inine-forum-display .main-forum').val();
+						var moderador=$('.inine-forum-display #moderadorDisplay').text();
+						var invitados = invitados;
+						var estado= estado;
+
+						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, "id_foro":idF}).
+							success(function(data, status) {
+								alertify.success("El foro fue editado correctamente");
+							}).
+							error(function(data, status) {
+								alertify.error("Error");
+							});
+
 					}
 				}
+
 				console.log(forum.lists);
 
 				$('.forum-config .save').hide();
@@ -251,7 +313,6 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 					$scope.enable = true;
 					$('.main-forum').attr('disabled',true);	
 				}
-				alertify.success("El foro fue editado");
 		    }// fin if
 		    // else{
 		    // 	alertify.error("Error");
@@ -653,6 +714,9 @@ app.controller('carreraController', function(){
             	this.style3={'background-color': '#196A95', 'color':'#ffffff', 'padding':'8px'};
             	break;
 				}
+				if(setTab === 2){
+					
+				}
 		};
 		this.isSelected = function(checkedTab, pTab){
 				if(pTab != 4){
@@ -735,6 +799,7 @@ app.controller('profesorController', function(){
 			
 		};
 	});
+
 /*****************************************************************************************************************/	
 app.controller('estudianteController', function(){
 		this.tab = 1;
@@ -805,128 +870,151 @@ app.controller("crearUserController", ['$scope', '$http', function($scope, $http
 
 	}]);
 /*****************************************************************************************************************/	
-app.controller("modificarUserController", function(){
-		  var temp = 0;	
-
-		  
+app.controller("modificarUserController", ['$scope', '$http', function($scope, $http){
+		var temp = 0;	 
 		this.modifUser = function(pUser, pCorreo){
-			
-			 for(i=0;i<pUser.length;i++){
-			 	if(pUser[i].correo === pCorreo){
-			 		temp = i;
-			 		console.log(temp);
-			 		$('#nombreEncontrado').val(pUser[i].nombre);
-			 		$('#correoEncontrado').val(pUser[i].correo);
-			 		$('#passwordEncontrado').val(pUser[i].password);
-			 		if(pUser[i].genero ==='masculino'){
-			 			$('#generoHombre').attr('checked', 'checked');
-			 		}
-			 		else{
-			 			$('#generoMujer').attr('checked', 'checked');
-			 		}
-			 		//If de categoria
-			 		if(pUser[i].categoria ==='estudiante'){
-			 			$('#estudiante').attr('checked', 'checked');
-			 		}
-			 		else if(pUser[i].categoria ==='profesor'){
-			 			$('#profesor').attr('checked', 'checked');
-			 		}else if(pUser[i].categoria ==='rector'){
-			 			$('#rector').attr('checked', 'checked');
-			 		}else if(pUser[i].categoria ==='director'){
-			 			$('#director').attr('checked', 'checked');
-			 		}		 		
-			 	}//FIn del if
-			 }//Fin del for	
-
-
+			if(pCorreo.toLowerCase().indexOf("@ucenfotec.ac.cr") >= 0){
+				 $http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { "email" : pCorreo
+					}).
+					success(function(data, status) {
+						for(var i= 0; i<data.length;i++){
+							if(data[i] === false){
+								alertify.log("No se encontró ningún usuario");
+								limpiar();
+							}else{
+								$('#id-usuario-mod').val(data[i].id_usuario);
+								$('#nombreEncontrado').val(data[i].nombre);
+								$('#apellidoEncontrado').val(data[i].apellido);
+						 		$('#correoEncontrado').val(data[i].email);
+						 		$('#passwordEncontrado').val(data[i].password);
+						 		if(data[i].genero ==='m'){
+						 			$('#generoHombre').attr('checked', 'checked');
+						 		}
+						 		else{
+						 			$('#generoMujer').attr('checked', 'checked');
+						 		}
+						 		//If de categoria
+						 		if(data[i].tipo ==='e'){
+						 			$('#estudiante').attr('checked', 'checked');
+						 		}
+						 		else if(data[i].tipo ==='p'){
+						 			$('#profesor').attr('checked', 'checked');
+						 		}else if(data[i].tipo ==='r'){
+						 			$('#rector').attr('checked', 'checked');
+						 		}else if(data[i].tipo ==='d'){
+						 			$('#director').attr('checked', 'checked');
+						 		}
+							}
+						}
+					})
+					.
+					error(function(data, status) {
+						alertify.error("Error");
+						limpiar();
+					});
+			}else{
+				alertify.log("Debe buscar un correo válido");
+				limpiar();
+			}
 		};//Fin de funcion
 
 		this.user = {};
 		this.saveModif = function(pModif){
-
 			 var nombreEncontrado = $('#nombreEncontrado').val();
+			 var apellidoEncontrado = $('#apellidoEncontrado').val();
              var correoEncontrado = $('#correoEncontrado').val();
              var passwordEncontrado = $('#passwordEncontrado').val();
-             // console.log(codCurso);
-             if (nombreEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ) {
-             	 // alert("Debe llenar todos los campos");
+             var genero = $("input:radio[name=genero]:checked").val();
+             var tipo = $("input:radio[name=tipoUsuario]:checked").val();
+             var id = $('#id-usuario-mod').val();
+
+             if(nombreEncontrado.trim() == '' || apellidoEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ){
              	 alertify.log("Debe completar todos los campos");
-             	// alertify.success("OJO");
-             }else{
-			
-			 pModif[temp] = this.user;
-			 
-			  console.log(pModif[temp]);
-			
-
-			 this.user = {};
-			
-			 alertify.success("El usuario se modificó correctamente");
-
+			}else{
+				console.log('aqui esta');
+				$http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { 
+				"tipo" : tipo, "email" : correoEncontrado, "nombre" : nombreEncontrado, "apellido" : apellidoEncontrado, "genero" : genero, "id_usuario" : id, "password" : passwordEncontrado
+				// "tipo" : "e", "email" : "julian@ucenfotec.ac.cr", "nombre" : "nombreEncontrado", "apellido" : "apellidoEncontrado", "genero" : "m", "password" : "123", "id_usuario" : "5"
+				}).
+				success(function(data, status) {
+					console.log(data);
+					console.log('B-I-E-N');
+				})
+				.
+				error(function(data, status) {
+					$('.result-usuario').hide();
+					alertify.error("Error");
+					limpiar();
+				});
+				// alertify.success("El usuario se modificó correctamente");	
 			}
 		}
-
-
-	});
+	}]);
 
 /*****************************************************************************************************************/	
-app.controller("inhabilitarUserController", function(){
-			var temp = 0;
-			// var estado = true;
+app.controller("inhabilitarUserController",['$scope', '$http', function($scope, $http){
+	var temp = 0;
+	this.buscaUser = function(pUser, pCorreo){	
+		if(pCorreo.toLowerCase().indexOf("@ucenfotec.ac.cr") >= 0){
+			$http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { "email" : pCorreo
+				}).
+				success(function(data, status) {
+					for(var i= 0; i<data.length;i++){
+						if(data[i] === false){
+							$('.result-usuario').hide();
+							alertify.log("No se encontró ningún usuario");
+							limpiar();
+						}
+						else{
+							$('.result-usuario').show();
+							$('#nombreUser').html(data[i].nombre+' '+data[i].apellido);
+							$('#id-usuario-in').val(data[i].id_usuario);
+					 		if(data[i].estado ==1){
+					 			$('#activo').attr('checked', 'checked');
+					 		}
+					 		else if(data[i].estado ==3 ){
+					 			$('#inactivo').attr('checked', 'checked');
+					 		}
+						}
+					}
+				})
+				.
+				error(function(data, status) {
+					$('.result-usuario').hide();
+					alertify.error("Error");
+					limpiar();
+				});
+		}else{
+			$('.result-usuario').hide();
+			alertify.log("Debe buscar un correo válido");
+			limpiar();
+		}
+	}
+	 this.user = {};
 
-			this.buscaUser = function(pUser, pCorreo){
-				 // console.log(pCorreo);
-			
-			 for(i=0;i<pUser.length;i++){
-			 	if(pUser[i].correo === pCorreo){
-			 		console.log(i);
-			 		temp = i;
-			 		if(pUser[i].estado === "activo"){
-			 			console.log(pUser[i].estado);
-			 			// console.log(pUser[i].nombre);
-			 			$('#nombreUser').html(pUser[i].nombre);
-			 			$('#correoUser').html(pUser[i].correo);
-			 			$('#activo').attr('checked', 'checked');
+	this.inaUser = function(){
+		var estado,
+			id=$('#id-usuario-in').val();
+	 	if($("input:radio[name=estado]:checked").val() === "activo"){
+	 		estado = 1;
+	 	}else if ($("input:radio[name=estado]:checked").val() === "inactivo"){
+	 		estado = 3;
+	 	}
 
-			 		}else{
-			 			console.log(pUser[i].estado);
-			 			$('#nombreUser').html(pUser[i].nombre);
-			 			$('#correoUser').html(pUser[i].correo);
-			 			$('#inactivo').attr('checked', 'checked');
+	 	console.log('estado: '+estado + ' id: '+id);
 
-			 		}
-			 		
-			 	}else{}
+	 	$http.post("/Proyecto_1/php/configuration/estado_usuario.php", { "estado" : estado, "id_usuarrio" : id
+		}).
+		success(function(data, status) {
+			alertify.success("Cambio guardado");
+		})
+		.
+		error(function(data, status) {
+			alertify.error("Error");
+		});
+	}
+}]);
 
-
-
-			 	}
-			 }
-
-			 this.user = {};
-			 this.inaUser = function(pModif){
-			 	// console.log('test');
-			 	// console.log(this.user);
-			 	pModif[temp] = this.user.estado;
-			 	console.log(pModif[temp]);
-			 	if(pModif[temp].estado === "activo"){
-			 		$('#activo').attr('checked', 'checked');
-			 		console.log('entro');
-			 	}else{
-			 		$('#inactivo').attr('checked', 'checked');
-			 		console.log('no entro');
-			 	}
-			 	 
-			
-
-			 this.user = {};
-			 alertify.success("El cambio se guardo correctamente");
-
-
-			 }
-			 		
-
-});
 app.controller("inhabilitarCarreraController", function(){
 
 		this.validarCarrerasAct = function(pCarrera){
@@ -1020,6 +1108,170 @@ app.controller("respuestaForos", function(){
 
 
 });
+
+//-----------------------Estudiantes----------------------------
+app.controller("controlEstudiantes",function(){
+	 this.estudiantes ="";
+	 this.temp=[];
+	 this.buscados="";
+	 this.encontrados={};
+	 this.asignados={};
+	 this.agregados="";
+     this.carrera="";
+     this.carreraBus="";
+     this.curso="";
+     this.cursoDes="Resultados de Búsqueda";
+     this.estudiantesTemp={};
+     this.estadoUser=true;
+     this.estadoCurso=true;
+     this.styleUser={'background-color': '#ebebeb'};
+     this.styleCurso={'background-color': '#ebebeb'}; 
+     this.estadoCursoDes=true;
+     this.styleCursoDes={'background-color': '#ebebeb'};
+     var cont=2;                              
+
+     
+    this.getArreglo=function(){  
+      return this.estudiantesTemp;
+    };
+
+    this.activarEst=function(){  
+      	this.estadoUser=false;
+      	this.styleUser={'background-color':'', };
+    };
+    
+     this.activarCurso=function(){  
+      	this.estadoCurso=false;
+      	this.styleCurso={'background-color':'', };
+      	this.estadoUser=true;
+      	this.styleUser={'background-color': '#ebebeb'};
+    };
+    this.activarCursoDes=function(){  
+      	this.estadoCursoDes=false;
+      	this.styleCursoDes={'background-color':'', };
+      
+    };
+    this.agregarEstudiantes=function(pcursoest){
+           this.asignados = this.agregados.split(', ') && $('#asig').val().split(',');
+           for (var i=0; i < this.asignados.length; i++) {
+	            this.estudiantesTemp.curso=this.curso;
+		        this.estudiantesTemp.estudiante=this.asignados[i];//this.agregados;
+		        pcursoest.push(this.estudiantesTemp);
+		        this.estudiantesTemp={};
+           };
+           $('#asig').val("");  
+	 }; 
+
+	 this.eliminarEstudiantes=function(pestu,pcurso,pcursoest){
+	     for (var i=0; i < pcursoest.length; i++) {
+	       if (pcursoest[i].estudiante==pestu && pcursoest[i].curso==pcurso){
+	        	pcursoest.splice( i , 1 );
+	        }
+	     };   
+	 }; 
+	 
+	 this.guardarEstudiantes=function(pcurest,pcuresttemp){      
+	       for (var i=0; i < pcuresttemp.length; i++) {
+				 this.estudiantesTemp.curso=pcuresttemp[i].curso;
+				 this.estudiantesTemp.estudiante=pcuresttemp[i].estudiante;
+				 pcurest.push(this.estudiantesTemp);
+				 this.estudiantesTemp={};
+		   };
+	       pcuresttemp.length=0;
+	 }; 
+	 
+	 this.encontrarEstudiantes=function(pcurest,pcurestBustemp){
+	 	this.encontrados= this.buscados.split(', ') && $('#desasig').val().split(',');
+		var estado=true;
+		var estadoarre=false;
+		
+		for (var i=0; i < this.encontrados.length; i++) {
+				estado=true; 
+				for (var e=0; e < pcurest.length; e++) {
+			          if (this.encontrados[i]==pcurest[e].estudiante) {
+			          	this.estudiantesTemp.curso=pcurest[e].curso;
+				        this.estudiantesTemp.estudiante=this.encontrados[i];
+				        pcurestBustemp.push(this.estudiantesTemp);
+				        this.estudiantesTemp={};
+				        estado=false;
+			          } 
+		         }; 
+		         if (estado) {
+		         	this.temp.push(this.encontrados[i]);
+		         	estadoarre=true;
+		         }; 
+		         
+		};	
+		
+		if (estadoarre) {
+			alertify.log("Los siguientes estudiantes no pertenecen a ningún curso:"+"<br>"+this.temp.join('<br>'));
+			this.temp.length=0;
+		};
+	    $('#desasig').val(""); 
+	 }; 
+	 
+	 this.desasignarredoEstudiantes=function(pestu,pcurso,pcurest){
+		for (var i=0; i < pcurest.length; i++) {
+	       if (pcurest[i].estudiante==pestu && pcurest[i].curso==pcurso){
+	        	pcurest.splice( i , 1 );
+	        }
+	     };   
+	 }; 
+	 
+	 this.desasignarEstudiantes=function(pcurest,ptemp){
+		for (var i=0; i < pcurest.length; i++) {
+	      for (var e=0; e < ptemp.length; e++) {
+	       
+	       if (pcurest[i].estudiante==ptemp[e].estudiante && pcurest[i].curso==ptemp[e].curso){
+	        	pcurest.splice( i , 1 );
+	        }
+	     
+	     }; 
+	    
+	    };
+	    ptemp.length=0;    
+	 }; 
+    
+     this.desasignarEstudiantesAv=function(pestu,pcurso,pcursoest){
+	     for (var i=0; i < pcursoest.length; i++) {
+	       if (pcursoest[i].estudiante==pestu && pcursoest[i].curso==pcurso){
+	        	pcursoest.splice( i , 1 );
+	        }
+	     };   
+	 }; 
+	 
+	 this.desasignarEstudiantesComp=function(pcursoest,pcurso){
+	     var cont=[];
+	     for (var i=0; i < pcursoest.length; i++) {
+	       if (pcursoest[i].curso==pcurso){
+	        	cont.push(pcurso);
+	        }
+	     };
+	      
+	     for (var e=0; e < cont.length; e++) {
+	        for (var i=0; i < pcursoest.length; i++) {
+		       if (pcursoest[i].curso==cont[e]){
+		        	pcursoest.splice(i, 1 );
+		        }
+	     	};
+		      
+		 };
+
+	 }; 
+	 
+	 this.descartarBus=function(){
+	 	this.cursoDes="Resultados de Búsqueda";
+	 }
+      
+});
+
+
+
+
+
+//------------------------Fin Estudiantes________________________
+
+
 
 //------------------------Profesores-----------------------------
 	app.controller("ControlProfesores",function(){
@@ -2049,3 +2301,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
 
 })();
+
+function limpiar(){
+	$('input').val('');
+}
