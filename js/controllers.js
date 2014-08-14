@@ -54,32 +54,40 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
         $scope.showForum=true;
 		$scope.showList=false;
 
-		
-		$('#course-title').text(forum.titulo);
-		$('.inine-forum-list').addClass('ng-hide');
-		$('.main-forum').val(forum.tema);//////aquiiiiiiiiiiiiiii
-		$('.inine-forum-display').removeClass('ng-hide');
-		$('.moderador').val(forum.moderador);
-		$('#id-foro').attr('value', forum.id);
-		var invi=[];
-		for(var i= 0; i<(forum.invitados).length;i++){
-			 invi.push(' '+(forum.invitados)[i].email);
-		}
-		$('.invitados').val(invi);	
+		$http.post("/Proyecto_1/php/forum/textoForos.php", {"id_foro": forum.id_foro}).
+		success(function(data, status) {
+			forum.tema=data['texto'];
 
-		if((forum.comments).length >=1){
-			$scope.comments= forum.comments;
-			$('.comments-lst').show();
-		}else{
-			$('.comments-lst').hide();
-		}
 
-		setTimeout(function(){
-			$(".stars").rating();
-		}, 400);
-		setTimeout(function(){
-			$('.comment-stars .clear-rating').hide();
-		}, 500);
+			$('#course-title').text(forum.titulo);
+			$('.inine-forum-list').addClass('ng-hide');
+			$('.main-forum').val(forum.tema);
+			$('.inine-forum-display').removeClass('ng-hide');
+			$('.moderador').val(forum.moderador);
+			$('#id-foro').attr('value', forum.id);
+			var invi=[];
+			for(var i= 0; i<(forum.invitados).length;i++){
+				 invi.push(' '+(forum.invitados)[i].email);
+			}
+			$('.invitados').val(invi);	
+
+			if((forum.comments).length >=1){
+				$scope.comments= forum.comments;
+				$('.comments-lst').show();
+			}else{
+				$('.comments-lst').hide();
+			}
+
+			setTimeout(function(){
+				$(".stars").rating();
+			}, 400);
+			setTimeout(function(){
+				$('.comment-stars .clear-rating').hide();
+			}, 500);
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
 	};
 	this.hideForum = function(){
 		$scope.showForum=true;
