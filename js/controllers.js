@@ -912,63 +912,69 @@ app.controller("modificarUserController", ['$scope', '$http', function($scope, $
 	}]);
 
 /*****************************************************************************************************************/	
-app.controller("inhabilitarUserController", function(){
-			var temp = 0;
-			// var estado = true;
+app.controller("inhabilitarUserController",['$scope', '$http', function($scope, $http){
+	var temp = 0;
+	this.buscaUser = function(pUser, pCorreo){	
+		if(pCorreo.toLowerCase().indexOf("@ucenfotec.ac.cr") >= 0){
+			$http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { "email" : pCorreo
+				}).
+				success(function(data, status) {
+					for(var i= 0; i<data.length;i++){
+						if(data[i] === false){
+							$('.result-usuario').hide();
+							alertify.log("No se encontró ningún usuario");
+							limpiar();
+						}
+						else{
+							$('.result-usuario').show();
+							$('#nombreUser').html(data[i].nombre+' '+data[i].apellido);
+							$('#id-usuario-in').val(data[i].id_usuario);
+					 		if(data[i].estado ==1){
+					 			$('#activo').attr('checked', 'checked');
+					 		}
+					 		else if(data[i].estado ==3 ){
+					 			$('#inactivo').attr('checked', 'checked');
+					 		}
+						}
+					}
+				})
+				.
+				error(function(data, status) {
+					$('.result-usuario').hide();
+					alertify.error("Error");
+					limpiar();
+				});
+		}else{
+			$('.result-usuario').hide();
+			alertify.log("Debe buscar un correo válido");
+			limpiar();
+		}
+	}
+	 this.user = {};
 
-			this.buscaUser = function(pUser, pCorreo){
-				 // console.log(pCorreo);
-			
-			 for(i=0;i<pUser.length;i++){
-			 	if(pUser[i].correo === pCorreo){
-			 		console.log(i);
-			 		temp = i;
-			 		if(pUser[i].estado === "activo"){
-			 			console.log(pUser[i].estado);
-			 			// console.log(pUser[i].nombre);
-			 			$('#nombreUser').html(pUser[i].nombre);
-			 			$('#correoUser').html(pUser[i].correo);
-			 			$('#activo').attr('checked', 'checked');
+	this.inaUser = function(){
+		var estado,
+			id=$('#id-usuario-in').val();
+	 	if($("input:radio[name=estado]:checked").val() === "activo"){
+	 		estado = 1;
+	 	}else if ($("input:radio[name=estado]:checked").val() === "inactivo"){
+	 		estado = 3;
+	 	}
 
-			 		}else{
-			 			console.log(pUser[i].estado);
-			 			$('#nombreUser').html(pUser[i].nombre);
-			 			$('#correoUser').html(pUser[i].correo);
-			 			$('#inactivo').attr('checked', 'checked');
+	 	console.log('estado: '+estado + ' id: '+id);
 
-			 		}
-			 		
-			 	}else{}
+	 	$http.post("/Proyecto_1/php/configuration/estado_usuario.php", { "estado" : estado, "id_usuarrio" : id
+		}).
+		success(function(data, status) {
+			alertify.success("Cambio guardado");
+		})
+		.
+		error(function(data, status) {
+			alertify.error("Error");
+		});
+	}
+}]);
 
-
-
-			 	}
-			 }
-
-			 this.user = {};
-			 this.inaUser = function(pModif){
-			 	// console.log('test');
-			 	// console.log(this.user);
-			 	pModif[temp] = this.user.estado;
-			 	console.log(pModif[temp]);
-			 	if(pModif[temp].estado === "activo"){
-			 		$('#activo').attr('checked', 'checked');
-			 		console.log('entro');
-			 	}else{
-			 		$('#inactivo').attr('checked', 'checked');
-			 		console.log('no entro');
-			 	}
-			 	 
-			
-
-			 this.user = {};
-			 alertify.success("El cambio se guardo correctamente");
-
-
-			 }
-			 		
-
-});
 app.controller("inhabilitarCarreraController", function(){
 
 		this.validarCarrerasAct = function(pCarrera){
