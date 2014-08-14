@@ -1392,12 +1392,42 @@ app.controller('UserController',['$http',function($http){
 		var store = this;
 		store.user=[];
 		store.carreras=[];
-		$http.get('/proyecto_1/JSON/carreras-cursos-usuario-Sergio.json').success(function(data){ //
-			store.carreras = data;
-		});
+		store.listaPost = [];
+		store.listaComentarioPost = [];
+		
+
+		$http.post("/Proyecto_1/php/blog/info_post.php", {"id_usuario" : "8"}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.listaPost.push(data[i]);
+				   	
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });
+
+		$http.post("/Proyecto_1/php/blog/info_comentarioPost.php", {"id_post" : "17"}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.listaComentarioPost.push(data[i]);
+				   	 console.log(store.listaComentarioPost[1]);
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });
+
+
+
 		$http.get('/proyecto_1/JSON/usuariosTestSergio.json').success(function(data){ //
 			store.user = data;
 		});
+         
+   
+   
 }]);
 
 
@@ -1646,10 +1676,10 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
             $("#divEditarPost").show(); 
             $("#newPost").val()       
             this.tabblogIn = getTab;
-           for (var i=0; i < puser.blog.length; i++) {
-			  if (puser.blog[i].idPost==pidBlog) {
+           for (var i=0; i < puser.length; i++) {
+			  if (puser[i].id_post==pidBlog) {
 	    		 this.blogtemp=i;
-	    		 $("#newPost").val(puser.blog[i].texto)
+	    		 $("#newPost").val(puser[i].texto)
 	    	  };
 			};
          };  
@@ -1739,17 +1769,17 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		
 	});
 	
-	// app.controller("AddBlogController",['$scope', '$http' function($scope, $http){
-	app.controller("AddBlogController", function(){
+	 app.controller("AddBlogController",['$scope', '$http', function($scope, $http){
+	// app.controller("AddBlogController", function(){
 		var cont=2;
 		var temp=true;
 		var d = new Date();
-		var strDate =d.getDate()+ "/" + (d.getMonth()+1)+ "/" + d.getFullYear();
+		var strDate = d.getFullYear()+ "/" + (d.getMonth()+1)+ "/" +d.getDate();
 		this.newblog={};
 		this.coment={};
 		this.newblog.fecha=strDate;
 		//$("#dateBlog1").val(strDate);
-	    this.addPost = function(puser){	
+	    this.addPost = function(puser, plistaPost){	
 	     var temp=true;
 	     $(".addBlogBtn").css("border","solid #ccc 1px");
 	     validarCampo($('#tituloBlog1'));
@@ -1760,24 +1790,43 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	     	this.newblog.idPost=cont;
 			this.newblog.comentarios=[];
 			puser.blog.push(this.newblog);
-			this.newblog={};
+			
 			cont++;
 			this.newblog.fecha=strDate;
-
+			console.log(this.newblog.titulo);
+			console.log(this.newblog.texto);
 			console.log(this.newblog.fecha);
-			console.log(this.newblog[1]);
+			
+// $http.post("/Proyecto_1/php/configuration/crea_usuario.php", { "tipo" : this.user.categoria ,  "email" : correoUser,  "nombre": nombUser,"apellido" : apellidoUser,  "estado" : '1',  "genero": this.user.genero,"calificacion" : '0',  "password": passwUser
+// 				}).
+			$http.post("/Proyecto_1/php/blog/crea_post.php", { "id_usuario" : 8 , "titulo" : this.newblog.titulo ,  "texto" : 8888,  "fecha": this.newblog.fecha }).
+				success(function(data, status) {
+					alertify.success("El Post fue creado correctamente");
+
+					plistaPost.length = 0;
+
+					$http.post("/Proyecto_1/php/blog/info_post.php", {"id_usuario" : "8"}).
+							 success(function(data, status) {
+
+							   for (var i=0; i<data.length; i++) {
+							   	plistaPost.push(data[i]);
+							   }
+							 }).
+							 error(function(data, status) {
+							  alertify.error("Ocurrio un error");
+							 });
 
 
-			// $http.post("/Proyecto_1/php/blog/crea_post.php", { "tipo" : this.user.categoria ,  "email" : correoUser,  "nombre": nombUser,"apellido" : apellidoUser,  "estado" : '1',  "genero": this.user.genero,"calificacion" : '0',  "password": passwUser
-			// 	}).
-			// 	success(function(data, status) {
-			// 		alertify.success("El usuario fue creado correctamente");
-			// 	})
-			// 	.
-			// 	error(function(data, status) {
-			// 		alertify.error("Error");
-			// 	})
+				})
+				.
+				error(function(data, status) {
+					alertify.error("Error");
+				})
 
+
+
+
+	        this.newblog={};
 			alertify.success("El post fue creado");
 			$('#addBlog').collapse('toggle');
 	     }else{
@@ -1795,9 +1844,10 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   
 	    };
 	    
-	// }]);
+	 }]);
+
 	
-	});
+	// });
 
 	app.controller("addComent",function(){
 	    var cont=2;

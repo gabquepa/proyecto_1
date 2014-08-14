@@ -3,7 +3,7 @@
 	</div>
 	<div id="addBlog" class="contBlog1 panel-collapse collapse" >
 	 		
-	 	<form ng-controller="AddBlogController as addblog" class="formAddBlog clearfix" role="form" name="addBlogs" ng-submit="addBlogs.$valid && addblog.addPost(usuario.user[cookieValue])">	
+	 	<form ng-controller="AddBlogController as addblog" class="formAddBlog clearfix" role="form" name="addBlogs" ng-submit="addBlogs.$valid && addblog.addPost(usuario.user[cookieValue], usuario.listaPost)">	
 	 		<label for="tituloBlog1">Título:</label>
 	 		<input type="text" class="imptitulo form-control addBlogBtn" id="tituloBlog1" placeholder="Mi título" ng-model="addblog.newblog.titulo"/>
 	 		<label for="dateBlog1">Fecha:</label>

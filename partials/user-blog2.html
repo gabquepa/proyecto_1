@@ -4,8 +4,8 @@
         <div id='divEditarPost' class='cf clearfix'>
             
             <div class='titulo-fecha clearfix'>
-              <span class="pull-left">{{usuario.user[cookieValue].blog[tabs.miBlog()].titulo}}</span>
-              <span class="pull-left">{{usuario.user[cookieValue].blog[tabs.miBlog()].fecha}}</span>
+              <span class="pull-left">{{usuario.listaPost[tabs.miBlog()].titulo}}</span>
+              <span class="pull-left">{{usuario.listaPost[tabs.miBlog()].fecha}}</span>
             <div class='clearfix'>
               <a href="" class="pull-right editdelete" ng-click="tabs.deletePost(usuario.user[cookieValue].blog[tabs.miBlog()].idPost,usuario.user[cookieValue],1)">Eliminar<span class="glyphicon glyphicon-remove"></span></a>
               <a href="" ng-style="tabs.guardar"  ng-click="tabs.savePost(usuario.user,cookieValue,tabs.miBlog())" class="pull-right editdelete">Guardar<span class="glyphicon glyphicon-floppy-saved"></span></a> 
@@ -28,18 +28,20 @@
               </ul>
           </div> 
           
-          
+              
               <h3  class='comentarios'>Comentarios</h3>
           <ul class="list-group clearfix">
-    	 	<li class="list-group-item clearfix" ng-repeat="comentarios in usuario.user[cookieValue].blog[tabs.miBlog()].comentarios | orderBy:'-fecha'">
+    	 	<!-- <li class="list-group-item clearfix" ng-repeat="comentarios in usuario.user[cookieValue].blog[tabs.miBlog()].comentarios | orderBy:'-fecha'"> -->
+        <li class="list-group-item clearfix" ng-repeat="comentario in usuario.listaComentarioPost">
+
               <section class="misBlogs1">
                 <section class="headerMiblogs clearfix">
-                  <a href="#" class="pull-left linktituloBlog1">{{comentarios.Participante}}</a>
-                  <span class="fechasComent pull-left ">{{comentarios.fecha}}</span>
+                  <a href="#" class="pull-left linktituloBlog1">{{comentario.id_usuario}}</a>
+                  <span class="fechasComent pull-left ">{{comentario.fecha}}</span>
                 </section>
                 <section class="contMiBlog1 clearfix">
                   <p class="textmiblog">
-                    {{comentarios.texto}}
+                    {{comentario.texto}}
                   </p>
                 </section>
                 <a href class="pull-right editdelete clearfix" ng-click="tabs.denunciar()">Denunciar</a>
