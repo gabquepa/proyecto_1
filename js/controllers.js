@@ -49,10 +49,14 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		}
 	});*/
 
+	var idForo='';
+
 	this.displayForum = function(forum){
 		
         $scope.showForum=true;
 		$scope.showList=false;
+
+		idForo= forum.id_foro;
 
 		$http.post("/Proyecto_1/php/forum/textoForos.php", {"id_foro": forum.id_foro}).
 		success(function(data, status) {
@@ -66,7 +70,9 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			$('.moderador').val(forum.moderador);
 			$('#id-foro').attr('value', forum.id);
 			var invi=[];
-			for(var i= 0; i<(forum.invitados).length;i++){
+
+			//INVITADOS Y COMENTARIOS
+			/*for(var i= 0; i<forum.invitados.length;i++){
 				 invi.push(' '+(forum.invitados)[i].email);
 			}
 			$('.invitados').val(invi);	
@@ -76,7 +82,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 				$('.comments-lst').show();
 			}else{
 				$('.comments-lst').hide();
-			}
+			}*/
 
 			setTimeout(function(){
 				$(".stars").rating();
@@ -166,22 +172,32 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 //  console.log(rv);
 
 	 	var f=new Date(),
-	 		fecha= f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear(),
+	 		fecha= f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate(),
 			profesor="1",
 			titulo= $('.forum-title').val(),
 			periodo=$('.forum-periodo').val(),
-			CarreraId=$('.select-carrera option:selected').attr('val'),
 			CursoId=$('.select-curso option:selected').attr('val'),
 			tema=$('.create-forumSection textarea').val(),
-			moderador=$('.create-forumSection .moderador').val(),
+			moderador=$('.create-forumSection .moderador').val(),//calcular el id;
 			invitados = invitados,
 			comments={},
-			estado='1';
+			estado='1',
+			moderadorid='';
+
+		$http.post("/Proyecto_1/php/forum/moderador.php", { 
+	 														"email" : moderador
+		}).
+		success(function(data, status) {
+			moderadorid=data[0];
+		}).
+		error(function(data, status) {
+			alertify.error("Error");
+		});
 
 	 	$http.post("/Proyecto_1/php/forum/crearForo.php", { 
 	 														"id_usuario" : profesor,  
 	 														"id_curso" : CursoId, 
-	 														"id_moderador": "2",
+	 														"id_moderador": moderadorid,
 	 														"titulo" : titulo,  
 	 														"estado" : estado,  
 	 														"fecha": fecha ,
@@ -251,7 +267,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	};
 
 	this.editarForo = function(){
-		var idF = $('#id-foro').val();
+		var idF = idForo;
 		var invitados = $('.inine-forum-display .invitados').val().split(', ');
 		var cerrar = $("input:radio[name=estado]").val();
 		var estado = 'A';
@@ -261,18 +277,29 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 					estado = 'I';
 				}
 
-				for (var i = invitados.length - 1; i >= 0; i--) {
+				// INVITADOS
+				/*for (var i = invitados.length - 1; i >= 0; i--) {
 					invitados[i] = 'nombre":'+ '"' + invitados[i];
-				}
+				}*/
 
 				for (var i = (forum.lists).length - 1; i >= 0; i--) {
-					if((forum.lists)[i].id == idF){
-						(forum.lists)[i].tema=$('.inine-forum-display .main-forum').val();
-						(forum.lists)[i].moderador=$('.inine-forum-display #moderadorDisplay').text();
-						(forum.lists)[i].invitados = invitados;
-						(forum.lists)[i].estado= estado;
+					if((forum.lists)[i].id_foro == idF){
+						var tema=$('.inine-forum-display .main-forum').val();
+						var moderador=$('.inine-forum-display #moderadorDisplay').text();
+						var invitados = invitados;
+						var estado= estado;
+
+						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, "id_foro":idF}).
+							success(function(data, status) {
+								alertify.success("El foro fue editado correctamente");
+							}).
+							error(function(data, status) {
+								alertify.error("Error");
+							});
+
 					}
 				}
+
 				console.log(forum.lists);
 
 				$('.forum-config .save').hide();
@@ -286,7 +313,6 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 					$scope.enable = true;
 					$('.main-forum').attr('disabled',true);	
 				}
-				alertify.success("El foro fue editado");
 		    }// fin if
 		    // else{
 		    // 	alertify.error("Error");

@@ -9,17 +9,4 @@ $query = mysql_query('CALL crearForo("'.$objData->id_usuario.'","'.$objData->id_
 
 mysql_close($conexion);
 
-/* Esto va en el controller 
-
-$http.post("/Proyecto_1/php/forum/crearForo.php", { "id_usuario" : "1" ,  "id_curso" : correoUser,  "id_moderador": nombUser,"titulo" : tituloUser,  "estado" : '1',  "fecha": this.user.fecha,"texto" : '0',  "periodo": passwUser
-}).
-success(function(data, status) {
-	alertify.success("El foro fue creado correctamente");
-}).
-error(function(data, status) {
-	alertify.error("Error");
-})
-
-*/
-
 ?>
