@@ -1069,7 +1069,7 @@ app.controller("inhabilitarCarreraController", function(){
 
 
 /*****************************************************************************************************************/	
-app.controller("respuestaForos", function(){
+app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
 	var respuestaForo = true;
 	
 	//  console.log('Testing');
@@ -1082,32 +1082,19 @@ app.controller("respuestaForos", function(){
 	// 		$('#denegarRespuesta').attr('checked', 'checked');
 	// 	}
 	// }
-
 	this.cambiarRespuesta = function(){
-		// console.log("entro");
-		 var permitir = $('#permitirResp').val();
-		 var denegar = $('#denegarResp').val();
-
-		if ($('#permitirResp').is(':checked')) {
-        	respuestaForo = true;
-		    
-		}else {
-		    respuestaForo = false;
-		 }
-
-		 alertify.success("El cambio se guardo correctamente");
+		 var permitir=$("input:radio[name=estado]:checked").val()
+	 	$http.post("/Proyecto_1/php/configuration/ver_nombre_foro.php", { "ver_nombres" : permitir
+		}).
+		success(function(data, status) {
+			alertify.success("Cambio guardado correctamente");
+		})
+		.
+		error(function(data, status) {
+			alertify.error("Error");
+		});
 	}
-		
-		
-		
-
-	
-
-
-
-
-
-});
+}]);
 
 //-----------------------Estudiantes----------------------------
 app.controller("controlEstudiantes",function(){
