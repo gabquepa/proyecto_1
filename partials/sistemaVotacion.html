@@ -1,58 +1,46 @@
 <div ng-show="foroContr.isSelected(2, confPanel.tab)" >
-<div class="usuarioMenu">
-
-                                <p>En esta sección usted configura los intervalos de votación, deberá de asignar el valor de cada estrella, así como la cantidad de votos que deberá de tener cada usuario para ganar una estrella
+<div ng-controller="respuestaForos as respuesta" class="usuarioMenu">
+<p>En esta sección usted configura los intervalos de votación, deberá de asignar el valor de cada estrella, así como la cantidad de votos que deberá de tener cada usuario para ganar una estrella
 </p>
 
-                                <div class="vistaUsuarios">
-                                      <p>Valor de puntos de cada estrella</p>
-          
-    
-                                     <div style="margin-bottom:55px">
-                                      <input type="number">
-                                        <input type="number">
-                                        <input type="number">
-                                        <input type="number">
-                                        <input type="number">
-                                        <img src="img/stars_guia.png" class="starsGuia">
-                                      </div>
-                                    <p>Asignar cantidad de puntos por nivel</p>
-                                    <div class="cf"style="display:inline">
-                                      <img src="img/stars_0.png" class="starsImg">
-                                      <input type="number"> 
-                                    </div>
-
-                                    <div class="cf"style="display:inline">
-                                      <img src="img/stars_01.png" class="starsImg">
-                                      <input type="number"> 
-                                    </div>
-
-                                    <div class="cf"style="display:inline">
-                                      <img src="img/stars_02.png" class="starsImg">
-                                      <input type="number"> 
-                                    </div>
-
-                                    <div class="cf"style="display:inline">
-                                      <img src="img/stars_03.png" class="starsImg">
-                                      <input type="number"> 
-                                    </div>
-
-                                    <div class="cf"style="display:inline">
-                                      <img src="img/stars_04.png" class="starsImg">
-                                      <input type="number"> 
-                                    </div>
-                                     <div class="cf"style="display:inline">
-                                      <img src="img/stars_05.png" class="starsImg">
-                                      <input type="number"> 
-                                    </div>
-                                    
-                                    <button type="submit" class="guardarBtn ">Guardar</button>
-              
-                                       
-                              </div>  
+  <div class="vistaUsuarios">
+        <p>Valor de puntos de cada estrella: </p><br>
+        <sup>¿Qué valor tiene cada estrella?</sup>
+     <div style="margin-bottom:55px">
+        <input id="num_uno" type="number">
+        <input id="num_dos" type="number">
+        <input id="num_tres" type="number">
+        <input id="num_cuatro" type="number">
+        <input id="num_cinco" type="number">
+        <img src="img/stars_guia.png" class="starsGuia">
+      </div>
+      <p>Asignar cantidad de puntos por nivel: </p><br>
+      <sup>¿Cual es la cantidad de puntos por ranking?</sup>
+      <div class="cf"style="display:inline">
+        <img src="img/stars_01.png" class="starsImg">
+        <input id="ranking_uno" type="number"> 
+      </div>
+      <div class="cf"style="display:inline">
+        <img src="img/stars_02.png" class="starsImg">
+        <input id="ranking_dos" type="number"> 
+      </div>
+      <div class="cf"style="display:inline">
+        <img src="img/stars_03.png" class="starsImg">
+        <input id="ranking_tres" type="number"> 
+      </div>
+      <div class="cf"style="display:inline">
+        <img src="img/stars_04.png" class="starsImg">
+        <input  id="ranking_cuatro" type="number"> 
+      </div>
+       <div class="cf"style="display:inline">
+        <img src="img/stars_05.png" class="starsImg">
+        <input id="ranking_cinco" type="number"> 
+      </div>  
+      <button type="submit" ng-click="respuesta.cambiaRanking()" class="guardarBtn ">Guardar</button>      
+</div>  
   </div>  
 
-                               <script>
+<script>
     jQuery(document).ready(function () {
         $(".rating-kv").rating();
     });

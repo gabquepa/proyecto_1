@@ -1070,20 +1070,28 @@ app.controller("inhabilitarCarreraController", function(){
 
 /*****************************************************************************************************************/	
 app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
-	var respuestaForo = true;
-	
-	//  console.log('Testing');
-	
-	// this.respDefault = function(){
-	// 	console.log("Hola");
-	// 	if(respuestaForo){
-	// 	$('#permitirRespuesta').attr('checked', 'checked');
-	// 	}else{
-	// 		$('#denegarRespuesta').attr('checked', 'checked');
-	// 	}
-	// }
+	$http.post("/Proyecto_1/php/configuration/muestra_ranking.php").
+	success(function(data, status) {
+		console.log(data);
+		for(var i= 0; i<data.length;i++){
+			$('#num_uno').val(data[i].num_uno);
+			$('#num_dos').val(data[i].num_dos);
+			$('#num_tres').val(data[i].num_tres);
+			$('#num_cuatro').val(data[i].num_cuatro);
+			$('#num_cinco').val(data[i].num_cinco);
+			$('#ranking_uno').val(data[i].ranking_uno);
+			$('#ranking_dos').val(data[i].ranking_dos);
+			$('#ranking_tres').val(data[i].ranking_tres);
+			$('#ranking_cuatro').val(data[i].ranking_cuatro);
+			$('#ranking_cinco').val(data[i].ranking_cinco);	
+		}
+	})
+	.
+	error(function(data, status) {
+		alertify.error("Error");
+	});
 	this.cambiarRespuesta = function(){
-		 var permitir=$("input:radio[name=estado]:checked").val()
+		var permitir=$("input:radio[name=estado]:checked").val()
 	 	$http.post("/Proyecto_1/php/configuration/ver_nombre_foro.php", { "ver_nombres" : permitir
 		}).
 		success(function(data, status) {
@@ -1093,7 +1101,44 @@ app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
 		error(function(data, status) {
 			alertify.error("Error");
 		});
-	}
+	};
+	this.cambiaRanking = function(){
+		var num_uno = $('#num_uno').val();
+		var num_dos = $('#num_dos').val();
+		var num_tres = $('#num_tres').val();
+		var num_cuatro = $('#num_cuatro').val();
+		var num_cinco = $('#num_cinco').val();
+		var ranking_uno = $('#ranking_uno').val();
+		var ranking_dos = $('#ranking_dos').val();
+		var ranking_tres = $('#ranking_tres').val();
+		var ranking_cuatro = $('#ranking_cuatro').val();
+		var ranking_cinco = $('#ranking_cinco').val();
+		if(num_uno.trim() == '' || num_dos.trim() == '' || num_tres.trim() == '' || num_cuatro.trim() == '' || num_cinco.trim() == '' || ranking_uno.trim() == '' || ranking_dos.trim() == '' || ranking_tres.trim() == '' || ranking_cuatro.trim() == '' || ranking_cinco.trim() == ''){
+			alertify.log("Debe completar todos los campos");
+		}else{
+			$http.post("/Proyecto_1/php/configuration/actualiza_ranking.php", { 
+			"num_uno" : num_uno,
+			"num_dos" : num_dos,
+			"num_tres" : num_tres,
+			"num_cuatro" : num_cuatro,
+			"num_cinco" : num_cinco,
+			"ranking_uno" : ranking_uno,
+			"ranking_dos" : ranking_dos,
+			"ranking_tres" : ranking_tres,
+			"ranking_cuatro" : ranking_cuatro,
+			"ranking_cinco" : ranking_cinco
+			}).
+			success(function(data, status) {
+				console.log(data);
+				alertify.success("Cambio guardado correctamente");
+			})
+			.
+			error(function(data, status) {
+				alertify.error("Error");
+			});
+			
+		}
+	};
 }]);
 
 //-----------------------Estudiantes----------------------------
@@ -1620,13 +1665,7 @@ app.controller('historialDesController',['$http', function($http){//controlador 
 		}, 500);
 
 }]);
-//Controllers Keilyn Sibaja
 
-
-
-//Sergio Herrera Durán----------------------------------------------
-
-//controlador recive json de usuarios
 app.controller('UserController',['$http',function($http){
 		var store = this;
 		store.user=[];
@@ -2267,26 +2306,20 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				'http://twitter.com/share?url='+vUrl + '&text=' . vTitle,
 				'twitterShareDialog',
 				'width=575,height=400');
-
 		};
 		this.shareFacebook = function(){
 			window.open(
 		      'https://www.facebook.com/sharer/sharer.php?u='+vUrl, 
 		      'facebookShareDialog', 
 		      'width=626,height=436'); 
-
 		};
 		this.shareG = function(){
 			window.open(
 				'https://plus.google.com/share?url='+vUrl,
 				'googlePlusShareDialog',
 				'width=575,height=400');
-
 		};
-
 	});
-
-
 })();
 
 function limpiar(){

@@ -1,16 +1,13 @@
 <div ng-show="foroContr.isSelected(1, confPanel.tab)" >
+<div class="usuarioMenu" ng-controller="respuestaForos as respuesta">
 
-
-		<div class="usuarioMenu" ng-controller="respuestaForos as respuesta">
-
-		                  <p>En esta sección usted define si se muestran los nombres de los usuarios en las respuestas de los foros o permanecen ocultos</p>
-		                  <div class="vistaUsuarios">
-		                        <p>Ver nombre de usuarios en foros</p>
-		                        <label>Permitir</label>
-		                        <input type="radio" name="estado" value="1" id="permitirResp" checked>
-		                        <label>No permitir</label>
-		                        <input type="radio" name="estado" value="2" id="denegarResp"> 
-		                        <button type="submit" class="guardarBtn " ng-click="respuesta.cambiarRespuesta()">Guardar</button>
-		</div>
-
+  <p>En esta sección usted define si se muestran los nombres de los usuarios en las respuestas de los foros o permanecen ocultos</p>
+  <div class="vistaUsuarios">
+    <p>Ver nombre de usuarios en foros</p>
+    <label>Permitir</label>
+    <input type="radio" name="estado" value="1" id="permitirResp" checked>
+    <label>No permitir</label>
+    <input type="radio" name="estado" value="2" id="denegarResp"> 
+    <button type="submit" class="guardarBtn " ng-click="respuesta.cambiarRespuesta()">Guardar</button>
+</div>
 </div>
