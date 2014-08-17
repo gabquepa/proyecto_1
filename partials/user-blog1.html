@@ -3,7 +3,7 @@
 	
     <ul class="list-group">
 
-    	 	<li class="list-group-item" ng-repeat="blog in usuario.listaPost">
+    	 	<li class="list-group-item" ng-repeat="blog in usuario.listaPost | filter:{id_usuario:usuario.user[cookieValue].id_usuario}">
     	 		 <section class="misBlogs1">
 			    	<section class="headerMiblogs clearfix">
 

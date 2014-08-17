@@ -6,7 +6,7 @@ mysql_select_db("Proyecto_1") or die ("no se puede conectar");
 $data = file_get_contents("php://input");
 $objData = json_decode($data);
 mysql_query("SET CHARACTER SET utf8");
-$query = mysql_query('CALL info_post();') or die ("Error"); 
+$query = mysql_query('CALL info_usuario("'.$objData->id_usuario.'");') or die ("Error"); 
 
 $nfilas = mysql_num_rows ($query); //retorna el total de filas afectadas
 
