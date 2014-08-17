@@ -428,8 +428,13 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 app.controller('CarrerasController', ['$http', function($http){
 	var universidad = this;
 	universidad.carreras=[];
-	$http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
+	// $http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
+	// 	universidad.carreras = data;
+	// }); 
+	$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
 		universidad.carreras = data;
+	}).error(function(data, status) {
+		alertify.error("Error");
 	});
 
 	this.selectCurso = function(){
@@ -692,6 +697,7 @@ app.controller('carreraController', function(){
 		this.style2={'':''};
 		this.style3={'':''};
 		this.selectTab=function(setTab){
+			limpiar();
 			this.tab = setTab;
 			switch (setTab){
 
@@ -838,21 +844,16 @@ app.controller("crearUserController", ['$scope', '$http', function($scope, $http
 		this.user = {};
 
 		this.addUser = function(pUser){
-			   
-			  // console.log(this.user);
 			 var nombUser = $('#nombUser').val();
              var correoUser = $('#correoUser').val();
              var passwUser = $('#passwUser').val();
              var apellidoUser = $('#apellidoUser').val();
-             
- 
-
+            
              if (nombUser.trim() == '' || correoUser.trim() == '' || passwUser.trim() == '' || apellidoUser.trim() == '') {
              	 alertify.log("Debe completar todos los campos");
              }else{
 				this.user.estado = "activo";
 				pUser.push(this.user);
-				/*aqui*/
 				$http.post("/Proyecto_1/php/configuration/crea_usuario.php", { "tipo" : this.user.categoria ,  "email" : correoUser,  "nombre": nombUser,"apellido" : apellidoUser,  "estado" : '1',  "genero": this.user.genero,"calificacion" : '0',  "password": passwUser
 				}).
 				success(function(data, status) {

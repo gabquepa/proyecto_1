@@ -1,24 +1,25 @@
 <div ng-show="carreraContr.isSelected(2, confPanel.tab)" >
-
-                        <div class="contenedorInputs">
-                              <label>Seleccione una Carrera</label>
-
-                              <select id="cursoslt" class="form-control" ng-model="conf.miCarrera" ng-options="carrera.nombre for carrera in conf.carreras"
-                              ng-change="conf.modifCarrera()">
-                              <option value="" >Seleccione un Carrera</option>  
-
-                                    </select>
-                              
-                          </div>
-
-                        <div class="contenedorInputs">
-                                <label>Código de Carrera</label>
-                                <input type="text" class="form-control" id="mcodCarrera" ng-model="conf.miCarrera.codigo" required>
-                        </div>
-                        <div class="contenedorInputs">
-                                <label>Nombre de la Carrera</label>
-                                <input type="text" class="form-control" id="mnomCarrera" ng-model="conf.miCarrera.nombre" required>
-                        </div>
-
-            <button type="submit" class="guardarBtn " ng-click="conf.actualizarCarrera()">Guardar</button>
+  <div class="contenedorInputs" ng-controller="CarrerasController as universidad">
+    <label>Seleccione una Carrera</label>
+    <select class="form-control select-carrera" ng-change="conf.modifCarrera()" ng-model="cong.miCarrera">
+      <option val="-1" disable>Seleccione una Carrera</option>
+      <option ng-repeat="carrera in universidad.carreras" value="{{carrera.id_carrera}}" >{{carrera.nombre}}</option>
+    </select>
+    </div>
+  <div class="contenedorInputs">
+    <label>Código: </label>
+    <input readonly type="text" class="form-control" id="mcodCarrera" ng-model="conf.miCarrera.codigo" required>
+  </div>
+  <div class="contenedorInputs">
+    <label>Nombre: </label>
+    <input type="text" class="form-control" id="mnomCarrera" ng-model="conf.miCarrera.nombre" required>
+  </div>
+  <div class="contenedorInputs">
+    <label>Estado: </label>
+    <label>Inactivo</label>
+    <input type="radio" name="estado-carrera" val="2" id="inactivo-carrera" value="" required="">
+      <label>Activo</label>
+      <input type="radio" name="estado-carrera" val="1" id="activo-carrera" value="" required="">
+  </div>
+  <button type="submit" class="guardarBtn pull-right" ng-click="conf.actualizarCarrera()">Guardar</button>
 </div>

@@ -7,14 +7,8 @@ $objData = json_decode($data);
 
 mysql_query("SET CHARACTER SET utf8");
 
-$query = mysql_query('CALL muestra_carrera("'.$objData->id_carrera.'");') or die ("Error");
-
-$fila = mysql_fetch_assoc($query);
-$resulto[] = $fila;
-
-echo json_encode($resulto);
+$query = mysql_query('CALL modifica_carrera("'.$objData->id_carrera.'","'.$objData->nombre.'","'.$objData->estado.'");') or die ("Error");
 
 mysql_close($conexion);
 
 ?>
-
