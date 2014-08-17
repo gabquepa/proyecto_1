@@ -82,28 +82,27 @@
 
 
 		  this.crearCurso= function(){
-             
              var codCurso = $('#codCurso').val();
              var nomCurso = $('#nomCurso').val();
-             console.log(codCurso);
-             if (codCurso.trim() == '' || nomCurso.trim() == '') {
+             if (codCurso.trim() == '' || nomCurso.trim() == '' || $.isNumeric($('.select-carrera-creaCurso').val()) == false) {
              	alertify.log("Debe completar todos los campos");
              }else{
-            
-		  	for(var i=0;i<this.carreras.length;i++){
-                
-		  		if(this.carreras[i].nombre === this.miCarreraCC.nombre){
-		  		    
-					this.miCursoCC.id=this.carreras[i].cursos.length;
-		  			this.carreras[i].cursos.push(this.miCursoCC);
-		  		}
+          		$http.post("/Proyecto_1/php/configuration/crea_curso.php", { 
+				"id_curso" : codCurso,
+				"id_carrera" : $('.select-carrera-creaCurso').val(), 
+				"nombre" : nomCurso,
+				"estado" : 1
+				}).
+				success(function(data, status) {
+					alertify.success("El curso fue creado correctamente");
+					limpiar();
+				})
+				.
+				error(function(data, status) {
+					alertify.error("Error");
+				});  
 		  	}
-		 
-			this.miCursoCC={};
-			alertify.success("El curso se creo correctamente");
-		  }
-
-		}//Fin de Validacion
+		   }	
  			this.getCurso = function(){
  					
 		  		return this.miCarreraMC.cursos;

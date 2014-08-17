@@ -428,9 +428,7 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 app.controller('CarrerasController', ['$http', function($http){
 	var universidad = this;
 	universidad.carreras=[];
-	// $http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
-	// 	universidad.carreras = data;
-	// }); 
+
 	$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
 		universidad.carreras = data;
 	}).error(function(data, status) {
@@ -438,64 +436,16 @@ app.controller('CarrerasController', ['$http', function($http){
 	});
 
 	this.selectCurso = function(){
-		var carrera = $('.select-carrera option:selected').attr('val');
+		var id_carrera = $('.select-carrera-modificarCurso').val();
 		var cursos = this;
 		universidad.cursos=[];
-		// this.getTab=function(getTab){
-		// 	$('#mensajePerfil').html("");
-		// 	this.tabperfil = getTab;
-		// 	limpiarForms();
-		// 	if (getTab==1) {
-		// 		$('#infuser').attr('class',"btn activetab");
-		// 		$('#changepass').attr('class',"btn profBtn");
-		// 	} else{
-		// 		$('#infuser').attr('class',"btn profBtn");
-		// 		$('#changepass').attr('class',"btn activetab");
-		// 	};
-				
-		// };
-		
-		if(carrera ==="1"){
-			$http.get('/Proyecto_1/JSON/cursosDW.json').success(function(data){
-				universidad.cursos = data;
-				$('#confNavBtn1').attr('class',"btn activetab");
-				// $('#changepass').attr('class',"btn profBtn");
-			});
-		}
-		else if(carrera ==="2"){
-			$http.get('/Proyecto_1/JSON/cursosDS.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="3"){
-			$http.get('/Proyecto_1/JSON/cursosInT.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="4"){
-			$http.get('/Proyecto_1/JSON/cursosT.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="5"){
-			$http.get('/Proyecto_1/JSON/cursosCS.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="6"){
-			$http.get('/Proyecto_1/JSON/cursosBD.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="7"){
-			$http.get('/Proyecto_1/JSON/cursosI.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else{
-			universidad.cursos = '';
-		}
-
+		$http.post("/Proyecto_1/php/global/muestra_cursos.php",{ 			
+			"id_carrera" : id_carrera
+		}).success(function(data, status) {
+			universidad.cursos=data;
+		}).error(function(data, status) {
+			alertify.error("Error");
+		}); 
 	};
 }]);	
 
