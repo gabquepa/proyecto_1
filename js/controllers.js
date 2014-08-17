@@ -428,8 +428,13 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 app.controller('CarrerasController', ['$http', function($http){
 	var universidad = this;
 	universidad.carreras=[];
-	$http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
+	// $http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
+	// 	universidad.carreras = data;
+	// }); 
+	$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
 		universidad.carreras = data;
+	}).error(function(data, status) {
+		alertify.error("Error");
 	});
 
 	this.selectCurso = function(){
@@ -600,7 +605,7 @@ app.controller('usuarioController', function(){
 		this.style3={'':''};	
 		this.selectTab=function(setTab){		
 				this.tab = setTab;	
-				console.log(setTab);
+				limpiar();
 
 				switch (setTab){
 
@@ -692,6 +697,7 @@ app.controller('carreraController', function(){
 		this.style2={'':''};
 		this.style3={'':''};
 		this.selectTab=function(setTab){
+			limpiar();
 			this.tab = setTab;
 			switch (setTab){
 
@@ -838,24 +844,20 @@ app.controller("crearUserController", ['$scope', '$http', function($scope, $http
 		this.user = {};
 
 		this.addUser = function(pUser){
-			   
-			  // console.log(this.user);
 			 var nombUser = $('#nombUser').val();
              var correoUser = $('#correoUser').val();
              var passwUser = $('#passwUser').val();
              var apellidoUser = $('#apellidoUser').val();
-             
- 
-
+            
              if (nombUser.trim() == '' || correoUser.trim() == '' || passwUser.trim() == '' || apellidoUser.trim() == '') {
              	 alertify.log("Debe completar todos los campos");
              }else{
 				this.user.estado = "activo";
 				pUser.push(this.user);
-				/*aqui*/
 				$http.post("/Proyecto_1/php/configuration/crea_usuario.php", { "tipo" : this.user.categoria ,  "email" : correoUser,  "nombre": nombUser,"apellido" : apellidoUser,  "estado" : '1',  "genero": this.user.genero,"calificacion" : '0',  "password": passwUser
 				}).
 				success(function(data, status) {
+					console.log(data);
 					alertify.success("El usuario fue creado correctamente");
 				})
 				.
@@ -863,93 +865,94 @@ app.controller("crearUserController", ['$scope', '$http', function($scope, $http
 					alertify.error("Error");
 				})
 			 }
-			
-			
 			this.user = {};	
 		};//Fin funcion
 
 	}]);
 /*****************************************************************************************************************/	
 app.controller("modificarUserController", ['$scope', '$http', function($scope, $http){
-		var temp = 0;	 
-		this.modifUser = function(pUser, pCorreo){
-			if(pCorreo.toLowerCase().indexOf("@ucenfotec.ac.cr") >= 0){
-				 $http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { "email" : pCorreo
-					}).
-					success(function(data, status) {
-						for(var i= 0; i<data.length;i++){
-							if(data[i] === false){
-								alertify.log("No se encontró ningún usuario");
-								limpiar();
-							}else{
-								$('#id-usuario-mod').val(data[i].id_usuario);
-								$('#nombreEncontrado').val(data[i].nombre);
-								$('#apellidoEncontrado').val(data[i].apellido);
-						 		$('#correoEncontrado').val(data[i].email);
-						 		$('#passwordEncontrado').val(data[i].password);
-						 		if(data[i].genero ==='m'){
-						 			$('#generoHombre').attr('checked', 'checked');
-						 		}
-						 		else{
-						 			$('#generoMujer').attr('checked', 'checked');
-						 		}
-						 		//If de categoria
-						 		if(data[i].tipo ==='e'){
-						 			$('#estudiante').attr('checked', 'checked');
-						 		}
-						 		else if(data[i].tipo ==='p'){
-						 			$('#profesor').attr('checked', 'checked');
-						 		}else if(data[i].tipo ==='r'){
-						 			$('#rector').attr('checked', 'checked');
-						 		}else if(data[i].tipo ==='d'){
-						 			$('#director').attr('checked', 'checked');
-						 		}
-							}
-						}
-					})
-					.
-					error(function(data, status) {
-						alertify.error("Error");
-						limpiar();
-					});
-			}else{
-				alertify.log("Debe buscar un correo válido");
-				limpiar();
-			}
-		};//Fin de funcion
-
-		this.user = {};
-		this.saveModif = function(pModif){
-			 var nombreEncontrado = $('#nombreEncontrado').val();
-			 var apellidoEncontrado = $('#apellidoEncontrado').val();
-             var correoEncontrado = $('#correoEncontrado').val();
-             var passwordEncontrado = $('#passwordEncontrado').val();
-             var genero = $("input:radio[name=genero]:checked").val();
-             var tipo = $("input:radio[name=tipoUsuario]:checked").val();
-             var id = $('#id-usuario-mod').val();
-
-             if(nombreEncontrado.trim() == '' || apellidoEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ){
-             	 alertify.log("Debe completar todos los campos");
-			}else{
-				console.log('aqui esta');
-				$http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { 
-				"tipo" : tipo, "email" : correoEncontrado, "nombre" : nombreEncontrado, "apellido" : apellidoEncontrado, "genero" : genero, "id_usuario" : id, "password" : passwordEncontrado
-				// "tipo" : "e", "email" : "julian@ucenfotec.ac.cr", "nombre" : "nombreEncontrado", "apellido" : "apellidoEncontrado", "genero" : "m", "password" : "123", "id_usuario" : "5"
+	var temp = 0;	 
+	this.modifUser = function(pUser, pCorreo){
+		if(pCorreo.toLowerCase().indexOf("@ucenfotec.ac.cr") >= 0){
+			 $http.post("/Proyecto_1/php/configuration/muestra_usuario.php", { "email" : pCorreo
 				}).
 				success(function(data, status) {
-					console.log(data);
-					console.log('B-I-E-N');
+					for(var i= 0; i<data.length;i++){
+						if(data[i] === false){
+							alertify.log("No se encontró ningún usuario");
+							limpiar();
+						}else{
+							$('#id-usuario-mod').val(data[i].id_usuario);
+							$('#nombreEncontrado').val(data[i].nombre);
+							$('#apellidoEncontrado').val(data[i].apellido);
+					 		$('#correoEncontrado').val(data[i].email);
+					 		$('#passwordEncontrado').val(data[i].password);
+					 		if(data[i].genero ==='m'){
+					 			$('#generoHombre').attr('checked', 'checked');
+					 		}
+					 		else{
+					 			$('#generoMujer').attr('checked', 'checked');
+					 		}
+					 		//If de categoria
+					 		if(data[i].tipo ==='e'){
+					 			$('#estudiante').attr('checked', 'checked');
+					 		}
+					 		else if(data[i].tipo ==='p'){
+					 			$('#profesor').attr('checked', 'checked');
+					 		}else if(data[i].tipo ==='r'){
+					 			$('#rector').attr('checked', 'checked');
+					 		}else if(data[i].tipo ==='d'){
+					 			$('#director').attr('checked', 'checked');
+					 		}
+						}
+					}
 				})
 				.
 				error(function(data, status) {
-					$('.result-usuario').hide();
 					alertify.error("Error");
 					limpiar();
 				});
-				// alertify.success("El usuario se modificó correctamente");	
-			}
+		}else{
+			alertify.log("Debe buscar un correo válido");
+			limpiar();
 		}
-	}]);
+	};//Fin de funcion
+
+	this.user = {};
+	this.saveModif = function(pModif){
+		 var nombreEncontrado = $('#nombreEncontrado').val();
+		 var apellidoEncontrado = $('#apellidoEncontrado').val();
+         var correoEncontrado = $('#correoEncontrado').val();
+         var passwordEncontrado = $('#passwordEncontrado').val();
+         var genero = $("input:radio[name=genero]:checked").val();
+         var tipo = $("input:radio[name=tipoUsuario]:checked").val();
+         var id = $('#id-usuario-mod').val();
+
+         if(nombreEncontrado.trim() == '' || apellidoEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ){
+         	 alertify.log("Debe completar todos los campos");
+		}else{
+			$http.post("/Proyecto_1/php/configuration/modifica_usuario.php", { 			
+				"tipo" : tipo,
+				"email" : correoEncontrado,
+				"nombre" : nombreEncontrado,
+				"apellido" : apellidoEncontrado, 
+				"genero" : genero,
+				"id_usuario" : id, 
+				"password" : passwordEncontrado
+			}).
+			success(function(data, status) {
+				alertify.success("El usuario se modificó correctamente");	
+				limpiar();
+			})
+			.
+			error(function(data, status) {
+				$('.result-usuario').hide();
+				alertify.error("Error");
+				limpiar();
+			});
+		}
+	}
+}]);
 
 /*****************************************************************************************************************/	
 app.controller("inhabilitarUserController",['$scope', '$http', function($scope, $http){
@@ -1072,7 +1075,6 @@ app.controller("inhabilitarCarreraController", function(){
 app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
 	$http.post("/Proyecto_1/php/configuration/muestra_ranking.php").
 	success(function(data, status) {
-		console.log(data);
 		for(var i= 0; i<data.length;i++){
 			$('#num_uno').val(data[i].num_uno);
 			$('#num_dos').val(data[i].num_dos);
@@ -2608,4 +2610,5 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
 function limpiar(){
 	$('input').val('');
+	$('input[type="radio"]').prop('checked', false);
 }

@@ -6,7 +6,6 @@
 	app.controller('configController', ['$scope', '$http', function($scope, $http){
 
 		this.usuarios = arregloUsuarios;
-		  this.carreras = arregloCarreras;
 		   this.profecurso =arregloProfeCurso;
 		   this.estudcurso =arregloEstuCurso;
 		   this.estudcursotemp =arregloEstuCursoTemp;
@@ -17,14 +16,12 @@
 		  this.miCarreraMC = {};
 		  this.miCursoMC = {};
 		  this.indextemp = 0;
-          
-
-
+         
 		this.addCarrera = function(){
-            var nomCarrera = $('#nomCarrera').val();
-             if (nomCarrera.trim() == '') {
-             	 alertify.log("Debe completar todos los campos");
-             }else{
+		    var nomCarrera = $('#nomCarrera').val();
+		     if (nomCarrera.trim() == '') {
+		     	 alertify.log("Debe completar todos los campos");
+		     }else{
 				$http.post("/Proyecto_1/php/configuration/crea_carrera.php", { "nombre" : nomCarrera,  "estado" : '1', "thumb" : "test.png"
 				}).
 				success(function(data, status) {
@@ -36,45 +33,46 @@
 				});
 			 }
 		};
-
-
-		  this.modifCarrera= function(){
-		  	for(i=0;i<this.carreras.length;i++){
-
-		  		if(this.carreras[i].nombre === this.miCarrera.nombre){
-		  		
-		  			// this.carreras[i].cursos.push(this.miCurso);
-		  			$('#codCarrera').val(this.carreras[i].codigo);
-		  			$('#nomCarrera').val(this.carreras[i].nombre);
-		  			this.indextemp=i;
-
-		  		}
-		  	}
-		  }
+		this.modifCarrera= function(){
+			$http.post("/Proyecto_1/php/configuration/muestra_carrera.php", { "id_carrera" : $('.select-carrera').val()
+			}).
+			success(function(data, status) {
+				for(var i= 0; i<data.length;i++){
+					$('#mcodCarrera').val(data[i].id_carrera);
+					$('#mnomCarrera').val(data[i].nombre);
+					if(data[i].estado ==1){
+			 			$('#activo-carrera').attr('checked', 'checked');
+			 		}
+			 		else{
+			 			$('#inactivo-carrera').attr('checked', 'checked');
+			 		}
+				}	
+			})
+			.
+			error(function(data, status) {
+				alertify.error("Error");
+			});
+		};
 		  this.actualizarCarrera= function(){
-
 		  	var codCarrera = $('#mcodCarrera').val();
             var nomCarrera = $('#mnomCarrera').val();
-             
              if (codCarrera.trim() == '' || nomCarrera.trim() == '' ) {
-             	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe completar todos los campos");
-             	// alertify.success("OJO");
              }else{
-
-		  		if (!this.miCarrera.nombre=="") {
-		  			this.carreras[this.indextemp].nombre=this.miCarrera.nombre;
-		  		};
-		  		if (!this.miCarrera.codigo=="") {
-		  			this.carreras[this.indextemp].codigo=this.miCarrera.codigo;
-		  		};	
-		  		
-		  			
-		  		$('#codCarrera').val("");
-		  		$('#nomCarrera').val("");
-				this.miCarrera = {};
-				this.indextemp="";
-				alertify.success("La carrera se modifico correctamente");
+				$http.post("/Proyecto_1/php/configuration/modifica_carrera.php", { 
+					"id_carrera" : codCarrera,
+					"nombre" : nomCarrera,
+					"estado" : $('input:radio[name="estado-carrera"]:checked').attr('val')
+				}).
+				success(function(data, status) {
+					console.log(data);
+					alertify.success("La carrera se modifico correctamente");
+				})
+				.
+				error(function(data, status) {
+					alertify.error("Error");
+				});
+				
 			}
 
 
