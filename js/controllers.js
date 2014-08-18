@@ -188,7 +188,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 														"email" : moderador
 		}).
 		success(function(data, status) {
-			moderadorid=data[0];
+			moderadorid=Number(data[0]);
+			console.log(data);
 		}).
 		error(function(data, status) {
 			alertify.error("Error");
@@ -200,7 +201,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 														"id_moderador": moderadorid,
 	 														"titulo" : titulo,  
 	 														"estado" : estado,  
-	 														"fecha": fecha ,
+	 														"fecha": fecha,
 	 														"texto" : tema,  
 	 														"periodo": periodo
 		}).
@@ -269,14 +270,10 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	this.editarForo = function(){
 		var idF = idForo;
 		var invitados = $('.inine-forum-display .invitados').val().split(', ');
-		var cerrar = $("input:radio[name=estado]").val();
-		var estado = 'A';
+		var estado = $('input:radio[name=estado]:checked').val();
 		alertify.confirm("Esta seguro que desea enviar los cambios?", function (e) {
 		    if (e) {
-		        if (cerrar === '1'){
-					estado = 'I';
-				}
-
+		    
 				// INVITADOS
 				/*for (var i = invitados.length - 1; i >= 0; i--) {
 					invitados[i] = 'nombre":'+ '"' + invitados[i];
@@ -287,9 +284,24 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 						var tema=$('.inine-forum-display .main-forum').val();
 						var moderador=$('.inine-forum-display #moderadorDisplay').text();
 						var invitados = invitados;
-						var estado= estado;
+						var moderadorid='';
 
-						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, "id_foro":idF}).
+						$http.post("/Proyecto_1/php/forum/moderador.php", { 
+	 														"email" : moderador
+						}).
+						success(function(data, status) {
+							moderadorid=Number(data[0]);
+							console.log(data);
+						}).
+						error(function(data, status) {
+							alertify.error("Error");
+						});
+
+						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, 
+																			 "id_foro":idF, 
+																			 "estado":estado,
+																			 "id_moderador":moderadorid
+																			}).
 							success(function(data, status) {
 								alertify.success("El foro fue editado correctamente");
 							}).
