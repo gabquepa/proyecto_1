@@ -4,18 +4,31 @@
 
 
 	app.controller('configController', ['$scope', '$http', function($scope, $http){
-
-		this.usuarios = arregloUsuarios;
-		   this.profecurso =arregloProfeCurso;
-		   this.estudcurso =arregloEstuCurso;
-		   this.estudcursotemp =arregloEstuCursoTemp;
-		   this.estudcursobusctemp=arregloEstuCursoBuscTemp;
+		  // var arregloUsuarios = [];
+		  // this.usuarios = arregloUsuarios;
+		  store = this;
+		  this.usuarios =[];
+		  this.profecurso =arregloProfeCurso;
+		  this.estudcurso =arregloEstuCurso;
+		  this.estudcursotemp =arregloEstuCursoTemp;
+		  this.estudcursobusctemp=arregloEstuCursoBuscTemp;
 		  this.miCarrera = {};
 		  this.miCarreraCC = {};
 		  this.miCursoCC = {};
 		  this.miCarreraMC = {};
 		  this.miCursoMC = {};
 		  this.indextemp = 0;
+		  	$http.post("/Proyecto_1/php/global/muestra_profesores.php").success(function(data, status) {
+				store.usuarios = data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
+
+			$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
+				store.carreras = data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
          
 		this.addCarrera = function(){
 		    var nomCarrera = $('#nomCarrera').val();
@@ -26,6 +39,7 @@
 				}).
 				success(function(data, status) {
 					alertify.success("La carrera fue creada correctamente");
+					limpiar();
 				})
 				.
 				error(function(data, status) {
@@ -77,10 +91,38 @@
 
 
 		  }//Fin FUncion
-
-		 
-
-
+		  this.selectCurso = function(){
+		  	var id_carrera = $('.select-carrera-modificarCurso').val();
+		  	console.log($('.select-carrera-modificarCurso').val());
+			$http.post("/Proyecto_1/php/global/muestra_cursos.php",{ 			
+				"id_carrera" : id_carrera
+			}).success(function(data, status) {
+				store.cursosCarrera=data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
+		  };
+		  this.selectCurso2 = function(){
+		  	var id_carrera = $('.select-carrera-asignaprofe').val();
+			$http.post("/Proyecto_1/php/global/muestra_cursos.php",{ 			
+				"id_carrera" : id_carrera
+			}).success(function(data, status) {
+				store.cursosCarrera=data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
+		  };
+		  this.selectCurso3 = function(){
+		  	console.log('me llaman');
+		  	var id_carrera = $('.select-carrera-asignaest').val();
+			$http.post("/Proyecto_1/php/global/muestra_cursos.php",{ 			
+				"id_carrera" : id_carrera
+			}).success(function(data, status) {
+				store.cursosCarrera=data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
+		  };
 		  this.crearCurso= function(){
              var codCurso = $('#codCurso').val();
              var nomCurso = $('#nomCurso').val();
@@ -103,65 +145,71 @@
 				});  
 		  	}
 		   }	
- 			this.getCurso = function(){
- 					
-		  		return this.miCarreraMC.cursos;
+ 			this.getCurso = function(){	
+		  		// return this.miCarreraMC.cursos;
 		 	 }
 
 		   this.modifCurso= function(){
-
-		   	
-		   		
-		  	
-				  	for(i=0;i<this.carreras.length;i++){
-
-				  		if(this.carreras[i].nombre === this.miCarreraMC.nombre){
-				  		
-				  			// this.carreras[i].cursos.push(this.miCurso);
-				  			$('#modifIdCurso').val(this.carreras[i].codigo);
-				  			$('#modifNombreCurso').val(this.carreras[i].nombre);
-				  			this.indextemp=i;
-
-				  		}
-				  	}
-				  	
-			
-		  //this.miCarrera = {};
+		   		$http.post("/Proyecto_1/php/configuration/muestra_curso.php", { "id_curso" : $('.select-curso-modificarCurso').val()
+				}).
+				success(function(data, status) {
+					for(var i= 0; i<data.length;i++){
+						$('#modifIdCurso').val(data[i].id_curso);
+				  		$('#modifNombreCurso').val(data[i].nombre);
+						if(data[i].estado ==1){
+				 			$('#activo-curso').attr('checked', 'checked');
+				 		}
+				 		else{
+				 			$('#inactivo-curso').attr('checked', 'checked');
+				 		}
+					}	
+				})
+				.
+				error(function(data, status) {
+					alertify.error("Error");
+				});
 		  }// Fin Funcion
 
-		  this.actualizarCurso= function(){
-
-		  	 var codCurso = $('#modifIdCurso').val();
+		  this.actualizarCurso= function(){		  	 
              var nomCurso = $('#modifNombreCurso').val();
 
-             console.log(codCurso);
-             if (codCurso.trim() == '' || nomCurso.trim() == '') {
+             if (nomCurso.trim() == '') {
              	alertify.log("Debe completar todos los campos");
              }else{
 
-		  	for(i=0;i<this.carreras[this.indextemp].cursos.length;i++){
+		 //  	for(i=0;i<this.carreras[this.indextemp].cursos.length;i++){
 
-		  		if(this.carreras[this.indextemp].cursos[i].nombreCurso === this.miCursoMC.nombreCurso){
-		  			this.carreras[this.indextemp].cursos[i].nombreCurso= this.miCursoMC.nombreCurso;	
-		  		}
-		  		if(this.carreras[this.indextemp].cursos[i].idCurso === this.miCursoMC.idCurso){
-		  			this.carreras[this.indextemp].cursos[i].idCurso= this.miCursoMC.idCurso;	
-		  		}
-		  	 }
+		 //  		if(this.carreras[this.indextemp].cursos[i].nombreCurso === this.miCursoMC.nombreCurso){
+		 //  			this.carreras[this.indextemp].cursos[i].nombreCurso= this.miCursoMC.nombreCurso;	
+		 //  		}
+		 //  		if(this.carreras[this.indextemp].cursos[i].idCurso === this.miCursoMC.idCurso){
+		 //  			this.carreras[this.indextemp].cursos[i].idCurso= this.miCursoMC.idCurso;	
+		 //  		}
+		 //  	 }
 
-		  	   $('#modifIdCurso').val("");
-		  	    $('#modifNombreCurso').val("");
+		 //  	   $('#modifIdCurso').val("");
+		 //  	    $('#modifNombreCurso').val("");
 				
-				this.miCarreraMC = {};
-				this.indextemp="";
-				this.miCursoMC={};
+			// 	this.miCarreraMC = {};
+			// 	this.indextemp="";
+			// 	this.miCursoMC={};
+			// 	alertify.success("El curso se modifico correctamente");
+			$http.post("/Proyecto_1/php/configuration/modifica_curso.php", { 
+				"nombre" : nomCurso,
+				"estado" : $('input:radio[name="estado-curso"]:checked').attr('val'),
+				"id_curso" : $('#modifIdCurso').val()
+			}).
+			success(function(data, status) {
+				console.log(data);
 				alertify.success("El curso se modifico correctamente");
-			}//Fin validacion
-
+				limpiar();
+			})
+			.
+				error(function(data, status) {
+					alertify.error("Error");
+				});
+			}
 		  }
-
-		  
-
 }]);
 
 
@@ -204,25 +252,25 @@
 
 
 
-	var arregloUsuarios =[
-	{
-		nombre:'Álvaro Cordero Peña',
-		genero:'masculino',
-		correo:'alvaro@ucenfotec.ac.cr',
-		password:'123',
-		categoria:'profesor',
-		estado:'activo'
-	},
-	{
-		nombre:'Juan Pérez Padilla',
-		genero:'masculino',
-		correo:'juan@ucenfotec.ac.cr',
-		password:'123',
-		categoria:'estudiante',
-		estado:'inactivo'
-	 }
+	// var arregloUsuarios =[
+	// {
+	// 	nombre:'Álvaro Cordero Peña',
+	// 	genero:'masculino',
+	// 	correo:'alvaro@ucenfotec.ac.cr',
+	// 	password:'123',
+	// 	categoria:'profesor',
+	// 	estado:'activo'
+	// },
+	// {
+	// 	nombre:'Juan Pérez Padilla',
+	// 	genero:'masculino',
+	// 	correo:'juan@ucenfotec.ac.cr',
+	// 	password:'123',
+	// 	categoria:'estudiante',
+	// 	estado:'inactivo'
+	//  }
 
-	];
+	// ];
 
 
 //Arreglo Carreras//
