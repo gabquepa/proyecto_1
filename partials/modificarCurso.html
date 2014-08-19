@@ -1,22 +1,20 @@
 <div ng-show="cursoContr.isSelected(2, confPanel.tab)" ng-controller="CarrerasController as universidad">  
    <div class="contenedorInputs" >
-      <select class="form-control select-carrera-modificarCurso" ng-change="universidad.selectCurso()" ng-model="cong.miCarrera">
-        <option val="-1" disable>Seleccione una Carrera</option>
-        <option ng-repeat="carrera in universidad.carreras" value="{{carrera.id_carrera}}" >{{carrera.nombre}}</option>
-    </select>
+      <select id="cursoslt" class="form-control select-carrera-modificarCurso" ng-model="conf.miCarrera" ng-options="carrera.nombre for carrera in conf.carreras track by carrera.id_carrera" ng-change="conf.selectCurso()">
+        <option value="" >Seleccione un Carrera</option>  
+      </select>
     </div>
     <div class="contenedorInputs">
-     <select id="modiCurso1" class="form-control">
-     <option value="" >Seleccione un Curso</option>  
-     <option  ng-repeat="curso in universidad.cursos" val="{{curso.id_curso}}">{{curso.nombre}}</option>
-     </select>
+      <select id="modiCurso1" class="form-control select-curso-modificarCurso" ng-model="conf.miCursoMC" ng-options="curso.nombre for curso in conf.cursosCarrera track by curso.id_curso" ng-change="conf.modifCurso()">
+         <option value="" >Seleccione un Curso</option>
+      </select>  
 
     </div>
 
 
 <div class="contenedorInputs">
       <label>Código del Curso</label>
-      <input type="text" class="form-control" ng-model="conf.miCursoMC.idCurso" id="modifIdCurso">
+      <input readonly type="text" class="form-control" ng-model="conf.miCursoMC.idCurso" id="modifIdCurso">
 </div>
 <div class="contenedorInputs">
       <label>Nombre del Curso</label>
@@ -25,9 +23,9 @@
 <div class="contenedorInputs">
     <label>Estado: </label>
     <label>Inactivo</label>
-    <input type="radio" name="estado-carrera" val="2" id="inactivo-carrera" value="" required="">
+    <input type="radio" name="estado-curso" val="2" id="inactivo-curso" value="" required="">
       <label>Activo</label>
-      <input type="radio" name="estado-carrera" val="1" id="activo-carrera" value="" required="">
+      <input type="radio" name="estado-curso" val="1" id="activo-curso" value="" required="">
   </div>
 
             <button type="submit" class="guardarBtn pull-right" ng-click="conf.actualizarCurso()">Guardar</button> 

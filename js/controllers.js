@@ -443,9 +443,11 @@ app.controller('CarrerasController', ['$http', function($http){
 			"id_carrera" : id_carrera
 		}).success(function(data, status) {
 			universidad.cursos=data;
+
 		}).error(function(data, status) {
 			alertify.error("Error");
 		}); 
+
 	};
 }]);	
 
@@ -1291,7 +1293,6 @@ app.controller("controlEstudiantes",function(){
 		 arregloTemp.profe=this.profe;
 		 for (var i=0; i < pProfeCurso.length; i++) {
 		    if ((pProfeCurso[i].carrera==arregloTemp.carrera)&&(pProfeCurso[i].curso==arregloTemp.curso)&&(pProfeCurso[i].profe==arregloTemp.profe)) {
- 
 		    	 this.msg={'color': '#ebebeb','display':'block','color':'#F58e25','text-align': 'center','font-size':'1em','margin-top':'2em' };
 		    	 this.profe ="";
 			     this.carrera="";
@@ -1302,10 +1303,7 @@ app.controller("controlEstudiantes",function(){
 			     this.styleCurso={'background-color': '#ebebeb'};; 
 		         estado=false;
 		         /** alertify.success("El profesor se asigno correctamente");**/
-		 
 		     };
-		    
-
 	  }; 
 	  
 	  if (estado==true) {
@@ -2665,4 +2663,5 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 function limpiar(){
 	$('input').val('');
 	$('input[type="radio"]').prop('checked', false);
+	$('select').prop('selectedIndex',0);
 }

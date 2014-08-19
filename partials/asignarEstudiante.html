@@ -1,36 +1,39 @@
     <div ng-show="estudianteContr.isSelected(1, confPanel.tab)" >                         
-                            <div class="profesoresInput cf">
-                                         <div class="contenedorInputsSep">
-                                          <label>Seleccione una Carrera</label><br>
-                                          <select id="sltCarrera" class="form-control inhabilitarSlct sty"  ng-model="est.carrera" ng-options="carrera.id  as carrera.nombre for carrera in conf.carreras" ng-change="est.activarCurso()" required> 
-                                          <option  id="optCarrera" value="" >Seleccione una Carrera</option>
-                                          </select>
-                                         
-                                      </div>
+<div class="profesoresInput cf">
+           <div class="contenedorInputsSep">
+            <label>Seleccione una Carrera</label><br>
+            <select id="sltCarrera" class="form-control inhabilitarSlct sty select-carrera-asignaest"  ng-model="est.carrera" ng-options="carrera.nombre for carrera in conf.carreras track by carrera.id_carrera"  ng-change="est.activarCurso() ; conf.selectCurso3()" required> 
+            <option  id="optCarrera" value="" >Seleccione una Carrera</option>
+            </select>
+           
+        </div>
 
-                                      <div class="contenedorInputsSep">
-                                          <label>Seleccione un Curso</label><br>
-                                          <select id="sltCurso" ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct sty" ng-style="est.styleCurso" ng-model="est.curso" ng-options="curso.nombreCurso  as curso.nombreCurso for curso in conf.carreras[est.carrera].cursos" ng-change="est.activarEst()">
-                                          <option id="optCurso" value="" >Seleccione un Curso</option>
-                                          </select>
-                                      </div>
+        <div class="contenedorInputsSep">
+            <label>Seleccione un Curso</label><br>
+            <!-- <select id="sltCurso" ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct sty" ng-style="est.styleCurso" ng-model="est.curso" ng-options="curso.nombreCurso  as curso.nombreCurso for curso in conf.carreras[est.carrera].cursos" ng-change="est.activarEst()">
+            <option id="optCurso" value="" >Seleccione un Curso</option>
+            </select> -->
+            <select  ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct select-curso-asignaest" ng-model="conf.miCursoMC" ng-options="curso.nombre for curso in conf.cursosCarrera track by curso.id_curso" ng-change="">
+               <option value="" >Seleccione un Curso</option>
+            </select>
+        </div>
 
-                                  </div>
-                                  <div class="buscarUserContent cf">
-                                        <h4>Ingresar Estudiantes</h4>
-                                         <input id="asig" ng-disabled="est.estadoUser" ng-style="est.styleUser" type="text" class="form-control sty" ng-model="est.agregados"/>
-                                         <button type="submit" class="guardarBtn pull-right" ng-click="est.agregarEstudiantes(conf.estudcursotemp)">Agregar</button>
-                                   </div>
-                                   <div>
-                                   <h4>Agregados</h4>
-                                   <ul>
-		                                <li class="list-group-item" ng-repeat="estu in conf.estudcursotemp">
-			                                   	<div class="eliminarEstudiantes">
-			                                    <span>Estudiantes: {{estu.estudiante}}</span> <span>Curso: {{estu.curso}}</span><a href class="btn btn-danger" ng-click="est.eliminarEstudiantes(estu.estudiante,estu.curso,conf.estudcursotemp)"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-		                                </li>
-	                                   <button type="submit" class="guardarBtn pull-right" ng-click="est.guardarEstudiantes(conf.estudcurso,conf.estudcursotemp)">Guardar</button>
-											
-	                                </ul>
-                                   </div>
+    </div>
+    <div class="buscarUserContent cf">
+          <h4>Ingresar Estudiantes</h4>
+           <input id="asig" ng-disabled="est.estadoUser" ng-style="est.styleUser" type="text" class="form-control sty" ng-model="est.agregados"/>
+           <button type="submit" class="guardarBtn pull-right" ng-click="est.agregarEstudiantes(conf.estudcursotemp)">Agregar</button>
+     </div>
+     <div>
+     <h4>Agregados</h4>
+     <ul>
+      <li class="list-group-item" ng-repeat="estu in conf.estudcursotemp">
+           	<div class="eliminarEstudiantes">
+            <span>Estudiantes: {{estu.estudiante}}</span> <span>Curso: {{estu.curso}}</span><a href class="btn btn-danger" ng-click="est.eliminarEstudiantes(estu.estudiante,estu.curso,conf.estudcursotemp)"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+      </li>
+       <button type="submit" class="guardarBtn pull-right" ng-click="est.guardarEstudiantes(conf.estudcurso,conf.estudcursotemp)">Guardar</button>
+
+    </ul>
+     </div>
                                    
   </div>
