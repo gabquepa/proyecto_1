@@ -21,14 +21,13 @@
 		    <aside class="infousuario clearfix">
 				<label>Nombre:</label>
 				<span>{{usuario.user[cookieValue].nombre}}</span>
+				
 	
 				<label>{{usuario.user[cookieValue].carrera}}</label>
-				<ul>
-					<li>
-						{{usuario.user[cookieValue].Curso1}}
-					</li>
-					<li>
-						{{usuario.user[cookieValue].Curso2}}
+			<!--	ng-repeat="blog in usuario.listaPost | filter:{id_usuario:usuario.user[cookieValue].id_usuario}"> -->
+				<ul >
+					<li ng-repeat="curso in perfil.cursosDeUsuario">
+						{{curso.id_curso}}
 					</li>
 
 				</ul>
