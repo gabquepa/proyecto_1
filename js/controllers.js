@@ -25,13 +25,16 @@ app.controller('routeController', function($scope, $cookieStore) {
 });
 
 /************** Forum Controllers **************/
-/************** PROFESOR Forum Controllers **************/
+/************** PROFESOR Forum Controllers **************
+**********************************************************
+***********************************************************/
 app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
 	forum.lists=[];
 	$scope.enable = true;
 	$scope.showForum=false;
 	$scope.showList=true;
+	$scope.comments=[];
 
 	$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : "1"}).
 	success(function(data, status) {
@@ -75,14 +78,22 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			/*for(var i= 0; i<forum.invitados.length;i++){
 				 invi.push(' '+(forum.invitados)[i].email);
 			}
-			$('.invitados').val(invi);	
+			$('.invitados').val(invi);*/ 
+
+			$http.post("/Proyecto_1/php/forum/listaComentarios.php", {"id_foro" :idForo}).
+			success(function(data, status) {
+					$scope.comments=data;
+			}).
+			error(function(data, status) {
+				alertify.error("Ocurrio un error");
+			});
 
 			if((forum.comments).length >=1){
 				$scope.comments= forum.comments;
 				$('.comments-lst').show();
 			}else{
 				$('.comments-lst').hide();
-			}*/
+			}
 
 			setTimeout(function(){
 				$(".stars").rating();
@@ -188,7 +199,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 														"email" : moderador
 		}).
 		success(function(data, status) {
-			moderadorid=data[0];
+			moderadorid=Number(data[0]);
+			console.log(data);
 		}).
 		error(function(data, status) {
 			alertify.error("Error");
@@ -200,7 +212,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 														"id_moderador": moderadorid,
 	 														"titulo" : titulo,  
 	 														"estado" : estado,  
-	 														"fecha": fecha ,
+	 														"fecha": fecha,
 	 														"texto" : tema,  
 	 														"periodo": periodo
 		}).
@@ -225,7 +237,6 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$('.create-forumSection .moderador').val('');
 		}
 	};
-
 	
 	this.addComment = function(){
 		 var comment = $('#fComment').val();
@@ -235,27 +246,47 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
              	// alertify.success("OJO");
              }else{
 
-
-		var forumId= $('#id-foro').val();
 		var forumS = [];
 		var d = new Date();
+
+		$http.post("/Proyecto_1/php/forum/listaComentarios.php", {"id_foro" :idForo}).
+		success(function(data, status) {
+				forumS=data;
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
 		
-		for(var i= 0; i<(forum.lists).length;i++){
+		/*for(var i= 0; i<(forum.lists).length;i++){
 			if((forum.lists)[i].id == forumId){
 				forumS = (forum.lists)[i];
 			}
-		}	
+		} ESTO ES PARA AGREGAR Y MOSTRAR LOS COMENTS*/ 	
 		
 		// // $scope.forumForm.$pristine = true;	
 		this.comment.nombre = $('#usuario').text();
-		this.comment.fecha = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
-		forumS.comments.push(this.comment);
+		this.comment.fecha = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+		//forumS.comments.push(this.comment);
+
+		$http.post("/Proyecto_1/php/forum/comentariosForo.php", { 
+	 														"id_foro" : idForo,  
+	 														"id_usuario" : 2, //averiguar usuario
+	 														"texto" : comment,
+	 														"fecha":this.comment.fecha ,
+	 														"calificacion" : 0,  
+	 														"estado" :1 
+		}).
+		success(function(data, status) {
+			alertify.success("El comentario fue creado correctamente");
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
 
 		this.comment={};
 		$('#add-comment').collapse('toggle');
 		$('.comment-text').val('');
 		$('.comments-lst').show();
-		alertify.success("El comentario fue enviado");
 
 		setTimeout(function(){
 			$(".stars").rating();
@@ -269,14 +300,10 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	this.editarForo = function(){
 		var idF = idForo;
 		var invitados = $('.inine-forum-display .invitados').val().split(', ');
-		var cerrar = $("input:radio[name=estado]").val();
-		var estado = 'A';
+		var estado = $('input:radio[name=estado]:checked').val();
 		alertify.confirm("Esta seguro que desea enviar los cambios?", function (e) {
 		    if (e) {
-		        if (cerrar === '1'){
-					estado = 'I';
-				}
-
+		    
 				// INVITADOS
 				/*for (var i = invitados.length - 1; i >= 0; i--) {
 					invitados[i] = 'nombre":'+ '"' + invitados[i];
@@ -287,9 +314,24 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 						var tema=$('.inine-forum-display .main-forum').val();
 						var moderador=$('.inine-forum-display #moderadorDisplay').text();
 						var invitados = invitados;
-						var estado= estado;
+						var moderadorid='';
 
-						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, "id_foro":idF}).
+						$http.post("/Proyecto_1/php/forum/moderador.php", { 
+	 														"email" : moderador
+						}).
+						success(function(data, status) {
+							moderadorid=Number(data[0]);
+							console.log(data);
+						}).
+						error(function(data, status) {
+							alertify.error("Error");
+						});
+
+						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, 
+																			 "id_foro":idF, 
+																			 "estado":estado,
+																			 "id_moderador":moderadorid
+																			}).
 							success(function(data, status) {
 								alertify.success("El foro fue editado correctamente");
 							}).
@@ -324,7 +366,9 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 
 }]);	
 
-/************** ESTUDIANTE Forum Controllers **************/
+/************** ESTUDIANTE Forum Controllers **************
+*************************************************************
+****************************************************************/
 app.controller('StudentForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
 	forum.lists=[];
@@ -402,8 +446,8 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 			if((forum.lists)[i].id == forumId){
 				forumS = (forum.lists)[i];
 			}
-		}	
-		
+		}
+
 		// $scope.forumForm.$pristine = true;	
 		this.comment.nombre = $('#usuario').text();
 		this.comment.fecha = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
@@ -2010,9 +2054,61 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 	
 //controlador muestra y oculta contenedores del perfil
-	app.controller('controlPerfil', function(){
-		this.tabperfil = 1;
+	
+	app.controller('controlPerfil',['$http',function($http){
+
+		var store = this;
+		store.cursosDeUsuario = [];
+		var store = this;
+		store.carreras = [];
+		var store = this;
+		store.lista_cursos = [];
 		
+
+		
+
+		$http.post("/Proyecto_1/php/blog/cursosDeUsuario.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+
+				   	store.cursosDeUsuario.push(data[i]);
+				   
+                    
+				  }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });
+
+		$http.post("/Proyecto_1/php/blog/lista_cursos.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+
+				   	store.lista_cursos.push(data[i]);
+				   
+                    
+				  }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });
+
+
+
+
+		$http.post("/Proyecto_1/php/blog/info_carreras.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.carreras.push(data[i]);
+				    
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });
+
+		this.tabperfil = 1;
+		console.log("Entro a Perfil");
 		this.getTab=function(getTab){
 			$('#mensajePerfil').html("");
 			this.tabperfil = getTab;
@@ -2091,7 +2187,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		
 		
 		
-	});
+	}]);
 	
 
 //controlador muestra y oculta contenedores dentro del blogs
