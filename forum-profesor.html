@@ -124,7 +124,7 @@
             <div class="comments-lst">
                 <h3>Comentarios</h3>
                 <div class="clearfix" ng-repeat="comment in comments" style="margin-top:40px;">
-                  <a href="#" class="contributor-name">{{comment.nombre}}</a> <span>{{comment.fecha}}</span>
+                  <a href="#" class="contributor-name">{{comment.email}}</a> <span>{{comment.fecha}}</span>
                   <div class="comment-stars pull-right"><input class="stars" data-size="xs" disabled value="{{comment.calificacion}}"></div>
                   <div class="forum">
                     <p>{{comment.texto}}</p>

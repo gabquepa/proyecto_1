@@ -35,6 +35,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	$scope.showForum=false;
 	$scope.showList=true;
 	$scope.comments=[];
+	forum.forumS = [];
 
 	$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : "1"}).
 	success(function(data, status) {
@@ -80,21 +81,6 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			}
 			$('.invitados').val(invi);*/ 
 
-			$http.post("/Proyecto_1/php/forum/listaComentarios.php", {"id_foro" :idForo}).
-			success(function(data, status) {
-					$scope.comments=data;
-			}).
-			error(function(data, status) {
-				alertify.error("Ocurrio un error");
-			});
-
-			if((forum.comments).length >=1){
-				$scope.comments= forum.comments;
-				$('.comments-lst').show();
-			}else{
-				$('.comments-lst').hide();
-			}
-
 			setTimeout(function(){
 				$(".stars").rating();
 			}, 400);
@@ -105,7 +91,16 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		error(function(data, status) {
 			alertify.error("Ocurrio un error");
 		});
+
+		$http.post("/Proyecto_1/php/forum/listaComentarios.php", {"id_foro" :idForo}).
+		success(function(data, status) {
+					$scope.comments=data;
+		}).
+		error(function(data, status) {
+				alertify.error("Ocurrio un error");
+		}); 
 	};
+
 	this.hideForum = function(){
 		$scope.showForum=true;
 		$scope.showList=false;
@@ -200,7 +195,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		}).
 		success(function(data, status) {
 			moderadorid=Number(data[0]);
-			console.log(data);
+			
 		}).
 		error(function(data, status) {
 			alertify.error("Error");
@@ -239,23 +234,15 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	};
 	
 	this.addComment = function(){
-		 var comment = $('#fComment').val();
-		 if (comment.trim() == '') {
+		 var texto = $('#fComment').val();
+		 if (texto.trim() == '') {
              	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe agregar un comentario");
              	// alertify.success("OJO");
              }else{
 
-		var forumS = [];
 		var d = new Date();
 
-		$http.post("/Proyecto_1/php/forum/listaComentarios.php", {"id_foro" :idForo}).
-		success(function(data, status) {
-				forumS=data;
-		}).
-		error(function(data, status) {
-			alertify.error("Ocurrio un error");
-		});
 		
 		/*for(var i= 0; i<(forum.lists).length;i++){
 			if((forum.lists)[i].id == forumId){
@@ -263,27 +250,34 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			}
 		} ESTO ES PARA AGREGAR Y MOSTRAR LOS COMENTS*/ 	
 		
-		// // $scope.forumForm.$pristine = true;	
-		this.comment.nombre = $('#usuario').text();
-		this.comment.fecha = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-		//forumS.comments.push(this.comment);
+		// // $scope.forumForm.$pristine = true;
+		var comment={};
+
+		comment.email = "juan@ucenfotec.ac.cr";
+		comment.texto = texto;
+		comment.fecha = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+		comment.estado=1;
+		comment.calificacion=0;
 
 		$http.post("/Proyecto_1/php/forum/comentariosForo.php", { 
 	 														"id_foro" : idForo,  
-	 														"id_usuario" : 2, //averiguar usuario
-	 														"texto" : comment,
-	 														"fecha":this.comment.fecha ,
-	 														"calificacion" : 0,  
-	 														"estado" :1 
+	 														"email" :comment.email, //averiguar usuario
+	 														"texto" : comment.texto,
+	 														"fecha":comment.fecha ,
+	 														"calificacion" : comment.calificacion,  
+	 														"estado" :comment.estado 
 		}).
 		success(function(data, status) {
+
+			$scope.comments.push(comment);
+			
 			alertify.success("El comentario fue creado correctamente");
+			comment={};
 		}).
 		error(function(data, status) {
 			alertify.error("Ocurrio un error");
 		});
 
-		this.comment={};
 		$('#add-comment').collapse('toggle');
 		$('.comment-text').val('');
 		$('.comments-lst').show();
