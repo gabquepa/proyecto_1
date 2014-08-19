@@ -2056,9 +2056,61 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 	
 //controlador muestra y oculta contenedores del perfil
-	app.controller('controlPerfil', function(){
-		this.tabperfil = 1;
+	
+	app.controller('controlPerfil',['$http',function($http){
+
+		var store = this;
+		store.cursosDeUsuario = [];
+		var store = this;
+		store.carreras = [];
+		var store = this;
+		store.lista_cursos = [];
 		
+
+		
+
+		$http.post("/Proyecto_1/php/blog/cursosDeUsuario.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+
+				   	store.cursosDeUsuario.push(data[i]);
+				   
+                    
+				  }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });
+
+		$http.post("/Proyecto_1/php/blog/lista_cursos.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+
+				   	store.lista_cursos.push(data[i]);
+				   
+                    
+				  }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });
+
+
+
+
+		$http.post("/Proyecto_1/php/blog/info_carreras.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.carreras.push(data[i]);
+				    
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });
+
+		this.tabperfil = 1;
+		console.log("Entro a Perfil");
 		this.getTab=function(getTab){
 			$('#mensajePerfil').html("");
 			this.tabperfil = getTab;
@@ -2137,7 +2189,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		
 		
 		
-	});
+	}]);
 	
 
 //controlador muestra y oculta contenedores dentro del blogs
