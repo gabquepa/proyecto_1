@@ -25,13 +25,16 @@ app.controller('routeController', function($scope, $cookieStore) {
 });
 
 /************** Forum Controllers **************/
-/************** PROFESOR Forum Controllers **************/
+/************** PROFESOR Forum Controllers **************
+**********************************************************
+***********************************************************/
 app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
 	forum.lists=[];
 	$scope.enable = true;
 	$scope.showForum=false;
 	$scope.showList=true;
+	$scope.comments=[];
 
 	$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : "1"}).
 	success(function(data, status) {
@@ -75,14 +78,22 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			/*for(var i= 0; i<forum.invitados.length;i++){
 				 invi.push(' '+(forum.invitados)[i].email);
 			}
-			$('.invitados').val(invi);	
+			$('.invitados').val(invi);*/ 
+
+			$http.post("/Proyecto_1/php/forum/listaComentarios.php", {"id_foro" :idForo}).
+			success(function(data, status) {
+					$scope.comments=data;
+			}).
+			error(function(data, status) {
+				alertify.error("Ocurrio un error");
+			});
 
 			if((forum.comments).length >=1){
 				$scope.comments= forum.comments;
 				$('.comments-lst').show();
 			}else{
 				$('.comments-lst').hide();
-			}*/
+			}
 
 			setTimeout(function(){
 				$(".stars").rating();
@@ -226,7 +237,6 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		$('.create-forumSection .moderador').val('');
 		}
 	};
-
 	
 	this.addComment = function(){
 		 var comment = $('#fComment').val();
@@ -236,27 +246,47 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
              	// alertify.success("OJO");
              }else{
 
-
-		var forumId= $('#id-foro').val();
 		var forumS = [];
 		var d = new Date();
+
+		$http.post("/Proyecto_1/php/forum/listaComentarios.php", {"id_foro" :idForo}).
+		success(function(data, status) {
+				forumS=data;
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
 		
-		for(var i= 0; i<(forum.lists).length;i++){
+		/*for(var i= 0; i<(forum.lists).length;i++){
 			if((forum.lists)[i].id == forumId){
 				forumS = (forum.lists)[i];
 			}
-		}	
+		} ESTO ES PARA AGREGAR Y MOSTRAR LOS COMENTS*/ 	
 		
 		// // $scope.forumForm.$pristine = true;	
 		this.comment.nombre = $('#usuario').text();
-		this.comment.fecha = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
-		forumS.comments.push(this.comment);
+		this.comment.fecha = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+		//forumS.comments.push(this.comment);
+
+		$http.post("/Proyecto_1/php/forum/comentariosForo.php", { 
+	 														"id_foro" : idForo,  
+	 														"id_usuario" : 2, //averiguar usuario
+	 														"texto" : comment,
+	 														"fecha":this.comment.fecha ,
+	 														"calificacion" : 0,  
+	 														"estado" :1 
+		}).
+		success(function(data, status) {
+			alertify.success("El comentario fue creado correctamente");
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
 
 		this.comment={};
 		$('#add-comment').collapse('toggle');
 		$('.comment-text').val('');
 		$('.comments-lst').show();
-		alertify.success("El comentario fue enviado");
 
 		setTimeout(function(){
 			$(".stars").rating();
@@ -336,7 +366,9 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 
 }]);	
 
-/************** ESTUDIANTE Forum Controllers **************/
+/************** ESTUDIANTE Forum Controllers **************
+*************************************************************
+****************************************************************/
 app.controller('StudentForumController', ['$scope', '$http', function($scope, $http){
 	var forum = this;
 	forum.lists=[];
@@ -414,8 +446,8 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 			if((forum.lists)[i].id == forumId){
 				forumS = (forum.lists)[i];
 			}
-		}	
-		
+		}
+
 		// $scope.forumForm.$pristine = true;	
 		this.comment.nombre = $('#usuario').text();
 		this.comment.fecha = d.getDate()+'/'+(d.getMonth()+1)+'/'+d.getFullYear();
