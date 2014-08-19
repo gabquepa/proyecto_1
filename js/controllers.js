@@ -188,7 +188,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 														"email" : moderador
 		}).
 		success(function(data, status) {
-			moderadorid=data[0];
+			moderadorid=Number(data[0]);
+			console.log(data);
 		}).
 		error(function(data, status) {
 			alertify.error("Error");
@@ -200,7 +201,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 														"id_moderador": moderadorid,
 	 														"titulo" : titulo,  
 	 														"estado" : estado,  
-	 														"fecha": fecha ,
+	 														"fecha": fecha,
 	 														"texto" : tema,  
 	 														"periodo": periodo
 		}).
@@ -269,14 +270,10 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	this.editarForo = function(){
 		var idF = idForo;
 		var invitados = $('.inine-forum-display .invitados').val().split(', ');
-		var cerrar = $("input:radio[name=estado]").val();
-		var estado = 'A';
+		var estado = $('input:radio[name=estado]:checked').val();
 		alertify.confirm("Esta seguro que desea enviar los cambios?", function (e) {
 		    if (e) {
-		        if (cerrar === '1'){
-					estado = 'I';
-				}
-
+		    
 				// INVITADOS
 				/*for (var i = invitados.length - 1; i >= 0; i--) {
 					invitados[i] = 'nombre":'+ '"' + invitados[i];
@@ -287,9 +284,24 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 						var tema=$('.inine-forum-display .main-forum').val();
 						var moderador=$('.inine-forum-display #moderadorDisplay').text();
 						var invitados = invitados;
-						var estado= estado;
+						var moderadorid='';
 
-						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, "id_foro":idF}).
+						$http.post("/Proyecto_1/php/forum/moderador.php", { 
+	 														"email" : moderador
+						}).
+						success(function(data, status) {
+							moderadorid=Number(data[0]);
+							console.log(data);
+						}).
+						error(function(data, status) {
+							alertify.error("Error");
+						});
+
+						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, 
+																			 "id_foro":idF, 
+																			 "estado":estado,
+																			 "id_moderador":moderadorid
+																			}).
 							success(function(data, status) {
 								alertify.success("El foro fue editado correctamente");
 							}).
@@ -428,9 +440,7 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 app.controller('CarrerasController', ['$http', function($http){
 	var universidad = this;
 	universidad.carreras=[];
-	// $http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
-	// 	universidad.carreras = data;
-	// }); 
+
 	$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
 		universidad.carreras = data;
 	}).error(function(data, status) {
@@ -438,64 +448,16 @@ app.controller('CarrerasController', ['$http', function($http){
 	});
 
 	this.selectCurso = function(){
-		var carrera = $('.select-carrera option:selected').attr('val');
+		var id_carrera = $('.select-carrera-modificarCurso').val();
 		var cursos = this;
 		universidad.cursos=[];
-		// this.getTab=function(getTab){
-		// 	$('#mensajePerfil').html("");
-		// 	this.tabperfil = getTab;
-		// 	limpiarForms();
-		// 	if (getTab==1) {
-		// 		$('#infuser').attr('class',"btn activetab");
-		// 		$('#changepass').attr('class',"btn profBtn");
-		// 	} else{
-		// 		$('#infuser').attr('class',"btn profBtn");
-		// 		$('#changepass').attr('class',"btn activetab");
-		// 	};
-				
-		// };
-		
-		if(carrera ==="1"){
-			$http.get('/Proyecto_1/JSON/cursosDW.json').success(function(data){
-				universidad.cursos = data;
-				$('#confNavBtn1').attr('class',"btn activetab");
-				// $('#changepass').attr('class',"btn profBtn");
-			});
-		}
-		else if(carrera ==="2"){
-			$http.get('/Proyecto_1/JSON/cursosDS.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="3"){
-			$http.get('/Proyecto_1/JSON/cursosInT.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="4"){
-			$http.get('/Proyecto_1/JSON/cursosT.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="5"){
-			$http.get('/Proyecto_1/JSON/cursosCS.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="6"){
-			$http.get('/Proyecto_1/JSON/cursosBD.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else if(carrera ==="7"){
-			$http.get('/Proyecto_1/JSON/cursosI.json').success(function(data){
-				universidad.cursos = data;
-			});
-		}
-		else{
-			universidad.cursos = '';
-		}
-
+		$http.post("/Proyecto_1/php/global/muestra_cursos.php",{ 			
+			"id_carrera" : id_carrera
+		}).success(function(data, status) {
+			universidad.cursos=data;
+		}).error(function(data, status) {
+			alertify.error("Error");
+		}); 
 	};
 }]);	
 
@@ -1557,53 +1519,157 @@ app.controller('seccionDocumentosShow', function(){
 	}
 });
 
-app.controller('misCarreras-cursos',['$http', function($http){
+app.controller('misCarrerasDoc-cursos',['$http', function($http){
 
-	var universidad = this;
-	universidad.carreras=[];
-	$http.get('/Proyecto_1/JSON/carreras.json').success(function(data){
-		universidad.carreras = data;
-	});
 
-	this.selectCurso = function(){
-		var carrera = $('.carrera-select option:selected').attr('val');
-		var cursos = this;
-		universidad.cursos=[];
-		
+	var store=this;
+	store.carreras=[];
+	store.curso=[];
+	$http.post("/Proyecto_1/php/blog/info_carreras.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.carreras.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
+
+	this.selectCurso = function(carrera){
+
+		store.curso.length=0;
+	
 		if(carrera ==="1"){
-			$http.get('/Proyecto_1/JSON/cursosDW.json').success(function(data){
-				universidad.cursos = data;
-			});
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 1}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
 		}
 		else if(carrera ==="2"){
-			$http.get('/Proyecto_1/JSON/cursosDS.json').success(function(data){
-				universidad.cursos = data;
-			});
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 2}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
 		}
 		else if(carrera ==="3"){
-			$http.get('/Proyecto_1/JSON/cursosInT.json').success(function(data){
-				universidad.cursos = data;
-			});
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 3}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
 		}
 		else if(carrera ==="4"){
-			$http.get('/Proyecto_1/JSON/cursosT.json').success(function(data){
-				universidad.cursos = data;
-			});
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 4}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
 		}
 		else if(carrera ==="5"){
-			$http.get('/Proyecto_1/JSON/cursosCS.json').success(function(data){
-				universidad.cursos = data;
-			});
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 5}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
 		}
 		else if(carrera ==="6"){
-			$http.get('/Proyecto_1/JSON/cursosBD.json').success(function(data){
-				universidad.cursos = data;
-			});
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 6}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
 		}
 		else if(carrera ==="7"){
-			$http.get('/Proyecto_1/JSON/cursosI.json').success(function(data){
-				universidad.cursos = data;
-			});
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 7}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
+		}
+		else if(carrera ==="7"){
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 8}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
+		}
+		else if(carrera ==="7"){
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 9}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
+		}
+		else if(carrera ==="7"){
+			$http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : 10}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.curso.push(data[i]);
+
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 });   
 		}
 		else{
 			universidad.cursos = '';

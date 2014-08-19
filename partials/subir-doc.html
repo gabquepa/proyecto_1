@@ -7,14 +7,14 @@
               <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.validacionsubir(add.addDoc.nombre,add.addDoc.autor); ' action="" method="post" id='resetForm'> 
                   <input class="form-control" type='text' placeholder='Titulo' ng-model='add.addDoc.nombre'>
                   <input class="form-control" type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
-                  <section ng-controller='CarrerasController as cyc'>
-                    <select id='addcarrera' ng-mouseleave="cyc.selectCurso()" class="select-carrera form-control">
-                      <option selected disable val=''>Seleccione una Carrera</option>
-                      <option ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
+                  <section ng-controller='misCarrerasDoc-cursos as cyc'>
+                    <select id='addcarrera' ng-model="miID" ng-options="carre.id_carrera as carre.nombre for carre in cyc.carreras" ng-change="cyc.selectCurso(miID)" class="select-carrera form-control">
+                      <option value="">Seleccione una Carrera</option>
+                   
                     </select>
-                    <select id='addcurso' class="select-curso form-control selectStyle">
-                      <option val="" selected disable>Seleccione un Curso</option>
-                      <option ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
+                    <select id='addcurso' ng-model="miIDCurso" ng-options="cursos.id_curso as cursos.nombre for cursos in cyc.curso" class="select-curso form-control selectStyle">
+                      <option value="">Seleccione un Curso</option>
+                     
                     </select>
                   </section>
                     <input type="file" id="exampleInputFile" accept=".pdf" >

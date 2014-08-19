@@ -1,6 +1,6 @@
 <div ng-show="cursoContr.isSelected(1, confPanel.tab)">
   <div class="contenedorInputs" ng-controller="CarrerasController as universidad">
-    <select class="form-control select-carrera" ng-change="conf.modifCarrera()" ng-model="cong.miCarrera">
+    <select class="form-control select-carrera-creaCurso" ng-change="conf.modifCarrera()" ng-model="cong.miCarrera">
       <option val="-1" disable>Seleccione una Carrera</option>
       <option ng-repeat="carrera in universidad.carreras" value="{{carrera.id_carrera}}" >{{carrera.nombre}}</option>
     </select>
