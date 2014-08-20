@@ -1132,24 +1132,25 @@ app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
 
 //-----------------------Estudiantes----------------------------
 app.controller("controlEstudiantes",function(){
-	 this.estudiantes ="";
-	 this.temp=[];
-	 this.buscados="";
-	 this.encontrados={};
-	 this.asignados={};
-	 this.agregados="";
-     this.carrera="";
-     this.carreraBus="";
-     this.curso="";
-     this.cursoDes="Resultados de Búsqueda";
-     this.estudiantesTemp={};
-     this.estadoUser=true;
-     this.estadoCurso=true;
-     this.styleUser={'background-color': '#ebebeb'};
-     this.styleCurso={'background-color': '#ebebeb'}; 
-     this.estadoCursoDes=true;
-     this.styleCursoDes={'background-color': '#ebebeb'};
-     var cont=2;                              
+	var estudiante = this;
+	this.estudiantes ="";
+	this.temp=[];
+	this.buscados="";
+	this.encontrados={};
+	this.asignados={};
+	this.agregados="";
+	this.carrera="";
+	this.carreraBus="";
+	this.curso="";
+	this.cursoDes="Resultados de Búsqueda";
+	this.estudiantesTemp={};
+	this.estadoUser=true;
+	this.estadoCurso=true;
+	this.styleUser={'background-color': '#ebebeb'};
+	this.styleCurso={'background-color': '#ebebeb'}; 
+	this.estadoCursoDes=true;
+	this.styleCursoDes={'background-color': '#ebebeb'};
+	var cont=2;                              
 
      
     this.getArreglo=function(){  
@@ -1295,7 +1296,8 @@ app.controller("controlEstudiantes",function(){
 
 
 //------------------------Profesores-----------------------------
-	app.controller("ControlProfesores",function(){
+	app.controller("ControlProfesores", ['$scope', '$http', function($scope, $http){
+		var profe=this;
 	 this.msg={'display':'none'};
 	 this.profe ="";
      this.carrera="";
@@ -1321,53 +1323,43 @@ app.controller("controlEstudiantes",function(){
     } 
 
 	this.guardarProfesor=function(pCarreras,pProfeCurso){
-		 var arregloTemp={};
-		 var estado=true;
-		 arregloTemp.carrera=pCarreras[this.carrera].nombre;
-	     arregloTemp.curso=pCarreras[this.carrera].cursos[this.curso].nombreCurso;
-		 arregloTemp.profe=this.profe;
-		 for (var i=0; i < pProfeCurso.length; i++) {
-		    if ((pProfeCurso[i].carrera==arregloTemp.carrera)&&(pProfeCurso[i].curso==arregloTemp.curso)&&(pProfeCurso[i].profe==arregloTemp.profe)) {
-		    	 this.msg={'color': '#ebebeb','display':'block','color':'#F58e25','text-align': 'center','font-size':'1em','margin-top':'2em' };
-		    	 this.profe ="";
-			     this.carrera="";
-			     this.curso="";
-			     this.estadoCarrera=true;
-			     this.estadoCurso=true;
-			     this.styleCarrera={'background-color': '#ebebeb'};
-			     this.styleCurso={'background-color': '#ebebeb'};; 
-		         estado=false;
-		         /** alertify.success("El profesor se asigno correctamente");**/
-		     };
-	  }; 
-	  
-	  if (estado==true) {
-		 	
-		 	      
-				  pProfeCurso.push(arregloTemp);
-				 
-				 this.profe ="";
-			     this.carrera="";
-			     this.curso="";
-			     this.estadoCarrera=true;
-			     this.estadoCurso=true;
-			     this.styleCarrera={'background-color': '#ebebeb'};
-			     this.styleCurso={'background-color': '#ebebeb'};; 
-			     this.msg={'display':'none'};
-			     /**alertify.log("El profesor ya está asignado a un curso");**/
-
-	};
-
-		console.log("aa");
-		alertify.success("El profesor se asigno correctamente");
+		var profesor= profe.profe;
+		var curso = profe.curso.id_curso;
+		if(profesor.trim()=='' || curso==undefined){
+			alertify.log("Debe completar todos los campos");
+		}else{
+			$http.post("/Proyecto_1/php/configuration/crea_usuarioxcurso.php", {
+				"id_curso" : curso,
+				"id_usuario" : profesor
+			}).
+			success(function(data, status) {
+				alertify.success("El profesor se asignó correctamente");
+				limpiar();
+			})
+			.
+			error(function(data, status) {
+				alertify.error("Error");
+			});
+		}
 	} //Fin guardarProfesor  
 
 	   	       
-});
+}]);
 
 
-app.controller("desasignarCurso", function(){
-
+app.controller("desasignarCurso", ['$scope', '$http', function($scope, $http){
+	var profe = this;
+	this.resultado=[];
+	this.muestraCursos=function(){
+		$http.post("/Proyecto_1/php/configuration/muestra_usuarioxcurso.php", {
+			"id_usuario" : profe.profe
+		}).success(function(data, status) {
+			console.log(data);
+			profe.resultado = data;
+		}).error(function(data, status) {
+			alertify.error("Error");
+		});
+	};
 	this.desProfesor=function(aProfeCurso,pCarrera,pCurso,pProfe){  
 
 		alertify.confirm("Desea desasignar este curso?", function (e) {
@@ -1385,30 +1377,10 @@ app.controller("desasignarCurso", function(){
 		        // user clicked "cancel"
 		    }
 		});
-
-
-
-
-		   //    	for (var i=0; i < aProfeCurso.length; i++) {
-					
-					// if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
-					// 	     aProfeCurso.splice( i , 1 );
-					// } 
-					
-				 // };// FIn For
-
       	 	
     } //Fin desProfesor
 
-});
-	
-
-
-//---------------------------------------------------------------
-//Termina Alejandro Zuñiga
-
-
-
+}]);
 
 //********************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

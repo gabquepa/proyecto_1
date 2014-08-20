@@ -1,26 +1,37 @@
-   <div ng-show="profesorContr.isSelected(2, confPanel.tab)"  ng-controller="desasignarCurso as desProfe">                            
-
-
-                            <div class="contenedorInputs buscarUserContent">
-                                       <label>Nombre del Profesor</label>
-                                   
-                                       <select class="form-control" ng-model="profes" ng-options="profe.correo as profe.correo for profe in conf.usuarios | filter: {categoria: 'profesor'}" >
-                                       	    <option value="" >Seleccione un Profesor</option>	
-                                        </select>
-                                        
-                                   
-                                    </div>
-                              <ul class="list-group">
-                              	<li class="list-group-item" ng-repeat="profe in conf.profecurso | filter: {profe:profes}">
-                              	 <span>{{profe.profe}}</span>
-                                 <div class="eliminarProfesores">
-                                 <p>{{profe.carrera}}</p> 
-                                 <p>{{profe.curso}}</p> 
-                                 <a href class="btn btn-danger" ng-click="desProfe.desProfesor(conf.profecurso,profe.carrera,profe.curso,profe.profe)"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-                                 </div>
-                              	</li>
-                             </ul>
-                              
-                              
-                              
-  </div>
+<div ng-show="profesorContr.isSelected(2, confPanel.tab)"  ng-controller="desasignarCurso as desProfe">
+  <div class="contenedorInputs buscarUserContent">
+    <label>
+      Nombre del Profesor
+    </label>
+    
+    <select class="form-control" ng-model="desProfe.profe" ng-options="profe.id_usuario as (profe.nombre+' '+profe.apellido) for profe in conf.usuarios" ng-change="desProfe.muestraCursos()" required>
+      <option value="" >
+        Seleccione un Profesor
+      </option>
+    </select>
+    <option value="" >
+      Seleccione un Profesor
+    </option>  
+  </select>
+</div>
+<ul class="list-group">
+  <li ng-repeat="result in desProfe.resultado" class="list-group-item">
+    <h4 style="text-decoration:underline; font-weight:bold"
+      Prof. {{result.nombre}} {{result.apellido}}
+    </h4>
+    <div class="eliminarProfesores">
+      <p>
+        <strong>Carrera: </strong> {{result.carrera}}
+      </p><br>   
+      <p>
+        <strong>Curso: </strong> {{result.curso}}
+      </p>
+      <a href class="pull-right" style="text-decoration:none; color:black;" ng-click="desProfe.desProfesor(conf.profecurso,profe.carrera,profe.curso,profe.profe)">
+        <span class="glyphicon glyphicon-remove">
+        </span>
+        Desasignar curso
+      </a>
+    </div>
+  </li>
+</ul>
+</div>
