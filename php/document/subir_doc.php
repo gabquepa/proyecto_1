@@ -5,7 +5,7 @@ mysql_select_db("Proyecto_1") or die ("no se puede conectar");
 $data = file_get_contents("php://input");
 $objData = json_decode($data);
 
-$query = mysql_query('CALL subir_doc("'.$objData->id_usuario.'","'.$objData->id_curso.'","'.$objData->autor.'","'.$objData->titulo.'","'.$objData->calificacion.'","'.$objData->fecha.'","'.$objData->archivo.'");') or die ("Error");
+$query = mysql_query('CALL subir_doc("'.$objData->id_usuario.'","'.$objData->id_curso.'","'.$objData->autor.'","'.$objData->titulo.'","'.$objData->fecha.'","'.$objData->archivo.'");') or die ("Error");
 
 
 

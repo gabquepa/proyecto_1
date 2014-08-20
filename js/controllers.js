@@ -1393,6 +1393,13 @@ app.controller("desasignarCurso", ['$scope', '$http', function($scope, $http){
 app.controller('agregarDocController',['$http', function($http){
 	var controller = this;
 		controller.documentos= [];
+		
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 100);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 100);
 
 		// var store = this;
 		// store.listaHistorial = [];
@@ -1400,13 +1407,17 @@ app.controller('agregarDocController',['$http', function($http){
 
 
 
-		$http.get('/proyecto_1/JSON/docs.json').success(function(data){
-			controller.documentos =data;
-		});
+		//$http.get('/proyecto_1/JSON/docs.json').success(function(data){
+			//controller.documentos =data;
+		//});
 
-		var f = new Date();
+		var d = new Date();
 
 		this.addDoc={};
+		this.addDoc.curso;
+		this.addDoc.titulo;
+		this.addDoc.autor;
+		this.addDoc.fecha=d.getFullYear()+ "/" + (d.getMonth()+1)+ "/" +d.getDate();
 		this.resultado=false;
 		this.mostrarnombre='';
 		this.mostrarautor='';
@@ -1414,6 +1425,7 @@ app.controller('agregarDocController',['$http', function($http){
 		this.mostrarcarrera='';
 		this.mostrarcurso='';
 		this.mostrarvotacion=0;
+
 
 		this.validacionbuscar=function(){
 			var busCarrera=$('#busquedaCarrera').val(),
@@ -1462,42 +1474,55 @@ app.controller('agregarDocController',['$http', function($http){
 		}
 
 
-		this.validacionsubir=function(){
-			var input =  $("#exampleInputFile")[0].files[0],
+		this.validacionsubir=function(pUser){
+		/*	
+			var input =  $("#archivo")[0].files[0],
 				subCarrera = document.getElementById('addcarrera').value,
 				subCurso = document.getElementById('addcurso').value;
 
 			if(input==undefined ||arguments[0]==undefined || arguments[1]==undefined || 
 				subCarrera=="" || subCurso==""){
 
-				document.getElementById('exampleInputFile').value ='';
+				document.getElementById('archivo').value ='';
 				subCarrera.value='Seleccione una Carrera';
 				subCurso.value='Seleccione un Curso';
 				alertify.log("Debe completar todos los campos");
 			}
-			else{
+			else{*/
+				if (this.addDoc.titulo==1){
+				
+				
+				//this.addDoc.votacion=0;
+				//this.addDoc.fecha=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+				
+				//controller.documentos.push(this.addDoc);
+				//this.addDoc={};
+				var tempid=$("#archivo").val().replace(/C:\\fakepath\\/i, '');
+				
+				
+				this.miarchivo="storage/"+tempid;
+				alert(pUser+" - "+this.addDoc.curso+" - "+this.addDoc.autor+" - "+this.addDoc.titulo+" - "+this.addDoc.fecha+" - "+this.miarchivo);
+				$http.post("/Proyecto_1/php/document/subir_doc.php", {"id_usuario" : pUser ,"id_curso":this.addDoc.curso, "autor": this.addDoc.autor, "titulo":this.addDoc.titulo, "fecha":this.addDoc.fecha,"archivo":this.miarchivo}).
+				success(function(data, status) {
+			         alertify.success("El documento se subio correctamente");
+				 }).
+				  error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+				 }); 
+				 $("#resetForm").attr("action","php/document/subir.php");
+				 $("#resetForm").submit(); 
+				 
+                //php/document/subir.php  
+                 this.addDoc={};
+                 
+                }
+				//document.getElementById('archivo').value ='';
+				//subCarrera.value='Seleccione una Carrera';
 
-				this.addDoc.carrera=subCarrera;
-				this.addDoc.curso=subCurso;
-				this.addDoc.votacion=0;
-				this.addDoc.fecha=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
-				controller.documentos.push(this.addDoc);
-				this.addDoc={};
-
-				document.getElementById('exampleInputFile').value ='';
-				subCarrera.value='Seleccione una Carrera';
-				subCurso.value='Seleccione un Curso';
-
-				alertify.success("El documento se subio correctamente");
-			}
+			//}
 		}
 
-		setTimeout(function(){
-			$(".stars").rating();
-		}, 100);
-		setTimeout(function(){
-			$('.comment-stars .clear-rating').hide();
-		}, 100);
+		
 
 
 }]);
