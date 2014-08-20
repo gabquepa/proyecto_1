@@ -177,41 +177,35 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 //    rv[i] = invitados[i];
 	 //  console.log(rv);
 
-	 	var f=new Date(),
-	 		fecha= f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate(),
-			profesor="1",
-			titulo= $('.forum-title').val(),
-			periodo=$('.forum-periodo').val(),
-			CursoId=$('.select-curso option:selected').attr('val'),
-			tema=$('.create-forumSection textarea').val(),
-			moderador=$('.create-forumSection .moderador').val(),//calcular el id;
-			invitados = invitados,
-			comments={},
-			estado='1',
-			moderadorid='';
+	 	var f=new Date();
 
-		$http.post("/Proyecto_1/php/forum/moderador.php", { 
-	 														"email" : moderador
-		}).
-		success(function(data, status) {
-			moderadorid=Number(data[0]);
-			
-		}).
-		error(function(data, status) {
-			alertify.error("Error");
-		});
+	 	var foro={};
+	 	var comments={};
+
+	 		foro.fecha= f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate(),
+			foro.profesor="1",
+			foro.titulo= $('.forum-title').val(),
+			foro.periodo=$('.forum-periodo').val(),
+			foro.CursoId=$('.select-curso option:selected').attr('val'),
+			foro.tema=$('.create-forumSection textarea').val(),
+			foro.moderador=$('.create-forumSection .moderador').val(),//calcular el id;
+			foro.estado='1',
+			invitados = invitados;
+
+
 
 	 	$http.post("/Proyecto_1/php/forum/crearForo.php", { 
-	 														"id_usuario" : profesor,  
-	 														"id_curso" : CursoId, 
-	 														"id_moderador": moderadorid,
-	 														"titulo" : titulo,  
-	 														"estado" : estado,  
-	 														"fecha": fecha,
-	 														"texto" : tema,  
-	 														"periodo": periodo
+	 														"id_usuario" :foro.profesor,  
+	 														"id_curso" :foro.CursoId, 
+	 														"email":foro.moderador,
+	 														"titulo" :foro.titulo,  
+	 														"estado" :foro.estado,  
+	 														"fecha":foro.fecha,
+	 														"texto" :foro.tema,  
+	 														"periodo":foro.periodo
 		}).
 		success(function(data, status) {
+			forum.lists.push(foro);
 			alertify.success("El foro fue creado correctamente");
 		}).
 		error(function(data, status) {
@@ -359,6 +353,9 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	};
 
 }]);	
+
+
+
 
 /************** ESTUDIANTE Forum Controllers **************
 *************************************************************
