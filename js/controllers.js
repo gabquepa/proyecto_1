@@ -1489,7 +1489,7 @@ app.controller('agregarDocController',['$http', function($http){
 				alertify.log("Debe completar todos los campos");
 			}
 			else{*/
-				if (this.addDoc.titulo==1){
+			
 				
 				
 				//this.addDoc.votacion=0;
@@ -1515,7 +1515,7 @@ app.controller('agregarDocController',['$http', function($http){
                 //php/document/subir.php  
                  this.addDoc={};
                  
-                }
+                
 				//document.getElementById('archivo').value ='';
 				//subCarrera.value='Seleccione una Carrera';
 
@@ -1526,7 +1526,6 @@ app.controller('agregarDocController',['$http', function($http){
 
 
 }]);
-
 app.controller('seccionDocumentosShow', function(){
 	
 	this.tab=2;
