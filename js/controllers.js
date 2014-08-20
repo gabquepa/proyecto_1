@@ -166,12 +166,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
              	// alertify.success("OJO");
              }
         else{
-				var invitados = $('.create-forumSection .invitados').val().split(', ');
-					this.newforum={};
-		
-				for(var i= 0; i<invitados.length;i++){
-					invitados[i] = 'email":"'+invitados[i];
-				}
+				
 		// var rv = {};
 	 //  for (var i = 0; i < invitados.length; ++i)
 	 //    rv[i] = invitados[i];
@@ -189,8 +184,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			foro.CursoId=$('.select-curso option:selected').attr('val'),
 			foro.tema=$('.create-forumSection textarea').val(),
 			foro.moderador=$('.create-forumSection .moderador').val(),//calcular el id;
-			foro.estado='1',
-			invitados = invitados;
+			foro.estado='1';
 
 
 
@@ -212,6 +206,22 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			alertify.error("Ocurrio un error");
 		});
 
+		var invitados = $('.create-forumSection .invitados').val().split(', ');
+					
+
+				for(var i= 0; i<invitados.length;i++){
+
+					$http.post("/Proyecto_1/php/forum/invitados.php", { 
+	 														"id_foro" : idForo,  
+	 														"email" :invitados[i]
+					}).
+					success(function(data, status) {
+
+					}).
+					error(function(data, status) {
+						alertify.error("Ocurrio un error");
+					});
+				}
 
 		/*forum.lists.push(this.newforum);
 		
@@ -297,30 +307,24 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 					invitados[i] = 'nombre":'+ '"' + invitados[i];
 				}*/
 
-				for (var i = (forum.lists).length - 1; i >= 0; i--) {
+				for (var i = forum.lists.length - 1; i >= 0; i--) {
 					if((forum.lists)[i].id_foro == idF){
 						var tema=$('.inine-forum-display .main-forum').val();
 						var moderador=$('.inine-forum-display #moderadorDisplay').text();
 						var invitados = invitados;
-						var moderadorid='';
 
-						$http.post("/Proyecto_1/php/forum/moderador.php", { 
-	 														"email" : moderador
-						}).
-						success(function(data, status) {
-							moderadorid=Number(data[0]);
-							console.log(data);
-						}).
-						error(function(data, status) {
-							alertify.error("Error");
-						});
+						if(moderador==''){
+							moderador=forum.lists[i].email;
+						}
+
 
 						$http.post("/Proyecto_1/php/forum/cambiosForo.php", {"texto":tema, 
 																			 "id_foro":idF, 
 																			 "estado":estado,
-																			 "id_moderador":moderadorid
+																			 "email":moderador
 																			}).
 							success(function(data, status) {
+								(forum.lists)[i].estado=estado;
 								alertify.success("El foro fue editado correctamente");
 							}).
 							error(function(data, status) {
