@@ -159,7 +159,8 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
          var periodo = $('#fPeriodo').val();
          var tema = $('#fTema').val();
          var invitar = $('#fInvitar').val();
-         
+
+          
         if (titulo.trim() == '' || periodo.trim() == '' || tema.trim() == '' || invitar.trim() == '' ) {
              	 // alert("Debe llenar todos los campos");
              	 alertify.log("Debe completar todos los campos");
@@ -176,15 +177,59 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 
 	 	var foro={};
 	 	var comments={};
+	 	var carreraSeleccionada=$('.select-carrera option:selected').text();
+	 	var cursoSeleccionado=$('.select-curso option:selected').text();
 
-	 		foro.fecha= f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate(),
+	 	var id_carrera=0;
+
+		switch(carreraSeleccionada){
+			case 'Desarrollo y diseño Web': 
+				id_carrera=1;
+			break;
+			case 'Desarrollo de software': 
+				id_carrera=2;
+			break;
+			case 'Integración de tecnologías': 
+				id_carrera=3;
+			break;
+			case 'Telemática': 
+				id_carrera=4;
+			break;
+			case 'Ciberseguridad': 
+				id_carrera=5;
+			break;
+			case 'Tecnología de bases de datos': 
+				id_carrera=6;
+			break;
+			case 'Inglés': 
+				id_carrera=7;
+			break; 
+			case '':
+				id_carrera=0
+			break;
+			case 'Seleccione una carrera':
+				id_carrera=0
+			break;
+		}
+
+		$http.post("/Proyecto_1/php/forum/agregar_id_curso.php", { 
+	 														"id_carrera" :id_carrera,  
+	 														"nombre" :cursoSeleccionado
+		}).
+		success(function(data, status) {
+			foro.CursoId=data['id_curso'];
+			foro.fecha= f.getFullYear() + "-" + (f.getMonth() +1) + "-" + f.getDate(),
 			foro.profesor="1",
 			foro.titulo= $('.forum-title').val(),
 			foro.periodo=$('.forum-periodo').val(),
-			foro.CursoId=$('.select-curso option:selected').attr('val'),
 			foro.tema=$('.create-forumSection textarea').val(),
-			foro.moderador=$('.create-forumSection .moderador').val(),//calcular el id;
+			foro.moderador=$('.create-forumSection .moderador').val(),
 			foro.estado='1';
+		}).
+		error(function(data, status) {
+			alertify.error("Ocurrio un error");
+		});
+
 
 
 
@@ -199,8 +244,16 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	 														"periodo":foro.periodo
 		}).
 		success(function(data, status) {
+
 			forum.lists.push(foro);
 			alertify.success("El foro fue creado correctamente");
+			
+			$('#forum-create').collapse('toggle');
+			$('.create-forumSection .invitados').val('');
+			$('.forum-title').val('');
+			$('.forum-periodo').val('');
+			$('.create-forumSection textarea').val('');
+			$('.create-forumSection .moderador').val('');
 		}).
 		error(function(data, status) {
 			alertify.error("Ocurrio un error");
@@ -459,6 +512,64 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 		setTimeout(function(){
 			$('.comment-stars .clear-rating').hide();
 		}, 600);
+	};
+}]);
+
+app.controller('CarrerasControllerForos', ['$http', function($http){
+	var universidad = this;
+	universidad.carreras=[];
+
+	$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
+		universidad.carreras = data;
+	}).error(function(data, status) {
+		alertify.error("Error");
+	});
+
+	this.selectCurso = function(){
+		var carrera = $('.select-carrera').val(),
+			id_carrera=0;
+
+		switch(carrera){
+			case 'Desarrollo y diseño Web': 
+				id_carrera=1;
+			break;
+			case 'Desarrollo de software': 
+				id_carrera=2;
+			break;
+			case 'Integración de tecnologías': 
+				id_carrera=3;
+			break;
+			case 'Telemática': 
+				id_carrera=4;
+			break;
+			case 'Ciberseguridad': 
+				id_carrera=5;
+			break;
+			case 'Tecnología de bases de datos': 
+				id_carrera=6;
+			break;
+			case 'Inglés': 
+				id_carrera=7;
+			break; 
+			case '':
+				id_carrera=0
+			break;
+			case 'Seleccione una carrera':
+				id_carrera=0
+			break;
+		}
+
+		var cursos = this;
+		universidad.cursos=[];
+		$http.post("/Proyecto_1/php/global/muestra_cursos.php",{ 			
+			"id_carrera" : id_carrera
+		}).success(function(data, status) {
+			universidad.cursos=data;
+
+		}).error(function(data, status) {
+			alertify.error("Error");
+		}); 
+
 	};
 }]);
 

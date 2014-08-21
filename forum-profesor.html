@@ -36,20 +36,22 @@
             <a href="#forum-create" data-toggle="collapse"><h3  class="config-forumTitle btn-blue">Crear Foro</h3></a>
             <!-- CREAR FOROS -->
           <div id="forum-create" class="forum-create  panel-collapse collapse">
-            <div class="create-forumSection" ng-controller="CarrerasController as universidad">
-              <form name="forumForm" ng-submit="forumForm.$valid && forum.createForum() && forum.displayForum()">
+            <div class="create-forumSection" ng-controller="CarrerasControllerForos as universidad">
+              <form name="forumForm" ng-submit="forumForm.$valid && forum.createForum(curso) && forum.displayForum()">
                 <h4>Titulo</h4>
                 <input class="forum-title form-control" id="fTitulo">
                 <h4>Periodo</h4>
                 <input class="forum-periodo form-control" id="fPeriodo">
+
                 <select ng-mouseleave="universidad.selectCurso()" class="form-control select-carrera">
                   <option val="-1" disable>Seleccione una Carrera</option>
-                  <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
+                  <option ng-repeat="carrera in universidad.carreras" val="{{carrera.id}}" >{{carrera.nombre}}</option>
                 </select>
                 <select class="select-curso form-control">
                   <option val="-1" disable>Seleccione un Curso</option>
-                  <option  ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.name}}</option>
+                  <option ng-repeat="curso in universidad.cursos" val="{{curso.id}}">{{curso.nombre}}</option>
                 </select>
+
                 <h4>Tema del foro</h4>
                 <textarea id="fTema" class="form-control"></textarea >
                 <div class="clearfix">
