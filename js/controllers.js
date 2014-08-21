@@ -1475,24 +1475,31 @@ app.controller("desasignarCurso", ['$scope', '$http', function($scope, $http){
 			alertify.error("Error");
 		});
 	};
-	this.desProfesor=function(aProfeCurso,pCarrera,pCurso,pProfe){  
-
-		alertify.confirm("Desea desasignar este curso?", function (e) {
+	this.desProfesor=function(){  
+		alertify.confirm("¿Desea desasignar este curso?", function (e) {
 		    if (e) {
-
-		    	for (var i=0; i < aProfeCurso.length; i++) {
+		    	// for (var i=0; i < aProfeCurso.length; i++) {
+		    		$http.post("/Proyecto_1/php/configuration/borra_usuarioxcurso.php", {
+						"id_usuario" : $('.usuario-desasigna-profe').attr('val'),
+						"id_curso" : $('.curso-desasigna-profe').attr('val')
+					}).success(function(data, status) {
+						// console.log(data);
+						// profe.resultado = data;
+						profe.muestraCursos();
+					}).error(function(data, status) {
+						alertify.error("Error");
+					});
 					
-					if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
-						     aProfeCurso.splice( i , 1 );
-					} 
+					// if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
+					// 	     aProfeCurso.splice( i , 1 );
+					// } 
 					
-				 };// Fin For
+				 // };// Fin For
 		        
 		    } else {
 		        // user clicked "cancel"
 		    }
 		});
-      	 	
     } //Fin desProfesor
 
 }]);

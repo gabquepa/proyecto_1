@@ -39,6 +39,11 @@
 				}).
 				success(function(data, status) {
 					alertify.success("La carrera fue creada correctamente");
+					$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
+						store.carreras = data;
+					}).error(function(data, status) {
+						alertify.error("Error");
+					});
 					limpiar();
 				})
 				.
@@ -134,7 +139,12 @@
 				}).
 				success(function(data, status) {
 					alertify.success("El curso fue creado correctamente");
-					limpiar();
+					store.selectCurso();
+					store.modifCurso();
+					setTimeout(function(){
+						limpiar();
+					}, 500);
+					// limpiar();
 				})
 				.
 				error(function(data, status) {
@@ -173,24 +183,6 @@
              if (nomCurso.trim() == '') {
              	alertify.log("Debe completar todos los campos");
              }else{
-
-		 //  	for(i=0;i<this.carreras[this.indextemp].cursos.length;i++){
-
-		 //  		if(this.carreras[this.indextemp].cursos[i].nombreCurso === this.miCursoMC.nombreCurso){
-		 //  			this.carreras[this.indextemp].cursos[i].nombreCurso= this.miCursoMC.nombreCurso;	
-		 //  		}
-		 //  		if(this.carreras[this.indextemp].cursos[i].idCurso === this.miCursoMC.idCurso){
-		 //  			this.carreras[this.indextemp].cursos[i].idCurso= this.miCursoMC.idCurso;	
-		 //  		}
-		 //  	 }
-
-		 //  	   $('#modifIdCurso').val("");
-		 //  	    $('#modifNombreCurso').val("");
-				
-			// 	this.miCarreraMC = {};
-			// 	this.indextemp="";
-			// 	this.miCursoMC={};
-			// 	alertify.success("El curso se modifico correctamente");
 			$http.post("/Proyecto_1/php/configuration/modifica_curso.php", { 
 				"nombre" : nomCurso,
 				"estado" : $('input:radio[name="estado-curso"]:checked').attr('val'),
@@ -198,7 +190,11 @@
 			}).
 			success(function(data, status) {
 				alertify.success("El curso se modifico correctamente");
-				limpiar();
+				store.selectCurso();
+				store.modifCurso();
+				setTimeout(function(){
+					limpiar();
+				}, 500);
 			})
 			.
 				error(function(data, status) {
