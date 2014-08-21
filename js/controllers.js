@@ -6,10 +6,10 @@ var app = angular.module('controllers-project',[]);
 /************** Route Controllers **************/
 app.controller('routeController', function($scope, $cookieStore) {
 	var tipo = $cookieStore.get('usuarioTipo');
-	if(tipo==='P'){
+	if(tipo==='p' || tipo==='d' || tipo==='r' ){
 		$('.headForum').attr('href', '/Proyecto_1/forum-profesor.html');
 	}
-	if(tipo==='E'){
+	if(tipo==='e'){
 		$('.headForum').attr('href', '/Proyecto_1/forum-estudiante.html');
 	}
 	if(window.location.pathname === '/Proyecto_1/forum-profesor.html' || window.location.pathname === '/Proyecto_1/forum-estudiante.html'){
