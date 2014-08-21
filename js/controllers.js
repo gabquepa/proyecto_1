@@ -1538,6 +1538,21 @@ app.controller('agregarDocController',['$http', function($http){
 		// var store = this;
 		// store.listaHistorial = [];
 		
+		
+	this.historial=function(puser,iddoc){
+           
+          $http.post("/Proyecto_1/php/document/subir_historial.php", {"id_usuario" : puser ,"id_documento":iddoc}).
+						success(function(data, status) {
+					         alertify.success("El documento se subio correctamente");
+						})
+						.
+						    error(function(data, status) {
+							alertify.error("Error al crear");
+		})
+
+     }
+     	
+		
 	$http.post("/Proyecto_1/php/document/lista_docs.php", {}).
 	success(function(data, status) {
 				   for (var i=0; i<data.length; i++) {
@@ -1854,10 +1869,23 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 
 //cambie el controlador a los mios para poder guardar cambios en el arreglo de post
 //Sergio Herrera 
-app.controller('buscarDocController',function(){//Controlador de mi seccion de Buscar Documento
+app.controller('buscarDocController',['$http',function($http){//Controlador de mi seccion de Buscar Documento
      this.busqueda="";
      this.opc1=2;
      this.cursoBus="";
+     
+     this.historial=function(puser,iddoc){
+           
+          $http.post("/Proyecto_1/php/document/subir_historial.php", {"id_usuario" : puser ,"id_documento":iddoc}).
+						success(function(data, status) {
+					         alertify.success("El documento se subio correctamente");
+						})
+						.
+						    error(function(data, status) {
+							alertify.error("Error al crear");
+		})
+
+     }
      
      this.resetall=function(){
         $("#doc_inpbuscardoc").val("");
@@ -1918,7 +1946,7 @@ app.controller('buscarDocController',function(){//Controlador de mi seccion de B
 
 
 		}
-}); 
+}]); 
 
 app.controller('subirDocController',function(){//Controlador de mi seccion Subir Documento
 	
@@ -1944,16 +1972,38 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 	// console.log("Entro Historial");
 		var store = this;
 		store.listaHistorialDes = [];
+		this.vot=true;
+		this.min=1;
+		this.max=5;
+		this.valor=0;
 		
 		$("#docnav").removeAttr("id");
 
 
-	
+	    this.getVal= function (pvalor,iddoc) {
+		     var temp=0;
+		           
+		            temp=$("#"+pvalor).val();
+		             alert(pvalor+" "+iddoc+" "+temp);
+		             
+		       $http.post("/Proyecto_1/php/document/modifica_dochist.php", {"idhd" : pvalor ,"calificacion" : temp ,"id_documento" : iddoc }).
+						success(function(data, status) {
+					         alertify.success("El documento se subio correctamente");
+					         window.location.replace('/Proyecto_1/documentos.html');
+						})
+						.
+						    error(function(data, status) {
+							alertify.error("Error al crear");
+		       })
+              
+		        	
+		 };
 
 
 
 
-		$http.post("/Proyecto_1/php/document/historial_docs.php", {"id_usuario" : "1"}).
+
+		$http.post("/Proyecto_1/php/document/historial_docs.php", {}).
 				 success(function(data, status) {
 				   for (var i=0; i<data.length; i++) {
 
@@ -1967,18 +2017,23 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 				 });
 				 // console.log(store.listaHistorialDes.length);
 				 
-         this.estrellaValor= function (pcalif) {
-		        
-		        	  if (pcalif==0) {
+         this.estrellaValor= function (pestado,pcalif,id) {
+		
+                          
+		        	  if (pestado==1) {
+		        	  	$("#"+id).attr("value","0");
+		        	  	$("#"+id).attr("max","5");
 		        	  	return false;
 
 		        	  }else{
+		        	  	$("#"+id).attr("value",pcalif);
+		        	  	$("#"+id).attr("max","100");
 		        	  	return true;
 		        	  }
 
 		    };
 
-		     this.Valor= function (pcalif) {
+		    this.Valor= function (pcalif) {
 		        
 		        	  console.log(pcalif);
 
@@ -2021,6 +2076,9 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 // 		 // console.log(store.mitest.length);
 
 // }]);
+
+////////////////////////////INICIA BLOGS/////////////////////////////
+
 app.controller('UserController',['$http',function($http){
 		var store = this;
 		store.user=[];
@@ -2330,6 +2388,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		this.cambiarPass = function(pPassAct){	
         var temp=true;
         var tempPass="";
+        var tempid=pPassAct.id_usuario;
         $(".passnew").css("border","solid #ccc 1px");
         validarCampo($('#passuser'));
         validarCampo($('#newpass'));
@@ -2337,14 +2396,23 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
         if(temp){
         	
-        	if (this.pass.pactual==pPassAct.pass) {
+        	if (this.pass.pactual==pPassAct.password) {
         		if (this.pass.pnew==this.pass.pnewconf) {
-        			$('#mensajePerfil').html("");
+        			
         			tempPass=this.pass.pnewconf;
-        			this.pass={};
-        			limpiarForms ();
-        			alertify.success("Su contraseña se cambió con éxito");
-        			pPassAct.pass=tempPass;
+        			
+        			$http.post("/Proyecto_1/php/sistema_general/cambiar_passw.php", { "id_usuario" : tempid , "password" : tempPass }).
+					success(function(data, status) {
+		
+							this.pass={};
+        					limpiarForms ();
+        					alertify.success("Su contraseña se cambió con éxito");
+					}).
+				    error(function(data, status) {
+				    alertify.error("Ocurrio un error");
+				    });
+					
+        			
         			
         		} else{
         			$('#mensajePerfil').html("");

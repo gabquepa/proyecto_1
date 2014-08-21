@@ -12,11 +12,14 @@
                     <td>
                       <div class="comment-stars">
             
-                          <input   class="stars star-rating"  data-size="xs" type="number" value="{{documento.calificacion}}" ng-disabled="historial.estrellaValor(documento.calificacion)">
+                          <input id="{{documento.idhd}}"  class="stars star-rating"  min="0" data-size="xs" type="number"  ng-disabled="historial.estrellaValor(documento.estado,documento.calificacion,documento.idhd)">
+                          
                       </div>
                     </td>
 
-                    <td class='tbcyc'></td>
+                    <td class='tbcyc'>
+                    	<button  ng-hide="historial.estrellaValor(documento.estado)" ng-click="historial.getVal(documento.idhd, documento.id_documento)">votar</button>
+                    </td>
                   </tr>
 
                 </table>
