@@ -13,7 +13,7 @@
             <!-- <select id="sltCurso" ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct sty" ng-style="est.styleCurso" ng-model="est.curso" ng-options="curso.nombreCurso  as curso.nombreCurso for curso in conf.carreras[est.carrera].cursos" ng-change="est.activarEst()">
             <option id="optCurso" value="" >Seleccione un Curso</option>
             </select> -->
-            <select  ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct select-curso-asignaest" ng-model="conf.miCursoMC" ng-options="curso.nombre for curso in conf.cursosCarrera track by curso.id_curso" ng-change="">
+            <select  ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct select-curso-asignaest" ng-model="conf.miCursoMC" ng-options="curso.nombre for curso in conf.cursosCarrera track by curso.id_curso" ng-change="est.activarEst()">
                <option value="" >Seleccione un Curso</option>
             </select>
         </div>
