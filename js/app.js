@@ -8,6 +8,7 @@
 		  // this.usuarios = arregloUsuarios;
 		  store = this;
 		  this.usuarios =[];
+		  this.comentariosDenuncia=[];
 		  this.profecurso =arregloProfeCurso;
 		  this.estudcurso =arregloEstuCurso;
 		  this.estudcursotemp =arregloEstuCursoTemp;
@@ -26,6 +27,12 @@
 
 			$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
 				store.carreras = data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
+
+			$http.post("/Proyecto_1/php/configuration/muestra_comentarios_reportados.php").success(function(data, status) {
+				store.comentariosDenuncia = data;
 			}).error(function(data, status) {
 				alertify.error("Error");
 			});
@@ -201,6 +208,53 @@
 					alertify.error("Error");
 				});
 			}
+		  }
+		  this.comentarioIgnora = function(id){
+		  	alertify.confirm("¿Esta seguro que desea ignorar el comentario?", function (e) {
+			    if (e) {
+			   		$http.post("/Proyecto_1/php/configuration/comentarios_reportados_ignorar.php", { 
+						"id_comentario_foro" : id
+					}).
+					success(function(data, status) {
+						alertify.success("El comentario se ha ignorado");
+						setTimeout(function(){
+							store.comentarioLista();
+						}, 500);
+					})
+					.
+					error(function(data, status) {
+						alertify.error("Error");
+					});     
+			    } 
+			});
+		  }
+		  this.comentarioBorra = function(id){
+		  	alertify.confirm("¿Esta seguro que desea eliminar el comentario?", function (e) {
+			    if (e) {
+			   		$http.post("/Proyecto_1/php/configuration/comentarios_reportados_eliminar.php", { 
+						"id_comentario_foro" : id
+					}).
+					success(function(data, status) {
+						alertify.success("El comentario se ha eliminado");
+						setTimeout(function(){
+							store.comentarioLista();
+						}, 500);
+						
+					})
+					.
+					error(function(data, status) {
+						alertify.error("Error");
+					});     
+			    } 
+			});		
+		  }
+		  this.comentarioLista = function(){
+		  	console.log('hola');
+		  	$http.post("/Proyecto_1/php/configuration/muestra_comentarios_reportados.php").success(function(data, status) {
+				store.comentariosDenuncia = data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
 		  }
 }]);
 

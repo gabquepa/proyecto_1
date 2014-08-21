@@ -1,21 +1,15 @@
 <div ng-show="confPanel.isSelected(3)" >
-
 <p>En esta sección usted podrá procesar las denuncias realizadas por los usuarios</p>
-            <h4>Comentarios Denunciados</h4>
-            <div class="denuncia">
-              <p>manuel@ucenfotec.com</p>
-              <p>10/06/2014</p>
-              <textarea class="form-control" rows="4" cols="50" style="display:block; width:70%; margin-bottom:5px;">Node es un intérprete Javascript del lado del servidor que cambia la noción de cómo debería trabajar un servidor.</textarea>
-              <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Ignorar</a>
-              <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-            </div>
-
-            <div class="denuncia">
-              <p>carolina@ucenfotec.com</p>
-              <p>10/06/2014</p>
-              <textarea class="form-control" rows="4" cols="50" style="display:block; width:70%; margin-bottom:5px;">Este artículo tratará de responder a los que es Node.js, presentando un breve contexto de los problemas que resuelve, cómo funciona, cómo ejecutar una aplicación simple y, finalmente, dónde Node es una buena solución.</textarea>
-              <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Ignorar</a>
-              <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-            </div>
-
+<h4>Comentarios Denunciados</h4>
+<div class="denuncia" style="padding-top:40px;" ng-repeat="result in conf.comentariosDenuncia">
+  <p style="color:black"><strong>{{result.nombre}} {{result.apellido}}</strong></p>
+  <input class="usuario-reportes-estudiante" val="{{result.id_usuario}}" hidden>
+  <p style="color:black">{{result.fecha}}</p>
+  <textarea class="form-control" rows="4" cols="50" style="display:block; width:70%; margin-bottom:5px;">
+    {{result.texto}}
+  </textarea>
+  <input class="id-comentario-foro-reportes"  val="{{result.id_comentario_foro}}" hidden>
+  <a ng-click="conf.comentarioIgnora(result.id_comentario_foro)"  class="" style="text-decoration:none; margin-right:10px; color:#196B95; cursor: pointer;"><span class="glyphicon glyphicon-ok"></span> Ignorar</a>
+  <a ng-click="conf.comentarioBorra(result.id_comentario_foro)" class="" style="text-decoration:none; color:#D9534F; cursor: pointer;"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+</div>
 </div>
