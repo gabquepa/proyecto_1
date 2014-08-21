@@ -1247,24 +1247,25 @@ app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
 
 //-----------------------Estudiantes----------------------------
 app.controller("controlEstudiantes",function(){
-	 this.estudiantes ="";
-	 this.temp=[];
-	 this.buscados="";
-	 this.encontrados={};
-	 this.asignados={};
-	 this.agregados="";
-     this.carrera="";
-     this.carreraBus="";
-     this.curso="";
-     this.cursoDes="Resultados de Búsqueda";
-     this.estudiantesTemp={};
-     this.estadoUser=true;
-     this.estadoCurso=true;
-     this.styleUser={'background-color': '#ebebeb'};
-     this.styleCurso={'background-color': '#ebebeb'}; 
-     this.estadoCursoDes=true;
-     this.styleCursoDes={'background-color': '#ebebeb'};
-     var cont=2;                              
+	var estudiante = this;
+	this.estudiantes ="";
+	this.temp=[];
+	this.buscados="";
+	this.encontrados={};
+	this.asignados={};
+	this.agregados="";
+	this.carrera="";
+	this.carreraBus="";
+	this.curso="";
+	this.cursoDes="Resultados de Búsqueda";
+	this.estudiantesTemp={};
+	this.estadoUser=true;
+	this.estadoCurso=true;
+	this.styleUser={'background-color': '#ebebeb'};
+	this.styleCurso={'background-color': '#ebebeb'}; 
+	this.estadoCursoDes=true;
+	this.styleCursoDes={'background-color': '#ebebeb'};
+	var cont=2;                              
 
      
     this.getArreglo=function(){  
@@ -1410,7 +1411,8 @@ app.controller("controlEstudiantes",function(){
 
 
 //------------------------Profesores-----------------------------
-	app.controller("ControlProfesores",function(){
+	app.controller("ControlProfesores", ['$scope', '$http', function($scope, $http){
+		var profe=this;
 	 this.msg={'display':'none'};
 	 this.profe ="";
      this.carrera="";
@@ -1436,53 +1438,43 @@ app.controller("controlEstudiantes",function(){
     } 
 
 	this.guardarProfesor=function(pCarreras,pProfeCurso){
-		 var arregloTemp={};
-		 var estado=true;
-		 arregloTemp.carrera=pCarreras[this.carrera].nombre;
-	     arregloTemp.curso=pCarreras[this.carrera].cursos[this.curso].nombreCurso;
-		 arregloTemp.profe=this.profe;
-		 for (var i=0; i < pProfeCurso.length; i++) {
-		    if ((pProfeCurso[i].carrera==arregloTemp.carrera)&&(pProfeCurso[i].curso==arregloTemp.curso)&&(pProfeCurso[i].profe==arregloTemp.profe)) {
-		    	 this.msg={'color': '#ebebeb','display':'block','color':'#F58e25','text-align': 'center','font-size':'1em','margin-top':'2em' };
-		    	 this.profe ="";
-			     this.carrera="";
-			     this.curso="";
-			     this.estadoCarrera=true;
-			     this.estadoCurso=true;
-			     this.styleCarrera={'background-color': '#ebebeb'};
-			     this.styleCurso={'background-color': '#ebebeb'};; 
-		         estado=false;
-		         /** alertify.success("El profesor se asigno correctamente");**/
-		     };
-	  }; 
-	  
-	  if (estado==true) {
-		 	
-		 	      
-				  pProfeCurso.push(arregloTemp);
-				 
-				 this.profe ="";
-			     this.carrera="";
-			     this.curso="";
-			     this.estadoCarrera=true;
-			     this.estadoCurso=true;
-			     this.styleCarrera={'background-color': '#ebebeb'};
-			     this.styleCurso={'background-color': '#ebebeb'};; 
-			     this.msg={'display':'none'};
-			     /**alertify.log("El profesor ya está asignado a un curso");**/
-
-	};
-
-		console.log("aa");
-		alertify.success("El profesor se asigno correctamente");
+		var profesor= profe.profe;
+		var curso = profe.curso.id_curso;
+		if(profesor.trim()=='' || curso==undefined){
+			alertify.log("Debe completar todos los campos");
+		}else{
+			$http.post("/Proyecto_1/php/configuration/crea_usuarioxcurso.php", {
+				"id_curso" : curso,
+				"id_usuario" : profesor
+			}).
+			success(function(data, status) {
+				alertify.success("El profesor se asignó correctamente");
+				limpiar();
+			})
+			.
+			error(function(data, status) {
+				alertify.error("Error");
+			});
+		}
 	} //Fin guardarProfesor  
 
 	   	       
-});
+}]);
 
 
-app.controller("desasignarCurso", function(){
-
+app.controller("desasignarCurso", ['$scope', '$http', function($scope, $http){
+	var profe = this;
+	this.resultado=[];
+	this.muestraCursos=function(){
+		$http.post("/Proyecto_1/php/configuration/muestra_usuarioxcurso.php", {
+			"id_usuario" : profe.profe
+		}).success(function(data, status) {
+			console.log(data);
+			profe.resultado = data;
+		}).error(function(data, status) {
+			alertify.error("Error");
+		});
+	};
 	this.desProfesor=function(aProfeCurso,pCarrera,pCurso,pProfe){  
 
 		alertify.confirm("Desea desasignar este curso?", function (e) {
@@ -1500,52 +1492,24 @@ app.controller("desasignarCurso", function(){
 		        // user clicked "cancel"
 		    }
 		});
-
-
-
-
-		   //    	for (var i=0; i < aProfeCurso.length; i++) {
-					
-					// if ((aProfeCurso[i].carrera==pCarrera) && (aProfeCurso[i].curso==pCurso) && (aProfeCurso[i].profe==pProfe)) {
-					// 	     aProfeCurso.splice( i , 1 );
-					// } 
-					
-				 // };// FIn For
-
       	 	
     } //Fin desProfesor
 
-});
-	
-
-
-//---------------------------------------------------------------
-//Termina Alejandro Zuñiga
-
-
-
+}]);
 
 //********************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 //Controllers Keilyn Sibaja
 
 app.controller('agregarDocController',['$http', function($http){
-	var controller = this;
-		controller.documentos= [];
-
-		// var store = this;
-		// store.listaHistorial = [];
-		
-
-
-
-		$http.get('/proyecto_1/JSON/docs.json').success(function(data){
-			controller.documentos =data;
-		});
-
-		var f = new Date();
-
+	var store = this;
+		store.documentos= [];
+		var d = new Date();
 		this.addDoc={};
+		this.addDoc.curso;
+		this.addDoc.titulo;
+		this.addDoc.autor;
+		this.addDoc.fecha=d.getFullYear()+ "/" + (d.getMonth()+1)+ "/" +d.getDate();
 		this.resultado=false;
 		this.mostrarnombre='';
 		this.mostrarautor='';
@@ -1553,6 +1517,37 @@ app.controller('agregarDocController',['$http', function($http){
 		this.mostrarcarrera='';
 		this.mostrarcurso='';
 		this.mostrarvotacion=0;
+		
+		
+
+		
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 100);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 100);
+
+		// var store = this;
+		// store.listaHistorial = [];
+		
+	$http.post("/Proyecto_1/php/document/lista_docs.php", {}).
+	success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.documentos.push(data[i]);
+
+
+					}
+	}).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+	});  
+
+		//$http.get('/proyecto_1/JSON/docs.json').success(function(data){
+			//controller.documentos =data;
+		//});
+
+
 
 		this.validacionbuscar=function(){
 			var busCarrera=$('#busquedaCarrera').val(),
@@ -1601,46 +1596,82 @@ app.controller('agregarDocController',['$http', function($http){
 		}
 
 
-		this.validacionsubir=function(){
-			var input =  $("#exampleInputFile")[0].files[0],
+		this.validacionsubir=function(pUser){
+			var temp=true;
+            var tempPass="";
+            $(".miform").css("border","solid #ccc 1px");
+			validarCampo ($("#titulo"));
+			validarCampo ($("#autor"));
+			validarCampo ($("#addcarrera"));
+			validarCampo ($("#addcurso"));
+			validarCampo ($("#archivo"));
+			
+			
+		/*	
+			var input =  $("#archivo")[0].files[0],
 				subCarrera = document.getElementById('addcarrera').value,
 				subCurso = document.getElementById('addcurso').value;
 
 			if(input==undefined ||arguments[0]==undefined || arguments[1]==undefined || 
 				subCarrera=="" || subCurso==""){
 
-				document.getElementById('exampleInputFile').value ='';
+				document.getElementById('archivo').value ='';
 				subCarrera.value='Seleccione una Carrera';
 				subCurso.value='Seleccione un Curso';
 				alertify.log("Debe completar todos los campos");
 			}
-			else{
+			else{*/
+				
+				
+				
+				//this.addDoc.votacion=0;
+				//this.addDoc.fecha=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+				
+				//controller.documentos.push(this.addDoc);
+				//this.addDoc={};
+				if (temp){
+						var tempid=$("#archivo").val().replace(/C:\\fakepath\\/i, '');
+						
+						
+						this.miarchivo="storage/"+tempid;
+						alert(pUser+" - "+this.addDoc.curso+" - "+this.addDoc.autor+" - "+this.addDoc.titulo+" - "+this.addDoc.fecha+" - "+this.miarchivo);
+						$http.post("/Proyecto_1/php/document/subir_doc.php", {"id_usuario" : pUser ,"id_curso":this.addDoc.curso , "autor": this.addDoc.autor , "titulo":this.addDoc.titulo , "fecha":this.addDoc.fecha ,"archivo":this.miarchivo}).
+						success(function(data, status) {
+							$("#resetForm").attr("action","php/document/subir.php");
+						    $("#resetForm").submit(); 
+					         alertify.success("El documento se subio correctamente");
+						})
+						.
+						    error(function(data, status) {
+							alertify.error("Error al crear");
+						})
+						
+						 
+		                //php/document/subir.php  
+		                 this.addDoc={};
+               }else{
+               	   alertify.log("Debe completar todos los campos");
+               };
+             
+				//document.getElementById('archivo').value ='';
+				//subCarrera.value='Seleccione una Carrera';
 
-				this.addDoc.carrera=subCarrera;
-				this.addDoc.curso=subCurso;
-				this.addDoc.votacion=0;
-				this.addDoc.fecha=f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
-				controller.documentos.push(this.addDoc);
-				this.addDoc={};
-
-				document.getElementById('exampleInputFile').value ='';
-				subCarrera.value='Seleccione una Carrera';
-				subCurso.value='Seleccione un Curso';
-
-				alertify.success("El documento se subio correctamente");
-			}
+			//}
+			
+			
+			function validarCampo (pcampo) {
+		        	   var campo=pcampo.val();
+					  if (campo==null || campo.trim()=="" ) {
+					   	temp=false;
+					   	pcampo.css("border","solid #fa787e 1px");
+					   };
+		    };
 		}
 
-		setTimeout(function(){
-			$(".stars").rating();
-		}, 100);
-		setTimeout(function(){
-			$('.comment-stars .clear-rating').hide();
-		}, 100);
+		
 
 
 }]);
-
 app.controller('seccionDocumentosShow', function(){
 	
 	this.tab=2;
@@ -1808,7 +1839,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				 });   
 		}
 		else{
-			universidad.cursos = '';
+			store.cursos = '';
 		}
 
 	};
@@ -1817,6 +1848,52 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 //cambie el controlador a los mios para poder guardar cambios en el arreglo de post
 //Sergio Herrera 
 app.controller('buscarDocController',function(){//Controlador de mi seccion de Buscar Documento
+     this.busqueda="";
+     this.opc1=2;
+     this.cursoBus="";
+     
+     this.resetall=function(){
+        $("#doc_inpbuscardoc").val("");
+        $("#addcarrerabus").val("");
+        $("#addcursobus").val("");
+        this.busqueda="";
+        this.cursoBus="";
+        this.opc1=2;
+      }
+     
+        this.reset=function(){
+        $("#doc_inpbuscardoc").val("");
+        this.opc1=1;
+        this.busqueda="";
+        this.cursoBus="";
+        }
+     
+     this.busAvan=function(){
+        if (this.cursoBus!=""){ 
+        $("#doc_inpbuscardoc").val("");
+        this.opc1=1;
+        this.busqueda="";
+        
+    	}else{
+         
+    	this.opc1=2;
+    		
+    	} 
+     }
+     
+    this.bus=function(){
+       if (this.busqueda!=""){ 
+
+        this.opc1=0;
+        $("#addcarrerabus").val("");
+         $("#addcursobus").val("");
+         this.cursoBus="";
+    	}else{
+
+    	this.opc1=2;
+    		
+    	} 
+    }
 
 	//1=esconder 2=mostrar
 
@@ -1860,6 +1937,10 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 	// console.log("Entro Historial");
 		var store = this;
 		store.listaHistorialDes = [];
+		
+		$("#docnav").removeAttr("id");
+
+
 	
 
 

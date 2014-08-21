@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js" ng-controller="UserController as usuario"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Portal Cenfotec-Documentos</title>
   <meta name="description" content="">
@@ -13,10 +14,12 @@
   <link rel="stylesheet" href="css/vendor/star-rating.min.css"/>
   <link rel="stylesheet" href="css/vendor/alertify.core.css"/>
   <link rel="stylesheet" href="css/vendor/alertify.default.css"/>
+
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" href="css/style-documentos.css">
   <link rel="stylesheet" href="css/general.css"/>
   <link rel="stylesheet" href="css/configuration.css">
+  
 </head>
 
 <body>
@@ -30,21 +33,21 @@
       <project-side-nav></project-side-nav>
 
       <div class="main row" ng-controller='agregarDocController as add'>
-        
+ <!--       
           <section ng-show='show.tab===1'>
               <div class='doc_header'>
                 <h3 class="main-header">Documentos_</h3>
                 <p class="main-text">En esta sección usted podrá ver, descargar y calificar los documentos. También podrá hacer una búsqueda más específica del documento que desea ver.</p>
               </div>
-              <!--Busqueda de Documentos-->
+              <!--Busqueda de Documentos--> <!--
               <buscar-documento></buscar-documento>
-              <!--Top Documentos-->
+              <!--Top Documentos--> <!--
               <top-documento></top-documento>
 
           </section>
+-->
 
-
-          <section ng-show='show.tab===2'>
+          <section>
               <div class='doc_header'>
                 <h3 class="main-header">Documentos_</h3>
                 <p class="main-text">En esta sección usted <span ng-hide='usuario.user[cookieValue].tipo=="E"'>podrá subir documentos al sistema y </span>podrá visualizar su historial de descargas junto con los documentos que no se han calificado.</p>
@@ -60,6 +63,7 @@
       <project-footer></project-footer>
     </section>
   </div>
+
   <script src="js/vendor/angular.min.js"></script>
   <script src="js/vendor/jquery-1.11.0.min.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>

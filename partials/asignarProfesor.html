@@ -24,7 +24,7 @@
                   <!-- <select ng-disabled="profes.estadoCurso" class="form-control inhabilitarSlct" ng-style="profes.styleCurso" ng-model="profes.curso" ng-options="curso.id  as curso.nombreCurso for curso in conf.carreras[profes.carrera].cursos" required>
                   <option value="" >Seleccione un Curso</option>
                   </select> -->
-                  <select  ng-disabled="profes.estadoCurso" class="form-control inhabilitarSlct select-curso-asignaprofe" ng-model="conf.miCursoMC" ng-options="curso.nombre for curso in conf.cursosCarrera track by curso.id_curso" ng-change="conf.modifCurso()">
+                  <select  ng-disabled="profes.estadoCurso" class="form-control inhabilitarSlct select-curso-asignaprofe" ng-model="profes.curso" ng-options="curso.nombre for curso in conf.cursosCarrera track by curso.id_curso" ng-change="conf.modifCurso()">
                      <option value="" >Seleccione un Curso</option>
                   </select>
               </div>

@@ -79,8 +79,7 @@
 					"estado" : $('input:radio[name="estado-carrera"]:checked').attr('val')
 				}).
 				success(function(data, status) {
-					console.log(data);
-					alertify.success("La carrera se modifico correctamente");
+					alertify.success("La carrera se modificó correctamente");
 				})
 				.
 				error(function(data, status) {
@@ -93,7 +92,6 @@
 		  }//Fin FUncion
 		  this.selectCurso = function(){
 		  	var id_carrera = $('.select-carrera-modificarCurso').val();
-		  	console.log($('.select-carrera-modificarCurso').val());
 			$http.post("/Proyecto_1/php/global/muestra_cursos.php",{ 			
 				"id_carrera" : id_carrera
 			}).success(function(data, status) {
@@ -113,7 +111,6 @@
 			});
 		  };
 		  this.selectCurso3 = function(){
-		  	console.log('me llaman');
 		  	var id_carrera = $('.select-carrera-asignaest').val();
 			$http.post("/Proyecto_1/php/global/muestra_cursos.php",{ 			
 				"id_carrera" : id_carrera
@@ -200,7 +197,6 @@
 				"id_curso" : $('#modifIdCurso').val()
 			}).
 			success(function(data, status) {
-				console.log(data);
 				alertify.success("El curso se modifico correctamente");
 				limpiar();
 			})

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js" ng-controller="UserController as usuario"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Portal Cenfotec-Documentos</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/vendor/star-rating.min.css"/>
+  <link rel="stylesheet" href="css/vendor/alertify.core.css"/>
+  <link rel="stylesheet" href="css/vendor/alertify.default.css"/>
+
+  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/style-documentos.css">
+  <link rel="stylesheet" href="css/general.css"/>
+  <link rel="stylesheet" href="css/configuration.css">
+  
+</head>
+
+<body>
+  <div class="container">
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+    <section ng-controller='seccionDocumentosShow as show'>
+      <project-header></project-header>
+      <project-side-nav></project-side-nav>
+
+      <div class="main row" ng-controller='agregarDocController as add'>
+        
+          <section>
+              <div class='doc_header'>
+                <h3 class="main-header">Documentos_</h3>
+                <p class="main-text">En esta sección usted podrá ver, descargar y calificar los documentos. También podrá hacer una búsqueda más específica del documento que desea ver.</p>
+              </div>
+              <!--Busqueda de Documentos-->
+              <buscar-documento></buscar-documento>
+              <!--Top Documentos-->
+              <top-documento></top-documento>
+
+          </section>
+
+<!--
+          <section ng-show='show.tab===2'>
+              <div class='doc_header'>
+                <h3 class="main-header">Documentos_</h3>
+                <p class="main-text">En esta sección usted <span ng-hide='usuario.user[cookieValue].tipo=="E"'>podrá subir documentos al sistema y </span>podrá visualizar su historial de descargas junto con los documentos que no se han calificado.</p>
+              </div>
+              <!--subirDocumento--><!--
+              <subir-documento ng-hide='usuario.user[cookieValue].tipo=="E"'></subir-documento>
+              <!--Visualizar y votar documentos ya descargados--><!--
+              <historialdescargas-documento></historialdescargas-documento>
+          </section>
+        -->
+      </div> 
+
+      <project-footer></project-footer>
+    </section>
+  </div>
+
+  <script src="js/vendor/angular.min.js"></script>
+  <script src="js/vendor/jquery-1.11.0.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/star-rating.min.js"></script>
+  <script src="js/vendor/angular-cookies.min.js"></script>
+  <script src="js/vendor/star-rating.min.js"></script>
+  <script src="js/vendor/alertify.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+
+</body>
+</html>

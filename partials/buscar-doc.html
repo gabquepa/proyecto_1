@@ -3,26 +3,92 @@
             <div ng-controller='buscarDocController as buscarDoc'>
               <button class='btn-subir-down btn-blue' ng-click='buscarDoc.showBtn();'>Buscar Documento</button>
 
-              <div id='doc_subirdoc' class='cf' ng-show='buscarDoc.value===2'>
+              <div id='doc_subirdoc' class='cf'>
 
-                <section ng-controller='misCarreras-cursos as cyc' class="form-group div_docsubir">
-                    <span>Ingrese el criterio de búsqueda</span>
-                    <form name="forumSearch" ng-submit="forumSearch.$valid && add.validacionbuscar(busqueda)">
-                      <input class="form-control" type='text' ng-model='busqueda'placeholder='Busqueda' id='doc_inpbuscardoc'>
-                      <select id='busquedaCarrera' ng-mouseleave="cyc.selectCurso()" class="form-control carrera-select selectStyle" >
-                        <option val="">Seleccione una Carrera</option>
-                        <option  ng-repeat="carrera in cyc.carreras" val="{{carrera.id}}" >{{carrera.name}}</option>
-                      </select>
-                      <select id='busquedaCurso' class=" form-control select-curso selectStyle">
-                        <option val="">Seleccione un Curso</option>
-                        <option  ng-repeat="curso in cyc.cursos" val="{{curso.id}}">{{curso.name}}</option>
-                      </select>
-                      <button type="submit" class='btn-buscar'>Buscar</button>
+                <section ng-controller='misCarrerasDoc-cursos as cyc' class="form-group div_docsubir">
+ 
+                    <form class="clearfix" role="form" name="searchBlogs">	
+				 	<input ng-change="buscarDoc.bus()" class="form-control blogsearch" type='text' ng-model='buscarDoc.busqueda' placeholder='buscar' id="doc_inpbuscardoc"/>
+					<span class="linea"></span>	
+					</form>
+                    <form name="forumSearch">
+                    <h4>Búsqueda Avanzada</h4>
+                     <section ng-controller='misCarrerasDoc-cursos as cyc'>
+                    <select id='addcarrerabus' ng-model="miIDbus" ng-options="carre.id_carrera as carre.nombre for carre in cyc.carreras" ng-change="cyc.selectCurso(miIDbus)" class="select-carrera form-control miform">
+                      <option value="">Seleccione una Carrera</option>
+                   
+                    </select>
+                    <select id='addcursobus' ng-change="buscarDoc.busAvan()" ng-model="buscarDoc.cursoBus" ng-options="cursos.id_curso as cursos.nombre for cursos in cyc.curso" class="select-curso form-control selectStyle miform">
+                      <option value="">Seleccione un Curso</option>
+                     
+                    </select>
+                  </section>
+                      <button type="submit" id="borrar" class='btn-buscar' ng-click="buscarDoc.resetall()">Borrar Datos</button>
                     </form>
                 </section>
+                <div ng-show="buscarDoc.opc1==0">
+		                <h3>Resultados de Búsqueda</h3>
+		
+		                <div id='divDoc'>
+		                  
+			                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | filter:buscarDoc.busqueda " class='divDescarg cf' id="infoBus">
+				                <table id='tableDocBus'>
+				                    <td class='tbnombreBus'><a href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
+				
+				                    <td class='tbautorBus'><span class='doc_lispandoc'>{{top.autor}}</span></td>
+				                    
+				
+				                    <td class='tbfechaBus'><span class='doc_lispandoc'>{{top.fecha}}</span></td>
+				
+				                    <td class='tbCaliBus'><span class='doc_lispandoc'>Cantidad de Estrellas: {{top.calificacion}} </span></td>
+				                    	
+				                      <!--<div class="comment-stars">
+				                            <input   class="stars star-rating"  data-size="xs" type="number" value="{{top.calificacion}}" ng-disabled="true">
+				                      </div>
+				                    </td>-->
+				
+				                    <td class='tbcyc'></td>
+				                  </tr>
+				
+				                </table>
+		
+		                     </div>
+		                  
+		                </div>
               </div>
-
-                <div class='divdoc-buscado cf' ng-show='add.resultado===true'>
+              <div ng-show="buscarDoc.opc1==1">
+		                <h3>Resultados de Búsqueda {{buscarDoc.cursoBus}}</h3>
+		
+		                <div id='divDoc'>
+		                  
+			                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | filter:{id_curso:buscarDoc.cursoBus} " class='divDescarg cf' id="infoBus">
+				                <table id='tableDocBus'>
+				                    <td class='tbnombreBus'><a href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
+				
+				                    <td class='tbautorBus'><span class='doc_lispandoc'>{{top.autor}}</span></td>
+				                    
+				
+				                    <td class='tbfechaBus'><span class='doc_lispandoc'>{{top.fecha}}</span></td>
+				
+				                    <td class='tbCaliBus'><span class='doc_lispandoc'>Cantidad de Estrellas: {{top.calificacion}} </span></td>
+				                    	
+				                      <!--<div class="comment-stars">
+				                            <input   class="stars star-rating"  data-size="xs" type="number" value="{{top.calificacion}}" ng-disabled="true">
+				                      </div>
+				                    </td>-->
+				
+				                    <td class='tbcyc'></td>
+				                  </tr>
+				
+				                </table>
+		
+		                     </div>
+		                  
+		                </div>
+              </div>
+              </div>
+      
+              <!--  <div class='divdoc-buscado cf' ng-show='add.resultado===true'>
                     <h3 class='result'>Resultado:</h3>
                     <section class='imgdoc-buscado'>
                         <a href="doc-pdf/angularjs.pdf"><img src="img/btn-pdf.png"></a>
@@ -40,7 +106,7 @@
                 </div>
                 <section class='divdoc-buscado' ng-show='add.resultado===null'>
                   <h3  class='doc_lispandoc'>No hay resultados</h3>
-                </section>
+                </section>-->
             </div>
 </div>
       <!--Busqueda de Documentos-->
