@@ -3,7 +3,7 @@
             <div ng-controller='buscarDocController as buscarDoc'>
               <button class='btn-subir-down btn-blue' ng-click='buscarDoc.showBtn();'>Buscar Documento</button>
 
-              <div id='doc_subirdoc' class='cf'>
+              <div id='doc_subirdoc' class='cf' ng-show='buscarDoc.value===2'>
 
                 <section ng-controller='misCarrerasDoc-cursos as cyc' class="form-group div_docsubir">
  
@@ -33,7 +33,7 @@
 		                  
 			                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | filter:buscarDoc.busqueda " class='divDescarg cf' id="infoBus">
 				                <table id='tableDocBus'>
-				                    <td class='tbnombreBus'><a href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
+				                    <td class='tbnombreBus'><a ng-click="buscarDoc.historial(usuario.user[cookieValue].id_usuario,top.id_documento)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
 				
 				                    <td class='tbautorBus'><span class='doc_lispandoc'>{{top.autor}}</span></td>
 				                    
@@ -63,7 +63,7 @@
 		                  
 			                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | filter:{id_curso:buscarDoc.cursoBus} " class='divDescarg cf' id="infoBus">
 				                <table id='tableDocBus'>
-				                    <td class='tbnombreBus'><a href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
+				                    <td class='tbnombreBus'><a ng-click="buscarDoc.historial(usuario.user[cookieValue].id_usuario,top.id_documento)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
 				
 				                    <td class='tbautorBus'><span class='doc_lispandoc'>{{top.autor}}</span></td>
 				                    
