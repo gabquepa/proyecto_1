@@ -14,6 +14,7 @@
 		  <link rel="stylesheet" href="css/app.css"/>
 		  <link rel="stylesheet" href="css/general.css"/>
 		  <link rel="stylesheet" href="css/user-blog1.css"/>
+		  <link rel="stylesheet" href="css/user-blog2.css"/>
 		  <style id="styleTemp"></style>
     </head>
     
@@ -24,11 +25,11 @@
     		 <project-side-nav></project-side-nav>
 
 			  <div class="main row" ng-controller="UserController as usuario">
-			     <div class="userblog">
-			     	<blog-title1></blog-title1>  
-			     	<blog-button></blog-button>      
-			        <user-blog1 ng-show="tabs.isSelectedIn(1)"></user-blog1>
-			        <user-blog2 ng-show="tabs.isSelectedIn(2)"></user-blog2>
+			      <div class="userblogVisit" ng-controller="buscarUser as buscarBlog">  
+			      	<blog-title2></blog-title2>       
+			        <blog-button2 ng-show="tabs.isSelectedIn2(3)"></blog-button2> 
+			        <user-blog3 ng-show="tabs.isSelectedIn2(3)"></user-blog3>
+			        <user-blog4 ng-show="tabs.isSelectedIn2(4)"></user-blog4>
 			     </div>
 			  </div> 
 	      	

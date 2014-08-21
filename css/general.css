@@ -198,6 +198,11 @@ body{
   width: 80%;
   margin: 0 auto;
 }
+
+#star{
+  width: 80%;
+  margin: 0 auto;
+}
 .side-nav h3{
   color: white;
   font-size: 15px;

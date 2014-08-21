@@ -13,7 +13,9 @@
 		<section class="infoprofile clearfix">
 			<figure class="imgsprofile clearfix">
 				<img src="/Proyecto_1/img/avatar.png"/>
-				<img src="/Proyecto_1/img/sample-stars.png"/>
+				<div class="comment-stars">
+                  <input class="stars star-rating" min="0" max="100" data-size="xs" disabled type="number" value="{{usuario.user[cookieValue].calificacion}}"> 
+                 </div>
 				<figcaption>
 					Candidad de Votos: {{usuario.user[cookieValue].calificacion}}
 				</figcaption>
@@ -22,15 +24,21 @@
 				<label>Nombre:</label>
 				<span>{{usuario.user[cookieValue].nombre}}</span>
 				
-	
-				<label>{{usuario.user[cookieValue].carrera}}</label>
 			<!--	ng-repeat="blog in usuario.listaPost | filter:{id_usuario:usuario.user[cookieValue].id_usuario}"> -->
-				<ul >
-					<li ng-repeat="curso in perfil.cursosDeUsuario">
-						{{curso.id_curso}}
+				<ol>
+					
+					<li ng-style="{'list-style-type': 'none'}" ng-repeat="info in perfil.carreraDeusuario | filter:{id_usuario:usuario.user[cookieValue].id_usuario} | orderBy:'carrera'">
+						<label>Carerra:</label>
+						<span>{{info.carrera}}</span>
+						<label>Cursos:</label>
+						<ul>
+							<li ng-repeat="curso in perfil.cursosDeUsuario | filter:{carrera:info.carrera} | filter:{id_usuario:usuario.user[cookieValue].id_usuario}| orderBy:'curso'">
+							{{curso.curso}}
+						    </li>
+					    </ul>
 					</li>
 
-				</ul>
+				</ol>
 			</aside>
 		</section>
 		

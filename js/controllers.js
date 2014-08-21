@@ -5,6 +5,10 @@ var app = angular.module('controllers-project',[]);
 
 /************** Route Controllers **************/
 app.controller('routeController', function($scope, $cookieStore) {
+	
+	 
+	
+	
 	var tipo = $cookieStore.get('usuarioTipo');
 	if(tipo==='p' || tipo==='d' || tipo==='r' ){
 		$('.headForum').attr('href', '/Proyecto_1/forum-profesor.html');
@@ -21,6 +25,8 @@ app.controller('routeController', function($scope, $cookieStore) {
 	if(window.location.pathname === '/Proyecto_1/user-blog1.html'){
 		$('#blogsUser1').addClass('active');
 	}
+	
+	   
 	
 });
 
@@ -2110,6 +2116,8 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 // }]);
 
 ////////////////////////////INICIA BLOGS/////////////////////////////
+//controlador recupera cuenta de ususarios
+
 
 app.controller('UserController',['$http',function($http){
 		var store = this;
@@ -2119,7 +2127,7 @@ app.controller('UserController',['$http',function($http){
 		this.listaCarreras={};
 		//store.listaComentarioPost = [];
 		
-
+    
 	$http.post("/Proyecto_1/php/lista_usuarios.php", {}).
 				 success(function(data, status) {
 				   for (var i=0; i<data.length; i++) {
@@ -2343,12 +2351,18 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
 		var store = this;
 		store.cursosDeUsuario = [];
+		store.carreraDeusuario = [];
 		var store = this;
 		store.carreras = [];
 		var store = this;
 		store.lista_cursos = [];
-		
-
+		this.carrera="";
+        setTimeout(function(){
+			$(".stars").rating();
+		}, 400);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 500);
 		
 
 		$http.post("/Proyecto_1/php/blog/cursosDeUsuario.php", {}).
@@ -2363,33 +2377,21 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				 error(function(data, status) {
 				  alertify.error("Ocurrio un error");
 				 });
-
-		$http.post("/Proyecto_1/php/blog/lista_cursos.php", {}).
+				 
+		$http.post("/Proyecto_1/php/blog/carreraDeusuario.php", {}).
 				 success(function(data, status) {
 				   for (var i=0; i<data.length; i++) {
 
-				   	store.lista_cursos.push(data[i]);
+				   	store.carreraDeusuario.push(data[i]);
 				   
                     
 				  }
 				 }).
 				 error(function(data, status) {
 				  alertify.error("Ocurrio un error");
-				 });
+		});
 
-
-
-
-		$http.post("/Proyecto_1/php/blog/info_carreras.php", {}).
-				 success(function(data, status) {
-				   for (var i=0; i<data.length; i++) {
-				   	store.carreras.push(data[i]);
-				    
-				   }
-				 }).
-				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
-				 });
+		
 
 		this.tabperfil = 1;
 		console.log("Entro a Perfil");
@@ -2489,13 +2491,14 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	app.controller('controlBlog',['$http',function($http){
 		var store = this;
 		store.listaComentarioPost=[];
-		this.tabblog ="b1";
+		//this.tabblog ="b1";
 		this.tabblogIn =1;
 		this.blogtemp =0;
 		this.DBblogtemp=0;
 		this.value=false;
 		this.guardar={'display':'none'};
 		this.editar="";
+		this.tabblogIn2 =3;
 		
 		if (this.tabblog=="b1") { 
 				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
@@ -2506,8 +2509,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				$("#styleTemp").html("");	
 				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
 			} else{
-				$("#styleTemp").html("");
-				$("#styleTemp").append('#blogsUser2{background-color: #196A95 !important;}');	
+				$("#blogsUser2").css('background-color',' #196A95 !important;');	
 				this.tabblogIn =3;
 			};
 			//limpiarForms();
@@ -2519,6 +2521,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
             $("#divEditarPost").show(); 
             $("#newPost").val()       
             this.tabblogIn = getTab;
+            this.tabblogIn2 = getTab;
+            
            for (var i=0; i < puser.length; i++) {
 			  if (puser[i].id_post==pidBlog) {
 			  	 this.blogtemp =i;
@@ -2547,6 +2551,10 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		
 		this.isSelectedIn = function(checkedTab){
 			return this.tabblogIn ===checkedTab;	
+		};
+		this.isSelectedIn2 = function(checkedTab){
+			
+			return this.tabblogIn2 ===checkedTab;	
 		};
 
 		this.miBlog = function(){
@@ -2597,6 +2605,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		            	alertify.log("Debe guardar los cambios" + "<br>" + "realizados en el post");
 		            } else{
 		            	this.tabblogIn = getTab;
+		            	this.tabblogIn2 = getTab;
 		            };
 		    };
 		
