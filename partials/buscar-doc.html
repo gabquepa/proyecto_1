@@ -13,7 +13,7 @@
 					</form>
                     <form name="forumSearch">
                     <h4>Búsqueda Avanzada</h4>
-                     <section ng-controller='misCarrerasDoc-cursos as cyc'>
+                     <section>
                     <select id='addcarrerabus' ng-model="miIDbus" ng-options="carre.id_carrera as carre.nombre for carre in cyc.carreras" ng-change="cyc.selectCurso(miIDbus)" class="select-carrera form-control miform">
                       <option value="">Seleccione una Carrera</option>
                    
@@ -33,19 +33,20 @@
 		                  
 			                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | filter:buscarDoc.busqueda " class='divDescarg cf' id="infoBus">
 				                <table id='tableDocBus'>
-				                    <td class='tbnombreBus'><a ng-click="buscarDoc.historial(usuario.user[cookieValue].id_usuario,top.id_documento)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
+				                    <td class='tbnombreBus'><a ng-click="buscarDoc.historial(usuario.user[cookieValue].id_usuario,top.id_documento,historial.listaHistorialDes)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
 				
 				                    <td class='tbautorBus'><span class='doc_lispandoc'>{{top.autor}}</span></td>
 				                    
 				
 				                    <td class='tbfechaBus'><span class='doc_lispandoc'>{{top.fecha}}</span></td>
-				
-				                    <td class='tbCaliBus'><span class='doc_lispandoc'>Cantidad de Estrellas: {{top.calificacion}} </span></td>
-				                    	
-				                      <!--<div class="comment-stars">
-				                            <input   class="stars star-rating"  data-size="xs" type="number" value="{{top.calificacion}}" ng-disabled="true">
+				<!--
+				                    <td class='tbCaliBus'><span class='doc_lispandoc'>Cantidad de Votos: {{top.calificacion}} </span></td>
+				                  -->  	
+				                  <td class='tbCaliBus'>
+				                      <div  class="comment-stars">
+				                            <input   class="stars star-rating"  data-size="xs" min="0" max="100" type="number" value="{{top.calificacion}}" ng-disabled="true">
 				                      </div>
-				                    </td>-->
+				                    </td>
 				
 				                    <td class='tbcyc'></td>
 				                  </tr>
@@ -57,25 +58,25 @@
 		                </div>
               </div>
               <div ng-show="buscarDoc.opc1==1">
-		                <h3>Resultados de Búsqueda {{buscarDoc.cursoBus}}</h3>
+		                <h3>Resultados de Búsqueda</h3>
 		
 		                <div id='divDoc'>
 		                  
 			                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | filter:{id_curso:buscarDoc.cursoBus} " class='divDescarg cf' id="infoBus">
 				                <table id='tableDocBus'>
-				                    <td class='tbnombreBus'><a ng-click="buscarDoc.historial(usuario.user[cookieValue].id_usuario,top.id_documento)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
+				                    <td class='tbnombreBus'><a ng-click="buscarDoc.historial(usuario.user[cookieValue].id_usuario,top.id_documento,historial.listaHistorialDes)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
 				
 				                    <td class='tbautorBus'><span class='doc_lispandoc'>{{top.autor}}</span></td>
 				                    
 				
 				                    <td class='tbfechaBus'><span class='doc_lispandoc'>{{top.fecha}}</span></td>
 				
-				                    <td class='tbCaliBus'><span class='doc_lispandoc'>Cantidad de Estrellas: {{top.calificacion}} </span></td>
-				                    	
-				                      <!--<div class="comment-stars">
+				                    <!--<span class='doc_lispandoc'>Cantidad de Estrellas: {{top.calificacion}} </span></td>
+				                   --><td class='tbCaliBus'>
+				                      <div class="comment-stars">
 				                            <input   class="stars star-rating"  data-size="xs" type="number" value="{{top.calificacion}}" ng-disabled="true">
 				                      </div>
-				                    </td>-->
+				                    </td>
 				
 				                    <td class='tbcyc'></td>
 				                  </tr>

@@ -1531,6 +1531,7 @@ app.controller('agregarDocController',['$http', function($http){
 		setTimeout(function(){
 			$(".stars").rating();
 		}, 100);
+		
 		setTimeout(function(){
 			$('.comment-stars .clear-rating').hide();
 		}, 100);
@@ -1539,17 +1540,26 @@ app.controller('agregarDocController',['$http', function($http){
 		// store.listaHistorial = [];
 		
 		
-	this.historial=function(puser,iddoc){
-           
-          $http.post("/Proyecto_1/php/document/subir_historial.php", {"id_usuario" : puser ,"id_documento":iddoc}).
-						success(function(data, status) {
-					         alertify.success("El documento se subio correctamente");
-						})
-						.
-						    error(function(data, status) {
-							alertify.error("Error al crear");
-		})
-
+	this.historial=function(puser,iddoc,arreglo){
+     	 var temp=true;
+		 
+		 for (var i=0; i < arreglo.length; i++) {
+			 if (arreglo[i].id_usuario==puser && arreglo[i].id_documento==iddoc) {
+                 temp=false;   
+			 }
+		 };    
+	     
+	    if (temp) {
+	     	 $http.post("/Proyecto_1/php/document/subir_historial.php", {"id_usuario" : puser ,"id_documento":iddoc}).
+									success(function(data, status) {
+								         alertify.success("El documento se descargó correctamente");
+									})
+									.
+									 error(function(data, status) {
+								     alertify.error("Error al crear");
+		     })
+	     };
+        
      }
      	
 		
@@ -1652,25 +1662,37 @@ app.controller('agregarDocController',['$http', function($http){
 				//controller.documentos.push(this.addDoc);
 				//this.addDoc={};
 				if (temp){
-						var tempid=$("#archivo").val().replace(/C:\\fakepath\\/i, '');
+					var check=true;
+					var tempid=$("#archivo").val().replace(/C:\\fakepath\\/i, '');
+					this.miarchivo="storage/"+tempid;
+					
+					for (var i=0; i < store.documentos.length; i++) {
+							 if (store.documentos[i].archivo==this.miarchivo) {
+							 	check=false;
+							 } 
+					};
+					if (check){			
+							
+								$http.post("/Proyecto_1/php/document/subir_doc.php", {"id_usuario" : pUser ,"id_curso":this.addDoc.curso , "autor": this.addDoc.autor , "titulo":this.addDoc.titulo , "fecha":this.addDoc.fecha ,"archivo":this.miarchivo}).
+								success(function(data, status) {
+									$("#resetForm").attr("action","php/document/subir.php");
+								    $("#resetForm").submit(); 
+							         alertify.success("El documento se subio correctamente");
+								})
+								.
+								    error(function(data, status) {
+									alertify.error("Error al crear");
+								})
+								
+								//php/document/subir.php  
+				                 this.addDoc={};
+								
+					}else{
+						alertify.log("Debe de cambiar el nombre del archivo antes de subirlo");
+						alertify.log("Ya existe un archivo con este nombre: "+this.miarchivo);
 						
-						
-						this.miarchivo="storage/"+tempid;
-						alert(pUser+" - "+this.addDoc.curso+" - "+this.addDoc.autor+" - "+this.addDoc.titulo+" - "+this.addDoc.fecha+" - "+this.miarchivo);
-						$http.post("/Proyecto_1/php/document/subir_doc.php", {"id_usuario" : pUser ,"id_curso":this.addDoc.curso , "autor": this.addDoc.autor , "titulo":this.addDoc.titulo , "fecha":this.addDoc.fecha ,"archivo":this.miarchivo}).
-						success(function(data, status) {
-							$("#resetForm").attr("action","php/document/subir.php");
-						    $("#resetForm").submit(); 
-					         alertify.success("El documento se subio correctamente");
-						})
-						.
-						    error(function(data, status) {
-							alertify.error("Error al crear");
-						})
-						
-						 
-		                //php/document/subir.php  
-		                 this.addDoc={};
+					}			 
+				                
                }else{
                	   alertify.log("Debe completar todos los campos");
                };
@@ -1873,18 +1895,28 @@ app.controller('buscarDocController',['$http',function($http){//Controlador de m
      this.busqueda="";
      this.opc1=2;
      this.cursoBus="";
+     var temp=true;
      
-     this.historial=function(puser,iddoc){
-           
-          $http.post("/Proyecto_1/php/document/subir_historial.php", {"id_usuario" : puser ,"id_documento":iddoc}).
-						success(function(data, status) {
-					         alertify.success("El documento se subio correctamente");
-						})
-						.
-						    error(function(data, status) {
-							alertify.error("Error al crear");
-		})
-
+     this.historial=function(puser,iddoc,arreglo){
+     	 var temp=true;
+		 
+		 for (var i=0; i < arreglo.length; i++) {
+			 if (arreglo[i].id_usuario==puser && arreglo[i].id_documento==iddoc) {
+                 temp=false;   
+			 }
+		 };    
+	     
+	    if (temp) {
+	     	 $http.post("/Proyecto_1/php/document/subir_historial.php", {"id_usuario" : puser ,"id_documento":iddoc}).
+									success(function(data, status) {
+								         alertify.success("El documento se descargó correctamente");
+									})
+									.
+									 error(function(data, status) {
+								     alertify.error("Error al crear");
+		     })
+	     };
+        
      }
      
      this.resetall=function(){
@@ -1980,13 +2012,13 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 		$("#docnav").removeAttr("id");
 
 
-	    this.getVal= function (pvalor,iddoc) {
+	    this.getVal= function (pvalor,piddoc) {
 		     var temp=0;
 		           
 		            temp=$("#"+pvalor).val();
-		             alert(pvalor+" "+iddoc+" "+temp);
+		            
 		             
-		       $http.post("/Proyecto_1/php/document/modifica_dochist.php", {"idhd" : pvalor ,"calificacion" : temp ,"id_documento" : iddoc }).
+		       $http.post("/Proyecto_1/php/document/modifica_dochist.php", {"idhd" : pvalor ,"calificacion" : temp ,"id_documento" : piddoc }).
 						success(function(data, status) {
 					         alertify.success("El documento se subio correctamente");
 					         window.location.replace('/Proyecto_1/documentos.html');

@@ -5,16 +5,17 @@
                 <div id='divDoc'>
                   <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | limitTo:10 " class='divDescarg cf'>
                     <section class='imgDescarg'>
-                        <a href="{{top.archivo}}" target="_blank"><img src="img/btn-pdf.png"></a>
+                        <a ng-click="add.historial(usuario.user[cookieValue].id_usuario,top.id_documento,historial.listaHistorialDes)" href="{{top.archivo}}" target="_blank"><img src="img/btn-pdf.png"></a>
                         <div class="comment-stars">
-                          <input class="stars star-rating" data-size="xs" disabled type="number" value="{{top.calificacion}}">
+                          <input class="stars star-rating" min="0" max="100" data-size="xs" disabled type="number" value="{{top.calificacion}}">
+                          
                         </div>
                         
                     </section>
                     <section class='infoDescarg'>
                     	<span class='doc_lispandoc'>Carrera: {{top.carrera}}</span>
                     	<span class='doc_lispandoc'>Curso: {{top.curso}}</span>
-                        <span class='doc_lispandoc'>Nombre: <a ng-click="add.historial(usuario.user[cookieValue].id_usuario,top.id_documento)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></span>
+                        <span class='doc_lispandoc'>Nombre: <a ng-click="add.historial(usuario.user[cookieValue].id_usuario,top.id_documento,historial.listaHistorialDes)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></span>
                         <span class='doc_lispandoc'>Autor: {{top.autor}}</span>
                         <span class='doc_lispandoc'>Fecha: {{top.fecha}}</span>
                     </section>
