@@ -1027,7 +1027,7 @@ app.controller("modificarUserController", ['$scope', '$http', function($scope, $
          var correoEncontrado = $('#correoEncontrado').val();
          var passwordEncontrado = $('#passwordEncontrado').val();
          var genero = $("input:radio[name=genero]:checked").val();
-         var tipo = $("input:radio[name=tipoUsuario]:checked").val();
+         var tipo = $("input:radio[name=tipoUsuario]:checked").attr('val');
          var id = $('#id-usuario-mod').val();
 
          if(nombreEncontrado.trim() == '' || apellidoEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ){
@@ -1100,9 +1100,9 @@ app.controller("inhabilitarUserController",['$scope', '$http', function($scope, 
 	this.inaUser = function(){
 		var estado,
 			id=$('#id-usuario-in').val();
-	 	if($("input:radio[name=estado]:checked").val() === "activo"){
+	 	if($("input:radio[name=estadoIU]:checked").attr('val')=== "activo"){
 	 		estado = 1;
-	 	}else if ($("input:radio[name=estado]:checked").val() === "inactivo"){
+	 	}else if ($("input:radio[name=estadoIU]:checked").attr('val') === "inactivo"){
 	 		estado = 3;
 	 	}
 
@@ -1195,7 +1195,7 @@ app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
 		alertify.error("Error");
 	});
 	this.cambiarRespuesta = function(){
-		var permitir=$("input:radio[name=estado]:checked").val()
+		var permitir=$("input:radio[name=estadoRF]:checked").val();
 	 	$http.post("/Proyecto_1/php/configuration/ver_nombre_foro.php", { "ver_nombres" : permitir
 		}).
 		success(function(data, status) {
