@@ -1,17 +1,17 @@
 <div ng-controller='historialDesController as historial'>
                 <h3>Historial de Descargas</h3>
                 <table id='tableDoc'>
-                  <tr ng-repeat="documento in historial.listaHistorialDes | orderBy: 'calificacion' ">
+                  <tr ng-repeat="documento in historial.listaHistorialDes | orderBy: 'calificacion' | filter:{id_usuario:usuario.user[cookieValue].id_usuario}">
                     <td class='tbnombre'><a href="{{documento.archivo}}" target="_blank">{{documento.titulo}}</a></td>
 
-                    <td class='tbnombre'><a href="#">{{documento.nombre}}</a></td>
-
                     <td class='tbautor'><span class='doc_lispandoc'>{{documento.autor}}</span></td>
+                    
 
                     <td class='tbfecha'><span class='doc_lispandoc'>{{documento.fecha}}</span></td>
 
                     <td>
                       <div class="comment-stars">
+            
                           <input   class="stars star-rating"  data-size="xs" type="number" value="{{documento.calificacion}}" ng-disabled="historial.estrellaValor(documento.calificacion)">
                       </div>
                     </td>

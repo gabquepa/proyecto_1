@@ -4,21 +4,21 @@
             <button class='btn-subir-down btn-blue' ng-click='subirDoc.showBtn();'>Subir Documento</button>
 
             <div id='doc_subirdoc' class='cf' ng-show='subirDoc.value===2'>
-             <form class="form-group div_docsubir" name='addDocForm' ng-submit='addDocForm.$valid && add.validacionsubir(usuario.user[cookieValue].id_usuario); ' method="post" action="" enctype="multipart/form-data" id='resetForm'> 
-                  <input class="form-control" type='text' placeholder='Titulo' ng-model='add.addDoc.titulo'>
-                  <input class="form-control" type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
+             <form class="form-group div_docsubir " name='addDocForm' ng-submit='addDocForm.$valid && add.validacionsubir(usuario.user[cookieValue].id_usuario); ' method="post" action="" enctype="multipart/form-data" id='resetForm'> 
+                  <input id="titulo" class="form-control miform" type='text' placeholder='Titulo' ng-model='add.addDoc.titulo'>
+                  <input id="autor" class="form-control miform" type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
                   <section ng-controller='misCarrerasDoc-cursos as cyc'>
-                    <select id='addcarrera' ng-model="miID" ng-options="carre.id_carrera as carre.nombre for carre in cyc.carreras" ng-change="cyc.selectCurso(miID)" class="select-carrera form-control">
+                    <select id='addcarrera' ng-model="miID" ng-options="carre.id_carrera as carre.nombre for carre in cyc.carreras" ng-change="cyc.selectCurso(miID)" class="select-carrera form-control miform">
                       <option value="">Seleccione una Carrera</option>
                    
                     </select>
-                    <select id='addcurso' ng-model="add.addDoc.curso" ng-options="cursos.id_curso as cursos.nombre for cursos in cyc.curso" class="select-curso form-control selectStyle">
+                    <select id='addcurso' ng-model="add.addDoc.curso" ng-options="cursos.id_curso as cursos.nombre for cursos in cyc.curso" class="select-curso form-control selectStyle miform">
                       <option value="">Seleccione un Curso</option>
                      
                     </select>
                   </section>
                   
-                    <input  type="file" name="archivo" id="archivo" accept=".pdf" >
+                    <input  type="file" name="archivo" id="archivo" accept=".pdf" class="miform">
                   
                     <input  type='submit'value='Subir' id='btn-subir'>
               </form>

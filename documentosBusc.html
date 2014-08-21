@@ -33,31 +33,31 @@
       <project-side-nav></project-side-nav>
 
       <div class="main row" ng-controller='agregarDocController as add'>
- <!--       
-          <section ng-show='show.tab===1'>
+        
+          <section>
               <div class='doc_header'>
                 <h3 class="main-header">Documentos_</h3>
                 <p class="main-text">En esta sección usted podrá ver, descargar y calificar los documentos. También podrá hacer una búsqueda más específica del documento que desea ver.</p>
               </div>
-              <!--Busqueda de Documentos--> <!--
+              <!--Busqueda de Documentos-->
               <buscar-documento></buscar-documento>
-              <!--Top Documentos--> <!--
+              <!--Top Documentos-->
               <top-documento></top-documento>
 
           </section>
--->
 
-          <section>
+<!--
+          <section ng-show='show.tab===2'>
               <div class='doc_header'>
                 <h3 class="main-header">Documentos_</h3>
                 <p class="main-text">En esta sección usted <span ng-hide='usuario.user[cookieValue].tipo=="E"'>podrá subir documentos al sistema y </span>podrá visualizar su historial de descargas junto con los documentos que no se han calificado.</p>
               </div>
-              <!--subirDocumento-->
+              <!--subirDocumento--><!--
               <subir-documento ng-hide='usuario.user[cookieValue].tipo=="E"'></subir-documento>
-              <!--Visualizar y votar documentos ya descargados-->
+              <!--Visualizar y votar documentos ya descargados--><!--
               <historialdescargas-documento></historialdescargas-documento>
           </section>
-        
+        -->
       </div> 
 
       <project-footer></project-footer>

@@ -1391,28 +1391,9 @@ app.controller("desasignarCurso", ['$scope', '$http', function($scope, $http){
 //Controllers Keilyn Sibaja
 
 app.controller('agregarDocController',['$http', function($http){
-	var controller = this;
-		controller.documentos= [];
-		
-		setTimeout(function(){
-			$(".stars").rating();
-		}, 100);
-		setTimeout(function(){
-			$('.comment-stars .clear-rating').hide();
-		}, 100);
-
-		// var store = this;
-		// store.listaHistorial = [];
-		
-
-
-
-		//$http.get('/proyecto_1/JSON/docs.json').success(function(data){
-			//controller.documentos =data;
-		//});
-
+	var store = this;
+		store.documentos= [];
 		var d = new Date();
-
 		this.addDoc={};
 		this.addDoc.curso;
 		this.addDoc.titulo;
@@ -1425,6 +1406,36 @@ app.controller('agregarDocController',['$http', function($http){
 		this.mostrarcarrera='';
 		this.mostrarcurso='';
 		this.mostrarvotacion=0;
+		
+		
+
+		
+		setTimeout(function(){
+			$(".stars").rating();
+		}, 100);
+		setTimeout(function(){
+			$('.comment-stars .clear-rating').hide();
+		}, 100);
+
+		// var store = this;
+		// store.listaHistorial = [];
+		
+	$http.post("/Proyecto_1/php/document/lista_docs.php", {}).
+	success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.documentos.push(data[i]);
+
+
+					}
+	}).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+	});  
+
+		//$http.get('/proyecto_1/JSON/docs.json').success(function(data){
+			//controller.documentos =data;
+		//});
+
 
 
 		this.validacionbuscar=function(){
@@ -1475,6 +1486,16 @@ app.controller('agregarDocController',['$http', function($http){
 
 
 		this.validacionsubir=function(pUser){
+			var temp=true;
+            var tempPass="";
+            $(".miform").css("border","solid #ccc 1px");
+			validarCampo ($("#titulo"));
+			validarCampo ($("#autor"));
+			validarCampo ($("#addcarrera"));
+			validarCampo ($("#addcurso"));
+			validarCampo ($("#archivo"));
+			
+			
 		/*	
 			var input =  $("#archivo")[0].files[0],
 				subCarrera = document.getElementById('addcarrera').value,
@@ -1489,7 +1510,7 @@ app.controller('agregarDocController',['$http', function($http){
 				alertify.log("Debe completar todos los campos");
 			}
 			else{*/
-			
+				
 				
 				
 				//this.addDoc.votacion=0;
@@ -1497,29 +1518,43 @@ app.controller('agregarDocController',['$http', function($http){
 				
 				//controller.documentos.push(this.addDoc);
 				//this.addDoc={};
-				var tempid=$("#archivo").val().replace(/C:\\fakepath\\/i, '');
-				
-				
-				this.miarchivo="storage/"+tempid;
-				alert(pUser+" - "+this.addDoc.curso+" - "+this.addDoc.autor+" - "+this.addDoc.titulo+" - "+this.addDoc.fecha+" - "+this.miarchivo);
-				$http.post("/Proyecto_1/php/document/subir_doc.php", {"id_usuario" : pUser ,"id_curso":this.addDoc.curso, "autor": this.addDoc.autor, "titulo":this.addDoc.titulo, "fecha":this.addDoc.fecha,"archivo":this.miarchivo}).
-				success(function(data, status) {
-			         alertify.success("El documento se subio correctamente");
-				 }).
-				  error(function(data, status) {
-				  alertify.error("Ocurrio un error");
-				 }); 
-				 $("#resetForm").attr("action","php/document/subir.php");
-				 $("#resetForm").submit(); 
-				 
-                //php/document/subir.php  
-                 this.addDoc={};
-                 
-                
+				if (temp){
+						var tempid=$("#archivo").val().replace(/C:\\fakepath\\/i, '');
+						
+						
+						this.miarchivo="storage/"+tempid;
+						alert(pUser+" - "+this.addDoc.curso+" - "+this.addDoc.autor+" - "+this.addDoc.titulo+" - "+this.addDoc.fecha+" - "+this.miarchivo);
+						$http.post("/Proyecto_1/php/document/subir_doc.php", {"id_usuario" : pUser ,"id_curso":this.addDoc.curso , "autor": this.addDoc.autor , "titulo":this.addDoc.titulo , "fecha":this.addDoc.fecha ,"archivo":this.miarchivo}).
+						success(function(data, status) {
+							$("#resetForm").attr("action","php/document/subir.php");
+						    $("#resetForm").submit(); 
+					         alertify.success("El documento se subio correctamente");
+						})
+						.
+						    error(function(data, status) {
+							alertify.error("Error al crear");
+						})
+						
+						 
+		                //php/document/subir.php  
+		                 this.addDoc={};
+               }else{
+               	   alertify.log("Debe completar todos los campos");
+               };
+             
 				//document.getElementById('archivo').value ='';
 				//subCarrera.value='Seleccione una Carrera';
 
 			//}
+			
+			
+			function validarCampo (pcampo) {
+		        	   var campo=pcampo.val();
+					  if (campo==null || campo.trim()=="" ) {
+					   	temp=false;
+					   	pcampo.css("border","solid #fa787e 1px");
+					   };
+		    };
 		}
 
 		
@@ -1693,7 +1728,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				 });   
 		}
 		else{
-			universidad.cursos = '';
+			store.cursos = '';
 		}
 
 	};
@@ -1702,6 +1737,52 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 //cambie el controlador a los mios para poder guardar cambios en el arreglo de post
 //Sergio Herrera 
 app.controller('buscarDocController',function(){//Controlador de mi seccion de Buscar Documento
+     this.busqueda="";
+     this.opc1=2;
+     this.cursoBus="";
+     
+     this.resetall=function(){
+        $("#doc_inpbuscardoc").val("");
+        $("#addcarrerabus").val("");
+        $("#addcursobus").val("");
+        this.busqueda="";
+        this.cursoBus="";
+        this.opc1=2;
+      }
+     
+        this.reset=function(){
+        $("#doc_inpbuscardoc").val("");
+        this.opc1=1;
+        this.busqueda="";
+        this.cursoBus="";
+        }
+     
+     this.busAvan=function(){
+        if (this.cursoBus!=""){ 
+        $("#doc_inpbuscardoc").val("");
+        this.opc1=1;
+        this.busqueda="";
+        
+    	}else{
+         
+    	this.opc1=2;
+    		
+    	} 
+     }
+     
+    this.bus=function(){
+       if (this.busqueda!=""){ 
+
+        this.opc1=0;
+        $("#addcarrerabus").val("");
+         $("#addcursobus").val("");
+         this.cursoBus="";
+    	}else{
+
+    	this.opc1=2;
+    		
+    	} 
+    }
 
 	//1=esconder 2=mostrar
 
@@ -1745,6 +1826,10 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 	// console.log("Entro Historial");
 		var store = this;
 		store.listaHistorialDes = [];
+		
+		$("#docnav").removeAttr("id");
+
+
 	
 
 
