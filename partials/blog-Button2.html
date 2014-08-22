@@ -3,10 +3,10 @@
 	</div>
 	<div id="srchBlog" class="contBlog1 panel-collapse collapse.in" >
 	 	<form class="formAddBlog clearfix" role="form" name="searchBlogs">	
-	 	<input type="search" id="searchBlog" class="form-control blogsearch" placeholder="Buscar" ng-model="buscarBlog.user" ng-change="buscarBlog.searchUser(usuario.user)"/>
+	 	<input type="search" id="searchBlog" class="form-control blogsearch" placeholder="Buscar" ng-model="buscarBlog.user" ng-change="buscarBlog.searchUser()"/>
 			<span class="linea"></span>	
 		</form>
-	 	<form class="formAddBlog clearfix" role="form" name="searchBlogs" ng-submit="searchBlogs.$valid && buscarBlog.buscarUs(idusuario)">	
+	 	<form class="formAddBlog clearfix" role="form" name="searchBlogs">	
 
             <h4>Búsqueda Avanzada</h4>
 
@@ -19,12 +19,12 @@
               <option value="" disabled>Seleccione un Curso</option>
 
             </select>
-            <select id="userslt" class="slctSearchblog form-control" ng-model="idusuario" ng-options="user.id_usuario as user.nombre for user in buscarBlog.usuario" ng-style="buscarBlog.styleSelectUser" ng-disabled="buscarBlog.tempEstadoUsuario" ng-change="buscarBlog.resetSearch()">
+            <select id="userslt" class="slctSearchblog form-control" ng-model="idusuario" ng-options="user.id_usuario as user.nombre for user in buscarBlog.usuario" ng-style="buscarBlog.styleSelectUser" ng-disabled="buscarBlog.tempEstadoUsuario" ng-change="buscarBlog.buscarUs(idusuario)">
               <option value="" disabled>Seleccione un Usuario</option>
 
 
             </select>
-	 		<button id="btnBusAvan" type="submit" class="btnaddBlog pull-right" value="submit">Buscar</button>
+	 		<button id="btnBusAvan" type="submit" class="btnaddBlog pull-right" value="submit" ng-click="buscarBlog.resetSearch()">Borar</button>
 			<div style="text-align: center;"><img src="/Proyecto_1/img/loading.gif" class="loading" /> </div>
  		</form>
 </div>

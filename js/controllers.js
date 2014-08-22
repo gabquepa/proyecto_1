@@ -2505,6 +2505,13 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		this.editar="";
 		this.tabblogIn2 =3;
 		
+		this.iduser="";
+		this.idPost="";
+		this.texto="";
+		this.titulo="";
+		this.nombre="";
+		this.fecha="";
+		
 		if (this.tabblog=="b1") { 
 				$("#styleTemp").append('#blogsUser1{background-color: #ebebeb;border-left: 5px #00a79c solid;padding-left:22.5%}');
 		}; 
@@ -2522,19 +2529,20 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
 
 		
-		this.getTabIn=function(getTab,pidBlog,puser){
+		this.getTabIn=function(getTab,pidBlog,piduser,pnombre,ptext,ptitulo,pfecha){
             $("#divEditarPost").show(); 
-            $("#newPost").val()       
+            $("#newPost").val()  
+            store.listaComentarioPost=[];
+                 
             this.tabblogIn = getTab;
             this.tabblogIn2 = getTab;
             
-           for (var i=0; i < puser.length; i++) {
-			  if (puser[i].id_post==pidBlog) {
-			  	 this.blogtemp =i;
-	    		 this.DBblogtemp=pidBlog;
-	    		// $("#newPost").val(puser[i].texto)
-	    	  };
-			};
+            this.idUser=piduser;
+			this.idPost=pidBlog;
+			this.texto=ptext;
+			this.titulo=ptitulo;
+			this.nombre=pnombre;
+			this.fecha=pfecha;
 
 			$http.post("/Proyecto_1/php/blog/info_comentarioPost.php", {"id_post" : pidBlog}).
 				 success(function(data, status) {
@@ -2545,7 +2553,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Error");
+				  alertify.error("Ocurrio un error");
 			});
          };  
 		
@@ -2598,7 +2606,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 					   if (campo.trim()=="") {
 					   	temp=false;
 					   	pcampo.css("border","solid #fa787e 1px");
-					   	alertify.log("Debe completar todos los campos");
+					   	alertify.log("El campo del post no puede estar vacío");
 					   };
 				    };
 					
@@ -2614,10 +2622,33 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		            };
 		    };
 		
-		 	this.denunciar = function(){
-				alertify.confirm("¿Esta seguro que desea enviar la denuncia?", function (e) {
+		 	this.denunciar = function(idcoment,plistacoment,idpost){
+		 		
+				alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
 				    if (e) {
-				        alertify.log("Su denuncia ha sido enviada");
+				    	    	$http.post("/Proyecto_1/php/blog/denunciar_coment.php", {"id_comentario_post" : idcoment}).
+								success(function(data, status) {
+									plistacoment.length=0;
+									$http.post("/Proyecto_1/php/blog/info_comentarioPost.php", {"id_post" : idpost}).
+									 success(function(data, status) {
+									   for (var i=0; i<data.length; i++) {
+									   	plistacoment.push(data[i]);
+									   	 
+					
+									   }
+									 }).
+										 error(function(data, status) {
+										  alertify.error("Ocurrio un error");
+									});
+									alertify.success("Su denuncia ha sido enviada");
+									
+								})
+								.
+								error(function(data, status) {
+									alertify.error("Error");
+								})
+				    	
+				        
 				    }
 				});
 			}
@@ -2648,7 +2679,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 							   }
 							 }).
 							 error(function(data, status) {
-							  alertify.error("Error");
+							  alertify.error("Ocurrio un error");
 							 });
 							 console.log(plistaPost.length);
 
@@ -2756,7 +2787,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
 					plistaPost.length = 0;
 
-					$http.post("/Proyecto_1/php/blog/info_post.php", {"id_usuario" : "1"}).
+					$http.post("/Proyecto_1/php/blog/info_post.php", {"id_usuario" : puser.id_usuario}).
 							 success(function(data, status) {
 
 							   for (var i=0; i<data.length; i++) {
@@ -2764,7 +2795,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 							   }
 							 }).
 							 error(function(data, status) {
-							  alertify.error("Error");
+							  alertify.error("Ocurrio un error");
 							 });
 
 
@@ -2800,29 +2831,42 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 	// });
 
-	app.controller("addComent",function(){
-	    var cont=2;
+	app.controller("addComent",['$http', function($http){
 	    var d = new Date();
-		var strDate =d.getDate()+ "/" + (d.getMonth()+1)+ "/" + d.getFullYear();
+		this.strDate =d.getFullYear()+ "/" + (d.getMonth()+1)+ "/" + d.getDate();
+		this.texto="";
 		
-		this.newCom={};
-        this.newCom.fecha=strDate;
        
-	    this.addComt = function(pIdPost,pPart,pDueño){
+	    this.addComt = function(pIdPost,pDueño,plistacoment){
 	    	 var temp=true;
 	    	 $("#comentblog").css("border","solid #ccc 1px");
              validarCampo($('#comentblog'));	
 		     
 		     if(temp){
-		     	    this.newCom.idComentario=cont;
-					this.newCom.Participante=pPart;
-		            pDueño.blog[pIdPost].comentarios.push(this.newCom);
-		            
-					this.newCom={};
-					cont++;
-					this.newCom.fecha=strDate;
-					alertify.success("El comentario fue enviado");
+		     	    $http.post("/Proyecto_1/php/blog/ingresar_comentario.php", { "id_post" : pIdPost , "id_usuario" : pDueño ,  "texto" : this.texto,  "fecha": this.strDate }).
+					success(function(data, status) {
+					alertify.success("Comentario publicado");
+				    plistacoment.length=0;
 					$('#contcomentblog').collapse('toggle');
+					$http.post("/Proyecto_1/php/blog/info_comentarioPost.php", {"id_post" : pIdPost}).
+				    success(function(data, status) {
+				     for (var i=0; i<data.length; i++) {
+				    	plistacoment.push(data[i]);
+				  
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+			});
+				})
+				.
+				error(function(data, status) {
+					alertify.error("Error");
+				})
+		    
+					
+					
 		     }else{
 		     	alertify.log("Debe completar el campo");
 		     };	
@@ -2839,7 +2883,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    }; 
 	    
 	       
-	});
+	}]);
 	
 
 	app.controller("buscarUser",['$http', function($http){
@@ -2854,11 +2898,24 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   this.mycarrera={};
 	   this.mycurso={};
 	   this.myuser={};
-	   this.user="";
 	   store.curso=[];
 	   store.usuario=[];
 	   store.listaPostUser=[];
-	   store.usernombre="";
+	   store.listaPost=[];
+	   store.userid="";
+	   store.user="";
+	   
+	   $http.post("/Proyecto_1/php/blog/listaPost.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   	store.listaPost.push(data[i]);
+
+				   }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Ocurrio un error");
+		});
+
 
 	    this.buscarCarrera= function(pIdCarrera){	
              store.curso.length=0;
@@ -2870,6 +2927,10 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
              this.styleSelectCurso={'background-color':''};
              this.tempEstadoUsuario=true;
              this.styleSelectUser={'background-color': '#ebebeb'}; 
+             
+             
+
+
 
               $http.post("/Proyecto_1/php/blog/info_cursos.php", {"id_carrera" : pIdCarrera}).
 				 success(function(data, status) {
@@ -2880,34 +2941,15 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Error");
+				  alertify.error("Ocurrio un error");
 				 });              
 	    };
 	    
 	
-         this.searchUser= function(puser){	
-         	this.styleBlogResult={'color':'#ebebeb'};
-         	this.tempDuenio="";
-         	$('.loading').show();
-			  for (var i=0; i < puser.length; i++) {
-			  	
-			  if (puser[i].usuario==this.user || puser[i].nombre==this.user ) {
-			  	 this.tempDuenio=i;
-			  	 $('.loading').hide();
-			     this.styleBlogResult={'color':''};
-			  }
-			  
-			  for (var a=0; a < puser[i].blog.length; a++) {
-				      if (puser[i].blog[a].titulo==this.user){
-				      	 this.tempDuenio=i;
-				      	 $('.loading').hide();
-				      	  this.styleBlogResult={'color':''};
-				      };
-			  };
-			}
-			if (this.user=="") {
-				$('.loading').hide();
-			};
+         this.searchUser= function(){	
+              store.userid="";
+			 this.styleBlogResult={'color':''};
+
 	    }; 
 
 	    
@@ -2947,7 +2989,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Error");
+				  alertify.error("Ocurrio un error");
 				 });           
              
 
@@ -2958,11 +3000,11 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    };
 	    
 	    
-	    		console.log(store.listaPostUser);
+	    		
 	    this.buscarUs= function(piduser){
 	    	 store.usernombre="";
 	         var temp=true;
-	         	console.log(store.listaPostUser);
+	 
 	         store.listaPostUser.length=0;
 	        
 		     $(".slctSearchblog").css("border","solid #ccc 1px");
@@ -2973,23 +3015,23 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	    	 $('.loading').hide();
 	    	 
 	    	 if (temp){
-				
+				store.userid=piduser;
+				store.user="";
 				$http.post("/Proyecto_1/php/blog/post_usuario.php", {"id_usuario" : piduser}).
 				 success(function(data, status) {
 				   for (var i=0; i<data.length; i++) {
 				   	store.listaPostUser.push(data[i]);
-				   	console.log(store.listaPostUser);
-				   	store.usernombre=store.listaPostUser[0].nombre;
-
+				     this.styleBlogResult={'color':''};
+				    $('#srchBlog').collapse('toggle');
+				   	
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Error");
+				  alertify.error("Ocurrio un error");
 				 });
 
                  
-				 this.styleBlogResult={'color':''};
-				 $('#srchBlog').collapse('toggle');
+				
 
 				// for (var i=0; i < puser.length; i++) {
 				//   if (puser[i].usuario==this.myuser.usuario) {
@@ -3022,7 +3064,18 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	   
 	    this.resetSearch = function () {
 		    $("#searchBlog").val("");
+		    $("#cursoslt").val("");
+		    $("#cursosslt").val("");
+		    $("#userslt").val("");
+		    
 	    	$('.loading').hide();
+	    	 this.tempEstadoCurso=true;
+             this.styleSelectCurso={'background-color': '#ebebeb'};
+             this.tempEstadoUsuario=true;
+             this.styleSelectUser={'background-color': '#ebebeb'};  
+	    	store.userid="";
+	        store.user="";
+	   
 		}
 	    
 	    this.buscarUser= function(puser){	
