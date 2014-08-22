@@ -5,34 +5,18 @@ mysql_select_db("Proyecto_1") or die ("no se puede conectar");
 $data = file_get_contents("php://input");
 $objData = json_decode($data);
 
-$query = mysql_query('CALL listaForos("'.$objData->id_usuario.'");') or die ("Error"); 
+mysql_query("SET CHARACTER SET utf8");
 
-$nfilas = mysql_num_rows ($query); //retorna el total de filas afectadas
-
+$query = mysql_query('CALL muestra_foros("'.$objData->id_usuario.'");') or die ("Error");
+$nfilas = mysql_num_rows ($query); 
 $lista=[];
 
 for ($i=0; $i < $nfilas; $i++) { 
-	$fila = mysql_fetch_array ($query);// me devuelve la fila afectada
+	$fila = mysql_fetch_array ($query);
 	$lista[$i]=$fila;
 }
 
 echo json_encode($lista);
 
 mysql_close($conexion);
-  
-
-
-  
-/* Esto va en el controller 
-
-$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : "1"}).
-success(function(data, status) {
-	
-}).
-error(function(data, status) {
-	
-});
-
-*/
-
 ?>

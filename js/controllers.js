@@ -3,12 +3,9 @@
 (function(){
 var app = angular.module('controllers-project',[]);
 
+
 /************** Route Controllers **************/
 app.controller('routeController', function($scope, $cookieStore) {
-	
-	 
-	
-	
 	var tipo = $cookieStore.get('usuarioTipo');
 	if(tipo==='p' || tipo==='d' || tipo==='r' ){
 		$('.headForum').attr('href', '/Proyecto_1/forum-profesor.html');
@@ -34,7 +31,7 @@ app.controller('routeController', function($scope, $cookieStore) {
 /************** PROFESOR Forum Controllers **************
 **********************************************************
 ***********************************************************/
-app.controller('ForumController', ['$scope', '$http', function($scope, $http){
+app.controller('ForumController', ['$scope', '$http', '$cookieStore', function($scope, $http, $cookieStore){
 	var forum = this;
 	forum.lists=[];
 	$scope.enable = true;
@@ -42,13 +39,19 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	$scope.showList=true;
 	$scope.comments=[];
 	forum.forumS = [];
-
-	$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : "1"}).
+	var usuario_activo = $cookieStore.get('usuarioID');
+	$http.post("/Proyecto_1/php/forum/listaForos.php", {"id_usuario" : usuario_activo}).
 	success(function(data, status) {
-			forum.lists=data;
+		if(data ==""){
+			$('#nohay').show();
+		}else{
+			$('#nohay').hide();
+			forum.lists=data;	
+		}
+		
 	}).
 	error(function(data, status) {
-		alertify.error("Ocurrio un error");
+		alertify.error("Error");
 	});
 
 	/*$http.get('/Proyecto_1/JSON/forums.json').success(function(data){
@@ -95,7 +98,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			}, 500);
 		}).
 		error(function(data, status) {
-			alertify.error("Ocurrio un error");
+			alertify.error("Error");
 		});
 
 		$http.post("/Proyecto_1/php/forum/listaComentarios.php", {"id_foro" :idForo}).
@@ -103,7 +106,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 					$scope.comments=data;
 		}).
 		error(function(data, status) {
-				alertify.error("Ocurrio un error");
+				alertify.error("Error");
 		}); 
 	};
 
@@ -153,7 +156,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 	};
 
 	this.denunciar = function(){
-		alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
+		alertify.confirm("¿Esta seguro que desea enviar la denuncia?", function (e) {
 		    if (e) {
 		        alertify.log("Su denuncia ha sido enviada");
 		    }
@@ -233,7 +236,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			foro.estado='1';
 		}).
 		error(function(data, status) {
-			alertify.error("Ocurrio un error");
+			alertify.error("Error");
 		});
 
 
@@ -262,7 +265,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			$('.create-forumSection .moderador').val('');
 		}).
 		error(function(data, status) {
-			alertify.error("Ocurrio un error");
+			alertify.error("Error");
 		});
 
 		var invitados = $('.create-forumSection .invitados').val().split(', ');
@@ -278,7 +281,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 
 					}).
 					error(function(data, status) {
-						alertify.error("Ocurrio un error");
+						alertify.error("Error");
 					});
 				}
 
@@ -300,7 +303,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		 var texto = $('#fComment').val();
 		 if (texto.trim() == '') {
              	 // alert("Debe llenar todos los campos");
-             	 alertify.log("Debe agregar un comentario");
+             	 alertify.log("Debe completar todos los campos");
              	// alertify.success("OJO");
              }else{
 
@@ -338,7 +341,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 			comment={};
 		}).
 		error(function(data, status) {
-			alertify.error("Ocurrio un error");
+			alertify.error("Error");
 		});
 
 		$('#add-comment').collapse('toggle');
@@ -358,7 +361,7 @@ app.controller('ForumController', ['$scope', '$http', function($scope, $http){
 		var idF = idForo;
 		var invitados = $('.inine-forum-display .invitados').val().split(', ');
 		var estado = $('input:radio[name=estado]:checked').val();
-		alertify.confirm("Esta seguro que desea enviar los cambios?", function (e) {
+		alertify.confirm("¿Esta seguro que desea enviar los cambios?", function (e) {
 		    if (e) {
 		    
 				// INVITADOS
@@ -436,12 +439,13 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 	});
 
 	this.displayForum = function(forum){
-		$('.inine-forum-display').show();
 
+		$('.inine-forum-display').show();
+console.log(forum);
 		// $('.config-forumTitle').hide();
 		// $('.course').text(forum.CursoId);
 		$('.course-title').text(forum.titulo);
-		$('.main-forum').text(forum.tema);
+		// $('.main-forum').text(forum.texto);
 		$('#id-foro').attr('value', forum.id);
 		var carrera;
 		if((forum.CarreraId)==='1'){carrera="cursosDW.json";}
@@ -476,7 +480,7 @@ app.controller('StudentForumController', ['$scope', '$http', function($scope, $h
 	};
 
 	this.denunciar = function(){
-		alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
+		alertify.confirm("¿Esta seguro que desea enviar la denuncia?", function (e) {
 		    if (e) {
 		        alertify.log("Su denuncia ha sido enviada");
 		    }
@@ -1205,7 +1209,7 @@ app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
 	 	$http.post("/Proyecto_1/php/configuration/ver_nombre_foro.php", { "ver_nombres" : permitir
 		}).
 		success(function(data, status) {
-			alertify.success("Cambio guardado correctamente");
+			alertify.success("Cambio guardado");
 		})
 		.
 		error(function(data, status) {
@@ -1240,7 +1244,7 @@ app.controller("respuestaForos", ['$scope', '$http',  function($scope, $http){
 			}).
 			success(function(data, status) {
 				console.log(data);
-				alertify.success("Cambio guardado correctamente");
+				alertify.success("Cambio guardado");
 			})
 			.
 			error(function(data, status) {
@@ -1562,7 +1566,7 @@ app.controller('agregarDocController',['$http', function($http){
 									})
 									.
 									 error(function(data, status) {
-								     alertify.error("Error al crear");
+								     alertify.error("Error");
 		     })
 	     };
         
@@ -1578,7 +1582,7 @@ app.controller('agregarDocController',['$http', function($http){
 					}
 	}).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 	});  
 
 		//$http.get('/proyecto_1/JSON/docs.json').success(function(data){
@@ -1683,11 +1687,11 @@ app.controller('agregarDocController',['$http', function($http){
 								success(function(data, status) {
 									$("#resetForm").attr("action","php/document/subir.php");
 								    $("#resetForm").submit(); 
-							         alertify.success("El documento se subio correctamente");
+							         alertify.success("El documento se subió correctamente");
 								})
 								.
 								    error(function(data, status) {
-									alertify.error("Error al crear");
+									alertify.error("Error");
 								})
 								
 								//php/document/subir.php  
@@ -1751,7 +1755,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 
 	this.selectCurso = function(carrera){
@@ -1768,7 +1772,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="2"){
@@ -1781,7 +1785,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="3"){
@@ -1794,7 +1798,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="4"){
@@ -1807,7 +1811,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="5"){
@@ -1820,7 +1824,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="6"){
@@ -1833,7 +1837,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="7"){
@@ -1846,7 +1850,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="7"){
@@ -1859,7 +1863,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="7"){
@@ -1872,7 +1876,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else if(carrera ==="7"){
@@ -1885,7 +1889,7 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });   
 		}
 		else{
@@ -1919,7 +1923,7 @@ app.controller('buscarDocController',['$http',function($http){//Controlador de m
 									})
 									.
 									 error(function(data, status) {
-								     alertify.error("Error al crear");
+								     alertify.error("Error");
 		     })
 	     };
         
@@ -2026,12 +2030,12 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 		             
 		       $http.post("/Proyecto_1/php/document/modifica_dochist.php", {"idhd" : pvalor ,"calificacion" : temp ,"id_documento" : piddoc }).
 						success(function(data, status) {
-					         alertify.success("El documento se subio correctamente");
+					         alertify.success("El documento se subió correctamente");
 					         window.location.replace('/Proyecto_1/documentos.html');
 						})
 						.
 						    error(function(data, status) {
-							alertify.error("Error al crear");
+							alertify.error("Error");
 		       })
               
 		        	
@@ -2051,7 +2055,7 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 				  }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });
 				 // console.log(store.listaHistorialDes.length);
 				 
@@ -2138,7 +2142,7 @@ app.controller('UserController',['$http',function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });
 		// $http.get('/proyecto_1/JSON/usuariosTestSergio.json').success(function(data){ //
 		// 	store.user = data;
@@ -2156,7 +2160,7 @@ app.controller('UserController',['$http',function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });
 
 
@@ -2168,7 +2172,7 @@ app.controller('UserController',['$http',function($http){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });
 
 		// this.listaCarreras = store.carreras;
@@ -2234,6 +2238,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 					  if (pPass==pUsuario[i].password && pName==pUsuario[i].email) {
 				        	   $cookieStore.put('usuario', i);
 				        	   $cookieStore.put('usuarioTipo', pUsuario[i].tipo);
+				        	   $cookieStore.put('usuarioID', pUsuario[i].id_usuario);
 		 				     if (pUsuario[i].tipo=="a") {
 		 				     	window.location = "/Proyecto_1/configuration.html";
 		 				     } else{
@@ -2375,7 +2380,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				  }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });
 				 
 		$http.post("/Proyecto_1/php/blog/carreraDeusuario.php", {}).
@@ -2388,7 +2393,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				  }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 		});
 
 		
@@ -2540,7 +2545,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 			});
          };  
 		
@@ -2593,7 +2598,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 					   if (campo.trim()=="") {
 					   	temp=false;
 					   	pcampo.css("border","solid #fa787e 1px");
-					   	alertify.log("El campo del post no puede estar vacío");
+					   	alertify.log("Debe completar todos los campos");
 					   };
 				    };
 					
@@ -2610,7 +2615,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		    };
 		
 		 	this.denunciar = function(){
-				alertify.confirm("Esta seguro que desea enviar la denuncia?", function (e) {
+				alertify.confirm("¿Esta seguro que desea enviar la denuncia?", function (e) {
 				    if (e) {
 				        alertify.log("Su denuncia ha sido enviada");
 				    }
@@ -2643,7 +2648,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 							   }
 							 }).
 							 error(function(data, status) {
-							  alertify.error("Ocurrio un error");
+							  alertify.error("Error");
 							 });
 							 console.log(plistaPost.length);
 
@@ -2759,7 +2764,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 							   }
 							 }).
 							 error(function(data, status) {
-							  alertify.error("Ocurrio un error");
+							  alertify.error("Error");
 							 });
 
 
@@ -2875,7 +2880,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });              
 	    };
 	    
@@ -2942,7 +2947,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });           
              
 
@@ -2979,7 +2984,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				   }
 				 }).
 				 error(function(data, status) {
-				  alertify.error("Ocurrio un error");
+				  alertify.error("Error");
 				 });
 
                  

@@ -69,6 +69,7 @@
 
             <h4>Mis foros</h4>
             <ul class="clearfix">
+              <li id="nohay" style="display:none">No hay foros</li>
               <li ng-repeat="list in forum.lists" data-forumId="{{list.id_foro}}">
                 <span ng-if="list.estado == '1'">
                     Activo - 
