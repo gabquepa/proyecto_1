@@ -13,7 +13,7 @@
             <!-- <select id="sltCurso" ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct sty" ng-style="est.styleCurso" ng-model="est.curso" ng-options="curso.nombreCurso  as curso.nombreCurso for curso in conf.carreras[est.carrera].cursos" ng-change="est.activarEst()">
             <option id="optCurso" value="" >Seleccione un Curso</option>
             </select> -->
-            <select  ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct select-curso-asignaest" ng-model="conf.miCursoMC" ng-options="curso.nombre for curso in conf.cursosCarrera track by curso.id_curso" ng-change="est.activarEst()">
+            <select  ng-disabled="est.estadoCurso" class="form-control inhabilitarSlct select-curso-asignaest" ng-model="est.curso" ng-options="curso.nombre for curso in conf.cursosCarrera track by curso.id_curso" ng-change="est.activarEst()">
                <option value="" >Seleccione un Curso</option>
             </select>
         </div>
@@ -29,7 +29,7 @@
      <ul>
       <li class="list-group-item" ng-repeat="estu in conf.estudcursotemp">
            	<div class="eliminarEstudiantes">
-            <span>Estudiantes: {{estu.estudiante}}</span> <span>Curso: {{estu.curso}}</span><a href class="btn btn-danger" ng-click="est.eliminarEstudiantes(estu.estudiante,estu.curso,conf.estudcursotemp)"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+            <span><strong>Estudiantes:</strong> {{estu.estudiante}}</span> <br><span><strong>Curso: </strong> {{estu.curso}}</span><a class="pull-right" style="text-decoration:none; color:#D9534F; cursor: pointer;" ng-click="est.eliminarEstudiantes(estu.estudiante,estu.curso,conf.estudcursotemp)"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
       </li>
        <button type="submit" class="guardarBtn pull-right" ng-click="est.guardarEstudiantes(conf.estudcurso,conf.estudcursotemp)">Guardar</button>
 

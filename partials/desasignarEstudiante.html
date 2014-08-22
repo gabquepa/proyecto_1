@@ -1,52 +1,52 @@
    <div ng-show="estudianteContr.isSelected(2, confPanel.tab)" >                    
 
-                    <div class="buscarUserContent cf">
-                              <div class="buscarUserContent cf">
-                                        <h4>Buscar Estudiantes</h4>
-                                         <input id="desasig" type="text" class="form-control" ng-model="est.buscados"/>
-                                         <button type="submit" class="guardarBtn pull-right" ng-click="est.encontrarEstudiantes(conf.estudcurso,conf.estudcursobusctemp)">Buscar</button>
-                               </div>
-                               <ul class="cf">
-		                                   	<li class="list-group-item cf" ng-repeat="estuBus in conf.estudcursobusctemp">
-			                                   	<div class="buscarEstudiantes">
-			                                    <span>Estudiantes: {{estuBus.estudiante}}</span> <span>Curso: {{estuBus.curso}}</span><a href class="btn btn-danger" ng-click="est.desasignarredoEstudiantes(estuBus.estudiante,estuBus.curso,conf.estudcursobusctemp)"><span class="glyphicon glyphicon-remove"></span>Descartar</a>
-		
-		                                   	</li>
-	                           </ul>
-	                           <a href class="btn btn-danger pull-right cf" ng-click="est.desasignarEstudiantes(conf.estudcurso,conf.estudcursobusctemp)"><span class="glyphicon glyphicon-remove cf"></span> Eliminar</a>
-                               
-                               
-                          </div>
+<div class="buscarUserContent cf">
+          <div class="buscarUserContent cf">
+                    <h4>Buscar Estudiantes</h4>
+                     <input id="desasig" type="text" class="form-control" ng-model="est.buscados"/>
+                     <button type="submit" class="guardarBtn pull-right" ng-click="est.encontrarEstudiantes(conf.estudcurso,conf.estudcursobusctemp)">Buscar</button>
+           </div>
+           <ul class="cf">
+                   	<li class="list-group-item cf" ng-repeat="estuBus in conf.estudcursobusctemp">
+                     	<div class="buscarEstudiantes">
+                      <span>Estudiantes: {{estuBus.estudiante}}</span> <span>Curso: {{estuBus.curso}}</span><a href class="btn btn-danger" ng-click="est.desasignarredoEstudiantes(estuBus.estudiante,estuBus.curso,conf.estudcursobusctemp)"><span class="glyphicon glyphicon-remove"></span>Descartar</a>
 
-                         
-                          <div class="profesoresInput cf">
-                               <div class="contenedorInputsSep">
-                                          <label>Seleccione una Carrera</label><br>
-                                          <select class="form-control inhabilitarSlct"  ng-model="est.carreraBus" ng-options="carrera.id  as carrera.nombre for carrera in conf.carreras" ng-change="est.activarCursoDes()" required> 
-                                          <option value="" >Seleccione una Carrera</option>
-                                          </select>
-                                         
-                                      </div>
+                   	</li>
+         </ul>
+         <a href class="pull-right cf" style="text-decoration:none; color:#D9534F; cursor: pointer;" ng-click="est.desasignarEstudiantes(conf.estudcurso,conf.estudcursobusctemp)"><span class="glyphicon glyphicon-remove cf"></span> Eliminar</a>
+           
+           
+      </div>
 
-                                      <div class="contenedorInputsSep">
-                                          <label>Seleccione un Curso</label><br>
-                                          <select ng-disabled="est.estadoCursoDes" class="form-control inhabilitarSlct" ng-style="est.styleCursoDes" ng-model="est.cursoDes" ng-options="curso.nombreCurso  as curso.nombreCurso for curso in conf.carreras[est.carreraBus].cursos">
-                                          <option value="" >Seleccione un Curso</option>
-                                          </select>
-                                      </div>
+     
+      <div class="profesoresInput cf">
+           <div class="contenedorInputsSep">
+                      <label>Seleccione una Carrera</label><br>
+                      <select class="form-control inhabilitarSlct"  ng-model="est.carreraBus" ng-options="carrera.id  as carrera.nombre for carrera in conf.carreras" ng-change="est.activarCursoDes()" required> 
+                      <option value="" >Seleccione una Carrera</option>
+                      </select>
+                     
+                  </div>
 
-                                  </div>
-                                  <h3>{{est.cursoDes}}</h3>
-                                  <ul class="cf">
-		                                   	<li class="list-group-item" ng-repeat="estuBusAv in conf.estudcurso | filter: {curso: est.cursoDes}">
-			                                   	<div class="buscarEstudiantes">
-			                                    <span>Estudiantes: {{estuBusAv.estudiante}}</span><a href class="btn btn-danger" ng-click="est.desasignarEstudiantesAv(estuBusAv.estudiante,est.cursoDes,conf.estudcurso)"><span class="glyphicon glyphicon-remove"></span>Eliminar</a>
-		
-		                                   	</li>
-	                             </ul>
-	                             <a href class="btn btn-danger pull-right cf" ng-click="est.desasignarEstudiantesComp(conf.estudcurso,est.cursoDes)"><span class="glyphicon glyphicon-remove cf"></span> Eliminar Grupo Completo</a>
-                                 <a href class="btn btn-success pull-right cf" ng-click="est.descartarBus()"><span class="glyphicon glyphicon-ok cf"></span>Descartar</a>
-                               
-                                  
-                          </div>
+                  <div class="contenedorInputsSep">
+                      <label>Seleccione un Curso</label><br>
+                      <select ng-disabled="est.estadoCursoDes" class="form-control inhabilitarSlct" ng-style="est.styleCursoDes" ng-model="est.cursoDes" ng-options="curso.nombreCurso  as curso.nombreCurso for curso in conf.carreras[est.carreraBus].cursos">
+                      <option value="" >Seleccione un Curso</option>
+                      </select>
+                  </div>
+
+              </div>
+              <h3>{{est.cursoDes}}</h3>
+              <ul class="cf">
+                   	<li class="list-group-item" ng-repeat="estuBusAv in conf.estudcurso | filter: {curso: est.cursoDes}">
+                     	<div class="buscarEstudiantes">
+                      <span>Estudiantes: {{estuBusAv.estudiante}}</span><a style="text-decoration:none; color:#D9534F; cursor: pointer;"  ng-click="est.desasignarEstudiantesAv(estuBusAv.estudiante,est.cursoDes,conf.estudcurso)"><span class="glyphicon glyphicon-remove"></span>Eliminar</a>
+
+                   	</li>
+           </ul>
+           <a href class="pull-right cf"  style="text-decoration:none; color:#D9534F; cursor: pointer;" ng-click="est.desasignarEstudiantesComp(conf.estudcurso,est.cursoDes)"><span class="glyphicon glyphicon-remove cf"></span> Eliminar Grupo Completo</a>
+             <a href class="pull-right cf" style="text-decoration:none; color:green; margin-right:30px; cursor: pointer;" ng-click="est.descartarBus()"><span class="glyphicon glyphicon-ok cf"></span>Descartar</a>
+           
+              
+      </div>
                           

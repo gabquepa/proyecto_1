@@ -1297,7 +1297,7 @@ app.controller("controlEstudiantes",function(){
     this.agregarEstudiantes=function(pcursoest){
            this.asignados = this.agregados.split(', ') && $('#asig').val().split(',');
            for (var i=0; i < this.asignados.length; i++) {
-	            this.estudiantesTemp.curso=this.curso;
+	            this.estudiantesTemp.curso=this.curso.nombre;
 		        this.estudiantesTemp.estudiante=this.asignados[i];//this.agregados;
 		        pcursoest.push(this.estudiantesTemp);
 		        this.estudiantesTemp={};
