@@ -9,6 +9,7 @@
 		  store = this;
 		  this.usuarios =[];
 		  this.comentariosDenuncia=[];
+		  this.postsDenuncia=[];
 		  this.profecurso =arregloProfeCurso;
 		  this.estudcurso =arregloEstuCurso;
 		  this.estudcursotemp =arregloEstuCursoTemp;
@@ -36,6 +37,16 @@
 			}).error(function(data, status) {
 				alertify.error("Error");
 			});
+
+			$http.post("/Proyecto_1/php/configuration/muestra_posts_reportados.php").success(function(data, status) {
+				store.postsDenuncia = data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
+
+
+
+			
          
 		this.addCarrera = function(){
 		    var nomCarrera = $('#nomCarrera').val();
@@ -257,12 +268,57 @@
 			});		
 		  }
 		  this.comentarioLista = function(){
-		  	console.log('hola');
 		  	$http.post("/Proyecto_1/php/configuration/muestra_comentarios_reportados.php").success(function(data, status) {
 				store.comentariosDenuncia = data;
 			}).error(function(data, status) {
 				alertify.error("Error");
 			});
+
+			$http.post("/Proyecto_1/php/configuration/muestra_posts_reportados.php").success(function(data, status) {
+				store.postsDenuncia = data;
+			}).error(function(data, status) {
+				alertify.error("Error");
+			});
+		  }
+		  ////////////
+		  this.postIgnora = function(id){
+		  	alertify.confirm("¿Esta seguro que desea ignorar el comentario?", function (e) {
+			    if (e) {
+			   		$http.post("/Proyecto_1/php/configuration/posts_reportados_ignorar.php", { 
+						"id_comentario_post" : id
+					}).
+					success(function(data, status) {
+						alertify.success("El comentario se ha ignorado");
+						setTimeout(function(){
+							store.comentarioLista();
+						}, 500);
+					})
+					.
+					error(function(data, status) {
+						alertify.error("Error");
+					});     
+			    } 
+			});
+		  }
+		  this.postBorra = function(id){
+		  	alertify.confirm("¿Esta seguro que desea eliminar el comentario?", function (e) {
+			    if (e) {
+			   		$http.post("/Proyecto_1/php/configuration/posts_reportados_eliminar.php", { 
+						"id_comentario_post" : id
+					}).
+					success(function(data, status) {
+						alertify.success("El comentario se ha eliminado");
+						setTimeout(function(){
+							store.comentarioLista();
+						}, 500);
+						
+					})
+					.
+					error(function(data, status) {
+						alertify.error("Error");
+					});     
+			    } 
+			});		
 		  }
 }]);
 
