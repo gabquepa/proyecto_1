@@ -1715,9 +1715,11 @@ app.controller('agregarDocController',['$http', function($http){
 							
 								$http.post("/Proyecto_1/php/document/subir_doc.php", {"id_usuario" : pUser ,"id_curso":this.addDoc.curso , "autor": this.addDoc.autor , "titulo":this.addDoc.titulo , "fecha":this.addDoc.fecha ,"archivo":this.miarchivo}).
 								success(function(data, status) {
-									$("#resetForm").attr("action","php/document/subir.php");
-								    $("#resetForm").submit(); 
 							         alertify.success("El documento se subió correctamente");
+							         setTimeout(function(){
+										$("#resetForm").attr("action","php/document/subir.php");
+								    	$("#resetForm").submit(); 
+									}, 1000);
 								})
 								.
 								    error(function(data, status) {
