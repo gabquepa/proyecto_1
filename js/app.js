@@ -105,6 +105,11 @@
 						}).
 						success(function(data, status) {
 							alertify.success("Cambio guardado");
+							$http.post("/Proyecto_1/php/global/muestra_carreras.php").success(function(data, status) {
+								store.carreras = data;
+							}).error(function(data, status) {
+								alertify.error("Error");
+							});
 							limpiar();
 						})
 						.
