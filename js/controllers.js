@@ -2636,17 +2636,39 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 					this.value=true;
 			};
 	
-			this.savePost=function(user,i,ipost){
+			this.savePost=function(idpost,plistapost){
 				    var temp=true;
 				    var tempText=$("#newPost").val();
 				    $("#newPost").css("border","solid #ccc 1px");
-				   
+				   alert(idpost);
 				    validarCampo($("#newPost"));
 				    if (temp){
-					    user[i].blog[ipost].texto=tempText;
-						this.value=false;
-						this.editar={'':''};
-					    this.guardar={'display':'none'};
+					    plistapost.length=0;
+					    $http.post("/Proyecto_1/php/blog/modificar_post.php", { "id_post" : idpost, "texto" : tempText }).
+					    success(function(data, status) {
+					       alertify.log("El post se modificó");
+					       
+					       $http.post("/Proyecto_1/php/blog/info_post.php", {}).
+							 success(function(data, status) {
+							   for (var i=0; i<data.length; i++) {
+							   	plistapost.push(data[i]);
+
+							   }
+							 }).
+							 error(function(data, status) {
+							  alertify.error("Error");
+				 });
+					       
+					       
+						}).
+					    error(function(data, status) {
+					    alertify.error("Ocurrio un error");
+					    });
+					    
+					  this.value=false;
+						   this.editar={'':''};
+					       this.guardar={'display':'none'};   
+						
 					};
 					
 					function validarCampo (pcampo) {

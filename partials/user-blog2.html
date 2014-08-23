@@ -4,13 +4,14 @@
         <div id='divEditarPost' class='cf clearfix'>
             
             <div class='titulo-fecha clearfix'>
-              <span class="pull-left">{{usuario.listaPost[tabs.miBlog()].titulo}}</span>
-              <span class="pull-left">{{usuario.listaPost[tabs.miBlog()].fecha}}</span>
+              <span class="pull-left">{{tabs.titulo}}</span>
+              <span class="pull-left">{{tabs.fecha}}</span>
+          
 
             <div class='clearfix'>
 
-              <a href="" class="pull-right editdelete" ng-click="tabs.deletePost(tabs.miBlogDB(),usuario.user[cookieValue],1,usuario.listaPost)">Eliminar<span class="glyphicon glyphicon-remove"></span></a>
-              <a href="" ng-style="tabs.guardar"  ng-click="tabs.savePost(usuario.user,cookieValue,tabs.miBlog())" class="pull-right editdelete">Guardar<span class="glyphicon glyphicon-floppy-saved"></span></a> 
+              <a href="" class="pull-right editdelete" ng-click="tabs.deletePost(tabs.idPost,usuario.user[cookieValue],1,usuario.listaPost)">Eliminar<span class="glyphicon glyphicon-remove"></span></a>
+              <a href="" ng-style="tabs.guardar"  ng-click="tabs.savePost(tabs.idPost,usuario.listaPost)" class="pull-right editdelete">Guardar<span class="glyphicon glyphicon-floppy-saved"></span></a> 
               <a href="" ng-style="tabs.editar" ng-click='tabs.editarPost();' class="pull-right editdelete">Editar<span class='glyphicon glyphicon-pencil'></span></a>
               <a href ng-click="tabs.regresar(1)" class="editdelete pull-right">Regresar<span class='glyphicon glyphicon-arrow-left'></a>
              
@@ -19,7 +20,7 @@
             
 
             <div class='post-editado'>
-              <textarea id="newPost" ng-disabled='tabs.value==false'>{{usuario.listaPost[tabs.miBlog()].texto}}</textarea>
+              <textarea id="newPost"  ng-disabled='tabs.value==false'>{{tabs.texto}}</textarea>
             </div>
             <div class="redesSociales cf" ng-controller="socialShare as share">
               <span class="compartirPost">Compartir:</span>
@@ -38,7 +39,7 @@
 
               <section class="misBlogs1">
                 <section class="headerMiblogs clearfix">
-                  <a href="#" class="pull-left linktituloBlog1">{{comentario.id_usuario}}</a>
+                  <a href="#" class="pull-left linktituloBlog1">{{comentario.nombre}} {{comentario.apellido}}</a>
                   <span class="fechasComent pull-left ">{{comentario.fecha}}</span>
                 </section>
                 <section class="contMiBlog1 clearfix">
@@ -46,7 +47,7 @@
                     {{comentario.texto}}
                   </p>
                 </section>
-                <a href class="pull-right editdelete clearfix" ng-click="tabs.denunciar()">Denunciar</a>
+                <a href class="pull-right editdelete clearfix" ng-click="tabs.denunciar(comentario.id_comentario_post,tabs.listaComentarioPost,comentario.id_post)">Denunciar</a>
               </section>
            </li>
           </ul> 
