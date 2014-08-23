@@ -27,7 +27,7 @@
     	 	<li class="list-group-item" ng-repeat="blog in buscarBlog.listaPostUser">
     	 		 <section class="misBlogs">
 			    	<section class="headerMiblogs clearfix">
-			    		<p href="" class="">{{blog.nombre}}</p>
+			    		<p href="" class="">{{blog.nombre}} {{blog.apellido}}</p>
 			    		<a href="" class="pull-left linktituloBlog1" ng-click="tabs.getTabIn(4,blog.id_post,blog.id_usuario,blog.nombre,blog.texto,blog.titulo,blog.fecha)">{{blog.titulo}}</a>
 			    		<span class="fechablog pull-left ">{{blog.fecha}}</span>
 			    	

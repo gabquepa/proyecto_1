@@ -19,7 +19,7 @@
               <option value="" disabled>Seleccione un Curso</option>
 
             </select>
-            <select id="userslt" class="slctSearchblog form-control" ng-model="idusuario" ng-options="user.id_usuario as user.nombre for user in buscarBlog.usuario" ng-style="buscarBlog.styleSelectUser" ng-disabled="buscarBlog.tempEstadoUsuario" ng-change="buscarBlog.buscarUs(idusuario)">
+            <select id="userslt" class="slctSearchblog form-control" ng-model="idusuario" ng-options="user.id_usuario as (user.nombre+' '+user.apellido) for user in buscarBlog.usuario" ng-style="buscarBlog.styleSelectUser" ng-disabled="buscarBlog.tempEstadoUsuario" ng-change="buscarBlog.buscarUs(idusuario)">
               <option value="" disabled>Seleccione un Usuario</option>
 
 
