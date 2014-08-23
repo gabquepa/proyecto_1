@@ -67,10 +67,10 @@
 					$('#mcodCarrera').val(data[i].id_carrera);
 					$('#mnomCarrera').val(data[i].nombre);
 					if(data[i].estado ==1){
-			 			$('#activo-carrera').attr('checked', 'checked');
+			 			$('#activo-carrera').prop('checked', true);
 			 		}
 			 		else{
-			 			$('#inactivo-carrera').attr('checked', 'checked');
+			 			$('#inactivo-carrera').prop('checked', true);
 			 		}
 				}	
 			})
@@ -85,22 +85,24 @@
              if (codCarrera.trim() == '' || nomCarrera.trim() == '' ) {
              	 alertify.log("Debe completar todos los campos");
              }else{
-				$http.post("/Proyecto_1/php/configuration/modifica_carrera.php", { 
-					"id_carrera" : codCarrera,
-					"nombre" : nomCarrera,
-					"estado" : $('input:radio[name="estado-carrera"]:checked').attr('val')
-				}).
-				success(function(data, status) {
-					alertify.success("La carrera se modificó correctamente");
-				})
-				.
-				error(function(data, status) {
-					alertify.error("Error");
+             	alertify.confirm("¿Está seguro que desea enviar los cambios?", function (e) {
+					if (e) {
+					    $http.post("/Proyecto_1/php/configuration/modifica_carrera.php", { 
+							"id_carrera" : codCarrera,
+							"nombre" : nomCarrera,
+							"estado" : $('input:radio[name="estado-carrera"]:checked').attr('val')
+						}).
+						success(function(data, status) {
+							alertify.success("Cambio guardado");
+							limpiar();
+						})
+						.
+						error(function(data, status) {
+							alertify.error("Error");
+						});
+					}
 				});
-				
 			}
-
-
 		  }//Fin FUncion
 		  this.selectCurso = function(){
 		  	var id_carrera = $('.select-carrera-modificarCurso').val();
@@ -171,10 +173,10 @@
 						$('#modifIdCurso').val(data[i].id_curso);
 				  		$('#modifNombreCurso').val(data[i].nombre);
 						if(data[i].estado ==1){
-				 			$('#activo-curso').attr('checked', 'checked');
+				 			$('#activo-curso').prop('checked', true);
 				 		}
 				 		else{
-				 			$('#inactivo-curso').attr('checked', 'checked');
+				 			$('#inactivo-curso').prop('checked', true);
 				 		}
 					}	
 				})
@@ -190,23 +192,29 @@
              if (nomCurso.trim() == '') {
              	alertify.log("Debe completar todos los campos");
              }else{
-			$http.post("/Proyecto_1/php/configuration/modifica_curso.php", { 
-				"nombre" : nomCurso,
-				"estado" : $('input:radio[name="estado-curso"]:checked').attr('val'),
-				"id_curso" : $('#modifIdCurso').val()
-			}).
-			success(function(data, status) {
-				alertify.success("El curso se modifico correctamente");
-				store.selectCurso();
-				store.modifCurso();
-				setTimeout(function(){
-					limpiar();
-				}, 500);
-			})
-			.
-				error(function(data, status) {
-					alertify.error("Error");
+             	alertify.confirm("¿Está seguro que desea enviar los cambios?", function (e) {
+					if (e) {
+						$http.post("/Proyecto_1/php/configuration/modifica_curso.php", { 
+							"nombre" : nomCurso,
+							"estado" : $('input:radio[name="estado-curso"]:checked').attr('val'),
+							"id_curso" : $('#modifIdCurso').val()
+						}).
+						success(function(data, status) {
+							alertify.success("Cambio guardado");
+							store.selectCurso();
+							store.modifCurso();
+							setTimeout(function(){
+								limpiar();
+							}, 500);
+						})
+						.
+							error(function(data, status) {
+								alertify.error("Error");
+							});
+					
+					}
 				});
+			
 			}
 		  }
 		  this.comentarioIgnora = function(id){

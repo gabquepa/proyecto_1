@@ -1000,21 +1000,21 @@ app.controller("modificarUserController", ['$scope', '$http', function($scope, $
 					 		$('#correoEncontrado').val(data[i].email);
 					 		$('#passwordEncontrado').val(data[i].password);
 					 		if(data[i].genero ==='m'){
-					 			$('#generoHombre').attr('checked', 'checked');
+					 			$('#generoHombre').prop('checked', true);
 					 		}
 					 		else{
-					 			$('#generoMujer').attr('checked', 'checked');
+					 			$('#generoMujer').prop('checked', true);
 					 		}
 					 		//If de categoria
 					 		if(data[i].tipo ==='e'){
-					 			$('#estudiante').attr('checked', 'checked');
+					 			$('#estudiante').prop('checked', true);
 					 		}
 					 		else if(data[i].tipo ==='p'){
-					 			$('#profesor').attr('checked', 'checked');
+					 			$('#profesor').prop('checked', true);
 					 		}else if(data[i].tipo ==='r'){
-					 			$('#rector').attr('checked', 'checked');
+					 			$('#rector').prop('checked', true);
 					 		}else if(data[i].tipo ==='d'){
-					 			$('#director').attr('checked', 'checked');
+					 			$('#director').prop('checked', true);
 					 		}
 						}
 					}
@@ -1043,25 +1043,30 @@ app.controller("modificarUserController", ['$scope', '$http', function($scope, $
          if(nombreEncontrado.trim() == '' || apellidoEncontrado.trim() == '' || correoEncontrado.trim() == '' || passwordEncontrado.trim() == '' ){
          	 alertify.log("Debe completar todos los campos");
 		}else{
-			$http.post("/Proyecto_1/php/configuration/modifica_usuario.php", { 			
-				"tipo" : tipo,
-				"email" : correoEncontrado,
-				"nombre" : nombreEncontrado,
-				"apellido" : apellidoEncontrado, 
-				"genero" : genero,
-				"id_usuario" : id, 
-				"password" : passwordEncontrado
-			}).
-			success(function(data, status) {
-				alertify.success("El usuario se modificó correctamente");	
-				limpiar();
-			})
-			.
-			error(function(data, status) {
-				$('.result-usuario').hide();
-				alertify.error("Error");
-				limpiar();
+			alertify.confirm("¿Está seguro que desea enviar los cambios?", function (e) {
+			    if (e) {
+			        $http.post("/Proyecto_1/php/configuration/modifica_usuario.php", { 			
+						"tipo" : tipo,
+						"email" : correoEncontrado,
+						"nombre" : nombreEncontrado,
+						"apellido" : apellidoEncontrado, 
+						"genero" : genero,
+						"id_usuario" : id, 
+						"password" : passwordEncontrado
+					}).
+					success(function(data, status) {
+						alertify.success("Cambio guardado");	
+						limpiar();
+					})
+					.
+					error(function(data, status) {
+						$('.result-usuario').hide();
+						alertify.error("Error");
+						limpiar();
+					});
+			    }
 			});
+			
 		}
 	}
 }]);
@@ -1085,10 +1090,10 @@ app.controller("inhabilitarUserController",['$scope', '$http', function($scope, 
 							$('#nombreUser').html(data[i].nombre+' '+data[i].apellido);
 							$('#id-usuario-in').val(data[i].id_usuario);
 					 		if(data[i].estado ==1){
-					 			$('#activo').attr('checked', 'checked');
+					 			$('#activo').prop('checked', true);
 					 		}
 					 		else if(data[i].estado ==3 ){
-					 			$('#inactivo').attr('checked', 'checked');
+					 			$('#inactivo').prop('checked', true);
 					 		}
 						}
 					}
@@ -1110,22 +1115,26 @@ app.controller("inhabilitarUserController",['$scope', '$http', function($scope, 
 	this.inaUser = function(){
 		var estado,
 			id=$('#id-usuario-in').val();
-	 	if($("input:radio[name=estadoIU]:checked").attr('val')=== "activo"){
-	 		estado = 1;
-	 	}else if ($("input:radio[name=estadoIU]:checked").attr('val') === "inactivo"){
-	 		estado = 3;
-	 	}
+		alertify.confirm("¿Está seguro que desea enviar los cambios?", function (e) {
+			if (e) {
+				if($("input:radio[name=estadoIU]:checked").attr('val')=== "activo"){
+			 		estado = 1;
+			 	}else if ($("input:radio[name=estadoIU]:checked").attr('val') === "inactivo"){
+			 		estado = 3;
+			 	}
 
-	 	console.log('estado: '+estado + ' id: '+id);
+			 	console.log('estado: '+estado + ' id: '+id);
 
-	 	$http.post("/Proyecto_1/php/configuration/estado_usuario.php", { "estado" : estado, "id_usuarrio" : id
-		}).
-		success(function(data, status) {
-			alertify.success("Cambio guardado");
-		})
-		.
-		error(function(data, status) {
-			alertify.error("Error");
+			 	$http.post("/Proyecto_1/php/configuration/estado_usuario.php", { "estado" : estado, "id_usuarrio" : id
+				}).
+				success(function(data, status) {
+					alertify.success("Cambio guardado");
+				})
+				.
+				error(function(data, status) {
+					alertify.error("Error");
+				});
+			} 
 		});
 	}
 }]);
