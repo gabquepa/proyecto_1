@@ -2642,7 +2642,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				    var temp=true;
 				    var tempText=$("#newPost").val();
 				    $("#newPost").css("border","solid #ccc 1px");
-				   alert(idpost);
+				   
 				    validarCampo($("#newPost"));
 				    if (temp){
 					    plistapost.length=0;
