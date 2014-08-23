@@ -15,7 +15,7 @@
     	<a href="#contcomentblog" class="linkcometarblog pull-right clearfix" data-toggle="collapse">Comentar</a>
     	
     	<form ng-controller="addComent as addC" role="form" id="contcomentblog" class="panel-collapse collapse clearfix pull-left" name="addComent" ng-submit="addComent.$valid && addC.addComt(tabs.idPost,usuario.user[cookieValue].id_usuario,tabs.listaComentarioPost)">
-    		<label>{{usuario.user[cookieValue].nombre}}</label>
+    		<label>{{usuario.user[cookieValue].nombre}} {{usuario.user[cookieValue].apellido}}</label>
     		<input type="text" ng-model="addC.strDate" placeholder="{{addC.strDate}}" required disabled/>
     		<textarea id="comentblog" class="textcomentblog" ng-model="addC.texto"></textarea>
     		<button type="submit" class="btnaddBlog pull-right" value="submit">Publicar</button>

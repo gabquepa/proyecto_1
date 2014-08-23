@@ -1077,7 +1077,7 @@ app.controller("modificarUserController", ['$scope', '$http', function($scope, $
 		 var apellidoEncontrado = $('#apellidoEncontrado').val();
          var correoEncontrado = $('#correoEncontrado').val();
          var passwordEncontrado = $('#passwordEncontrado').val();
-         var genero = $("input:radio[name=genero]:checked").val();
+         var genero = $("input:radio[name=generocreausuario]:checked").attr('val');
          var tipo = $("input:radio[name=tipoUsuario]:checked").attr('val');
          var id = $('#id-usuario-mod').val();
 
