@@ -1536,6 +1536,9 @@ app.controller('agregarDocController',['$http', function($http){
 		// store.listaHistorial = [];
 		
 		
+		
+		
+		
 	this.historial=function(puser,iddoc,arreglo){
      	 var temp=true;
 		 
@@ -1996,38 +1999,28 @@ app.controller('subirDocController',function(){//Controlador de mi seccion Subir
 		}
 });
 
-app.controller('verEstrellas',['$http',function($http){//Controlador de mi seccion Subir Documento
-	var store = this;
-		store.ranking={};
-
-		
-		$http.post("/Proyecto_1/php/document/muestra_ranking.php", {}).
-				 success(function(data, status) {
-				   for (var i=0; i<data.length; i++) {
-				   store.ranking.(data[i]);
-			          	
-				   }
-				   console.log(store.ranking);
-
-				 }).
-				 error(function(data, status) {
-				  alertify.error("Error");
-				 });
-				 // console.log(store.listaHistorialDes.length);
-         console.log(store.ranking);
-
-}]);
 
 app.controller('historialDesController',['$http',function($http){//controlador de mi seccion historial de descarga
 	// console.log("Entro Historial");
 		var store = this;
 		store.listaHistorialDes = [];
-		store.ranking=[];
+		store.votos="";
+		store.cali="";
 		this.vot=true;
 		this.valor=0;
 		$("#docnav").removeAttr("id");
 		
-		
+		$http.post("/Proyecto_1/php/configuration/muestra_ranking.php").
+			success(function(data, status) {
+				for(var i= 0; i<data.length;i++){
+					store.votos=data[i].num_cinco;
+					store.cali=data[i].ranking_cinco;	
+				}
+			})
+			.
+			error(function(data, status) {
+				alertify.error("Error");
+			});
 
 	    this.getVal= function (pvalor,piddoc) {
 		     var temp=0;
@@ -2073,12 +2066,12 @@ app.controller('historialDesController',['$http',function($http){//controlador d
                        
 		        	  if (pestado==1) {
 		        	  	$("#"+id).attr("value","0");
-		        	  	$("#"+id).attr("max","{{historial.ranking.num_cinco}}");
+		        	  	$("#"+id).attr("max",store.votos);
 		        	  	return false;
 
 		        	  }else{
 		        	  	$("#"+id).attr("value",pcalif);
-		        	  	$("#"+id).attr("max","{{historial.ranking.ranking_cinco}}");
+		        	  	$("#"+id).attr("max",store.cali);
 		        	  	return true;
 		        	  }
 

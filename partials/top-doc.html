@@ -1,5 +1,5 @@
 <!--Top Documentos-->
-              <div>
+              <div >
                 <h3>Intercambio de Conocimiento </h3>
 
                 <div id='divDoc'>
@@ -7,7 +7,7 @@
                     <section class='imgDescarg'>
                         <a ng-click="add.historial(usuario.user[cookieValue].id_usuario,top.id_documento,historial.listaHistorialDes)" href="{{top.archivo}}" target="_blank"><img src="img/btn-pdf.png"></a>
                         <div class="comment-stars">
-                          <input class="stars star-rating" min="0" max="100" data-size="xs" disabled type="number" value="{{top.calificacion}}">
+                          <input class="stars star-rating" min="0" max="{{historial.cali}}" data-size="xs" disabled type="number" value="{{top.calificacion}}">
                           
                         </div>
                         

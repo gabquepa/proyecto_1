@@ -15,8 +15,8 @@
 		
 				<img ng-show="usuario.user[cookieValue].genero=='m'" src="/Proyecto_1/img/avatar.png"/>
 				<img ng-show="usuario.user[cookieValue].genero=='f'" src="/Proyecto_1/img/avatarf.png"/>
-				<div class="comment-stars">
-                  <input class="stars star-rating" min="0" max="100" data-size="xs" disabled type="number" value="{{usuario.user[cookieValue].calificacion}}"> 
+				<div class="comment-stars" ng-controller='historialDesController as historial'>
+                  <input  class="stars star-rating" min="0" max="{{historial.cali}}" data-size="xs" disabled type="number" value="{{usuario.user[cookieValue].calificacion}}"> 
                  </div>
 				<figcaption>
 					Candidad de Votos: {{usuario.user[cookieValue].calificacion}}

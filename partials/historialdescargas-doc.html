@@ -1,6 +1,6 @@
 <div ng-controller='historialDesController as historial'>
                 <h3>Historial de Descargas</h3>
-             <div ng-controller='verEstrellas as star'> 
+
              	
                 <table id='tableDoc'>
                   <tr ng-repeat="documento in historial.listaHistorialDes | orderBy: 'calificacion' | filter:{id_usuario:usuario.user[cookieValue].id_usuario}">
