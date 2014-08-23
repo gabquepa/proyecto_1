@@ -1541,6 +1541,7 @@ app.controller("desasignarCurso", ['$scope', '$http', function($scope, $http){
 }]);
 
 //********************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//********************>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 //Controllers Keilyn Sibaja
 
@@ -2036,17 +2037,38 @@ app.controller('subirDocController',function(){//Controlador de mi seccion Subir
 		}
 });
 
+app.controller('verEstrellas',['$http',function($http){//Controlador de mi seccion Subir Documento
+	var store = this;
+		store.ranking={};
+
+		
+		$http.post("/Proyecto_1/php/document/muestra_ranking.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+				   store.ranking.(data[i]);
+			          	
+				   }
+				   console.log(store.ranking);
+
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Error");
+				 });
+				 // console.log(store.listaHistorialDes.length);
+         console.log(store.ranking);
+
+}]);
+
 app.controller('historialDesController',['$http',function($http){//controlador de mi seccion historial de descarga
 	// console.log("Entro Historial");
 		var store = this;
 		store.listaHistorialDes = [];
+		store.ranking=[];
 		this.vot=true;
-		this.min=1;
-		this.max=5;
 		this.valor=0;
-		
 		$("#docnav").removeAttr("id");
-
+		
+		
 
 	    this.getVal= function (pvalor,piddoc) {
 		     var temp=0;
@@ -2066,7 +2088,8 @@ app.controller('historialDesController',['$http',function($http){//controlador d
               
 		        	
 		 };
-
+        
+        
 
 
 
@@ -2079,6 +2102,7 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 				   
                     
 				  }
+				    
 				 }).
 				 error(function(data, status) {
 				  alertify.error("Error");
@@ -2086,16 +2110,16 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 				 // console.log(store.listaHistorialDes.length);
 				 
          this.estrellaValor= function (pestado,pcalif,id) {
-		
-                          
+		              
+                       
 		        	  if (pestado==1) {
 		        	  	$("#"+id).attr("value","0");
-		        	  	$("#"+id).attr("max","5");
+		        	  	$("#"+id).attr("max","{{historial.ranking.num_cinco}}");
 		        	  	return false;
 
 		        	  }else{
 		        	  	$("#"+id).attr("value",pcalif);
-		        	  	$("#"+id).attr("max","100");
+		        	  	$("#"+id).attr("max","{{historial.ranking.ranking_cinco}}");
 		        	  	return true;
 		        	  }
 
@@ -2123,6 +2147,9 @@ app.controller('historialDesController',['$http',function($http){//controlador d
 		setTimeout(function(){
 			$('.comment-stars .clear-rating').hide();
 		}, 500);
+		
+		
+		
 
 }]);
 // app.controller('mitestController',['$http',function($http){
@@ -2536,6 +2563,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		this.texto="";
 		this.titulo="";
 		this.nombre="";
+		this.apellido="";
 		this.fecha="";
 		
 		if (this.tabblog=="b1") { 
@@ -2555,7 +2583,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
 
 		
-		this.getTabIn=function(getTab,pidBlog,piduser,pnombre,ptext,ptitulo,pfecha){
+		this.getTabIn=function(getTab,pidBlog,piduser,pnombre,papellido,ptext,ptitulo,pfecha){
             $("#divEditarPost").show(); 
             $("#newPost").val()  
             store.listaComentarioPost=[];
@@ -2568,6 +2596,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 			this.texto=ptext;
 			this.titulo=ptitulo;
 			this.nombre=pnombre;
+			this.apellido=papellido;
 			this.fecha=pfecha;
 
 			$http.post("/Proyecto_1/php/blog/info_comentarioPost.php", {"id_post" : pidBlog}).
@@ -2872,15 +2901,16 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		     	    $http.post("/Proyecto_1/php/blog/ingresar_comentario.php", { "id_post" : pIdPost , "id_usuario" : pDueño ,  "texto" : this.texto,  "fecha": this.strDate }).
 					success(function(data, status) {
 					alertify.success("Comentario publicado");
+					$("#comentblog").val("");
 				    plistacoment.length=0;
 					$('#contcomentblog').collapse('toggle');
-					$http.post("/Proyecto_1/php/blog/info_comentarioPost.php", {"id_post" : pIdPost}).
-				    success(function(data, status) {
-				     for (var i=0; i<data.length; i++) {
-				    	plistacoment.push(data[i]);
-				  
-
-				   }
+						$http.post("/Proyecto_1/php/blog/info_comentarioPost.php", {"id_post" : pIdPost}).
+					    success(function(data, status) {
+					     for (var i=0; i<data.length; i++) {
+					    	plistacoment.push(data[i]);
+					  
+	
+					     }
 				 }).
 				 error(function(data, status) {
 				  alertify.error("Ocurrio un error");

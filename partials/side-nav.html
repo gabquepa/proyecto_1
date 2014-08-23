@@ -1,10 +1,10 @@
 <div class="side-nav" ng-controller="routeController as route">
   <section ng-controller="UserController as usuario">
 
-	<img class="usr-avatar" src="/Proyecto_1/img/avatar.png">
+	<img ng-show="usuario.user[cookieValue].genero=='m'" class="usr-avatar" src="/Proyecto_1/img/avatar.png">
+    <img ng-show="usuario.user[cookieValue].genero=='f'" class="usr-avatar" src="/Proyecto_1/img/avatarf.png">
 
-    <span>Cantidad de votos recibidos:{{usuario.user[cookieValue].calificacion}}</span> 
- 
+  
 	<h3>Menú de Usuario</h3>
 	<ul>
 		<li id="blogsUser1"><a href="/Proyecto_1/user-blog1.html" ng-click="tabs.getTab('b1')">Blogs</a></li>

@@ -1,7 +1,7 @@
 
 <section class="contblog">
     <a href ng-click="tabs.regresar(3)" class="editdelete pull-right">Regresar<span class='glyphicon glyphicon-arrow-left'></a>
-	<h3>{{tabs.nombre}}</h3>
+	<h3>{{tabs.nombre}} {{tabs.apellido}}</h3>
 
 		
     <section class="misBlogs4">
@@ -28,12 +28,12 @@
     	 	<li class="list-group-item clearfix" ng-repeat="comentarios in tabs.listaComentarioPost| filter:{estado:1} | orderBy:'-fecha'">
               <section class="misBlogs1">
                 <section class="headerMiblogs clearfix">
-                  <a href="#" class="pull-left linktituloBlog1">{{comentarios.nombre}}</a>
+                  <a href="#" class="pull-left linktituloBlog1">{{comentarios.nombre}} {{comentarios.apellido}}</a>
                   <span class="fechasComent pull-left ">{{comentarios.fecha}}</span>
                 </section>
                 <section class="contMiBlog1 clearfix">
                   <p class="textmiblog">
-                    {{comentarios.texto}} {{comentarios.id_comentario_post}}
+                    {{comentarios.texto}}
                   </p>
                 </section>
                 <a href class="pull-right editdelete clearfix" ng-click="tabs.denunciar(comentarios.id_comentario_post,tabs.listaComentarioPost,comentarios.id_post)">Denunciar</a>

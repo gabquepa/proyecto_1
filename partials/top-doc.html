@@ -1,9 +1,9 @@
 <!--Top Documentos-->
               <div>
-                <h3>Intercambio de Conocimiento</h3>
+                <h3>Intercambio de Conocimiento </h3>
 
                 <div id='divDoc'>
-                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | limitTo:10 " class='divDescarg cf'>
+                  <div ng-repeat="top in add.documentos | orderBy:'calificacion' | limitTo:10 " class='divDescarg cf'>
                     <section class='imgDescarg'>
                         <a ng-click="add.historial(usuario.user[cookieValue].id_usuario,top.id_documento,historial.listaHistorialDes)" href="{{top.archivo}}" target="_blank"><img src="img/btn-pdf.png"></a>
                         <div class="comment-stars">

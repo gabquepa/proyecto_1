@@ -23,7 +23,7 @@
                      
                     </select>
                   </section>
-                      <button type="submit" id="borrar" class='btn-buscar' ng-click="buscarDoc.resetall()">Borrar Datos</button>
+                      <button type="submit" id="borrar" class='btn-buscar' ng-click="buscarDoc.resetall()">Limpiar</button>
                     </form>
                 </section>
                 <div ng-show="buscarDoc.opc1==0">
@@ -31,7 +31,7 @@
 		
 		                <div id='divDoc'>
 		                  
-			                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | filter:buscarDoc.busqueda " class='divDescarg cf' id="infoBus">
+			                  <div ng-repeat="top in add.documentos | orderBy:'calificacion' | filter:buscarDoc.busqueda" class='divDescarg cf' id="infoBus">
 				                <table id='tableDocBus'>
 				                    <td class='tbnombreBus'><a ng-click="buscarDoc.historial(usuario.user[cookieValue].id_usuario,top.id_documento,historial.listaHistorialDes)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
 				
@@ -39,15 +39,15 @@
 				                    
 				
 				                    <td class='tbfechaBus'><span class='doc_lispandoc'>{{top.fecha}}</span></td>
-				<!--
+				
 				                    <td class='tbCaliBus'><span class='doc_lispandoc'>Cantidad de Votos: {{top.calificacion}} </span></td>
-				                  -->  	
+				                  <!-- 	
 				                  <td class='tbCaliBus'>
 				                      <div  class="comment-stars">
 				                            <input   class="stars star-rating"  data-size="xs" min="0" max="100" type="number" value="{{top.calificacion}}" ng-disabled="true">
 				                      </div>
 				                    </td>
-				
+				--> 
 				                    <td class='tbcyc'></td>
 				                  </tr>
 				
@@ -62,7 +62,7 @@
 		
 		                <div id='divDoc'>
 		                  
-			                  <div ng-repeat="top in add.documentos | orderBy:'-calificacion' | filter:{id_curso:buscarDoc.cursoBus} " class='divDescarg cf' id="infoBus">
+			                  <div ng-repeat="top in add.documentos | orderBy:'calificacion' | filter:{id_curso:buscarDoc.cursoBus} " class='divDescarg cf' id="infoBus">
 				                <table id='tableDocBus'>
 				                    <td class='tbnombreBus'><a ng-click="buscarDoc.historial(usuario.user[cookieValue].id_usuario,top.id_documento,historial.listaHistorialDes)" href="{{top.archivo}}" target="_blank">{{top.titulo}}</a></td>
 				
