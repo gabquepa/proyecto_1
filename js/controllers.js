@@ -2579,8 +2579,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 		this.getTabIn=function(getTab,pidBlog,piduser,pnombre,papellido,ptext,ptitulo,pfecha){
             $("#divEditarPost").show(); 
             $("#newPost").val()  
-            store.listaComentarioPost=[];
-                 
+            store.listaComentarioPost=[]; 
             this.tabblogIn = getTab;
             this.tabblogIn2 = getTab;
             
@@ -2638,7 +2637,8 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 	
 			this.savePost=function(idpost,plistapost){
 				    var temp=true;
-				    var tempText=$("#newPost").val();
+				    var tempText="";
+				    tempText=$("#newPost").val();
 				    $("#newPost").css("border","solid #ccc 1px");
 				 
 				    validarCampo($("#newPost"));
@@ -2646,7 +2646,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 					    plistapost.length=0;
 					    $http.post("/Proyecto_1/php/blog/modificar_post.php", { "id_post" : idpost, "texto" : tempText }).
 					    success(function(data, status) {
-					       alertify.log("El post se modificó");
+					       alertify.success("El post se modificó");
 					       
 					       $http.post("/Proyecto_1/php/blog/info_post.php", {}).
 							 success(function(data, status) {
@@ -2683,12 +2683,21 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 					
 			};
 		
-		    this.regresar=function(getTab){  
+		    this.regresar=function(getTab,text){  
 		            if (this.value) {
 		            	alertify.log("Debe guardar los cambios" + "<br>" + "realizados en el post");
 		            } else{
+		            	/*this.idUser="";
+						this.idPost="";
+						this.texto="";
+						this.titulo="";
+						this.nombre="";
+						this.apellido="";
+						this.fecha="";
 		            	this.tabblogIn = getTab;
-		            	this.tabblogIn2 = getTab;
+		            	this.tabblogIn2 = getTab;*/
+		            	window.location.replace('/Proyecto_1/user-blog1.html');
+						
 		            };
 		    };
 		
