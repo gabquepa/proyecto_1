@@ -8,11 +8,11 @@
                   <input id="titulo" class="form-control miform" type='text' placeholder='Titulo' ng-model='add.addDoc.titulo'>
                   <input id="autor" class="form-control miform" type='text' placeholder='Autor' ng-model='add.addDoc.autor'>
                   <section ng-controller='misCarrerasDoc-cursos as cyc'>
-                    <select id='addcarrera' ng-model="miID" ng-options="carre.id_carrera as carre.nombre for carre in cyc.carreras" ng-change="cyc.selectCurso(miID)" class="select-carrera form-control miform">
+                    <select id='addcarrera' ng-model="miID" ng-options="carre.id_carrera as carre.carrera for carre in cyc.carreraDeusuario | filter:{id_usuario:usuario.user[cookieValue].id_usuario}" ng-change="cyc.selectCurso(miID)" class="select-carrera form-control miform">
                       <option value="">Seleccione una Carrera</option>
                    
                     </select>
-                    <select id='addcurso' ng-model="add.addDoc.curso" ng-options="cursos.id_curso as cursos.nombre for cursos in cyc.curso" class="select-curso form-control selectStyle miform">
+                    <select id='addcurso' ng-model="add.addDoc.curso" ng-options="cursos.id_curso as cursos.curso for cursos in cyc.cursosDeUsuario| filter:{id_carrera:miID} | filter:{id_usuario:usuario.user[cookieValue].id_usuario}" class="select-curso form-control selectStyle miform">
                       <option value="">Seleccione un Curso</option>
                      
                     </select>

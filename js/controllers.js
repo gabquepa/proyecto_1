@@ -1776,6 +1776,36 @@ app.controller('misCarrerasDoc-cursos',['$http', function($http){
 	var store=this;
 	store.carreras=[];
 	store.curso=[];
+	
+	store.cursosDeUsuario = [];
+    store.carreraDeusuario = [];
+
+		$http.post("/Proyecto_1/php/blog/cursosDeUsuario.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+
+				   	store.cursosDeUsuario.push(data[i]);
+				   
+                    
+				  }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Error");
+				 });
+				 
+		$http.post("/Proyecto_1/php/blog/carreraDeusuario.php", {}).
+				 success(function(data, status) {
+				   for (var i=0; i<data.length; i++) {
+
+				   	store.carreraDeusuario.push(data[i]);
+				   
+                    
+				  }
+				 }).
+				 error(function(data, status) {
+				  alertify.error("Error");
+		});
+	
 	$http.post("/Proyecto_1/php/blog/info_carreras.php", {}).
 				 success(function(data, status) {
 				   for (var i=0; i<data.length; i++) {
@@ -2281,7 +2311,7 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 
 			if (temp){
 					for (var i=0; i < pUsuario.length; i++) {
-					  if (pPass==pUsuario[i].password && pName==pUsuario[i].email) {
+					  if (pPass==pUsuario[i].password && pName==pUsuario[i].email && pUsuario[i].estado==1) {
 				        	   $cookieStore.put('usuario', i);
 				        	   $cookieStore.put('usuarioTipo', pUsuario[i].tipo);
 				        	   $cookieStore.put('usuarioID', pUsuario[i].id_usuario);
@@ -2732,100 +2762,81 @@ app.controller('validarLogin', ['$cookieStore',function($cookieStore){
 				});
 			}
 		    
-		    this.deletePost = function(postid,puser,tab,plistaPost){
-		    	console.log(plistaPost.length);
-		    	//console.log("Borrelo");
-		    	console.log(postid);
-
-		    	$http.post("/Proyecto_1/php/blog/borra_post.php", {"id_post" : postid}).
-				success(function(data, status) {
-
-					   $("#newPost").css("border","solid #ccc 1px");  
-		                alertify.success("El post fue eliminado");
-		            	
-					
-
-		    		console.log(plistaPost.length);
-					plistaPost.length = 0;
-
-					$http.post("/Proyecto_1/php/blog/info_post.php", {}).
-							 success(function(data, status) {
-							 	console.log(data.length);
-							   for (var i=0; i<data.length; i++) {
-							   	plistaPost.push(data[i]);
-							   	console.log(data.length);
-
-							   }
-							 }).
-							 error(function(data, status) {
-							  alertify.error("Ocurrio un error");
-							 });
-							 console.log(plistaPost.length);
-
-				})
-				.
-				error(function(data, status) {
-					alertify.error("Error");
-				})
+		        this.deletePostback = function(postid,puser,tab){
+		    	alertify.confirm("Esta seguro que desea eliminar este post?", function (e) {
+				    if (e) {
+		    	
+				    	$http.post("/Proyecto_1/php/blog/borra_post.php", {"id_post" : postid}).
+						success(function(data, status) {
+		
+							   $("#newPost").css("border","solid #ccc 1px");  
+				                alertify.success("El post fue eliminado");
+				            	
+							    window.location = "/Proyecto_1/user-blog1.html";
+		
+						})
+						.
+						error(function(data, status) {
+							alertify.error("Error");
+						})
 		 
 
- 					//$("#newPost").css("border","solid #ccc 1px"); 
-					//this.tabblogIn = tab;
-				// $http.post("/Proyecto_1/php/blog/crea_post.php", { "id_usuario" : 1 , "titulo" : this.newblog.titulo ,  "texto" : this.newblog.texto,  "fecha": this.newblog.fecha }).
-				// success(function(data, status) {
-				// 	alertify.success("El Post fue creado correctamente");
-
-				// 	plistaPost.length = 0;
-
-				// 	$http.post("/Proyecto_1/php/blog/info_post.php", {"id_usuario" : "1"}).
-				// 			 success(function(data, status) {
-
-				// 			   for (var i=0; i<data.length; i++) {
-				// 			   	plistaPost.push(data[i]);
-				// 			   }
-				// 			 }).
-				// 			 error(function(data, status) {
-				// 			  alertify.error("Ocurrio un error");
-				// 			 });
-
-
-				// })
-				// .
-				// error(function(data, status) {
-				// 	alertify.error("Error");
-				// })
-
-				 // success(function(data, status) {
-				 //   // for (var i=0; i<data.length; i++) {
-				 //   // 	// store.listaComentarioPost.push(data[i]);
-				 //   // 	//  console.log(store.listaComentarioPost[1]);
-
-				 //   // }
-				 // }).
-				 // error(function(data, status) {
-				 //  alertify.error("Ocurrio un error");
-				 // });
-
-				// console.log(postid);
-				
-		  //   	for (var i=0; i < puser.blog.length; i++) {
-				//   if (puser.blog[i].idPost==postid) {
-				//   	    $("#newPost").css("border","solid #ccc 1px");  
-		  //           	alertify.success("El post fue eliminado");
-		  //           	this.tabblogIn = tab;
-	   //                  puser.blog.splice(i , 1 );
-
-		  //   	  };
-		    	  
-				// };
-				
 				this.editar={'':''};
 				this.guardar={'display':'none'};
 	            this.value=false;
 				$("#divEditarPost").hide();
 				this.tabblogIn =1;
 		        console.log(tab);
-	        };
+	            }
+			});
+	      };
+		
+		    
+		    this.deletePost = function(postid,puser,tab,plistaPost){
+		    	alertify.confirm("Esta seguro que desea eliminar este post?", function (e) {
+				    if (e) {
+		    	
+				    	$http.post("/Proyecto_1/php/blog/borra_post.php", {"id_post" : postid}).
+						success(function(data, status) {
+		
+							   $("#newPost").css("border","solid #ccc 1px");  
+				                alertify.success("El post fue eliminado");
+				            	
+							
+		
+				    		console.log(plistaPost.length);
+							plistaPost.length = 0;
+		
+							$http.post("/Proyecto_1/php/blog/info_post.php", {}).
+									 success(function(data, status) {
+			
+									   for (var i=0; i<data.length; i++) {
+									   	plistaPost.push(data[i]);
+									   	console.log(data.length);
+		
+									   }
+									 }).
+									 error(function(data, status) {
+									  alertify.error("Ocurrio un error");
+									 });
+									 console.log(plistaPost.length);
+		
+						})
+						.
+						error(function(data, status) {
+							alertify.error("Error");
+						})
+		 
+
+				this.editar={'':''};
+				this.guardar={'display':'none'};
+	            this.value=false;
+				$("#divEditarPost").hide();
+				this.tabblogIn =1;
+		        console.log(tab);
+	            }
+			});
+	      };
 		
 		
 	}]);
