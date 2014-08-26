@@ -24,15 +24,16 @@
 			</figure>
 		    <aside class="infousuario clearfix">
 				<label>Nombre:</label>
-				<span>{{usuario.user[cookieValue].nombre}} {{usuario.user[cookieValue].apellido}}</span>
+				<h4>{{usuario.user[cookieValue].nombre}} {{usuario.user[cookieValue].apellido}}</h4>
 				
 			<!--	ng-repeat="blog in usuario.listaPost | filter:{id_usuario:usuario.user[cookieValue].id_usuario}"> -->
 				<ol>
 					
 					<li ng-style="{'list-style-type': 'none'}" ng-repeat="info in perfil.carreraDeusuario | filter:{id_usuario:usuario.user[cookieValue].id_usuario} | orderBy:'carrera'">
-						<label>Carerra:</label>
+						
+						<label ng-style="{'border-top': 'solid 0.2em #196A95'}">Carerra:</label>
 						<span>{{info.carrera}}</span>
-						<label>Cursos:</label>
+						<label ng-style="{'color':'gray'}">Cursos:</label>
 						<ul>
 							<li ng-repeat="curso in perfil.cursosDeUsuario | filter:{carrera:info.carrera} | filter:{id_usuario:usuario.user[cookieValue].id_usuario}| orderBy:'curso'">
 							{{curso.curso}}
