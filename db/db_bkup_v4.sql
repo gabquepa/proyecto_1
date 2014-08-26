@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Aug 23, 2014 at 10:18 AM
+-- Generation Time: Aug 23, 2014 at 10:32 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -26,7 +26,7 @@ CREATE TABLE `carrera` (
   `estado` int(3) NOT NULL,
   `thumb` varchar(255) NOT NULL,
   PRIMARY KEY (`id_carrera`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `carrera`
@@ -412,7 +412,7 @@ CREATE TABLE `historial_descargas` (
   `id_documento` int(255) NOT NULL,
   `estado` int(3) NOT NULL,
   PRIMARY KEY (`idhd`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `historial_descargas`
@@ -457,7 +457,7 @@ CREATE TABLE `post` (
   `texto` varchar(255) NOT NULL,
   `fecha` date NOT NULL,
   PRIMARY KEY (`id_post`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `post`
