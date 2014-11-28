@@ -1,0 +1,33 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `encargado_nino`(IN `numero_matricula` INT(255))
+    NO SQL
+select a.nombre as 'autorizado', n.nombre as 'nino' 
+from autorizado a 
+join nino n on (n.id_autorizado = a.id_autorizado)
+where a.id_autorizado = n.id_autorizado
+AND n.numero_matricula = numero_matricula
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `mensualidad_nino`(IN `numero_matricula` INT(255))
+    NO SQL
+select SUM(m.precio) as 'total', n.nombre 
+from cargo_x_mes cxm
+join nino n on (n.id_nino = cxm.id_nino)
+join menu m on (m.id_menu = cxm.id_menu) 
+where n.numero_matricula = numero_matricula
+AND cxm.mes = 8
+GROUP BY n.nombre
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `menu_nino`(IN `numero_matricula` INT(255))
+    NO SQL
+select m.id_menu, m.ingredientes as 'ingredientes', n.nombre as 'nino'
+from cargo_x_mes cxm
+join nino n on (n.id_nino = cxm.id_nino)
+join menu m on (m.id_menu = cxm.id_menu) 
+where cxm.mes = 8
+AND n.numero_matricula = numero_matricula
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `reporte_bajas`()
+    NO SQL
+select nombre, MONTHS_BETWEEN(sysdate, salida)
+from nino
